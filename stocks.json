@@ -1,0 +1,197 @@
+[
+  {
+    "ticker": "KFH",
+    "name": "Kuwait Finance House",
+    "code": 108
+  },
+  {
+    "ticker": "NBK",
+    "name": "National Bank of Kuwait",
+    "code": 101
+  },
+  {
+    "ticker": "GBK",
+    "name": "Gulf Bank KSCP",
+    "code": 102
+  },
+  {
+    "ticker": "ABK",
+    "name": "Al Ahli Bank of Kuwait",
+    "code": 104
+  },
+  {
+    "ticker": "KIB",
+    "name": "Kuwait International Bank",
+    "code": 106
+  },
+  {
+    "ticker": "BURG",
+    "name": "Burgan Bank",
+    "code": 107
+  },
+  {
+    "ticker": "BOUBYAN",
+    "name": "Boubyan Bank",
+    "code": 109
+  },
+  {
+    "ticker": "KINV",
+    "name": "Kuwait Investment Co KSCP",
+    "code": 201
+  },
+  {
+    "ticker": "IFA",
+    "name": "International Financial Advisors",
+    "code": 203
+  },
+  {
+    "ticker": "NINV",
+    "name": "National Investments Co",
+    "code": 204
+  },
+  {
+    "ticker": "KPROJ",
+    "name": "Kuwait Projects Holding",
+    "code": 205
+  },
+  {
+    "ticker": "ARZAN",
+    "name": "Arzan Financial Group",
+    "code": 212
+  },
+  {
+    "ticker": "AAYAN",
+    "name": "Aayan Leasing and Investment",
+    "code": 222
+  },
+  {
+    "ticker": "KRE",
+    "name": "Kuwait Real Estate",
+    "code": 401
+  },
+  {
+    "ticker": "URC",
+    "name": "United Real Estate",
+    "code": 402
+  },
+  {
+    "ticker": "SRE",
+    "name": "Salhia Real Estate",
+    "code": 404
+  },
+  {
+    "ticker": "MABANEE",
+    "name": "Mabanee",
+    "code": 413
+  },
+  {
+    "ticker": "ALTIJARIA",
+    "name": "Commercial Real Estate",
+    "code": 418
+  },
+  {
+    "ticker": "NIND",
+    "name": "National Industries Group",
+    "code": 501
+  },
+  {
+    "ticker": "CABLE",
+    "name": "Gulf Cables",
+    "code": 505
+  },
+  {
+    "ticker": "SHIP",
+    "name": "Heavy Engineering & Shipbuilding",
+    "code": 506
+  },
+  {
+    "ticker": "BPCC",
+    "name": "Boubyan Petrochemical",
+    "code": 514
+  },
+  {
+    "ticker": "MKHZN",
+    "name": "Agility Public Warehousing",
+    "code": 603
+  },
+  {
+    "ticker": "ZAIN",
+    "name": "Mobile Telecommunications",
+    "code": 605
+  },
+  {
+    "ticker": "HUMANSOFT",
+    "name": "Human Soft Holding",
+    "code": 623
+  },
+  {
+    "ticker": "IFAHR",
+    "name": "IFA Hotels and Resorts",
+    "code": 634
+  },
+  {
+    "ticker": "CGC",
+    "name": "Combined Group Contracting",
+    "code": 635
+  },
+  {
+    "ticker": "OULAFUEL",
+    "name": "Oula Fuel Marketing",
+    "code": 645
+  },
+  {
+    "ticker": "JAZEERA",
+    "name": "Jazeera Airways",
+    "code": 654
+  },
+  {
+    "ticker": "GFH",
+    "name": "GFH Bank",
+    "code": 813
+  },
+  {
+    "ticker": "WARBABANK",
+    "name": "Warba Bank",
+    "code": 821
+  },
+  {
+    "ticker": "STC",
+    "name": "Kuwait Telecommunications",
+    "code": 822
+  },
+  {
+    "ticker": "MEZZAN",
+    "name": "Mezzan Holding",
+    "code": 823
+  },
+  {
+    "ticker": "INTEGRATED",
+    "name": "Integrated Holding",
+    "code": 824
+  },
+  {
+    "ticker": "BOURSA",
+    "name": "Boursa Kuwait Securities",
+    "code": 827
+  },
+  {
+    "ticker": "ALG",
+    "name": "Ali Alghanim Sons Automotive",
+    "code": 830
+  },
+  {
+    "ticker": "BEYOUT",
+    "name": "Beyout Holding",
+    "code": 831
+  },
+  {
+    "ticker": "ALFTAQA",
+    "name": "Action Energy",
+    "code": 832
+  },
+  {
+    "ticker": "TROLLEY",
+    "name": "Trolley General Trading",
+    "code": 833
+  }
+]
