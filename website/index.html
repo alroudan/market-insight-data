@@ -114,4 +114,4 @@ async function applyEodFundamentals(ticker){const request=++fundamentalRequest,s
 function refreshEodStock(ticker){applyEodHeader(ticker);applyEodTechnicals(ticker);applyEodFundamentals(ticker)}
 document.querySelector('#stocklist').addEventListener('click',event=>{const button=event.target.closest('.stockbtn');if(button)refreshEodStock(button.querySelector('b').textContent.trim())});
 refreshEodStock('KFH');
-</script></body></html>
+</script><script>if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'))}</script></body></html>
