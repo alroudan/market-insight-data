@@ -48,10 +48,9 @@ for (const stock of stocks) {
   const url = "https://www.boursakuwait.com.kw/en/stock/profile#" + stock.code;
   try {
     await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
-    await page.waitForFunction(
-      () => document.body?.innerText.includes("Market Capitalization"),
-      { timeout: 25000 }
-    );
+    await page.getByText("Market Capitalization", { exact: false })
+      .first()
+      .waitFor({ state: "visible", timeout: 25000 });
     const text = await page.locator("body").innerText();
 
     const currentPrice = valueAfter(text, ["Curr. Price", "Current Price", "Last Price"]);
