@@ -1,26 +1,8 @@
-import { chromium } from "playwright";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 
 const stocks = JSON.parse(await readFile(new URL("../stocks.json", import.meta.url), "utf8"));
 const dataDir = new URL("../data/", import.meta.url);
 await mkdir(dataDir, { recursive: true });
-
-const parseNumber = (value) => {
-  if (value == null) return null;
-  const cleaned = String(value).replace(/,/g, "").replace(/%/g, "").trim();
-  if (!cleaned || cleaned === "-" || cleaned === "—") return null;
-  const parsed = Number(cleaned);
-  return Number.isFinite(parsed) ? parsed : null;
-};
-
-const valueAfter = (text, labels) => {
-  for (const label of labels) {
-    const escaped = label.replace(/[.*+?^$()|[\]\\]/g, "\\$&");
-    const found = text.match(new RegExp(escaped + "\\s*[:\\-]?\\s*([0-9,.]+%?)", "i"));
-    if (found) return parseNumber(found[1]);
-  }
-  return null;
-};
 
 const readJson = async (url, fallback) => {
   try { return JSON.parse(await readFile(url, "utf8")); }
@@ -28,84 +10,132 @@ const readJson = async (url, fallback) => {
 };
 
 const previous = await readJson(new URL("latest.json", dataDir), { stocks: {} });
-const history = await readJson(new URL("history.json", dataDir), {});
-const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage({
-  locale: "en-US",
-  userAgent: "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/131 Safari/537.36"
+const endpoint = "https://scanner.tradingview.com/kuwait/scan";
+const columns = [
+  "name",
+  "description",
+  "close",
+  "change",
+  "volume",
+  "average_volume_10d_calc",
+  "relative_volume_10d_calc",
+  "market_cap_basic",
+  "price_earnings_ttm",
+  "price_book_fq",
+  "price_sales_current",
+  "earnings_per_share_diluted_ttm",
+  "dividends_yield_current",
+  "Recommend.All",
+  "Recommend.MA",
+  "Recommend.Other",
+  "RSI",
+  "MACD.macd",
+  "MACD.signal",
+  "SMA20",
+  "SMA50",
+  "SMA200",
+  "Stoch.K",
+  "Stoch.D"
+];
+
+const response = await fetch(endpoint, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+    "user-agent": "Mozilla/5.0 Market Insight EOD collector"
+  },
+  body: JSON.stringify({
+    symbols: {
+      tickers: stocks.map((stock) => "KSE:" + stock.ticker),
+      query: { types: [] }
+    },
+    columns
+  })
 });
+
+if (!response.ok) throw new Error("TradingView scanner returned HTTP " + response.status);
+const payload = await response.json();
+if (!Array.isArray(payload.data) || payload.data.length === 0) {
+  throw new Error("TradingView scanner returned no Kuwait stock records");
+}
 
 const now = new Date();
 const fetchedAt = now.toISOString();
-const kuwaitDate = new Intl.DateTimeFormat("en-CA", {
+const tradingDate = new Intl.DateTimeFormat("en-CA", {
   timeZone: "Asia/Kuwait", year: "numeric", month: "2-digit", day: "2-digit"
 }).format(now);
-
 const results = {};
 const failures = [];
 
-for (const stock of stocks) {
-  const url = "https://www.boursakuwait.com.kw/en/stock/profile#" + stock.code;
-  try {
-    await page.goto(url, { waitUntil: "domcontentloaded", timeout: 60000 });
-    await page.getByText("Market Capitalization", { exact: false })
-      .first()
-      .waitFor({ state: "visible", timeout: 25000 });
-    const text = await page.locator("body").innerText();
+const finite = (value) => Number.isFinite(Number(value)) ? Number(value) : null;
+const recommendation = (value) => {
+  const score = finite(value);
+  if (score == null) return "Unavailable";
+  if (score >= 0.5) return "Strong Buy";
+  if (score >= 0.1) return "Buy";
+  if (score <= -0.5) return "Strong Sell";
+  if (score <= -0.1) return "Sell";
+  return "Neutral";
+};
 
-    const currentPrice = valueAfter(text, ["Curr. Price", "Current Price", "Last Price"]);
-    const entry = {
-      ticker: stock.ticker,
-      name: stock.name,
-      code: stock.code,
-      sourceUrl: url,
-      fetchedAt,
-      tradingDate: kuwaitDate,
-      currentPrice,
-      marketCapMillion: valueAfter(text, ["Market Capitalization (Million)", "Market Capitalization"]),
-      pe: valueAfter(text, ["P/E Ratio"]),
-      ps: valueAfter(text, ["P/S Ratio"]),
-      eps: valueAfter(text, ["EPS"]),
-      beta: valueAfter(text, ["Beta"]),
-      dividendYield: valueAfter(text, ["Dividend Yield"]),
-      high12m: valueAfter(text, ["Price - 12 Months High"]),
-      low12m: valueAfter(text, ["Price - 12 Months Low"]),
-      volumeMillion: valueAfter(text, ["Volume - (Million)", "Volume (Million)"])
-    };
-
-    const usefulFields = [
-      entry.marketCapMillion, entry.pe, entry.ps, entry.eps, entry.high12m, entry.low12m
-    ].filter((value) => value != null).length;
-    if (usefulFields < 3) throw new Error("profile returned incomplete summary data");
-
-    results[stock.ticker] = entry;
-    if (currentPrice && currentPrice > 0) {
-      const rows = Array.isArray(history[stock.ticker]) ? history[stock.ticker] : [];
-      const row = { date: kuwaitDate, close: currentPrice, volumeMillion: entry.volumeMillion };
-      const existing = rows.findIndex((item) => item.date === kuwaitDate);
-      if (existing >= 0) rows[existing] = row;
-      else rows.push(row);
-      history[stock.ticker] = rows.slice(-400);
+for (const row of payload.data) {
+  const ticker = String(row.s || "").split(":").pop();
+  const stock = stocks.find((item) => item.ticker === ticker);
+  if (!stock || !Array.isArray(row.d)) continue;
+  const d = Object.fromEntries(columns.map((column, index) => [column, row.d[index]]));
+  results[ticker] = {
+    ticker,
+    name: d.description || stock.name,
+    code: stock.code,
+    sourceUrl: "https://www.tradingview.com/symbols/KSE-" + ticker + "/",
+    officialProfileUrl: "https://www.boursakuwait.com.kw/en/stock/profile#" + stock.code,
+    officialFinancialsUrl: "https://www.boursakuwait.com.kw/en/stock/financial-statement#" + stock.code,
+    fetchedAt,
+    tradingDate,
+    close: finite(d.close),
+    changePercent: finite(d.change),
+    volume: finite(d.volume),
+    averageVolume10d: finite(d.average_volume_10d_calc),
+    relativeVolume10d: finite(d.relative_volume_10d_calc),
+    marketCapKwd: finite(d.market_cap_basic),
+    pe: finite(d.price_earnings_ttm),
+    pb: finite(d.price_book_fq),
+    ps: finite(d.price_sales_current),
+    eps: finite(d.earnings_per_share_diluted_ttm),
+    dividendYieldPercent: finite(d.dividends_yield_current),
+    technical: {
+      conclusion: recommendation(d["Recommend.All"]),
+      score: finite(d["Recommend.All"]),
+      movingAverages: recommendation(d["Recommend.MA"]),
+      oscillators: recommendation(d["Recommend.Other"]),
+      rsi14: finite(d.RSI),
+      macd: finite(d["MACD.macd"]),
+      macdSignal: finite(d["MACD.signal"]),
+      sma20: finite(d.SMA20),
+      sma50: finite(d.SMA50),
+      sma200: finite(d.SMA200),
+      stochasticK: finite(d["Stoch.K"]),
+      stochasticD: finite(d["Stoch.D"])
     }
-  } catch (error) {
-    failures.push({ ticker: stock.ticker, error: error.message });
+  };
+}
+
+for (const stock of stocks) {
+  if (!results[stock.ticker]) {
+    failures.push({ ticker: stock.ticker, error: "No scanner record returned" });
     if (previous.stocks?.[stock.ticker]) results[stock.ticker] = previous.stocks[stock.ticker];
   }
 }
 
-await browser.close();
-
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
-if (freshCount === 0) {
-  console.error("Per-stock failures:", JSON.stringify(failures, null, 2));
-  throw new Error("Boursa Kuwait returned no fresh records; previous snapshot was preserved");
-}
+if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
 
 const snapshot = {
-  source: "Boursa Kuwait public company profile pages",
-  sourceHome: "https://www.boursakuwait.com.kw/",
+  source: "TradingView Kuwait market scanner",
+  officialDisclosureSource: "Boursa Kuwait",
+  sourceUrl: endpoint,
   generatedAt: fetchedAt,
-  tradingDate: kuwaitDate,
+  tradingDate,
   schedule: "13:16 Asia/Kuwait, Sunday-Thursday",
   freshCount,
   totalCount: stocks.length,
@@ -114,6 +144,5 @@ const snapshot = {
 };
 
 await writeFile(new URL("latest.json", dataDir), JSON.stringify(snapshot, null, 2) + "\n");
-await writeFile(new URL("history.json", dataDir), JSON.stringify(history, null, 2) + "\n");
-console.log("Saved " + freshCount + "/" + stocks.length + " fresh records for " + kuwaitDate);
+console.log("Saved " + freshCount + "/" + stocks.length + " fresh Kuwait records for " + tradingDate);
 if (failures.length) console.warn(JSON.stringify(failures, null, 2));
