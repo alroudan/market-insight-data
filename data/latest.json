@@ -2,7 +2,7 @@
   "source": "TradingView Kuwait market scanner",
   "officialDisclosureSource": "Boursa Kuwait",
   "sourceUrl": "https://scanner.tradingview.com/kuwait/scan",
-  "generatedAt": "2026-09-13T17:11:03.642Z",
+  "generatedAt": "2026-09-13T19:35:32.986Z",
   "tradingDate": "2026-09-13",
   "schedule": "13:16 Asia/Kuwait, Sunday-Thursday",
   "freshCount": 39,
@@ -16,7 +16,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-KFH/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#108",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#108",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 774,
       "changePercent": -0.5141388174807198,
@@ -42,7 +42,14 @@
         "sma200": 768.5430945649985,
         "stochasticK": 44.44444444444445,
         "stochasticD": 52.638888888888864
-      }
+      },
+      "logoId": "kuwait-finance-house",
+      "revenueKwd": 4026597000,
+      "netIncomeKwd": 613199000,
+      "returnOnEquityPercent": 11.0759358631298,
+      "debtToEquity": 2.10726294431051,
+      "profitMarginPercent": 30.021811930882947,
+      "evEbitda": 0
     },
     "NBK": {
       "ticker": "NBK",
@@ -51,7 +58,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-NBK/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#101",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#101",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 872,
       "changePercent": -0.34285714285714286,
@@ -77,7 +84,14 @@
         "sma200": 887.2183543749986,
         "stochasticK": 69.88636363636364,
         "stochasticD": 72.21520763187429
-      }
+      },
+      "logoId": "national-bank-of-kuwait",
+      "revenueKwd": 2789355000,
+      "netIncomeKwd": 557504000,
+      "returnOnEquityPercent": 12.876815063738501,
+      "debtToEquity": 2.5281515544807203,
+      "profitMarginPercent": 42.51625884885919,
+      "evEbitda": 0
     },
     "GBK": {
       "ticker": "GBK",
@@ -86,7 +100,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-GBK/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#102",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#102",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 345,
       "changePercent": 0.5830903790087464,
@@ -112,7 +126,14 @@
         "sma200": 340.0059599149995,
         "stochasticK": 13.678451178451178,
         "stochasticD": 12.864758698092038
-      }
+      },
+      "logoId": "gulf-bank-kscp",
+      "revenueKwd": 438624000,
+      "netIncomeKwd": 52380000,
+      "returnOnEquityPercent": 6.67731384596229,
+      "debtToEquity": 2.39059108641683,
+      "profitMarginPercent": 29.139411924515684,
+      "evEbitda": 0
     },
     "ABK": {
       "ticker": "ABK",
@@ -121,7 +142,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-ABK/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#104",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#104",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 311,
       "changePercent": 0,
@@ -147,7 +168,14 @@
         "sma200": 278.0902452849999,
         "stochasticK": 60.32961190855925,
         "stochasticD": 59.86929136162248
-      }
+      },
+      "logoId": "al-ahli-bank-of-kuwait",
+      "revenueKwd": 568790000,
+      "netIncomeKwd": 56610000,
+      "returnOnEquityPercent": 9.29991439955527,
+      "debtToEquity": 2.75939629739005,
+      "profitMarginPercent": 27.132763662470012,
+      "evEbitda": 0
     },
     "KIB": {
       "ticker": "KIB",
@@ -156,7 +184,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-KIB/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#106",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#106",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 258,
       "changePercent": 0,
@@ -182,7 +210,14 @@
         "sma200": 262.0935098195998,
         "stochasticK": 89.74358974358974,
         "stochasticD": 91.46270396270397
-      }
+      },
+      "logoId": "kuwait-international-bank",
+      "revenueKwd": 234818000,
+      "netIncomeKwd": 23987000,
+      "returnOnEquityPercent": 7.241314737467739,
+      "debtToEquity": 2.15369018332925,
+      "profitMarginPercent": 26.05460510897586,
+      "evEbitda": 0
     },
     "BURG": {
       "ticker": "BURG",
@@ -191,7 +226,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-BURG/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#107",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#107",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 182,
       "changePercent": -0.546448087431694,
@@ -217,7 +252,14 @@
         "sma200": 196.62241722294996,
         "stochasticK": 50.5010510295395,
         "stochasticD": 57.48796506219367
-      }
+      },
+      "logoId": "burgan-bank",
+      "revenueKwd": 760216000,
+      "netIncomeKwd": 35659000,
+      "returnOnEquityPercent": 3.01146157591477,
+      "debtToEquity": 3.11206432441881,
+      "profitMarginPercent": 9.041405278454222,
+      "evEbitda": 0
     },
     "BOUBYAN": {
       "ticker": "BOUBYAN",
@@ -226,7 +268,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-BOUBYAN/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#109",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#109",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 662,
       "changePercent": -1.3412816691505216,
@@ -252,7 +294,14 @@
         "sma200": 655.553077774149,
         "stochasticK": 60.91954022988509,
         "stochasticD": 77.75761242185928
-      }
+      },
+      "logoId": "boubyan-bank",
+      "revenueKwd": 578803000,
+      "netIncomeKwd": 94481000,
+      "returnOnEquityPercent": 10.1932781641073,
+      "debtToEquity": 0.9574143767534701,
+      "profitMarginPercent": 35.40991275808004,
+      "evEbitda": 0
     },
     "KINV": {
       "ticker": "KINV",
@@ -261,7 +310,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-KINV/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#201",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#201",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 195,
       "changePercent": 0,
@@ -287,7 +336,14 @@
         "sma200": 205.83499999999935,
         "stochasticK": 48.81320949432404,
         "stochasticD": 52.528379772961806
-      }
+      },
+      "logoId": "kuwait-investment-co-kscp",
+      "revenueKwd": 32212488.999999996,
+      "netIncomeKwd": 19713119,
+      "returnOnEquityPercent": 10.9819039804636,
+      "debtToEquity": 0.180713177323568,
+      "profitMarginPercent": 43.1709753793393,
+      "evEbitda": 0
     },
     "IFA": {
       "ticker": "IFA",
@@ -296,7 +352,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-IFA/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#203",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#203",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 400,
       "changePercent": 2.564102564102564,
@@ -322,7 +378,14 @@
         "sma200": 379.26730007,
         "stochasticK": 94.22423596304192,
         "stochasticD": 84.24454894733934
-      }
+      },
+      "logoId": "international-financial-advisors",
+      "revenueKwd": 889583,
+      "netIncomeKwd": 11517596,
+      "returnOnEquityPercent": 5.09098702046665,
+      "debtToEquity": 0.16480308551005599,
+      "profitMarginPercent": 535.753403510529,
+      "evEbitda": 0
     },
     "NINV": {
       "ticker": "NINV",
@@ -331,7 +394,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-NINV/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#204",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#204",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 293,
       "changePercent": -0.6779661016949152,
@@ -357,7 +420,14 @@
         "sma200": 274.6100000000004,
         "stochasticK": 94.59459459459458,
         "stochasticD": 95.07234507234506
-      }
+      },
+      "logoId": "national-investments-co",
+      "revenueKwd": 44824000,
+      "netIncomeKwd": 24036000,
+      "returnOnEquityPercent": 8.27537964358181,
+      "debtToEquity": 0.55370488692689,
+      "profitMarginPercent": 46.1633034879059,
+      "evEbitda": 16.096895081206497
     },
     "KPROJ": {
       "ticker": "KPROJ",
@@ -366,7 +436,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-KPROJ/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#205",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#205",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 76.3,
       "changePercent": -0.1308900523560321,
@@ -392,7 +462,14 @@
         "sma200": 78.86814253999997,
         "stochasticK": 9.164222873900368,
         "stochasticD": 11.21201405212629
-      }
+      },
+      "logoId": "kuwait-projects",
+      "revenueKwd": 1539112000,
+      "netIncomeKwd": 8148999.999999999,
+      "returnOnEquityPercent": 0.541257278647209,
+      "debtToEquity": 7.12610399066539,
+      "profitMarginPercent": 0.3710386247534719,
+      "evEbitda": 0
     },
     "ARZAN": {
       "ticker": "ARZAN",
@@ -401,7 +478,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-ARZAN/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#212",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#212",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 315,
       "changePercent": 0.3184713375796179,
@@ -427,7 +504,14 @@
         "sma200": 332.5585336000001,
         "stochasticK": 22.991452991452988,
         "stochasticD": 25.726495726495727
-      }
+      },
+      "logoId": "arzan-financial-for-financing-and-investment",
+      "revenueKwd": 13590888,
+      "netIncomeKwd": 23241415,
+      "returnOnEquityPercent": 11.2214825201286,
+      "debtToEquity": 0.32221482738245,
+      "profitMarginPercent": 140.937253491267,
+      "evEbitda": 77.54278869012822
     },
     "AAYAN": {
       "ticker": "AAYAN",
@@ -436,7 +520,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-AAYAN/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#222",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#222",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 300,
       "changePercent": 1.0101010101010102,
@@ -462,7 +546,14 @@
         "sma200": 250.60500000000013,
         "stochasticK": 91.02564102564104,
         "stochasticD": 91.61324786324788
-      }
+      },
+      "logoId": "aayan-leasing-and-investment",
+      "revenueKwd": 36249495,
+      "netIncomeKwd": 19516444,
+      "returnOnEquityPercent": 9.98819043456842,
+      "debtToEquity": 1.0091892399248001,
+      "profitMarginPercent": 25.395697593393795,
+      "evEbitda": 12.921961990612463
     },
     "KRE": {
       "ticker": "KRE",
@@ -471,7 +562,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-KRE/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#401",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#401",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 364,
       "changePercent": 2.247191011235955,
@@ -497,7 +588,14 @@
         "sma200": 342.9933398400002,
         "stochasticK": 84.8485483701918,
         "stochasticD": 79.17106289813553
-      }
+      },
+      "logoId": "kuwait-real-estate-co-ksc",
+      "revenueKwd": 40616210,
+      "netIncomeKwd": 15073225,
+      "returnOnEquityPercent": 8.75967797338023,
+      "debtToEquity": 1.10352411152971,
+      "profitMarginPercent": 29.5080083179746,
+      "evEbitda": 29.51479303288039
     },
     "URC": {
       "ticker": "URC",
@@ -506,7 +604,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-URC/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#402",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#402",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 270,
       "changePercent": 3.8461538461538463,
@@ -532,7 +630,14 @@
         "sma200": 261.7450372899998,
         "stochasticK": 56.28019323671497,
         "stochasticD": 42.386225690573525
-      }
+      },
+      "logoId": "united-real-estate-ksc",
+      "revenueKwd": 103289583,
+      "netIncomeKwd": 6110343,
+      "returnOnEquityPercent": 2.34104773189173,
+      "debtToEquity": 2.45876883936775,
+      "profitMarginPercent": 4.62518013232748,
+      "evEbitda": 32.189594424138505
     },
     "SRE": {
       "ticker": "SRE",
@@ -541,7 +646,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-SRE/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#404",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#404",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 364,
       "changePercent": -0.8174386920980926,
@@ -567,7 +672,14 @@
         "sma200": 396.3049999999996,
         "stochasticK": 9.09090909090907,
         "stochasticD": 11.031887502475717
-      }
+      },
+      "logoId": "salhia-real-estate",
+      "revenueKwd": 46756700,
+      "netIncomeKwd": 6111150,
+      "returnOnEquityPercent": 6.508829961415221,
+      "debtToEquity": 1.9005901821615,
+      "profitMarginPercent": 24.0234585289634,
+      "evEbitda": 17.836861157448993
     },
     "MABANEE": {
       "ticker": "MABANEE",
@@ -576,7 +688,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-MABANEE/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#413",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#413",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 965,
       "changePercent": 1.365546218487395,
@@ -602,7 +714,14 @@
         "sma200": 964.1521751982006,
         "stochasticK": 39.47368421052632,
         "stochasticD": 32.643274853801195
-      }
+      },
+      "logoId": "mabanee-co-kpsc",
+      "revenueKwd": 142924165,
+      "netIncomeKwd": 84562016,
+      "returnOnEquityPercent": 9.24848570767888,
+      "debtToEquity": 1.57195825971463,
+      "profitMarginPercent": 47.5474741350158,
+      "evEbitda": 27.598062401015145
     },
     "ALTIJARIA": {
       "ticker": "ALTIJARIA",
@@ -611,7 +730,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-ALTIJARIA/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#418",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#418",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 186,
       "changePercent": 0.5405405405405406,
@@ -637,7 +756,14 @@
         "sma200": 193.7966765800002,
         "stochasticK": 27.777777777777782,
         "stochasticD": 34.81481481481482
-      }
+      },
+      "logoId": "the-commercial-real-estate-co-ksc",
+      "revenueKwd": 35531760,
+      "netIncomeKwd": 16314480,
+      "returnOnEquityPercent": 5.52214430573966,
+      "debtToEquity": 0.835921758182285,
+      "profitMarginPercent": 48.8516473866283,
+      "evEbitda": 28.344836935459902
     },
     "NIND": {
       "ticker": "NIND",
@@ -646,7 +772,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-NIND/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#501",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#501",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 244,
       "changePercent": -1.6129032258064515,
@@ -672,7 +798,14 @@
         "sma200": 255.54500000000007,
         "stochasticK": 87.87878787878788,
         "stochasticD": 92.66289266289266
-      }
+      },
+      "logoId": "national-industries-group",
+      "revenueKwd": 165722000,
+      "netIncomeKwd": 72982000,
+      "returnOnEquityPercent": 7.06994455324982,
+      "debtToEquity": 0.0663641668335932,
+      "profitMarginPercent": 30.6767858778976,
+      "evEbitda": 0
     },
     "CABLE": {
       "ticker": "CABLE",
@@ -681,7 +814,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-CABLE/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#505",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#505",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 1699,
       "changePercent": -0.6432748538011697,
@@ -707,7 +840,14 @@
         "sma200": 1922.01,
         "stochasticK": 45.01061571125263,
         "stochasticD": 40.056617126680806
-      }
+      },
+      "logoId": "gulf-cable-and-electrical-industries-co-kscp",
+      "revenueKwd": 95640393,
+      "netIncomeKwd": 22218112,
+      "returnOnEquityPercent": 6.770609895380971,
+      "debtToEquity": 0.102251638339762,
+      "profitMarginPercent": 21.8909630676219,
+      "evEbitda": 49.62714252356712
     },
     "SHIP": {
       "ticker": "SHIP",
@@ -716,7 +856,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-SHIP/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#506",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#506",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 629,
       "changePercent": -0.631911532385466,
@@ -742,7 +882,14 @@
         "sma200": 723.1926444769502,
         "stochasticK": 52.25225225225225,
         "stochasticD": 60.475860475860465
-      }
+      },
+      "logoId": "heavy-engineering-industries-and-shipbuilding",
+      "revenueKwd": 205787988,
+      "netIncomeKwd": 9819740,
+      "returnOnEquityPercent": 10.6483541516255,
+      "debtToEquity": 0.91067190303546,
+      "profitMarginPercent": 3.9189699450138,
+      "evEbitda": 11.357338293213536
     },
     "BPCC": {
       "ticker": "BPCC",
@@ -751,7 +898,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-BPCC/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#514",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#514",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 732,
       "changePercent": 0.411522633744856,
@@ -777,7 +924,14 @@
         "sma200": 599.4543876570519,
         "stochasticK": 92.92929292929291,
         "stochasticD": 91.79292929292923
-      }
+      },
+      "logoId": "boubyan-petrochemical-co-kscp",
+      "revenueKwd": 107111165,
+      "netIncomeKwd": 26747558,
+      "returnOnEquityPercent": 11.5877571604587,
+      "debtToEquity": 1.3320304882886402,
+      "profitMarginPercent": 25.4687650502983,
+      "evEbitda": 21.530523163478477
     },
     "MKHZN": {
       "ticker": "MKHZN",
@@ -786,7 +940,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-MKHZN/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#603",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#603",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 145,
       "changePercent": -0.684931506849315,
@@ -812,7 +966,14 @@
         "sma200": 141.81500000000008,
         "stochasticK": 13.653699466056445,
         "stochasticD": 19.527078565980165
-      }
+      },
+      "logoId": "agility-public-war",
+      "revenueKwd": 151464000,
+      "netIncomeKwd": -294200000,
+      "returnOnEquityPercent": -39.941919214908,
+      "debtToEquity": 0.821442592947914,
+      "profitMarginPercent": -117.695975535332,
+      "evEbitda": 47.75086968228325
     },
     "ZAIN": {
       "ticker": "ZAIN",
@@ -821,7 +982,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-ZAIN/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#605",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#605",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 619,
       "changePercent": 0.487012987012987,
@@ -847,7 +1008,14 @@
         "sma200": 565.8,
         "stochasticK": 76.40901771336554,
         "stochasticD": 79.9912421956663
-      }
+      },
+      "logoId": "mobile-telecommunications",
+      "revenueKwd": 2282991000,
+      "netIncomeKwd": 238526000,
+      "returnOnEquityPercent": 25.724806820438,
+      "debtToEquity": 1.58701881017224,
+      "profitMarginPercent": 14.407872157689,
+      "evEbitda": 6.2637035695732095
     },
     "HUMANSOFT": {
       "ticker": "HUMANSOFT",
@@ -856,7 +1024,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-HUMANSOFT/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#623",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#623",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 2350,
       "changePercent": 0.04257130693912303,
@@ -882,7 +1050,14 @@
         "sma200": 2482.2399999999966,
         "stochasticK": 33.92751039809864,
         "stochasticD": 25.393516420435663
-      }
+      },
+      "logoId": "human-soft",
+      "revenueKwd": 77573742,
+      "netIncomeKwd": 35524379,
+      "returnOnEquityPercent": 37.5147103858386,
+      "debtToEquity": 0.0032059898292698605,
+      "profitMarginPercent": 45.8787934494944,
+      "evEbitda": 7.0059848690896365
     },
     "IFAHR": {
       "ticker": "IFAHR",
@@ -891,7 +1066,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-IFAHR/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#634",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#634",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 668,
       "changePercent": 1.5197568389057752,
@@ -917,7 +1092,14 @@
         "sma200": 704.1649999999995,
         "stochasticK": 37.318398862135524,
         "stochasticD": 37.85499369808972
-      }
+      },
+      "logoId": "ifa-hotels-and-resorts",
+      "revenueKwd": 25120797,
+      "netIncomeKwd": 9480790,
+      "returnOnEquityPercent": 21.5939449576432,
+      "debtToEquity": 0.49442184785561305,
+      "profitMarginPercent": 41.5172088249084,
+      "evEbitda": 134.6266623165724
     },
     "CGC": {
       "ticker": "CGC",
@@ -926,7 +1108,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-CGC/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#635",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#635",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 853,
       "changePercent": -0.117096018735363,
@@ -952,7 +1134,14 @@
         "sma200": 964.0099999999995,
         "stochasticK": 18.987341772151904,
         "stochasticD": 25.738396624472568
-      }
+      },
+      "logoId": "combined-contracting-kscp",
+      "revenueKwd": 254544884,
+      "netIncomeKwd": 15800850,
+      "returnOnEquityPercent": 26.098264338035804,
+      "debtToEquity": 0.883189678639581,
+      "profitMarginPercent": 5.95316917670371,
+      "evEbitda": 6.432065987790562
     },
     "OULAFUEL": {
       "ticker": "OULAFUEL",
@@ -961,7 +1150,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-OULAFUEL/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#645",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#645",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 353,
       "changePercent": -1.9444444444444444,
@@ -987,7 +1176,14 @@
         "sma200": 291.1800000000003,
         "stochasticK": 65.45454545454545,
         "stochasticD": 67.48068924539514
-      }
+      },
+      "logoId": "oula-fuel-marketing",
+      "revenueKwd": 175575096,
+      "netIncomeKwd": 6964283,
+      "returnOnEquityPercent": 8.71488242130175,
+      "debtToEquity": 0.404324354570533,
+      "profitMarginPercent": 4.12323253287687,
+      "evEbitda": 40.66836497030395
     },
     "JAZEERA": {
       "ticker": "JAZEERA",
@@ -996,7 +1192,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-JAZEERA/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#654",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#654",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 1686,
       "changePercent": -0.05927682276229994,
@@ -1022,7 +1218,14 @@
         "sma200": 1683.6899999999982,
         "stochasticK": 32.09786032366677,
         "stochasticD": 23.21795011042322
-      }
+      },
+      "logoId": "jazeera-airways-co-kscp",
+      "revenueKwd": 218139803,
+      "netIncomeKwd": 21761213,
+      "returnOnEquityPercent": 56.3103408146729,
+      "debtToEquity": 5.9384041575551105,
+      "profitMarginPercent": 8.96566288196739,
+      "evEbitda": 10.25772547741212
     },
     "GFH": {
       "ticker": "GFH",
@@ -1031,7 +1234,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-GFH/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#813",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#813",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 174,
       "changePercent": 2.9585798816568047,
@@ -1057,7 +1260,14 @@
         "sma200": 179.71,
         "stochasticK": 57.142857142857146,
         "stochasticD": 44.44444444444445
-      }
+      },
+      "logoId": "gfh-financial-group",
+      "revenueKwd": 284555409.889398,
+      "netIncomeKwd": 42992970.7254882,
+      "returnOnEquityPercent": 14.8008371737224,
+      "debtToEquity": 6.0761456843334,
+      "profitMarginPercent": 55.01593631296146,
+      "evEbitda": 0
     },
     "WARBABANK": {
       "ticker": "WARBABANK",
@@ -1066,7 +1276,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-WARBABANK/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#821",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#821",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 275,
       "changePercent": -0.36231884057971014,
@@ -1092,7 +1302,14 @@
         "sma200": 280.09025670925,
         "stochasticK": 27.314814814814813,
         "stochasticD": 21.450617283950617
-      }
+      },
+      "logoId": "warba-bank",
+      "revenueKwd": 301472000,
+      "netIncomeKwd": 44157000,
+      "returnOnEquityPercent": 5.63134200459822,
+      "debtToEquity": 2.03283418705064,
+      "profitMarginPercent": 45.50325258410823,
+      "evEbitda": 0
     },
     "STC": {
       "ticker": "STC",
@@ -1101,7 +1318,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-STC/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#822",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#822",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 601,
       "changePercent": -0.49668874172185434,
@@ -1127,7 +1344,14 @@
         "sma200": 652.865,
         "stochasticK": 58.730158730158735,
         "stochasticD": 56.63118580765639
-      }
+      },
+      "logoId": "kuwait-telecommunications",
+      "revenueKwd": 342512000,
+      "netIncomeKwd": 34099000,
+      "returnOnEquityPercent": 15.526785492106102,
+      "debtToEquity": 0.157476183523743,
+      "profitMarginPercent": 10.1903981375903,
+      "evEbitda": 5.996570924722883
     },
     "MEZZAN": {
       "ticker": "MEZZAN",
@@ -1136,7 +1360,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-MEZZAN/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#823",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#823",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 1149,
       "changePercent": -0.26041666666666663,
@@ -1162,7 +1386,14 @@
         "sma200": 1210.6099999999997,
         "stochasticK": 83.95061728395063,
         "stochasticD": 81.14067118761955
-      }
+      },
+      "logoId": "mezzan-co",
+      "revenueKwd": 297147731,
+      "netIncomeKwd": 17336854,
+      "returnOnEquityPercent": 15.7082894816883,
+      "debtToEquity": 0.8759193714163681,
+      "profitMarginPercent": 6.466109993192899,
+      "evEbitda": 13.867172428715966
     },
     "INTEGRATED": {
       "ticker": "INTEGRATED",
@@ -1171,7 +1402,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-INTEGRATED/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#824",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#824",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 373,
       "changePercent": -0.5333333333333333,
@@ -1197,7 +1428,14 @@
         "sma200": 405.7104908099991,
         "stochasticK": 4.091710758377421,
         "stochasticD": 5.178401845068511
-      }
+      },
+      "logoId": "integrated-co-ksc",
+      "revenueKwd": 35496731,
+      "netIncomeKwd": 5528523,
+      "returnOnEquityPercent": 7.52514879436995,
+      "debtToEquity": 0.512267459389829,
+      "profitMarginPercent": 13.234150012224099,
+      "evEbitda": 7.272277449913918
     },
     "BOURSA": {
       "ticker": "BOURSA",
@@ -1206,7 +1444,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-BOURSA/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#827",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#827",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 2990,
       "changePercent": -0.33333333333333337,
@@ -1232,7 +1470,14 @@
         "sma200": 3102.375,
         "stochasticK": 89.66437833714724,
         "stochasticD": 90.63691838291383
-      }
+      },
+      "logoId": "boursa-kuwait-securities-co-kpsc",
+      "revenueKwd": 50331563,
+      "netIncomeKwd": 28181291,
+      "returnOnEquityPercent": 40.0978845730899,
+      "debtToEquity": 0.0030522128187428,
+      "profitMarginPercent": 54.1332389086886,
+      "evEbitda": 17.04394777986424
     },
     "ALG": {
       "ticker": "ALG",
@@ -1241,7 +1486,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-ALG/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#830",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#830",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 916,
       "changePercent": -0.43478260869565216,
@@ -1267,7 +1512,14 @@
         "sma200": 982.4345555664005,
         "stochasticK": 33.333333333333336,
         "stochasticD": 29.843304843304846
-      }
+      },
+      "logoId": "ali-alghanim-sons-automotive-co-kscc",
+      "revenueKwd": 297063835,
+      "netIncomeKwd": 31139795,
+      "returnOnEquityPercent": 26.040629130599,
+      "debtToEquity": 0.591388897407245,
+      "profitMarginPercent": 9.8378028689532,
+      "evEbitda": 10.707500850252426
     },
     "BEYOUT": {
       "ticker": "BEYOUT",
@@ -1276,7 +1528,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-BEYOUT/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#831",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#831",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 331,
       "changePercent": 0.60790273556231,
@@ -1302,7 +1554,14 @@
         "sma200": 366.045,
         "stochasticK": 14.093137254901952,
         "stochasticD": 16.882586367880474
-      }
+      },
+      "logoId": "beyout-investment-company-ksc",
+      "revenueKwd": 84926464,
+      "netIncomeKwd": 8240610,
+      "returnOnEquityPercent": 12.1823661558878,
+      "debtToEquity": 3.23963191611663,
+      "profitMarginPercent": 7.48834066335287,
+      "evEbitda": 15.702659052255422
     },
     "ALFTAQA": {
       "ticker": "ALFTAQA",
@@ -1311,7 +1570,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-ALFTAQA/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#832",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#832",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 265,
       "changePercent": 0,
@@ -1337,7 +1596,14 @@
         "sma200": 0,
         "stochasticK": 52.777777777777764,
         "stochasticD": 38.746438746438734
-      }
+      },
+      "logoId": "action-energy-company-kscc",
+      "revenueKwd": 31845319,
+      "netIncomeKwd": 5712456,
+      "returnOnEquityPercent": 0,
+      "debtToEquity": 1.01407514115301,
+      "profitMarginPercent": 21.5194260863171,
+      "evEbitda": 11.787489088589156
     },
     "TROLLEY": {
       "ticker": "TROLLEY",
@@ -1346,7 +1612,7 @@
       "sourceUrl": "https://www.tradingview.com/symbols/KSE-TROLLEY/",
       "officialProfileUrl": "https://www.boursakuwait.com.kw/en/stock/profile#833",
       "officialFinancialsUrl": "https://www.boursakuwait.com.kw/en/stock/financial-statement#833",
-      "fetchedAt": "2026-09-13T17:11:03.642Z",
+      "fetchedAt": "2026-09-13T19:35:32.986Z",
       "tradingDate": "2026-09-13",
       "close": 970,
       "changePercent": -0.10298661174047373,
@@ -1372,7 +1638,21 @@
         "sma200": 0,
         "stochasticK": 11.851851851851853,
         "stochasticD": 20.03047018649855
-      }
+      },
+      "logoId": "trolley-general-trading-company-kscc",
+      "revenueKwd": 94704486,
+      "netIncomeKwd": 8043547,
+      "returnOnEquityPercent": 0,
+      "debtToEquity": 0.4725757995355,
+      "profitMarginPercent": 0,
+      "evEbitda": 0
     }
+  },
+  "premierIndex": {
+    "ticker": "BKP",
+    "name": "Boursa Kuwait Premier Market Index",
+    "close": 9305.56,
+    "changePercent": -0.196484725243136,
+    "tradingDate": "2026-09-13"
   }
 }
