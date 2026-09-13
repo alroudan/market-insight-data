@@ -1,0 +1,48 @@
+name: Boursa Kuwait EOD update
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "16 10 * * 0-4"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: boursa-kuwait-eod
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Fetch official Boursa Kuwait data
+        run: npm run scrape
+
+      - name: Commit updated snapshot
+        run: |
+          git config user.name "market-insight-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/latest.json data/history.json
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Update Boursa Kuwait EOD data"
+            git push
+          fi
