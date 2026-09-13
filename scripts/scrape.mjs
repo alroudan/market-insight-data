@@ -14,6 +14,7 @@ const endpoint = "https://scanner.tradingview.com/kuwait/scan";
 const columns = [
   "name",
   "description",
+  "logoid",
   "close",
   "change",
   "volume",
@@ -52,7 +53,7 @@ const response = await fetch(endpoint, {
   },
   body: JSON.stringify({
     symbols: {
-      tickers: stocks.map((stock) => "KSE:" + stock.ticker),
+      tickers: ["KSE:BKP", ...stocks.map((stock) => "KSE:" + stock.ticker)],
       query: { types: [] }
     },
     columns
@@ -72,6 +73,7 @@ const tradingDate = new Intl.DateTimeFormat("en-CA", {
 }).format(now);
 const results = {};
 const failures = [];
+let premierIndex = null;
 
 const finite = (value) => Number.isFinite(Number(value)) ? Number(value) : null;
 const recommendation = (value) => {
@@ -86,13 +88,24 @@ const recommendation = (value) => {
 
 for (const row of payload.data) {
   const ticker = String(row.s || "").split(":").pop();
+  const d = Object.fromEntries(columns.map((column, index) => [column, row.d[index]]));
+  if (ticker === "BKP") {
+    premierIndex = {
+      ticker: "BKP",
+      name: d.description || "Boursa Kuwait Premier Market Index",
+      close: finite(d.close),
+      changePercent: finite(d.change),
+      tradingDate
+    };
+    continue;
+  }
   const stock = stocks.find((item) => item.ticker === ticker);
   if (!stock || !Array.isArray(row.d)) continue;
-  const d = Object.fromEntries(columns.map((column, index) => [column, row.d[index]]));
   results[ticker] = {
     ticker,
     name: d.description || stock.name,
     code: stock.code,
+    logoId: d.logoid || null,
     sourceUrl: "https://www.tradingview.com/symbols/KSE-" + ticker + "/",
     officialProfileUrl: "https://www.boursakuwait.com.kw/en/stock/profile#" + stock.code,
     officialFinancialsUrl: "https://www.boursakuwait.com.kw/en/stock/financial-statement#" + stock.code,
@@ -152,6 +165,7 @@ const snapshot = {
   freshCount,
   totalCount: stocks.length,
   failures,
+  premierIndex,
   stocks: results
 };
 
