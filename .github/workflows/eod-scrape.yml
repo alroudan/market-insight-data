@@ -1,4 +1,4 @@
-name: Boursa Kuwait EOD update
+name: Kuwait market EOD update
 
 on:
   workflow_dispatch:
@@ -9,13 +9,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: boursa-kuwait-eod
+  group: kuwait-market-eod
   cancel-in-progress: false
 
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -25,23 +25,17 @@ jobs:
         with:
           node-version: "22"
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
-
-      - name: Fetch official Boursa Kuwait data
+      - name: Fetch delayed Kuwait market data
         run: npm run scrape
 
       - name: Commit updated snapshot
         run: |
           git config user.name "market-insight-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add data/latest.json data/history.json
+          git add data/latest.json
           if git diff --cached --quiet; then
             echo "No data changes to commit."
           else
-            git commit -m "Update Boursa Kuwait EOD data"
+            git commit -m "Update Kuwait EOD data"
             git push
           fi
