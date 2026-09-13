@@ -94,7 +94,7 @@ async function updateValuationMultiples(ticker){const request=++fundamentalReque
 function nextEodRefreshDelay(){const now=new Date(Date.now()+3*60*60*1000),next=new Date(now);next.setUTCHours(13,16,0,0);if(next<=now)next.setUTCDate(next.getUTCDate()+1);while(next.getUTCDay()===5||next.getUTCDay()===6)next.setUTCDate(next.getUTCDate()+1);return next-now}
 function scheduleEodRefresh(){setTimeout(()=>{location.reload()},nextEodRefreshDelay())}scheduleEodRefresh();
 </script><script>
-const MARKET_DATA_URL='https://raw.githubusercontent.com/alroudan/market-insight-data/main/data/latest.json';
+const MARKET_DATA_URL='./latest.json';
 let marketSnapshotPromise;
 function loadEodSnapshot(){return marketSnapshotPromise||(marketSnapshotPromise=fetch(MARKET_DATA_URL,{cache:'no-store'}).then(response=>{if(!response.ok)throw new Error('EOD data HTTP '+response.status);return response.json()}).then(snapshot=>{applyEodMarketBar(snapshot);applySnapshotLogos(snapshot);return snapshot}))}
 const numberOrNull=value=>Number.isFinite(Number(value))?Number(value):null;
