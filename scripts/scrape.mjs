@@ -60,7 +60,6 @@ const response = await fetch(endpoint, {
       tickers: ["KSE:BKP"],
       query: { types: ["stock"] }
     },
-    filter: [{ left: "type", operation: "equal", right: "stock" }],
     range: [0, 1000],
     columns
   })
