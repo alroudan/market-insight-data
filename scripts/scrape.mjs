@@ -58,9 +58,10 @@ const response = await fetch(endpoint, {
   },
   body: JSON.stringify({
     symbols: {
-      tickers: ["KSE:BKP"],
-      query: { types: ["stock"] }
+      tickers: [],
+      query: { types: [] }
     },
+    filter: [{ left: "type", operation: "equal", right: "stock" }],
     range: [0, 1000],
     columns
   })
@@ -154,6 +155,8 @@ for (const row of payload.data) {
     }
   };
 }
+
+if (!premierIndex && previous.premierIndex) premierIndex = previous.premierIndex;
 
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
