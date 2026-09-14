@@ -103,6 +103,35 @@ try {
   console.warn("Arabic TradingView names unavailable: " + error.message);
 }
 
+const advancedTechnical = {};
+try {
+  const advancedColumns = ["ADX", "ADX+DI", "ADX-DI", "ATR", "BB.upper", "BB.lower", "EMA20", "VWMA", "High.1M"];
+  const advancedResponse = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "user-agent": "Mozilla/5.0 Market Insight EOD collector"
+    },
+    body: JSON.stringify({
+      symbols: { tickers: [], query: { types: [] } },
+      filter: [{ left: "type", operation: "equal", right: "stock" }],
+      range: [0, 1000],
+      columns: advancedColumns
+    })
+  });
+  if (advancedResponse.ok) {
+    const advancedPayload = await advancedResponse.json();
+    for (const row of advancedPayload.data || []) {
+      const ticker = String(row.s || "").split(":").pop();
+      if (ticker) advancedTechnical[ticker] = Object.fromEntries(advancedColumns.map((column, index) => [column, row.d?.[index]]));
+    }
+  } else {
+    console.warn("Advanced TradingView fields returned HTTP " + advancedResponse.status);
+  }
+} catch (error) {
+  console.warn("Advanced TradingView fields unavailable: " + error.message);
+}
+
 const arabicTickerAliases = {
   KFH: "بيتك", NBK: "وطني", GBK: "خليج ب", ABK: "أهلي", KIB: "الدولي",
   BURG: "برقان", BOUBYAN: "بوبيان", KINV: "كويتية", IFA: "إيفا",
@@ -198,7 +227,16 @@ for (const row of payload.data) {
       sma50: finite(d.SMA50),
       sma200: finite(d.SMA200),
       stochasticK: finite(d["Stoch.K"]),
-      stochasticD: finite(d["Stoch.D"])
+      stochasticD: finite(d["Stoch.D"]),
+      adx: finite(advancedTechnical[ticker]?.ADX),
+      plusDi: finite(advancedTechnical[ticker]?.["ADX+DI"]),
+      minusDi: finite(advancedTechnical[ticker]?.["ADX-DI"]),
+      atr: finite(advancedTechnical[ticker]?.ATR),
+      bollingerUpper: finite(advancedTechnical[ticker]?.["BB.upper"]),
+      bollingerLower: finite(advancedTechnical[ticker]?.["BB.lower"]),
+      ema20: finite(advancedTechnical[ticker]?.EMA20),
+      vwma: finite(advancedTechnical[ticker]?.VWMA),
+      high20Day: finite(advancedTechnical[ticker]?.["High.1M"])
     }
   };
 }
