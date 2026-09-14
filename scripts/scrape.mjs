@@ -15,6 +15,10 @@ const columns = [
   "name",
   "description",
   "logoid",
+  "sector",
+  "type",
+  "price_52_week_high",
+  "price_52_week_low",
   "close",
   "change",
   "volume",
@@ -53,9 +57,11 @@ const response = await fetch(endpoint, {
   },
   body: JSON.stringify({
     symbols: {
-      tickers: ["KSE:BKP", ...stocks.map((stock) => "KSE:" + stock.ticker)],
-      query: { types: [] }
+      tickers: ["KSE:BKP"],
+      query: { types: ["stock"] }
     },
+    filter: [{ left: "type", operation: "equal", right: "stock" }],
+    range: [0, 1000],
     columns
   })
 });
@@ -99,16 +105,20 @@ for (const row of payload.data) {
     };
     continue;
   }
+  if (!Array.isArray(row.d) || !ticker) continue;
   const stock = stocks.find((item) => item.ticker === ticker);
-  if (!stock || !Array.isArray(row.d)) continue;
   results[ticker] = {
     ticker,
-    name: d.description || stock.name,
-    code: stock.code,
+    name: d.description || stock?.name || ticker,
+    code: stock?.code || null,
+    sector: d.sector || null,
+    securityType: d.type || "stock",
+    high52Week: finite(d.price_52_week_high),
+    low52Week: finite(d.price_52_week_low),
     logoId: d.logoid || null,
     sourceUrl: "https://www.tradingview.com/symbols/KSE-" + ticker + "/",
-    officialProfileUrl: "https://www.boursakuwait.com.kw/en/stock/profile#" + stock.code,
-    officialFinancialsUrl: "https://www.boursakuwait.com.kw/en/stock/financial-statement#" + stock.code,
+    officialProfileUrl: stock?.code ? "https://www.boursakuwait.com.kw/en/stock/profile#" + stock.code : "https://www.boursakuwait.com.kw/en/stock/market-watch",
+    officialFinancialsUrl: stock?.code ? "https://www.boursakuwait.com.kw/en/stock/financial-statement#" + stock.code : "https://www.boursakuwait.com.kw/en/stock/market-watch",
     fetchedAt,
     tradingDate,
     close: finite(d.close),
@@ -145,13 +155,6 @@ for (const row of payload.data) {
   };
 }
 
-for (const stock of stocks) {
-  if (!results[stock.ticker]) {
-    failures.push({ ticker: stock.ticker, error: "No scanner record returned" });
-    if (previous.stocks?.[stock.ticker]) results[stock.ticker] = previous.stocks[stock.ticker];
-  }
-}
-
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
 
@@ -163,12 +166,12 @@ const snapshot = {
   tradingDate,
   schedule: "13:16 Asia/Kuwait, Sunday-Thursday",
   freshCount,
-  totalCount: stocks.length,
+  totalCount: Object.keys(results).length,
   failures,
   premierIndex,
   stocks: results
 };
 
 await writeFile(new URL("latest.json", dataDir), JSON.stringify(snapshot, null, 2) + "\n");
-console.log("Saved " + freshCount + "/" + stocks.length + " fresh Kuwait records for " + tradingDate);
+console.log("Saved the full Kuwait equity universe: " + freshCount + " records for " + tradingDate);
 if (failures.length) console.warn(JSON.stringify(failures, null, 2));
