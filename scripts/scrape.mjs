@@ -10,7 +10,7 @@ const readJson = async (url, fallback) => {
 };
 
 const previous = await readJson(new URL("latest.json", dataDir), { stocks: {} });
-const endpoint = "https://scanner.tradingview.com/kuwait/scan";
+// Full-market discovery keeps the listed universe current without a manual watchlist.\nconst endpoint = "https://scanner.tradingview.com/kuwait/scan";
 const columns = [
   "name",
   "description",
