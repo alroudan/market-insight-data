@@ -138,7 +138,7 @@ function breakoutCandidates(snapshot){
   const pillars={structure:checks.near20||checks.near52||checks.bbBreak,trend:checks.trend&&checks.longTrend,momentum:checks.momentum&&checks.dmi,strength:checks.rsi&&checks.month,volume:checks.volume,volatility:bandwidth!=null&&bandwidth<=.08};
   const score=Object.values(pillars).filter(Boolean).length,confidence=setups.length>=2&&score>=5?'High':setups.length>=2&&score>=4?'Strong':'Watch';
   return{item,checks,setups,score,confidence,rsi,month,relVol,adx};
- }).filter(candidate=>candidate.setups.length).sort((a,b)=>b.score-a.score||b.setups.length-a.setups.length||(b.relVol||0)-(a.relVol||0));
+ }).filter(candidate=>candidate.setups.length>=2||candidate.setups.some(setup=>['20-day high breakout','52-week high breakout','Bollinger expansion','Volatility-squeeze release','VWMA-confirmed channel break'].includes(setup))).sort((a,b)=>b.score-a.score||b.setups.length-a.setups.length||(b.relVol||0)-(a.relVol||0));
 }
 function renderHotList(snapshot){
  const grid=document.querySelector('#hotlist-grid'),count=document.querySelector('#hotlist-count');if(!grid||!count)return;
