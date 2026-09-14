@@ -75,6 +75,47 @@ if (!Array.isArray(payload.data) || payload.data.length === 0) {
   throw new Error("TradingView scanner returned no Kuwait stock records");
 }
 
+const arabicNames = {};
+try {
+  const arabicResponse = await fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      "user-agent": "Mozilla/5.0 Market Insight EOD collector"
+    },
+    body: JSON.stringify({
+      symbols: { tickers: [], query: { types: [] } },
+      filter: [{ left: "type", operation: "equal", right: "stock" }],
+      options: { lang: "ar" },
+      range: [0, 1000],
+      columns: ["name", "description"]
+    })
+  });
+  if (arabicResponse.ok) {
+    const arabicPayload = await arabicResponse.json();
+    for (const row of arabicPayload.data || []) {
+      const ticker = String(row.s || "").split(":").pop();
+      const description = row.d?.[1];
+      if (ticker && typeof description === "string" && /[\u0600-\u06ff]/.test(description)) arabicNames[ticker] = description;
+    }
+  }
+} catch (error) {
+  console.warn("Arabic TradingView names unavailable: " + error.message);
+}
+
+const arabicTickerAliases = {
+  KFH: "بيتك", NBK: "وطني", GBK: "خليج ب", ABK: "أهلي", KIB: "الدولي",
+  BURG: "برقان", BOUBYAN: "بوبيان", KINV: "كويتية", IFA: "إيفا",
+  NINV: "استثمارات", KPROJ: "مشاريع", ARZAN: "أرزان", AAYAN: "أعيان",
+  KRE: "عقارات ك", URC: "متحدة", SRE: "صالحية", MABANEE: "مباني",
+  ALTIJARIA: "التجارية", NIND: "صناعات", CABLE: "كابلات", SHIP: "سفن",
+  BPCC: "بوبيان ب", MKHZN: "أجيليتي", ZAIN: "زين", HUMANSOFT: "هيومن سوفت",
+  IFAHR: "إيفا فنادق", CGC: "مشتركة", OULAFUEL: "الأولى", JAZEERA: "الجزيرة",
+  GFH: "جي إف إتش", WARBABANK: "وربة", STC: "إس تي سي", MEZZAN: "ميزان",
+  INTEGRATED: "المتكاملة", BOURSA: "بورصة", ALG: "الغانم", BEYOUT: "بيوت",
+  ALFTAQA: "الطاقة", TROLLEY: "ترولي"
+};
+
 const now = new Date();
 const fetchedAt = now.toISOString();
 const tradingDate = new Intl.DateTimeFormat("en-CA", {
@@ -113,6 +154,8 @@ for (const row of payload.data) {
   results[ticker] = {
     ticker,
     name: d.description || stock?.name || ticker,
+    nameArabic: arabicNames[ticker] || null,
+    tickerArabic: arabicTickerAliases[ticker] || null,
     code: stock?.code || null,
     sector: d.sector || null,
     securityType: d.type || "stock",
