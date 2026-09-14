@@ -1,6 +1,12 @@
 name: Kuwait market EOD update
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/scrape.mjs"
+      - "stocks.json"
+      - ".github/workflows/eod-scrape.yml"
   workflow_dispatch:
   schedule:
     - cron: "16 10 * * 0-4"
