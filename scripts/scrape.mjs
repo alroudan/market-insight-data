@@ -294,33 +294,64 @@ if (!allShareIndex && previous.allShareIndex) allShareIndex = previous.allShareI
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
 
-const latestValueTradedKwd = Object.values(results).reduce((sum, item) => {
-  const closeFils = finite(item.close);
-  const volume = finite(item.volume);
-  return sum + (closeFils != null && volume != null ? closeFils * volume / 1000 : 0);
-}, 0);
-const tradingYear = tradingDate.slice(0, 4);
-const previousValueHistory = Array.isArray(previous.marketStats?.dailyValueTradedHistory)
-  ? previous.marketStats.dailyValueTradedHistory
-  : [];
-const dailyValueTradedHistory = previousValueHistory
-  .filter((item) => String(item?.tradingDate || "").startsWith(tradingYear + "-") && item.tradingDate !== tradingDate)
-  .concat({ tradingDate, valueTradedKwd: latestValueTradedKwd })
-  .sort((a, b) => a.tradingDate.localeCompare(b.tradingDate));
-const averageDailyValueTradedYtdKwd = dailyValueTradedHistory.length
-  ? dailyValueTradedHistory.reduce((sum, item) => sum + finite(item.valueTradedKwd), 0) / dailyValueTradedHistory.length
+let officialMarketReport = null;
+try {
+  const { chromium } = await import("playwright");
+  const reportBrowser = await chromium.launch({ headless: true });
+  try {
+    const page = await reportBrowser.newPage({ locale: "en-GB" });
+    await page.goto("https://www.boursakuwait.com.kw/en/market/reports#daily-all", {
+      waitUntil: "domcontentloaded",
+      timeout: 60000
+    });
+    await page.waitForFunction(() => document.body.innerText.includes("Value Traded"), null, { timeout: 60000 });
+    const reportText = await page.locator("body").innerText();
+    const match = reportText.match(/All-Share\s+(\d{2})\/(\d{2})\/(\d{4})[\s\S]*?Value Traded\s+([\d,.]+)/);
+    if (!match) throw new Error("Daily All-Share report fields were not found");
+    const reportTradingDate = match[3] + "-" + match[2] + "-" + match[1];
+    const valueTradedKwd = Number(match[4].replace(/,/g, ""));
+    if (reportTradingDate !== tradingDate || !Number.isFinite(valueTradedKwd)) {
+      throw new Error("Official report date/value did not match the requested session");
+    }
+    officialMarketReport = {
+      tradingDate: reportTradingDate,
+      valueTradedKwd,
+      source: "Boursa Kuwait Daily All-Share Report",
+      sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all"
+    };
+  } finally {
+    await reportBrowser.close();
+  }
+} catch (error) {
+  failures.push({ ticker: "OFFICIAL_MARKET_VALUE", error: error.message });
+}
+
+const officialYtdBaseline = tradingDate.startsWith("2026-") ? {
+  throughDate: "2026-08-31",
+  totalValueTradedKwd: 13195399198.046,
+  tradingSessions: 161,
+  source: "Boursa Kuwait monthly and quarterly market summaries",
+  sourceUrl: "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
+} : null;
+const latestValueTradedKwd = officialMarketReport?.valueTradedKwd ?? null;
+const averageDailyValueTradedYtdKwd = officialYtdBaseline
+  ? officialYtdBaseline.totalValueTradedKwd / officialYtdBaseline.tradingSessions
   : null;
-const latestValueVsYtdAveragePercent = averageDailyValueTradedYtdKwd
+const latestValueVsYtdAveragePercent = latestValueTradedKwd != null && averageDailyValueTradedYtdKwd
   ? (latestValueTradedKwd / averageDailyValueTradedYtdKwd - 1) * 100
   : null;
 const marketStats = {
   latestValueTradedKwd,
+  latestValueTradedDate: officialMarketReport?.tradingDate || null,
   averageDailyValueTradedYtdKwd,
   latestValueVsYtdAveragePercent,
-  historyStart: dailyValueTradedHistory[0]?.tradingDate || null,
-  observationCount: dailyValueTradedHistory.length,
-  isFullCalendarYtd: dailyValueTradedHistory[0]?.tradingDate === tradingYear + "-01-01",
-  dailyValueTradedHistory
+  averageThroughDate: officialYtdBaseline?.throughDate || null,
+  ytdTotalValueTradedKwd: officialYtdBaseline?.totalValueTradedKwd || null,
+  tradingSessionCount: officialYtdBaseline?.tradingSessions || null,
+  source: officialMarketReport?.source || null,
+  sourceUrl: officialMarketReport?.sourceUrl || null,
+  averageSource: officialYtdBaseline?.source || null,
+  averageSourceUrl: officialYtdBaseline?.sourceUrl || null
 };
 
 const snapshot = {
