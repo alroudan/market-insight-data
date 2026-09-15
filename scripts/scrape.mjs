@@ -294,6 +294,35 @@ if (!allShareIndex && previous.allShareIndex) allShareIndex = previous.allShareI
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
 
+const latestValueTradedKwd = Object.values(results).reduce((sum, item) => {
+  const closeFils = finite(item.close);
+  const volume = finite(item.volume);
+  return sum + (closeFils != null && volume != null ? closeFils * volume / 1000 : 0);
+}, 0);
+const tradingYear = tradingDate.slice(0, 4);
+const previousValueHistory = Array.isArray(previous.marketStats?.dailyValueTradedHistory)
+  ? previous.marketStats.dailyValueTradedHistory
+  : [];
+const dailyValueTradedHistory = previousValueHistory
+  .filter((item) => String(item?.tradingDate || "").startsWith(tradingYear + "-") && item.tradingDate !== tradingDate)
+  .concat({ tradingDate, valueTradedKwd: latestValueTradedKwd })
+  .sort((a, b) => a.tradingDate.localeCompare(b.tradingDate));
+const averageDailyValueTradedYtdKwd = dailyValueTradedHistory.length
+  ? dailyValueTradedHistory.reduce((sum, item) => sum + finite(item.valueTradedKwd), 0) / dailyValueTradedHistory.length
+  : null;
+const latestValueVsYtdAveragePercent = averageDailyValueTradedYtdKwd
+  ? (latestValueTradedKwd / averageDailyValueTradedYtdKwd - 1) * 100
+  : null;
+const marketStats = {
+  latestValueTradedKwd,
+  averageDailyValueTradedYtdKwd,
+  latestValueVsYtdAveragePercent,
+  historyStart: dailyValueTradedHistory[0]?.tradingDate || null,
+  observationCount: dailyValueTradedHistory.length,
+  isFullCalendarYtd: dailyValueTradedHistory[0]?.tradingDate === tradingYear + "-01-01",
+  dailyValueTradedHistory
+};
+
 const snapshot = {
   source: "TradingView Kuwait market scanner",
   officialDisclosureSource: "Boursa Kuwait",
@@ -307,6 +336,7 @@ const snapshot = {
   premierIndex,
   mainIndex,
   allShareIndex,
+  marketStats,
   stocks: results
 };
 
