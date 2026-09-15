@@ -252,7 +252,7 @@ const reportedPeriodLabel = (header, year) => {
   return normalized ? normalized.replace(/\b\d{4}\b/g, "").trim() + " " + year : String(year);
 };
 
-const parseReportedEps = (html, sourceUrl) => {
+const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
   const rows = tableRows(html);
   let epsIndex = -1;
   let epsValues = [];
@@ -264,7 +264,6 @@ const parseReportedEps = (html, sourceUrl) => {
       const matches = [...normalized.matchAll(/\(?(-?\d+(?:\.\d+)?)\)?/g)];
       if (!matches.length) return null;
       let value = Number(matches.at(-1)[1]);
-      if (!/fils?/i.test(normalized) && matches.length === 1 && Math.abs(value) < 1) value *= 1000;
       return value;
     }).filter((value) => Number.isFinite(value));
     if (values.length >= 2) { epsIndex = index; epsValues = values; }
@@ -274,15 +273,21 @@ const parseReportedEps = (html, sourceUrl) => {
   let years = [];
   for (let index = epsIndex - 1; index >= Math.max(0, epsIndex - 25); index -= 1) {
     const joined = rows[index].join(" ");
-    if (!years.length) years = rows[index].flatMap((cell) => cell.match(/\b20\d{2}\b/g) || []);
+    if (!years.length) {
+      const rowYears = rows[index].flatMap((cell) => cell.match(/\b20\d{2}\b/g) || [])
+        .filter((year) => Number(year) >= 2000 && Number(year) <= new Date().getUTCFullYear() + 1);
+      if (rowYears.length >= 2) years = rowYears;
+    }
     if (!header && /(?:months?|year)\s+ended/i.test(joined)) {
       const headers = rows[index].slice(1).filter((cell) => /(?:months?|year)\s+ended/i.test(cell));
       header = headers.at(-1) || joined;
     }
     if (header && years.length >= 2) break;
   }
-  const currentYear = years.length >= 2 ? years.at(-2) : years[0];
-  const previousYear = years.length >= 2 ? years.at(-1) : Number(currentYear) - 1;
+  const currentYear = String(filingMeta.year || (years.length >= 2 ? years.at(-2) : years[0]) || "");
+  const previousYear = String(years.length >= 2 ? years.at(-1) : Number(currentYear) - 1);
+  const periodFallback = filingMeta.period === 12 ? "Three months ended" : filingMeta.period === 11 ? "Six months ended" : filingMeta.period === 10 ? "Nine months ended" : filingMeta.period === 9 ? "Year ended" : "";
+  if (!header) header = periodFallback;
   if (!currentYear || !previousYear) return null;
   return {
     reportedEpsFils: epsValues.at(-2),
@@ -296,13 +301,18 @@ const parseReportedEps = (html, sourceUrl) => {
 
 const officialReportedEps = { ...verifiedReportedEpsFallback };
 try {
-  const listResponse = await fetch("https://www.boursakuwait.com.kw/data-api/client-services?RT=3549&L=E&T=2", {
+  const listResponse = await fetch("https://www.boursakuwait.com.kw/data-api/legacy-mix-services?UID=3166765&SID=3090B191-7C82-49EE-AC52-706F081F265D&UNC=0&UE=KSE&H=1&M=1&RT=306&SRC=KSE&AS=1", {
     headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" }
   });
   if (!listResponse.ok) throw new Error("Boursa security list returned HTTP " + listResponse.status);
-  const securityList = await listResponse.json();
-  const codeByTicker = Object.fromEntries((Array.isArray(securityList) ? securityList : [])
-    .map((item) => [String(item.DisplayTicker || "").toUpperCase(), item.Stk]));
+  const securityPayload = await listResponse.json();
+  const codeByTicker = {};
+  for (const record of securityPayload?.DAT?.WL?.TD || []) {
+    const fields = String(record).split("|");
+    const ticker = String(fields[1] || "").split("`")[0].toUpperCase();
+    const companyCode = fields[12];
+    if (ticker && companyCode && !codeByTicker[ticker]) codeByTicker[ticker] = companyCode;
+  }
   const marketTickers = [...new Set(payload.data.map((row) => String(row.s || "").split(":").pop()).filter(Boolean))];
   const candidates = marketTickers.map((ticker) => ({
     ticker,
@@ -331,7 +341,7 @@ try {
         if (!latest) throw new Error("No standardized English IFSAH filing found");
         const filingResponse = await fetch(latest.sourceUrl, { headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" } });
         if (!filingResponse.ok) throw new Error("IFSAH returned HTTP " + filingResponse.status);
-        const parsed = parseReportedEps(await filingResponse.text(), latest.sourceUrl);
+        const parsed = parseReportedEps(await filingResponse.text(), latest.sourceUrl, latest);
         if (!parsed) throw new Error("Cumulative EPS row or comparative period was not found");
         officialReportedEps[stock.ticker] = parsed;
       } catch (error) {
