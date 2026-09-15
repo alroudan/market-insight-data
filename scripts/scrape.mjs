@@ -171,6 +171,7 @@ const results = {};
 const failures = [];
 let premierIndex = null;
 let mainIndex = null;
+let allShareIndex = null;
 
 const finite = (value) => Number.isFinite(Number(value)) ? Number(value) : null;
 const recommendation = (value) => {
@@ -188,7 +189,7 @@ try {
   const indexResponse = await fetch(endpoint, {
     method: "POST",
     headers: { "content-type": "application/json", "user-agent": "Mozilla/5.0 Market Insight EOD collector" },
-    body: JSON.stringify({ symbols: { tickers: ["KSE:BKP", "KSE:BKM"], query: { types: [] } }, range: [0, 10], columns: indexColumns })
+    body: JSON.stringify({ symbols: { tickers: ["KSE:BKP", "KSE:BKM", "KSE:BKA"], query: { types: [] } }, range: [0, 10], columns: indexColumns })
   });
   if (!indexResponse.ok) throw new Error("TradingView index scanner returned HTTP " + indexResponse.status);
   const indexPayload = await indexResponse.json();
@@ -206,6 +207,7 @@ try {
     };
     if (ticker === "BKP") premierIndex = item;
     if (ticker === "BKM") mainIndex = item;
+    if (ticker === "BKA") allShareIndex = item;
   }
 } catch (error) { failures.push({ ticker: "MARKET_INDEXES", error: error.message }); }
 
@@ -287,6 +289,7 @@ for (const row of payload.data) {
 
 if (!premierIndex && previous.premierIndex) premierIndex = previous.premierIndex;
 if (!mainIndex && previous.mainIndex) mainIndex = previous.mainIndex;
+if (!allShareIndex && previous.allShareIndex) allShareIndex = previous.allShareIndex;
 
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
@@ -303,6 +306,7 @@ const snapshot = {
   failures,
   premierIndex,
   mainIndex,
+  allShareIndex,
   stocks: results
 };
 
