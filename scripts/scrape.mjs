@@ -153,6 +153,7 @@ const tradingDate = new Intl.DateTimeFormat("en-CA", {
 const results = {};
 const failures = [];
 let premierIndex = null;
+let mainIndex = null;
 
 const finite = (value) => Number.isFinite(Number(value)) ? Number(value) : null;
 const recommendation = (value) => {
@@ -164,6 +165,32 @@ const recommendation = (value) => {
   if (score <= -0.1) return "Sell";
   return "Neutral";
 };
+
+const indexColumns = ["description", "close", "change", "Perf.1M", "Perf.YTD", "volume", "average_volume_30d_calc", "average_volume_90d_calc"];
+try {
+  const indexResponse = await fetch(endpoint, {
+    method: "POST",
+    headers: { "content-type": "application/json", "user-agent": "Mozilla/5.0 Market Insight EOD collector" },
+    body: JSON.stringify({ symbols: { tickers: ["KSE:BKP", "KSE:BKM"], query: { types: [] } }, range: [0, 10], columns: indexColumns })
+  });
+  if (!indexResponse.ok) throw new Error("TradingView index scanner returned HTTP " + indexResponse.status);
+  const indexPayload = await indexResponse.json();
+  for (const row of indexPayload.data || []) {
+    const ticker = String(row.s || "").split(":").pop();
+    const d = Object.fromEntries(indexColumns.map((column, index) => [column, row.d[index]]));
+    const average30d = finite(d.average_volume_30d_calc);
+    const average90d = finite(d.average_volume_90d_calc);
+    const item = {
+      ticker, name: d.description || ticker, close: finite(d.close), changePercent: finite(d.change),
+      performance1MonthPercent: finite(d["Perf.1M"]), performanceYtdPercent: finite(d["Perf.YTD"]),
+      averageVolume30d: average30d, averageVolumePreviousQuarter: average90d,
+      averageVolumeChangeVsPreviousQuarterPercent: average30d != null && average90d ? ((average30d / average90d) - 1) * 100 : null,
+      tradingDate
+    };
+    if (ticker === "BKP") premierIndex = item;
+    if (ticker === "BKM") mainIndex = item;
+  }
+} catch (error) { failures.push({ ticker: "MARKET_INDEXES", error: error.message }); }
 
 for (const row of payload.data) {
   const ticker = String(row.s || "").split(":").pop();
@@ -242,6 +269,7 @@ for (const row of payload.data) {
 }
 
 if (!premierIndex && previous.premierIndex) premierIndex = previous.premierIndex;
+if (!mainIndex && previous.mainIndex) mainIndex = previous.mainIndex;
 
 const freshCount = Object.values(results).filter((item) => item.fetchedAt === fetchedAt).length;
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
@@ -257,6 +285,7 @@ const snapshot = {
   totalCount: Object.keys(results).length,
   failures,
   premierIndex,
+  mainIndex,
   stocks: results
 };
 
