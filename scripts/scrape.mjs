@@ -147,9 +147,26 @@ const arabicTickerAliases = {
 
 const now = new Date();
 const fetchedAt = now.toISOString();
-const tradingDate = new Intl.DateTimeFormat("en-CA", {
-  timeZone: "Asia/Kuwait", year: "numeric", month: "2-digit", day: "2-digit"
-}).format(now);
+const kuwaitParts = Object.fromEntries(
+  new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Kuwait",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    hourCycle: "h23"
+  }).formatToParts(now)
+    .filter((part) => part.type !== "literal")
+    .map((part) => [part.type, Number(part.value)])
+);
+const kuwaitMinutes = kuwaitParts.hour * 60 + kuwaitParts.minute;
+const tradingDateCursor = new Date(Date.UTC(kuwaitParts.year, kuwaitParts.month - 1, kuwaitParts.day));
+if (kuwaitMinutes < 13 * 60 + 16) tradingDateCursor.setUTCDate(tradingDateCursor.getUTCDate() - 1);
+while ([5, 6].includes(tradingDateCursor.getUTCDay())) {
+  tradingDateCursor.setUTCDate(tradingDateCursor.getUTCDate() - 1);
+}
+const tradingDate = tradingDateCursor.toISOString().slice(0, 10);
 const results = {};
 const failures = [];
 let premierIndex = null;
