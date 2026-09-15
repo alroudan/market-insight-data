@@ -259,7 +259,7 @@ const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
   let epsScore = -1;
   for (let index = 0; index < rows.length; index += 1) {
     const label = rows[index][0] || "";
-    if (!/earnings.*per share/i.test(label) || /disclosure|abstract/i.test(label)) continue;
+    if (!/(?:earnings.*per share|\\beps\\b)/i.test(label) || /disclosure|abstract/i.test(label)) continue;
     const labelScore = /basic.*(?:and|&)?.*diluted|earnings.*basic.*diluted/i.test(label) ? 3 : /\bbasic\b/i.test(label) ? 3 : /\bdiluted\b/i.test(label) ? 1 : 2;
     const values = rows[index].slice(1).map((cell) => {
       const normalized = String(cell).replace(/,/g, "").trim();
