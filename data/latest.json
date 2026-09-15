@@ -23,7 +23,9 @@
     "averageVolume30d": 0,
     "averageVolumePreviousQuarter": 0,
     "averageVolumeChangeVsPreviousQuarterPercent": null,
-    "tradingDate": "2026-09-14"
+    "tradingDate": "2026-09-14",
+    "tradedValueChangeVsPreviousQuarterPercent": 32.24,
+    "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026"
   },
   "mainIndex": {
     "ticker": "BKM",
@@ -35,7 +37,9 @@
     "averageVolume30d": 0,
     "averageVolumePreviousQuarter": 0,
     "averageVolumeChangeVsPreviousQuarterPercent": null,
-    "tradingDate": "2026-09-14"
+    "tradingDate": "2026-09-14",
+    "tradedValueChangeVsPreviousQuarterPercent": 172.7,
+    "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026"
   },
   "allShareIndex": {
     "ticker": "BKA",
@@ -47,7 +51,9 @@
     "averageVolume30d": 0,
     "averageVolumePreviousQuarter": 0,
     "averageVolumeChangeVsPreviousQuarterPercent": null,
-    "tradingDate": "2026-09-14"
+    "tradingDate": "2026-09-14",
+    "tradedValueChangeVsPreviousQuarterPercent": 63.93,
+    "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026"
   },
   "marketStats": {
     "latestValueTradedKwd": 121813003.672,

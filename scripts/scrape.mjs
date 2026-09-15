@@ -185,6 +185,10 @@ const recommendation = (value) => {
 };
 
 const indexColumns = ["description", "close", "change", "Perf.1M", "Perf.YTD", "volume", "average_volume_30d_calc", "average_volume_90d_calc"];
+const officialQuarterlyTradedValueChange = tradingDate.startsWith("2026-")
+  ? { BKP: 32.24, BKM: 172.70, BKA: 63.93 }
+  : {};
+const officialQuarterlyValuePeriod = tradingDate.startsWith("2026-") ? "Q2 2026 vs Q1 2026" : null;
 try {
   const indexResponse = await fetch(endpoint, {
     method: "POST",
@@ -203,6 +207,8 @@ try {
       performance1MonthPercent: finite(d["Perf.1M"]), performanceYtdPercent: finite(d["Perf.YTD"]),
       averageVolume30d: average30d, averageVolumePreviousQuarter: average90d,
       averageVolumeChangeVsPreviousQuarterPercent: average30d != null && average90d ? ((average30d / average90d) - 1) * 100 : null,
+      tradedValueChangeVsPreviousQuarterPercent: officialQuarterlyTradedValueChange[ticker] ?? null,
+      tradedValueComparisonPeriod: officialQuarterlyValuePeriod,
       tradingDate
     };
     if (ticker === "BKP") premierIndex = item;
