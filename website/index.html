@@ -37,6 +37,33 @@ html[dir="rtl"] .multiples-table span{text-align:left}
 .market-analysis{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:26px}.market-analysis-head,.index-title{display:flex;justify-content:space-between;align-items:flex-start;gap:15px}.market-analysis-head h1{font-size:20px;margin:5px 0 0}.market-date{display:block;color:var(--muted);font-size:11px;margin-top:5px;text-align:right}.index-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.index-card{background:#f2f4ef;border-radius:12px;padding:16px}.index-title strong{display:block;font:600 24px 'Inter';margin-top:7px}.index-change{font:600 12px 'Inter';color:var(--green)}.index-performance{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border-top:1px solid var(--line);padding-top:13px;margin-top:14px}.index-performance span,.market-pulse span{display:block;color:var(--muted);font-size:10px;line-height:1.35}.index-performance b,.market-pulse b{display:block;font:600 13px 'Inter';margin-top:6px}.market-pulse{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-radius:11px;overflow:hidden;margin-top:12px}.market-pulse>div{background:var(--card);padding:13px}.market-commentary{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-top:1px solid var(--line);margin-top:15px;padding-top:15px}.market-commentary p{font-size:12px;line-height:1.55;color:#53615d;margin:7px 0 0}
 @media(max-width:1000px){.side-tabs button{font-size:0;text-align:center;padding:12px 4px}.side-tabs button:before{font-size:11px}.side-tabs button[data-tab="hotlist"]:before{content:"HOT"}.side-tabs button[data-tab="overview"]:before{content:"OV"}.side-tabs button[data-tab="financials"]:before{content:"FIN"}.side-tabs button[data-tab="technicals"]:before{content:"TECH"}.side-tabs button[data-tab="disclosures"]:before{content:"DISC"}.side-tabs button[data-tab="ownership"]:before{content:"OWN"}.side-label{display:none}}
 @media(max-width:680px){.app{display:grid;grid-template-columns:88px minmax(0,1fr)}.side{position:sticky;top:0;height:100vh;display:block;padding:14px 8px}.brand{justify-content:center;margin-bottom:18px}.nav{display:block}.nav a{padding:10px 4px;justify-content:center}.main{padding:14px 10px}.index-cards,.market-commentary{grid-template-columns:1fr}.market-pulse{grid-template-columns:1fr 1fr}.index-performance{grid-template-columns:1fr 1fr}.market-analysis{padding:14px}.market-analysis-head{display:block}.market-date{text-align:left}.stockhead{gap:12px}.stockhead h1{font-size:18px}.price strong{font-size:20px}}
+</style><style id="mobile-navigation-polish">
+@media(max-width:680px){
+  .app{display:grid;grid-template-columns:68px minmax(0,1fr)}
+  .side{position:sticky;top:0;height:100dvh;display:flex;flex-direction:column;padding:10px 6px calc(116px + env(safe-area-inset-bottom));overflow-y:auto;overflow-x:hidden;scrollbar-width:none}
+  .side::-webkit-scrollbar{display:none}
+  .brand{justify-content:center;margin:0 0 10px}
+  .brandmark{width:44px;height:44px;border-radius:12px;flex:0 0 44px}
+  .brandmark svg{width:23px;height:23px}
+  .brandnames,.side-label,.sidefoot{display:none!important}
+  .nav{display:block;margin:0}
+  .nav a{min-height:42px;padding:8px 3px;margin:3px 0;justify-content:center;border-radius:10px;font-size:17px}
+  .side-tabs{gap:1px;margin:5px 0 0}
+  .side-tabs button{min-height:38px;padding:8px 2px;border-radius:10px}
+  .side-tabs button:before{font-size:10px;letter-spacing:.01em}
+  .main{padding:12px 8px 40px}
+  .top{height:0;min-height:0;margin:0;padding:0}
+  .tools{display:flex!important;position:fixed;left:8px;bottom:calc(10px + env(safe-area-inset-bottom));z-index:1000;flex-direction:column;gap:7px}
+  .iconbtn{display:grid;place-items:center;width:52px;height:42px;padding:0;border-color:var(--line);background:var(--card);color:var(--ink);border-radius:11px;box-shadow:0 5px 18px rgba(0,0,0,.18);font:600 13px 'Inter',sans-serif;cursor:pointer}
+  #theme-toggle{font-size:20px}
+  .market-analysis{padding:13px}
+}
+@media(max-width:380px){
+  .app{grid-template-columns:62px minmax(0,1fr)}
+  .main{padding-left:7px;padding-right:7px}
+  .tools{left:5px}
+  .iconbtn{width:50px}
+}
 </style></head>
 <body><button id="install-app" hidden>Install Market Insight</button><div class="app">
 <aside class="side"><div class="brand"><div class="brandmark" aria-hidden="true"><svg viewBox="0 0 40 40"><circle cx="16" cy="16" r="10"></circle><path d="M23 23l9 9M10 20v-7m6 10V10m6 13v-7"></path></svg></div><span class="brandnames"><b>Market Insight</b><small lang="ar" dir="rtl">رؤية السوق</small></span></div><nav class="nav"><a class="active" href="#market-intelligence">⌁ <span>Market Intelligence</span></a><a href="#stocks">▦ <span>All Stocks</span></a></nav><div class="tabs side-tabs" role="tablist" aria-label="Research sections"><button role="tab" aria-selected="false" data-tab="hotlist">Hot List</button><div class="side-label">Company Research</div><button class="active" role="tab" aria-selected="true" data-tab="overview">Overview</button><button role="tab" aria-selected="false" data-tab="financials">Financials</button><button role="tab" aria-selected="false" data-tab="technicals">Technical Indicators</button><button role="tab" aria-selected="false" data-tab="disclosures">Disclosures</button><button role="tab" aria-selected="false" data-tab="ownership">Ownership</button></div><div class="sidefoot"><span class="live">●</span> End-of-day dataset<br>Daily update · 13:16 KWT</div></aside>
