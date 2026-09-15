@@ -217,7 +217,7 @@ try {
   }
 } catch (error) { failures.push({ ticker: "MARKET_INDEXES", error: error.message }); }
 
-const officialReportedEps = {
+const verifiedReportedEpsFallback = {
   NBK: {
     reportedEpsFils: 34,
     reportedEpsPeriod: "Six months ended 30 Jun 2026",
@@ -227,6 +227,117 @@ const officialReportedEps = {
     reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html"
   }
 };
+
+const decodeHtml = (value) => String(value || "")
+  .replace(/<br\s*\/?>/gi, " ")
+  .replace(/<[^>]+>/g, " ")
+  .replace(/&nbsp;|&#160;/gi, " ")
+  .replace(/&amp;/gi, "&")
+  .replace(/&lt;/gi, "<")
+  .replace(/&gt;/gi, ">")
+  .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+  .replace(/\s+/g, " ")
+  .trim();
+
+const tableRows = (html) => [...String(html).matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr>/gi)].map((row) =>
+  [...row[1].matchAll(/<(?:td|th)\b[^>]*>([\s\S]*?)<\/(?:td|th)>/gi)].map((cell) => decodeHtml(cell[1]))
+);
+
+const reportedPeriodLabel = (header, year) => {
+  const normalized = String(header || "").replace(/\s+/g, " ").trim();
+  const match = normalized.match(/(three|six|nine|twelve)\s+months?\s+ended\s+(.+)/i);
+  if (match) return match[1][0].toUpperCase() + match[1].slice(1).toLowerCase() + " months ended " + match[2].replace(/\b\d{4}\b/g, "").trim() + " " + year;
+  const annual = normalized.match(/(?:year|twelve months?)\s+ended\s+(.+)/i);
+  if (annual) return "Year ended " + annual[1].replace(/\b\d{4}\b/g, "").trim() + " " + year;
+  return normalized ? normalized.replace(/\b\d{4}\b/g, "").trim() + " " + year : String(year);
+};
+
+const parseReportedEps = (html, sourceUrl) => {
+  const rows = tableRows(html);
+  let epsIndex = -1;
+  let epsValues = [];
+  for (let index = 0; index < rows.length; index += 1) {
+    if (!/^basic earnings per share\b/i.test(rows[index][0] || "")) continue;
+    const values = rows[index].slice(1).map((cell) => {
+      const match = String(cell).replace(/,/g, "").match(/\(?(-?\d+(?:\.\d+)?)\)?\s*(?:fils|fil)?/i);
+      return match ? Number(match[1]) : null;
+    }).filter((value) => Number.isFinite(value));
+    if (values.length >= 2) { epsIndex = index; epsValues = values; }
+  }
+  if (epsIndex < 0 || epsValues.length < 2) return null;
+  let header = "";
+  let years = [];
+  for (let index = epsIndex - 1; index >= Math.max(0, epsIndex - 25); index -= 1) {
+    const joined = rows[index].join(" ");
+    if (!years.length) years = rows[index].flatMap((cell) => cell.match(/\b20\d{2}\b/g) || []);
+    if (!header && /(?:months?|year)\s+ended/i.test(joined)) {
+      const headers = rows[index].slice(1).filter((cell) => /(?:months?|year)\s+ended/i.test(cell));
+      header = headers.at(-1) || joined;
+    }
+    if (header && years.length >= 2) break;
+  }
+  const currentYear = years.length >= 2 ? years.at(-2) : years[0];
+  const previousYear = years.length >= 2 ? years.at(-1) : Number(currentYear) - 1;
+  if (!currentYear || !previousYear) return null;
+  return {
+    reportedEpsFils: epsValues.at(-2),
+    reportedEpsPeriod: reportedPeriodLabel(header, currentYear),
+    previousReportedEpsFils: epsValues.at(-1),
+    previousReportedEpsPeriod: reportedPeriodLabel(header, previousYear),
+    reportedEpsSource: "Latest Boursa Kuwait IFSAH financial statement",
+    reportedEpsSourceUrl: sourceUrl
+  };
+};
+
+const officialReportedEps = { ...verifiedReportedEpsFallback };
+try {
+  const { chromium } = await import("playwright");
+  const epsBrowser = await chromium.launch({ headless: true });
+  try {
+    const candidates = stocks.filter((stock) => stock.code);
+    let cursor = 0;
+    const worker = async () => {
+      const page = await epsBrowser.newPage({ locale: "en-GB" });
+      try {
+        while (cursor < candidates.length) {
+          const stock = candidates[cursor++];
+          try {
+            await page.goto("https://www.boursakuwait.com.kw/en/stock/financial-statement#" + stock.code, { waitUntil: "domcontentloaded", timeout: 45000 });
+            await page.waitForFunction(() => [...document.querySelectorAll("a[href]")].some((link) => /ifsahdocs.*HTML_en\.html/i.test(link.href)), null, { timeout: 20000 });
+            const links = await page.locator("a[href]").evaluateAll((items) => items.map((item) => item.href).filter((href) => /ifsahdocs.*HTML_en\.html/i.test(href)));
+            const sourceUrl = links[0];
+            if (!sourceUrl) throw new Error("No English IFSAH filing link found");
+            const filingResponse = await fetch(sourceUrl, { headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" } });
+            if (!filingResponse.ok) throw new Error("IFSAH returned HTTP " + filingResponse.status);
+            const parsed = parseReportedEps(await filingResponse.text(), sourceUrl);
+            if (!parsed) throw new Error("Cumulative EPS row or comparative period was not found");
+            officialReportedEps[stock.ticker] = parsed;
+          } catch (error) {
+            const saved = previous.stocks?.[stock.ticker];
+            if (saved?.reportedEpsFils != null) {
+              officialReportedEps[stock.ticker] = {
+                reportedEpsFils: saved.reportedEpsFils,
+                reportedEpsPeriod: saved.reportedEpsPeriod,
+                previousReportedEpsFils: saved.previousReportedEpsFils,
+                previousReportedEpsPeriod: saved.previousReportedEpsPeriod,
+                reportedEpsSource: saved.reportedEpsSource,
+                reportedEpsSourceUrl: saved.reportedEpsSourceUrl
+              };
+            }
+            failures.push({ ticker: stock.ticker + "_EPS", error: error.message });
+          }
+        }
+      } finally {
+        await page.close();
+      }
+    };
+    await Promise.all(Array.from({ length: Math.min(5, candidates.length) }, () => worker()));
+  } finally {
+    await epsBrowser.close();
+  }
+} catch (error) {
+  failures.push({ ticker: "MARKET_EPS", error: error.message });
+}
 
 for (const row of payload.data) {
   const ticker = String(row.s || "").split(":").pop();
