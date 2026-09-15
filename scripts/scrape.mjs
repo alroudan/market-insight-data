@@ -256,9 +256,11 @@ const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
   const rows = tableRows(html);
   let epsIndex = -1;
   let epsValues = [];
+  let epsScore = -1;
   for (let index = 0; index < rows.length; index += 1) {
     const label = rows[index][0] || "";
-    if (!/^basic\b/i.test(label) || !/earnings.*per share/i.test(label) || /disclosure/i.test(label)) continue;
+    if (!/earnings.*per share/i.test(label) || /disclosure|abstract/i.test(label)) continue;
+    const labelScore = /basic.*(?:and|&)?.*diluted|earnings.*basic.*diluted/i.test(label) ? 3 : /\bbasic\b/i.test(label) ? 3 : /\bdiluted\b/i.test(label) ? 1 : 2;
     const values = rows[index].slice(1).map((cell) => {
       const normalized = String(cell).replace(/,/g, "").trim();
       const matches = [...normalized.matchAll(/\(?(-?\d+(?:\.\d+)?)\)?/g)];
@@ -266,7 +268,7 @@ const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
       let value = Number(matches.at(-1)[1]);
       return value;
     }).filter((value) => Number.isFinite(value));
-    if (values.length >= 2) { epsIndex = index; epsValues = values; }
+    if (values.length >= 2 && labelScore >= epsScore) { epsIndex = index; epsValues = values; epsScore = labelScore; }
   }
   if (epsIndex < 0 || epsValues.length < 2) return null;
   let header = "";
