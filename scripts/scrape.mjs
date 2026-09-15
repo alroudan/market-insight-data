@@ -257,10 +257,15 @@ const parseReportedEps = (html, sourceUrl) => {
   let epsIndex = -1;
   let epsValues = [];
   for (let index = 0; index < rows.length; index += 1) {
-    if (!/^basic earnings per share\b/i.test(rows[index][0] || "")) continue;
+    const label = rows[index][0] || "";
+    if (!/^basic\b/i.test(label) || !/earnings.*per share/i.test(label) || /disclosure/i.test(label)) continue;
     const values = rows[index].slice(1).map((cell) => {
-      const match = String(cell).replace(/,/g, "").match(/\(?(-?\d+(?:\.\d+)?)\)?\s*(?:fils|fil)?/i);
-      return match ? Number(match[1]) : null;
+      const normalized = String(cell).replace(/,/g, "").trim();
+      const matches = [...normalized.matchAll(/\(?(-?\d+(?:\.\d+)?)\)?/g)];
+      if (!matches.length) return null;
+      let value = Number(matches.at(-1)[1]);
+      if (!/fils?/i.test(normalized) && matches.length === 1 && Math.abs(value) < 1) value *= 1000;
+      return value;
     }).filter((value) => Number.isFinite(value));
     if (values.length >= 2) { epsIndex = index; epsValues = values; }
   }
