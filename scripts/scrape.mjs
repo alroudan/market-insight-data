@@ -291,50 +291,61 @@ const parseReportedEps = (html, sourceUrl) => {
 
 const officialReportedEps = { ...verifiedReportedEpsFallback };
 try {
-  const { chromium } = await import("playwright");
-  const epsBrowser = await chromium.launch({ headless: true });
-  try {
-    const candidates = stocks.filter((stock) => stock.code);
-    let cursor = 0;
-    const worker = async () => {
-      const page = await epsBrowser.newPage({ locale: "en-GB" });
+  const listResponse = await fetch("https://www.boursakuwait.com.kw/data-api/client-services?RT=3549&L=E&T=2", {
+    headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" }
+  });
+  if (!listResponse.ok) throw new Error("Boursa security list returned HTTP " + listResponse.status);
+  const securityList = await listResponse.json();
+  const codeByTicker = Object.fromEntries((Array.isArray(securityList) ? securityList : [])
+    .map((item) => [String(item.DisplayTicker || "").toUpperCase(), item.Stk]));
+  const marketTickers = [...new Set(payload.data.map((row) => String(row.s || "").split(":").pop()).filter(Boolean))];
+  const candidates = marketTickers.map((ticker) => ({
+    ticker,
+    code: stocks.find((stock) => stock.ticker === ticker)?.code || codeByTicker[ticker]
+  })).filter((stock) => stock.code);
+  let cursor = 0;
+  const worker = async () => {
+    while (cursor < candidates.length) {
+      const stock = candidates[cursor++];
       try {
-        while (cursor < candidates.length) {
-          const stock = candidates[cursor++];
-          try {
-            await page.goto("https://www.boursakuwait.com.kw/en/stock/financial-statement#" + stock.code, { waitUntil: "domcontentloaded", timeout: 45000 });
-            await page.waitForFunction(() => [...document.querySelectorAll("a[href]")].some((link) => /ifsahdocs.*HTML_en\.html/i.test(link.href)), null, { timeout: 20000 });
-            const links = await page.locator("a[href]").evaluateAll((items) => items.map((item) => item.href).filter((href) => /ifsahdocs.*HTML_en\.html/i.test(href)));
-            const sourceUrl = links[0];
-            if (!sourceUrl) throw new Error("No English IFSAH filing link found");
-            const filingResponse = await fetch(sourceUrl, { headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" } });
-            if (!filingResponse.ok) throw new Error("IFSAH returned HTTP " + filingResponse.status);
-            const parsed = parseReportedEps(await filingResponse.text(), sourceUrl);
-            if (!parsed) throw new Error("Cumulative EPS row or comparative period was not found");
-            officialReportedEps[stock.ticker] = parsed;
-          } catch (error) {
-            const saved = previous.stocks?.[stock.ticker];
-            if (saved?.reportedEpsFils != null) {
-              officialReportedEps[stock.ticker] = {
-                reportedEpsFils: saved.reportedEpsFils,
-                reportedEpsPeriod: saved.reportedEpsPeriod,
-                previousReportedEpsFils: saved.previousReportedEpsFils,
-                previousReportedEpsPeriod: saved.previousReportedEpsPeriod,
-                reportedEpsSource: saved.reportedEpsSource,
-                reportedEpsSourceUrl: saved.reportedEpsSourceUrl
-              };
-            }
-            failures.push({ ticker: stock.ticker + "_EPS", error: error.message });
-          }
+        const statementResponse = await fetch("https://www.boursakuwait.com.kw/data-api/client-services?RT=3502&SYMC=" + encodeURIComponent(stock.code) + "&L=E", {
+          headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" }
+        });
+        if (!statementResponse.ok) throw new Error("Boursa financial statements returned HTTP " + statementResponse.status);
+        const statementPayload = await statementResponse.json();
+        const filings = (statementPayload.dataFields || []).flatMap((filing) =>
+          (filing.fileNames || []).filter((file) => String(file.type).toUpperCase() === "HTML").map((file) => ({
+            sourceUrl: file.fileName,
+            activatedDate: String(filing.activatedDate || ""),
+            year: Number(filing.year) || 0,
+            period: Number(filing.period) || 0
+          }))
+        ).filter((filing) => /ifsahdocs.*HTML_en\.html/i.test(filing.sourceUrl))
+          .sort((a, b) => b.activatedDate.localeCompare(a.activatedDate) || b.year - a.year || a.period - b.period);
+        const latest = filings[0];
+        if (!latest) throw new Error("No standardized English IFSAH filing found");
+        const filingResponse = await fetch(latest.sourceUrl, { headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" } });
+        if (!filingResponse.ok) throw new Error("IFSAH returned HTTP " + filingResponse.status);
+        const parsed = parseReportedEps(await filingResponse.text(), latest.sourceUrl);
+        if (!parsed) throw new Error("Cumulative EPS row or comparative period was not found");
+        officialReportedEps[stock.ticker] = parsed;
+      } catch (error) {
+        const saved = previous.stocks?.[stock.ticker];
+        if (saved?.reportedEpsFils != null) {
+          officialReportedEps[stock.ticker] = {
+            reportedEpsFils: saved.reportedEpsFils,
+            reportedEpsPeriod: saved.reportedEpsPeriod,
+            previousReportedEpsFils: saved.previousReportedEpsFils,
+            previousReportedEpsPeriod: saved.previousReportedEpsPeriod,
+            reportedEpsSource: saved.reportedEpsSource,
+            reportedEpsSourceUrl: saved.reportedEpsSourceUrl
+          };
         }
-      } finally {
-        await page.close();
+        failures.push({ ticker: stock.ticker + "_EPS", error: error.message });
       }
-    };
-    await Promise.all(Array.from({ length: Math.min(5, candidates.length) }, () => worker()));
-  } finally {
-    await epsBrowser.close();
-  }
+    }
+  };
+  await Promise.all(Array.from({ length: Math.min(10, candidates.length) }, () => worker()));
 } catch (error) {
   failures.push({ ticker: "MARKET_EPS", error: error.message });
 }
