@@ -7501,7 +7501,13 @@
         "ema20": 866.8716023179995,
         "vwma": 867.3185435985312,
         "high20Day": 880
-      }
+      },
+      "reportedEpsFils": 34,
+      "reportedEpsPeriod": "Six months ended 30 Jun 2026",
+      "previousReportedEpsFils": 33,
+      "previousReportedEpsPeriod": "Six months ended 30 Jun 2025",
+      "reportedEpsSource": "NBK reviewed consolidated interim financial statements",
+      "reportedEpsSourceUrl": "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html"
     },
     "MASHAER": {
       "ticker": "MASHAER",

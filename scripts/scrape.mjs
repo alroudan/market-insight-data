@@ -217,6 +217,17 @@ try {
   }
 } catch (error) { failures.push({ ticker: "MARKET_INDEXES", error: error.message }); }
 
+const officialReportedEps = {
+  NBK: {
+    reportedEpsFils: 34,
+    reportedEpsPeriod: "Six months ended 30 Jun 2026",
+    previousReportedEpsFils: 33,
+    previousReportedEpsPeriod: "Six months ended 30 Jun 2025",
+    reportedEpsSource: "NBK reviewed consolidated interim financial statements",
+    reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html"
+  }
+};
+
 for (const row of payload.data) {
   const ticker = String(row.s || "").split(":").pop();
   const d = Object.fromEntries(columns.map((column, index) => [column, row.d[index]]));
@@ -232,7 +243,7 @@ for (const row of payload.data) {
   }
   if (!Array.isArray(row.d) || !ticker) continue;
   const stock = stocks.find((item) => item.ticker === ticker);
-  results[ticker] = {
+results[ticker] = {
     ticker,
     name: d.description || stock?.name || ticker,
     nameArabic: arabicNames[ticker] || null,
@@ -260,6 +271,7 @@ for (const row of payload.data) {
     pb: finite(d.price_book_fq),
     ps: finite(d.price_sales_current),
     eps: finite(d.earnings_per_share_diluted_ttm),
+    ...(officialReportedEps[ticker] || {}),
     dividendYieldPercent: finite(d.dividends_yield_current),
     revenueKwd: finite(d.total_revenue),
     netIncomeKwd: finite(d.net_income),
