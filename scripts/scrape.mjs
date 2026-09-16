@@ -294,13 +294,16 @@ const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
   const currentYear = String(filingMeta.year || (years.length >= 2 ? years.at(-2) : years[0]) || "");
   const previousYear = String(years.length >= 2 ? years.at(-1) : Number(currentYear) - 1);
   const periodFallback = filingMeta.period === 12 ? "Three months ended" : filingMeta.period === 11 ? "Six months ended" : filingMeta.period === 10 ? "Nine months ended" : filingMeta.period === 9 ? "Year ended" : "";
+  const periodEnd = filingMeta.period === 12 ? "31 Mar" : filingMeta.period === 11 ? "30 Jun" : filingMeta.period === 10 ? "30 Sep" : filingMeta.period === 9 ? "31 Dec" : "";
   if (!header) header = periodFallback;
   if (!currentYear || !previousYear) return null;
+  const currentPeriodLabel = periodFallback && periodEnd ? periodFallback + " " + periodEnd + " " + currentYear : reportedPeriodLabel(header, currentYear);
+  const previousPeriodLabel = periodFallback && periodEnd ? periodFallback + " " + periodEnd + " " + previousYear : reportedPeriodLabel(header, previousYear);
   return {
     reportedEpsFils: epsValues.at(-2),
-    reportedEpsPeriod: reportedPeriodLabel(header, currentYear),
+    reportedEpsPeriod: currentPeriodLabel,
     previousReportedEpsFils: epsValues.at(-1),
-    previousReportedEpsPeriod: reportedPeriodLabel(header, previousYear),
+    previousReportedEpsPeriod: previousPeriodLabel,
     reportedEpsSource: "Latest Boursa Kuwait IFSAH financial statement",
     reportedEpsSourceUrl: sourceUrl
   };
@@ -421,6 +424,7 @@ results[ticker] = {
     eps: finite(d.earnings_per_share_diluted_ttm),
     epsBasis: "TradingView diluted trailing twelve months",
     ...(officialReportedEps[ticker] || {}),
+    reportedEpsStatus: officialReportedEps[ticker] ? "official" : "unavailable",
     dividendYieldPercent: finite(d.dividends_yield_current),
     revenueKwd: finite(d.total_revenue),
     netIncomeKwd: finite(d.net_income),
