@@ -91,7 +91,7 @@ html[dir="rtl"] .multiples-table span{text-align:left}
 html[dir="rtl"] .side-tabs button{text-align:right!important}
 </style><style id="mobile-drawer-navigation">
 .mobile-top-brand,.mobile-menu-backdrop{display:none}
-@media(max-width:680px){
+@media(max-width:900px){
   .app{display:block}
   .main{width:100%;padding:74px 12px 40px}
   .top{position:fixed;top:0;left:0;right:0;z-index:900;height:60px;min-height:60px;margin:0;padding:8px 12px;display:flex!important;align-items:center;justify-content:space-between;background:color-mix(in srgb,var(--bg) 94%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
@@ -114,7 +114,7 @@ html[dir="rtl"] .side-tabs button{text-align:right!important}
   body.mobile-menu-open{overflow:hidden}
   .market-analysis{padding:14px}
 }
-@media(max-width:680px){
+@media(max-width:900px){
   html[dir="rtl"] .side .side-tabs button{text-align:right!important}
   html[dir="rtl"] .side{left:auto;right:0;transform:translateX(105%);box-shadow:-14px 0 35px rgba(0,0,0,.28)}
   html[dir="rtl"] .side.mobile-open{transform:translateX(0)}
@@ -369,7 +369,7 @@ observer.observe(document.body,{subtree:true,childList:true,characterData:true})
   const toggle=document.getElementById('mobile-menu-toggle');
   const backdrop=document.getElementById('mobile-menu-backdrop');
   if(!side||!toggle||!backdrop)return;
-  const isMobile=()=>window.matchMedia('(max-width:680px)').matches;
+  const isMobile=()=>window.matchMedia('(max-width:900px)').matches;
   const setOpen=open=>{
     side.classList.toggle('mobile-open',open);
     backdrop.classList.toggle('visible',open);
