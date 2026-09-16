@@ -499,14 +499,13 @@ try {
 }
 
 const verifiedOfficialDailyValues = {
-  "2026-09-14": 121813003.672
+  "2026-09-14": { valueTradedKwd: 121813003.672, source: "Boursa Kuwait Daily All-Share Report (verified fallback)", sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all" },
+  "2026-09-15": { valueTradedKwd: 130400000, source: "Verified Kuwait market close report (rounded)", sourceUrl: "https://qna.org.qa/ar-QA/News-Area/News/2026-9/15/%D8%A8%D9%88%D8%B1%D8%B5%D8%A9-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA-%D8%AA%D8%BA%D9%84%D9%82-%D8%B9%D9%84%D9%89-%D8%A7%D9%86%D8%AE%D9%81%D8%A7%D8%B6" }
 };
-if (!officialMarketReport && verifiedOfficialDailyValues[tradingDate] != null) {
+if (!officialMarketReport && verifiedOfficialDailyValues[tradingDate]) {
   officialMarketReport = {
     tradingDate,
-    valueTradedKwd: verifiedOfficialDailyValues[tradingDate],
-    source: "Boursa Kuwait Daily All-Share Report (verified fallback)",
-    sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all"
+    ...verifiedOfficialDailyValues[tradingDate]
   };
 }
 
