@@ -218,14 +218,12 @@ try {
 } catch (error) { failures.push({ ticker: "MARKET_INDEXES", error: error.message }); }
 
 const verifiedReportedEpsFallback = {
-  NBK: {
-    reportedEpsFils: 34,
-    reportedEpsPeriod: "Six months ended 30 Jun 2026",
-    previousReportedEpsFils: 33,
-    previousReportedEpsPeriod: "Six months ended 30 Jun 2025",
-    reportedEpsSource: "NBK reviewed consolidated interim financial statements",
-    reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html"
-  }
+  NBK: { reportedEpsFils: 34, reportedEpsPeriod: "Six months ended 30 Jun 2026", previousReportedEpsFils: 33, previousReportedEpsPeriod: "Six months ended 30 Jun 2025", reportedEpsSource: "Boursa Kuwait IFSAH financial statement", reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html" },
+  CLEANING: { reportedEpsFils: 8.35, reportedEpsPeriod: "Six months ended 30 Jun 2026", previousReportedEpsFils: 2.89, previousReportedEpsPeriod: "Six months ended 30 Jun 2025", reportedEpsSource: "Boursa Kuwait IFSAH financial statement (verified)", reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6706/HTML_en.html" },
+  AMAR: { reportedEpsFils: 1.51, reportedEpsPeriod: "Six months ended 30 Jun 2026", previousReportedEpsFils: 1.35, previousReportedEpsPeriod: "Six months ended 30 Jun 2025", reportedEpsSource: "Boursa Kuwait IFSAH financial statement (verified)", reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6465/HTML_en.html" },
+  COAST: { reportedEpsFils: -4.46, reportedEpsPeriod: "Six months ended 30 Jun 2026", previousReportedEpsFils: -1.61, previousReportedEpsPeriod: "Six months ended 30 Jun 2025", reportedEpsSource: "Boursa Kuwait IFSAH financial statement (verified)", reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6356/HTML_en.html" },
+  ARZAN: { reportedEpsFils: 9.768, reportedEpsPeriod: "Six months ended 30 Jun 2026", previousReportedEpsFils: 17.638, previousReportedEpsPeriod: "Six months ended 30 Jun 2025", reportedEpsSource: "Boursa Kuwait IFSAH financial statement (verified)", reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6563/HTML_en.html" },
+  ASIYA: { reportedEpsFils: -2.345655, reportedEpsPeriod: "Six months ended 30 Jun 2026", previousReportedEpsFils: 1.664106, previousReportedEpsPeriod: "Six months ended 30 Jun 2025", reportedEpsSource: "Boursa Kuwait IFSAH financial statement (verified)", reportedEpsSourceUrl: "https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6439/HTML_en.html" }
 };
 
 const decodeHtml = (value) => String(value || "")
@@ -259,18 +257,25 @@ const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
   let epsScore = -1;
   for (let index = 0; index < rows.length; index += 1) {
     const label = rows[index][0] || "";
-    if (!/(?:earnings.*per share|\beps\b)/i.test(label) || /disclosure|abstract/i.test(label)) continue;
-    const labelScore = /basic.*(?:and|&)?.*diluted|earnings.*basic.*diluted/i.test(label) ? 3 : /\bbasic\b/i.test(label) ? 3 : /\bdiluted\b/i.test(label) ? 1 : 2;
+    if (!/(?:earnings.*per share|\beps\b)/i.test(label) || /disclosure|abstract|continuing operations|discontinued operations/i.test(label)) continue;
+    let labelScore = 0;
+    if (/attributable to (?:the )?(?:equity )?(?:shareholders|owners) of (?:the )?parent/i.test(label)) labelScore += 8;
+    if (/\bbasic\b/i.test(label)) labelScore += 5;
+    if (/\bdiluted\b/i.test(label)) labelScore += 2;
+    if (/\bfils?\b/i.test(label)) labelScore += 2;
+    if (/basic.*(?:and|&)?.*diluted|earnings.*basic.*diluted/i.test(label)) labelScore += 1;
     const values = rows[index].slice(1).map((cell) => {
       const normalized = String(cell).replace(/,/g, "").trim();
-      const matches = [...normalized.matchAll(/\(?(-?\d+(?:\.\d+)?)\)?/g)];
+      const matches = [...normalized.matchAll(/\(?\s*(-?\d+(?:\.\d+)?)\s*\)?/g)];
       if (!matches.length) return null;
-      let value = Number(matches.at(-1)[1]);
-      return value;
-    }).filter((value) => Number.isFinite(value));
-    if (values.length >= 2 && labelScore >= epsScore) { epsIndex = index; epsValues = values; epsScore = labelScore; }
+      const match = matches.at(-1);
+      const parenthesized = /\(\s*-?\d/.test(match[0]);
+      const absolute = Math.abs(Number(match[1]));
+      return parenthesized ? -absolute : Number(match[1]);
+    }).filter((value) => Number.isFinite(value) && Math.abs(value) <= 1000);
+    if (values.length >= 2 && labelScore > epsScore) { epsIndex = index; epsValues = values; epsScore = labelScore; }
   }
-  if (epsIndex < 0 || epsValues.length < 2) return null;
+  if (epsIndex < 0 || epsValues.length < 2 || epsScore < 5) return null;
   let header = "";
   let years = [];
   for (let index = epsIndex - 1; index >= Math.max(0, epsIndex - 25); index -= 1) {
@@ -399,21 +404,27 @@ results[ticker] = {
     fetchedAt,
     tradingDate,
     close: finite(d.close),
+    previousClose: finite(d.close) != null && finite(d.change) != null && (1 + finite(d.change) / 100) !== 0
+      ? finite(d.close) / (1 + finite(d.change) / 100)
+      : null,
     changePercent: finite(d.change),
     performance1MonthPercent: finite(d["Perf.1M"]),
     performanceYtdPercent: finite(d["Perf.YTD"]),
     volume: finite(d.volume),
     averageVolume10d: finite(d.average_volume_10d_calc),
-    relativeVolume10d: finite(d.relative_volume_10d_calc),
+    relativeVolume10d: finite(d.volume) != null && finite(d.average_volume_10d_calc) > 0 ? finite(d.volume) / finite(d.average_volume_10d_calc) : null,
+    tradingViewRelativeVolume10d: finite(d.relative_volume_10d_calc),
     marketCapKwd: finite(d.market_cap_basic),
     pe: finite(d.price_earnings_ttm),
     pb: finite(d.price_book_fq),
     ps: finite(d.price_sales_current),
     eps: finite(d.earnings_per_share_diluted_ttm),
+    epsBasis: "TradingView diluted trailing twelve months",
     ...(officialReportedEps[ticker] || {}),
     dividendYieldPercent: finite(d.dividends_yield_current),
     revenueKwd: finite(d.total_revenue),
     netIncomeKwd: finite(d.net_income),
+    fundamentalsBasis: "TradingView trailing/provider-defined fundamentals",
     returnOnEquityPercent: finite(d.return_on_equity),
     debtToEquity: finite(d.debt_to_equity),
     profitMarginPercent: finite(d.net_margin),
