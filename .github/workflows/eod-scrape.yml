@@ -10,6 +10,9 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "16 10 * * 0-4"
+    - cron: "20 10 * * 0-4"
+    - cron: "40 10 * * 0-4"
+    - cron: "0 11 * * 0-4"
 
 permissions:
   contents: write
@@ -26,21 +29,41 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Skip duplicate completed trading day
+        id: freshness
+        shell: bash
+        run: |
+          TODAY_KUWAIT=$(TZ=Asia/Kuwait date +%F)
+          PUBLISHED_DATE=$(node -e "try { console.log(JSON.parse(require('fs').readFileSync('website/latest.json','utf8')).tradingDate || '') } catch { console.log('') }")
+          echo "Kuwait date: $TODAY_KUWAIT"
+          echo "Published trading date: $PUBLISHED_DATE"
+          if [ "$PUBLISHED_DATE" = "$TODAY_KUWAIT" ]; then
+            echo "already_current=true" >> "$GITHUB_OUTPUT"
+            echo "Today's EOD snapshot is already published; skipping duplicate run."
+          else
+            echo "already_current=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Set up Node.js
+        if: steps.freshness.outputs.already_current != 'true'
         uses: actions/setup-node@v4
         with:
           node-version: "22"
 
       - name: Install scraper dependencies
+        if: steps.freshness.outputs.already_current != 'true'
         run: npm install
 
       - name: Install Chromium
+        if: steps.freshness.outputs.already_current != 'true'
         run: npx playwright install --with-deps chromium
 
       - name: Fetch delayed Kuwait market data
+        if: steps.freshness.outputs.already_current != 'true'
         run: npm run scrape
 
       - name: Commit updated snapshot
+        if: steps.freshness.outputs.already_current != 'true'
         run: |
           cp data/latest.json website/latest.json
           git config user.name "market-insight-bot"
