@@ -1,6 +1,6 @@
 const COOKIE_NAME = "mi_session";
 const SESSION_HOURS = 12;
-const PBKDF2_ITERATIONS = 120000;
+const PBKDF2_ITERATIONS = 20000;
 const enc = new TextEncoder();
 
 const json = (data, status = 200, extra = {}) => new Response(JSON.stringify(data), {
@@ -355,8 +355,14 @@ export async function onRequest(context) {
     return basicChallenge();
   }
 
-  await ensureSchema(env.AUTH_DB);
-  if (url.pathname.startsWith("/api/")) return handleApi(context);
+  try {
+    await ensureSchema(env.AUTH_DB);
+    if (url.pathname.startsWith("/api/")) return await handleApi(context);
+  } catch (error) {
+    console.error("Authentication backend error", error);
+    if (url.pathname.startsWith("/api/")) return json({ error: "Authentication backend error. Verify the production D1 binding and retry the deployment." }, 500);
+    return new Response("Authentication backend error", { status: 500, headers: { "Cache-Control": "no-store" } });
+  }
 
   const publicPaths = new Set(["/login.html", "/icon-192.svg", "/icon-512.svg", "/manifest.webmanifest", "/sw.js"]);
   if (publicPaths.has(url.pathname)) return context.next();
