@@ -91,7 +91,21 @@ async function ensureSchema(db) {
       ip TEXT,
       created_at TEXT NOT NULL
     )`,
-    `CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_log(created_at DESC)`
+    `CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_log(created_at DESC)`,
+    `CREATE TABLE IF NOT EXISTS page_views (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER,
+      ip_hash TEXT NOT NULL,
+      path TEXT NOT NULL,
+      country TEXT,
+      device TEXT,
+      referrer TEXT,
+      created_at TEXT NOT NULL,
+      FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE SET NULL
+    )`,
+    `CREATE INDEX IF NOT EXISTS idx_page_views_created ON page_views(created_at DESC)`,
+    `CREATE INDEX IF NOT EXISTS idx_page_views_ip ON page_views(ip_hash)`,
+    `CREATE INDEX IF NOT EXISTS idx_page_views_user ON page_views(user_id)`
   ];
   for (const sql of statements) await db.prepare(sql).run();
   const userColumns = await db.prepare("PRAGMA table_info(users)").all();
@@ -100,11 +114,39 @@ async function ensureSchema(db) {
     await db.prepare("UPDATE users SET password_iterations=120000 WHERE password_iterations IS NULL").run();
   }
   await db.prepare("DELETE FROM sessions WHERE expires_at <= ?").bind(nowIso()).run();
+  await db.prepare("DELETE FROM page_views WHERE created_at < datetime('now','-180 days')").run();
 }
 
 async function audit(db, actor, action, target = null, detail = null, request = null) {
   await db.prepare("INSERT INTO audit_log(actor_user_id,action,target_user_id,detail,ip,created_at) VALUES(?,?,?,?,?,?)")
     .bind(actor?.id || null, action, target, detail, request ? requestIp(request) : null, nowIso()).run();
+}
+
+const deviceType = userAgentValue => {
+  const ua = String(userAgentValue || "");
+  if (/bot|crawler|spider|slurp/i.test(ua)) return "Bot";
+  if (/ipad|tablet|kindle|silk/i.test(ua)) return "Tablet";
+  if (/mobile|iphone|ipod|android/i.test(ua)) return "Mobile";
+  return "Desktop";
+};
+
+async function trackVisit(context, user) {
+  const { request, env } = context;
+  const url = new URL(request.url);
+  if (request.method !== "GET" || !(request.headers.get("accept") || "").includes("text/html")) return;
+  const ip = requestIp(request);
+  const salt = env.ANALYTICS_SALT || env.APP_PASSWORD || url.hostname;
+  const ipHash = await sha256(salt + "|" + ip);
+  let referrer = null;
+  try {
+    const value = request.headers.get("referer");
+    if (value) {
+      const parsed = new URL(value);
+      if (parsed.origin !== url.origin) referrer = parsed.hostname.slice(0, 200);
+    }
+  } catch {}
+  await env.AUTH_DB.prepare("INSERT INTO page_views(user_id,ip_hash,path,country,device,referrer,created_at) VALUES(?,?,?,?,?,?,?)")
+    .bind(user?.id || null, ipHash, url.pathname.slice(0, 200), (request.cf?.country || request.headers.get("CF-IPCountry") || "Unknown").slice(0, 10), deviceType(request.headers.get("User-Agent")), referrer, nowIso()).run();
 }
 
 async function currentUser(context) {
@@ -328,6 +370,32 @@ async function handleApi(context) {
     return json({ ok: true });
   }
 
+  if (path === "/api/admin/traffic" && request.method === "GET") {
+    const auth = await requireAdmin(context);
+    if (auth.response) return auth.response;
+    const requestedDays = Number(url.searchParams.get("days") || 30);
+    const days = Math.min(180, Math.max(1, Number.isFinite(requestedDays) ? Math.floor(requestedDays) : 30));
+    const since = new Date(Date.now() - days * 86400000).toISOString();
+    const today = new Date().toISOString().slice(0, 10);
+    const [summary, todayStats, daily, pages, countries, devices, referrers, recent] = await Promise.all([
+      env.AUTH_DB.prepare(`SELECT COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors,COUNT(DISTINCT user_id) signed_in_users FROM page_views WHERE created_at>=?`).bind(since).first(),
+      env.AUTH_DB.prepare("SELECT COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE substr(created_at,1,10)=?").bind(today).first(),
+      env.AUTH_DB.prepare(`SELECT substr(created_at,1,10) day,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? GROUP BY day ORDER BY day`).bind(since).all(),
+      env.AUTH_DB.prepare(`SELECT path,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? GROUP BY path ORDER BY visits DESC LIMIT 20`).bind(since).all(),
+      env.AUTH_DB.prepare(`SELECT COALESCE(country,'Unknown') label,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? GROUP BY label ORDER BY visits DESC LIMIT 20`).bind(since).all(),
+      env.AUTH_DB.prepare(`SELECT COALESCE(device,'Unknown') label,COUNT(*) visits FROM page_views WHERE created_at>=? GROUP BY label ORDER BY visits DESC`).bind(since).all(),
+      env.AUTH_DB.prepare(`SELECT COALESCE(referrer,'Direct') label,COUNT(*) visits FROM page_views WHERE created_at>=? GROUP BY label ORDER BY visits DESC LIMIT 20`).bind(since).all(),
+      env.AUTH_DB.prepare(`SELECT p.path,p.country,p.device,p.referrer,p.created_at,u.username FROM page_views p LEFT JOIN users u ON u.id=p.user_id ORDER BY p.id DESC LIMIT 50`).all()
+    ]);
+    return json({
+      days,
+      summary: { visits: Number(summary?.visits || 0), uniqueVisitors: Number(summary?.unique_visitors || 0), signedInUsers: Number(summary?.signed_in_users || 0) },
+      today: { visits: Number(todayStats?.visits || 0), uniqueVisitors: Number(todayStats?.unique_visitors || 0) },
+      daily: daily.results || [], pages: pages.results || [], countries: countries.results || [],
+      devices: devices.results || [], referrers: referrers.results || [], recent: recent.results || []
+    });
+  }
+
   if (path === "/api/admin/audit" && request.method === "GET") {
     const auth = await requireAdmin(context);
     if (auth.response) return auth.response;
@@ -384,6 +452,11 @@ export async function onRequest(context) {
   if (url.pathname === "/admin.html" && user.role !== "admin") return Response.redirect(url.origin + "/", 302);
 
   const response = await context.next();
+  if (response.status < 400) {
+    const visitPromise = trackVisit(context, user).catch(error => console.error("Traffic tracking error", error));
+    if (context.waitUntil) context.waitUntil(visitPromise);
+    else await visitPromise;
+  }
   const headers = new Headers(response.headers);
   headers.set("Cache-Control", "private, no-store");
   headers.set("X-Frame-Options", "DENY");
