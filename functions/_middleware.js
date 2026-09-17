@@ -375,20 +375,26 @@ async function handleApi(context) {
     if (auth.response) return auth.response;
     const requestedDays = Number(url.searchParams.get("days") || 30);
     const days = Math.min(180, Math.max(1, Number.isFinite(requestedDays) ? Math.floor(requestedDays) : 30));
+    const requestedUserId = Number(url.searchParams.get("userId"));
+    const userId = Number.isInteger(requestedUserId) && requestedUserId > 0 ? requestedUserId : null;
+    if (userId) {
+      const selectedUser = await env.AUTH_DB.prepare("SELECT id FROM users WHERE id=?").bind(userId).first();
+      if (!selectedUser) return json({ error: "Selected user was not found" }, 404);
+    }
     const since = new Date(Date.now() - days * 86400000).toISOString();
     const today = new Date().toISOString().slice(0, 10);
     const [summary, todayStats, daily, pages, countries, devices, referrers, recent] = await Promise.all([
-      env.AUTH_DB.prepare(`SELECT COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors,COUNT(DISTINCT user_id) signed_in_users FROM page_views WHERE created_at>=?`).bind(since).first(),
-      env.AUTH_DB.prepare("SELECT COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE substr(created_at,1,10)=?").bind(today).first(),
-      env.AUTH_DB.prepare(`SELECT substr(created_at,1,10) day,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? GROUP BY day ORDER BY day`).bind(since).all(),
-      env.AUTH_DB.prepare(`SELECT path,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? GROUP BY path ORDER BY visits DESC LIMIT 20`).bind(since).all(),
-      env.AUTH_DB.prepare(`SELECT COALESCE(country,'Unknown') label,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? GROUP BY label ORDER BY visits DESC LIMIT 20`).bind(since).all(),
-      env.AUTH_DB.prepare(`SELECT COALESCE(device,'Unknown') label,COUNT(*) visits FROM page_views WHERE created_at>=? GROUP BY label ORDER BY visits DESC`).bind(since).all(),
-      env.AUTH_DB.prepare(`SELECT COALESCE(referrer,'Direct') label,COUNT(*) visits FROM page_views WHERE created_at>=? GROUP BY label ORDER BY visits DESC LIMIT 20`).bind(since).all(),
-      env.AUTH_DB.prepare(`SELECT p.path,p.country,p.device,p.referrer,p.created_at,u.username FROM page_views p LEFT JOIN users u ON u.id=p.user_id ORDER BY p.id DESC LIMIT 50`).all()
+      env.AUTH_DB.prepare(`SELECT COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors,COUNT(DISTINCT user_id) signed_in_users FROM page_views WHERE created_at>=? AND (? IS NULL OR user_id=?)`).bind(since,userId,userId).first(),
+      env.AUTH_DB.prepare("SELECT COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE substr(created_at,1,10)=? AND (? IS NULL OR user_id=?)").bind(today,userId,userId).first(),
+      env.AUTH_DB.prepare(`SELECT substr(created_at,1,10) day,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? AND (? IS NULL OR user_id=?) GROUP BY day ORDER BY day`).bind(since,userId,userId).all(),
+      env.AUTH_DB.prepare(`SELECT path,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? AND (? IS NULL OR user_id=?) GROUP BY path ORDER BY visits DESC LIMIT 20`).bind(since,userId,userId).all(),
+      env.AUTH_DB.prepare(`SELECT COALESCE(country,'Unknown') label,COUNT(*) visits,COUNT(DISTINCT ip_hash) unique_visitors FROM page_views WHERE created_at>=? AND (? IS NULL OR user_id=?) GROUP BY label ORDER BY visits DESC LIMIT 20`).bind(since,userId,userId).all(),
+      env.AUTH_DB.prepare(`SELECT COALESCE(device,'Unknown') label,COUNT(*) visits FROM page_views WHERE created_at>=? AND (? IS NULL OR user_id=?) GROUP BY label ORDER BY visits DESC`).bind(since,userId,userId).all(),
+      env.AUTH_DB.prepare(`SELECT COALESCE(referrer,'Direct') label,COUNT(*) visits FROM page_views WHERE created_at>=? AND (? IS NULL OR user_id=?) GROUP BY label ORDER BY visits DESC LIMIT 20`).bind(since,userId,userId).all(),
+      env.AUTH_DB.prepare(`SELECT p.path,p.country,p.device,p.referrer,p.created_at,u.username FROM page_views p LEFT JOIN users u ON u.id=p.user_id WHERE (? IS NULL OR p.user_id=?) ORDER BY p.id DESC LIMIT 50`).bind(userId,userId).all()
     ]);
     return json({
-      days,
+      days, selectedUserId: userId,
       summary: { visits: Number(summary?.visits || 0), uniqueVisitors: Number(summary?.unique_visitors || 0), signedInUsers: Number(summary?.signed_in_users || 0) },
       today: { visits: Number(todayStats?.visits || 0), uniqueVisitors: Number(todayStats?.unique_visitors || 0) },
       daily: daily.results || [], pages: pages.results || [], countries: countries.results || [],
