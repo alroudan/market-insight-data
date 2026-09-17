@@ -25,6 +25,7 @@ const columns = [
   "Perf.1M",
   "Perf.YTD",
   "volume",
+  "Value.Traded",
   "average_volume_10d_calc",
   "relative_volume_10d_calc",
   "market_cap_basic",
@@ -414,6 +415,7 @@ results[ticker] = {
     performance1MonthPercent: finite(d["Perf.1M"]),
     performanceYtdPercent: finite(d["Perf.YTD"]),
     volume: finite(d.volume),
+    tradedValueKwd: finite(d["Value.Traded"]),
     averageVolume10d: finite(d.average_volume_10d_calc),
     relativeVolume10d: finite(d.volume) != null && finite(d.average_volume_10d_calc) > 0 ? finite(d.volume) / finite(d.average_volume_10d_calc) : null,
     tradingViewRelativeVolume10d: finite(d.relative_volume_10d_calc),
@@ -496,6 +498,19 @@ try {
   }
 } catch (error) {
   failures.push({ ticker: "OFFICIAL_MARKET_VALUE", error: error.message });
+}
+
+if (!officialMarketReport) {
+  const aggregatedValueTradedKwd = Object.values(results)
+    .reduce((total, item) => total + (Number.isFinite(item.tradedValueKwd) ? item.tradedValueKwd : 0), 0);
+  if (aggregatedValueTradedKwd > 0) {
+    officialMarketReport = {
+      tradingDate,
+      valueTradedKwd: aggregatedValueTradedKwd,
+      source: "TradingView Kuwait EOD stock traded values (market aggregate fallback)",
+      sourceUrl: "https://www.tradingview.com/markets/stocks-kuwait/market-movers-active/"
+    };
+  }
 }
 
 const verifiedOfficialDailyValues = {
