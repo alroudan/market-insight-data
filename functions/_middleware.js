@@ -38,7 +38,7 @@ const hashPassword = async (password, saltBase64, iterations = PBKDF2_ITERATIONS
   return bytesToBase64(new Uint8Array(bits));
 };
 const validUsername = username => /^[A-Za-z0-9._-]{3,32}$/.test(username);
-const validPassword = password => typeof password === "string" && password.length >= 10 && password.length <= 128;
+const validPassword = password => typeof password === "string" && password.length > 0;
 const nowIso = () => new Date().toISOString();
 const cookieValue = (request, name) => {
   const header = request.headers.get("cookie") || "";
@@ -177,7 +177,7 @@ async function handleApi(context) {
       (env.ADMIN_SETUP_TOKEN && safeEqual(bootstrapPassword, env.ADMIN_SETUP_TOKEN));
     if (!allowed) return json({ error: "Current site password is incorrect" }, 403);
     if (!validUsername(username)) return json({ error: "Username must be 3–32 characters using letters, numbers, dot, dash or underscore" }, 400);
-    if (!validPassword(password)) return json({ error: "Password must be 10–128 characters" }, 400);
+    if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
     const salt = randomBase64(16);
     const passwordHash = await hashPassword(password, salt);
     const created = nowIso();
@@ -238,7 +238,7 @@ async function handleApi(context) {
     const body = await readJson(request);
     const currentPassword = String(body.currentPassword || "");
     const newPassword = String(body.newPassword || "");
-    if (!validPassword(newPassword)) return json({ error: "New password must be 10–128 characters" }, 400);
+    if (!validPassword(newPassword)) return json({ error: "New password cannot be empty" }, 400);
     const record = await env.AUTH_DB.prepare("SELECT password_hash,password_salt,password_iterations FROM users WHERE id=?").bind(user.id).first();
     const computed = await hashPassword(currentPassword, record.password_salt, Number(record.password_iterations || 120000));
     if (!safeEqual(computed, record.password_hash)) return json({ error: "Current password is incorrect" }, 403);
@@ -264,7 +264,7 @@ async function handleApi(context) {
     const body = await readJson(request);
     const username = String(body.username || "").trim(), password = String(body.password || ""), role = body.role === "admin" ? "admin" : "user";
     if (!validUsername(username)) return json({ error: "Username must be 3–32 characters using letters, numbers, dot, dash or underscore" }, 400);
-    if (!validPassword(password)) return json({ error: "Password must be 10–128 characters" }, 400);
+    if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
     const salt = randomBase64(16), passwordHash = await hashPassword(password, salt), time = nowIso();
     try {
       const result = await env.AUTH_DB.prepare("INSERT INTO users(username,password_hash,password_salt,password_iterations,role,active,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?)")
@@ -286,7 +286,7 @@ async function handleApi(context) {
     const body = await readJson(request);
     if (action === "password") {
       const password = String(body.password || "");
-      if (!validPassword(password)) return json({ error: "Password must be 10–128 characters" }, 400);
+      if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
       const salt = randomBase64(16), passwordHash = await hashPassword(password, salt);
       await env.AUTH_DB.batch([
         env.AUTH_DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,updated_at=? WHERE id=?").bind(passwordHash, salt, PBKDF2_ITERATIONS, nowIso(), targetId),
