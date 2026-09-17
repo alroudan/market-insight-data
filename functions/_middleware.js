@@ -27,13 +27,13 @@ const safeEqual = (a, b) => {
   for (let i = 0; i < length; i += 1) diff |= (aa[i % aa.length] || 0) ^ (bb[i % bb.length] || 0);
   return diff === 0;
 };
-const hashPassword = async (password, saltBase64) => {
+const hashPassword = async (password, saltBase64, iterations = PBKDF2_ITERATIONS) => {
   const key = await crypto.subtle.importKey("raw", enc.encode(password), "PBKDF2", false, ["deriveBits"]);
   const bits = await crypto.subtle.deriveBits({
     name: "PBKDF2",
     hash: "SHA-256",
     salt: base64ToBytes(saltBase64),
-    iterations: PBKDF2_ITERATIONS
+    iterations
   }, key, 256);
   return bytesToBase64(new Uint8Array(bits));
 };
@@ -94,6 +94,11 @@ async function ensureSchema(db) {
     `CREATE INDEX IF NOT EXISTS idx_audit_created ON audit_log(created_at DESC)`
   ];
   for (const sql of statements) await db.prepare(sql).run();
+  const userColumns = await db.prepare("PRAGMA table_info(users)").all();
+  if (!(userColumns.results || []).some(column => column.name === "password_iterations")) {
+    await db.prepare("ALTER TABLE users ADD COLUMN password_iterations INTEGER").run();
+    await db.prepare("UPDATE users SET password_iterations=120000 WHERE password_iterations IS NULL").run();
+  }
   await db.prepare("DELETE FROM sessions WHERE expires_at <= ?").bind(nowIso()).run();
 }
 
@@ -176,8 +181,8 @@ async function handleApi(context) {
     const salt = randomBase64(16);
     const passwordHash = await hashPassword(password, salt);
     const created = nowIso();
-    const result = await env.AUTH_DB.prepare("INSERT INTO users(username,password_hash,password_salt,role,active,created_at,updated_at) VALUES(?,?,?,?,1,?,?)")
-      .bind(username, passwordHash, salt, "admin", created, created).run();
+    const result = await env.AUTH_DB.prepare("INSERT INTO users(username,password_hash,password_salt,password_iterations,role,active,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?)")
+      .bind(username, passwordHash, salt, PBKDF2_ITERATIONS, "admin", created, created).run();
     await audit(env.AUTH_DB, null, "bootstrap_admin", Number(result.meta.last_row_id), username, request);
     return json({ ok: true }, 201);
   }
@@ -188,7 +193,7 @@ async function handleApi(context) {
     const password = String(body.password || "");
     const user = await env.AUTH_DB.prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE").bind(username).first();
     const dummySalt = "AAAAAAAAAAAAAAAAAAAAAA==";
-    const computed = await hashPassword(password, user?.password_salt || dummySalt);
+    const computed = await hashPassword(password, user?.password_salt || dummySalt, Number(user?.password_iterations || 120000));
     const locked = user?.locked_until && new Date(user.locked_until).getTime() > Date.now();
     if (!user || !user.active || locked || !safeEqual(computed, user.password_hash)) {
       if (user) {
@@ -234,12 +239,12 @@ async function handleApi(context) {
     const currentPassword = String(body.currentPassword || "");
     const newPassword = String(body.newPassword || "");
     if (!validPassword(newPassword)) return json({ error: "New password must be 10–128 characters" }, 400);
-    const record = await env.AUTH_DB.prepare("SELECT password_hash,password_salt FROM users WHERE id=?").bind(user.id).first();
-    const computed = await hashPassword(currentPassword, record.password_salt);
+    const record = await env.AUTH_DB.prepare("SELECT password_hash,password_salt,password_iterations FROM users WHERE id=?").bind(user.id).first();
+    const computed = await hashPassword(currentPassword, record.password_salt, Number(record.password_iterations || 120000));
     if (!safeEqual(computed, record.password_hash)) return json({ error: "Current password is incorrect" }, 403);
     const salt = randomBase64(16), passwordHash = await hashPassword(newPassword, salt);
     await env.AUTH_DB.batch([
-      env.AUTH_DB.prepare("UPDATE users SET password_hash=?,password_salt=?,updated_at=? WHERE id=?").bind(passwordHash, salt, nowIso(), user.id),
+      env.AUTH_DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,updated_at=? WHERE id=?").bind(passwordHash, salt, PBKDF2_ITERATIONS, nowIso(), user.id),
       env.AUTH_DB.prepare("DELETE FROM sessions WHERE user_id=?").bind(user.id)
     ]);
     await audit(env.AUTH_DB, user, "password_changed", user.id, null, request);
@@ -262,8 +267,8 @@ async function handleApi(context) {
     if (!validPassword(password)) return json({ error: "Password must be 10–128 characters" }, 400);
     const salt = randomBase64(16), passwordHash = await hashPassword(password, salt), time = nowIso();
     try {
-      const result = await env.AUTH_DB.prepare("INSERT INTO users(username,password_hash,password_salt,role,active,created_at,updated_at) VALUES(?,?,?,?,1,?,?)")
-        .bind(username, passwordHash, salt, role, time, time).run();
+      const result = await env.AUTH_DB.prepare("INSERT INTO users(username,password_hash,password_salt,password_iterations,role,active,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?)")
+        .bind(username, passwordHash, salt, PBKDF2_ITERATIONS, role, time, time).run();
       await audit(env.AUTH_DB, auth.user, "user_created", Number(result.meta.last_row_id), username + " (" + role + ")", request);
       return json({ ok: true }, 201);
     } catch (error) {
@@ -284,7 +289,7 @@ async function handleApi(context) {
       if (!validPassword(password)) return json({ error: "Password must be 10–128 characters" }, 400);
       const salt = randomBase64(16), passwordHash = await hashPassword(password, salt);
       await env.AUTH_DB.batch([
-        env.AUTH_DB.prepare("UPDATE users SET password_hash=?,password_salt=?,updated_at=? WHERE id=?").bind(passwordHash, salt, nowIso(), targetId),
+        env.AUTH_DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,updated_at=? WHERE id=?").bind(passwordHash, salt, PBKDF2_ITERATIONS, nowIso(), targetId),
         env.AUTH_DB.prepare("DELETE FROM sessions WHERE user_id=?").bind(targetId)
       ]);
       await audit(env.AUTH_DB, auth.user, "password_reset", targetId, target.username, request);
