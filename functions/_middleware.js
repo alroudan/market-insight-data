@@ -326,11 +326,14 @@ async function handleApi(context) {
     return json({ ok: true, user: { id: user.id, username: user.username, role: user.role } }, 200, { "Set-Cookie": sessionCookie(token) });
   }
 
-  if (path === "/api/auth/logout" && request.method === "POST") {
+  if (path === "/api/auth/logout" && (request.method === "POST" || request.method === "GET")) {
     const token = cookieValue(request, COOKIE_NAME);
     const user = await currentUser(context);
     if (token) await env.AUTH_DB.prepare("DELETE FROM sessions WHERE token_hash=?").bind(await sha256(token)).run();
     if (user) await audit(env.AUTH_DB, user, "logout", user.id, null, request);
+    if (request.method === "GET") {
+      return new Response(null, { status: 302, headers: { "Location": "/login", "Set-Cookie": clearCookie(), "Cache-Control": "no-store" } });
+    }
     return json({ ok: true }, 200, { "Set-Cookie": clearCookie() });
   }
 
