@@ -443,7 +443,7 @@ export async function onRequest(context) {
     return new Response("Authentication backend error", { status: 500, headers: { "Cache-Control": "no-store" } });
   }
 
-  const publicPaths = new Set(["/login", "/login.html", "/icon-192.png", "/icon-512.png", "/favicon-48.png", "/logo-full.jpg", "/manifest.webmanifest", "/sw.js"]);
+  const publicPaths = new Set(["/login", "/login.html", "/icon-192.png", "/icon-512.png", "/app-icon-192-v2.png", "/app-icon-512-v2.png", "/favicon-48.png", "/logo-full.jpg", "/manifest.webmanifest", "/sw.js"]);
   if (publicPaths.has(url.pathname)) return context.next();
 
   const hasUsers = await initialized(env.AUTH_DB);

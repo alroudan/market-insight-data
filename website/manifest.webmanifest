@@ -1,6 +1,7 @@
 {
   "name": "Market Insight",
   "short_name": "Market Insight",
+  "id": "/market-analysis-v2",
   "description": "Boursa Kuwait end-of-day market analysis, fundamentals and technical indicators.",
   "start_url": "./",
   "scope": "./",
@@ -10,13 +11,13 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "./icon-192.png",
+      "src": "./app-icon-192-v2.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./icon-512.png",
+      "src": "./app-icon-512-v2.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
