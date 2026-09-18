@@ -1,23 +1,23 @@
 {
   "name": "Market Insight",
   "short_name": "Market Insight",
-  "id": "/market-analysis-v2",
+  "id": "/market-analysis-moss-v3",
   "description": "Boursa Kuwait end-of-day market analysis, fundamentals and technical indicators.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f2eb",
-  "theme_color": "#0b1918",
+  "background_color": "#122A07",
+  "theme_color": "#122A07",
   "orientation": "any",
   "icons": [
     {
-      "src": "./app-icon-192-v2.png",
+      "src": "./app-icon-192-moss-v3.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "./app-icon-512-v2.png",
+      "src": "./app-icon-512-moss-v3.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"

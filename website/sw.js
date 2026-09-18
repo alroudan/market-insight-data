@@ -1,5 +1,5 @@
-const CACHE='market-insight-v35';
-const SHELL=['./','./index.html','./manifest.webmanifest','./app-icon-192-v2.png','./app-icon-512-v2.png','./favicon-48.png','./logo-full.jpg'];
+const CACHE='market-insight-v36';
+const SHELL=['./','./index.html','./manifest.webmanifest','./app-icon-192-moss-v3.png','./app-icon-512-moss-v3.png','./favicon-moss-v3.png','./logo-full-moss-v3.jpg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{const request=event.request;if(request.method!=='GET')return;const url=new URL(request.url);if(url.origin!==location.origin)return;if(url.pathname.endsWith('/latest.json')){event.respondWith(fetch(request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put(request,copy));return response}).catch(()=>caches.match(request)));return}if(request.mode==='navigate'){event.respondWith(fetch(request).then(response=>{const copy=response.clone();caches.open(CACHE).then(cache=>cache.put('./index.html',copy));return response}).catch(()=>caches.match('./index.html')));return}event.respondWith(caches.match(request).then(cached=>cached||fetch(request)))});
