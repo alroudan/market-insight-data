@@ -1,4 +1,4 @@
-const CACHE='market-insight-v43';
+const CACHE='market-insight-v44';
 const SHELL=['./','./index.html','./manifest.webmanifest','./app-icon-192-moss-v3.png','./app-icon-512-moss-v3.png','./favicon-moss-v3.png','./logo-full-moss-v3.jpg'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
