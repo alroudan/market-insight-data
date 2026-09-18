@@ -235,7 +235,7 @@ async function handleApi(context) {
   if (request.method !== "GET" && !sameOrigin(request)) return json({ error: "Invalid request origin" }, 403);
 
   if (path === "/api/auth/status" && request.method === "GET") {
-    return json({ backendConfigured: true, initialized: await initialized(env.AUTH_DB) });
+    return json({ backendConfigured: true, initialized: await initialized(env.AUTH_DB), signupEmailConfigured: Boolean(env.RESEND_API_KEY) });
   }
 
   if (path === "/api/auth/bootstrap" && request.method === "POST") {
