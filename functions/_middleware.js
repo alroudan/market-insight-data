@@ -443,19 +443,19 @@ export async function onRequest(context) {
     return new Response("Authentication backend error", { status: 500, headers: { "Cache-Control": "no-store" } });
   }
 
-  const publicPaths = new Set(["/login.html", "/icon-192.svg", "/icon-512.svg", "/manifest.webmanifest", "/sw.js"]);
+  const publicPaths = new Set(["/login", "/login.html", "/icon-192.svg", "/icon-512.svg", "/manifest.webmanifest", "/sw.js"]);
   if (publicPaths.has(url.pathname)) return context.next();
 
   const hasUsers = await initialized(env.AUTH_DB);
   if (!hasUsers) {
     if (basicAuthorized(request, env)) return context.next();
-    if (url.pathname === "/" || url.pathname === "/index.html") return Response.redirect(url.origin + "/login.html", 302);
+    if (url.pathname === "/" || url.pathname === "/index.html") return Response.redirect(url.origin + "/login", 302);
     return basicChallenge();
   }
 
   const user = await currentUser(context);
-  if (!user) return Response.redirect(url.origin + "/login.html?next=" + encodeURIComponent(url.pathname + url.search), 302);
-  if (url.pathname === "/admin.html" && user.role !== "admin") return Response.redirect(url.origin + "/", 302);
+  if (!user) return Response.redirect(url.origin + "/login?next=" + encodeURIComponent(url.pathname + url.search), 302);
+  if ((url.pathname === "/admin" || url.pathname === "/admin.html") && user.role !== "admin") return Response.redirect(url.origin + "/", 302);
 
   const response = await context.next();
   if (response.status < 400) {
