@@ -106,7 +106,14 @@ async function ensureSchema(db) {
     )`,
     `CREATE INDEX IF NOT EXISTS idx_page_views_created ON page_views(created_at DESC)`,
     `CREATE INDEX IF NOT EXISTS idx_page_views_ip ON page_views(ip_hash)`,
-    `CREATE INDEX IF NOT EXISTS idx_page_views_user ON page_views(user_id)`
+    `CREATE INDEX IF NOT EXISTS idx_page_views_user ON page_views(user_id)`,
+    `CREATE TABLE IF NOT EXISTS notification_reads (
+      user_id INTEGER NOT NULL,
+      event_id INTEGER NOT NULL,
+      read_at TEXT NOT NULL,
+      PRIMARY KEY(user_id,event_id),
+      FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
+    )`
   ];
   for (const sql of statements) await db.prepare(sql).run();
   const userColumns = await db.prepare("PRAGMA table_info(users)").all();
@@ -482,6 +489,32 @@ async function handleApi(context) {
       ORDER BY a.id DESC LIMIT 100
     `).all();
     return json({ events: result.results || [] });
+  }
+
+  if (path === "/api/admin/signup-notifications" && request.method === "GET") {
+    const auth = await requireAdmin(context);
+    if (auth.response) return auth.response;
+    const result = await env.AUTH_DB.prepare(`
+      SELECT a.id,a.detail,a.created_at,target.username AS target_username,
+        CASE WHEN nr.event_id IS NULL THEN 0 ELSE 1 END AS is_read
+      FROM audit_log a
+      LEFT JOIN users target ON target.id=a.target_user_id
+      LEFT JOIN notification_reads nr ON nr.event_id=a.id AND nr.user_id=?
+      WHERE a.action='signup_created'
+      ORDER BY a.id DESC LIMIT 100
+    `).bind(auth.user.id).all();
+    const events = result.results || [];
+    return json({ events, unreadCount: events.filter(event => !Number(event.is_read)).length });
+  }
+
+  if (path === "/api/admin/signup-notifications/read" && request.method === "POST") {
+    const auth = await requireAdmin(context);
+    if (auth.response) return auth.response;
+    await env.AUTH_DB.prepare(`
+      INSERT OR IGNORE INTO notification_reads(user_id,event_id,read_at)
+      SELECT ?,id,? FROM audit_log WHERE action='signup_created'
+    `).bind(auth.user.id, nowIso()).run();
+    return json({ ok: true });
   }
 
   return json({ error: "Not found" }, 404);
