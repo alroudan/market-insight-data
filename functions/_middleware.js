@@ -38,6 +38,7 @@ const hashPassword = async (password, saltBase64, iterations = PBKDF2_ITERATIONS
   return bytesToBase64(new Uint8Array(bits));
 };
 const validUsername = username => /^[A-Za-z0-9._-]{3,32}$/.test(username);
+const validEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
 const validPassword = password => typeof password === "string" && password.length > 0;
 const nowIso = () => new Date().toISOString();
 const cookieValue = (request, name) => {
@@ -113,6 +114,17 @@ async function ensureSchema(db) {
     await db.prepare("ALTER TABLE users ADD COLUMN password_iterations INTEGER").run();
     await db.prepare("UPDATE users SET password_iterations=120000 WHERE password_iterations IS NULL").run();
   }
+  if (!(userColumns.results || []).some(column => column.name === "first_name")) {
+    await db.prepare("ALTER TABLE users ADD COLUMN first_name TEXT").run();
+  }
+  if (!(userColumns.results || []).some(column => column.name === "last_name")) {
+    await db.prepare("ALTER TABLE users ADD COLUMN last_name TEXT").run();
+  }
+  if (!(userColumns.results || []).some(column => column.name === "email")) {
+    await db.prepare("ALTER TABLE users ADD COLUMN email TEXT").run();
+    await db.prepare("UPDATE users SET email=lower(username) WHERE username LIKE '%@%'").run();
+  }
+  await db.prepare("CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email COLLATE NOCASE) WHERE email IS NOT NULL").run();
   await db.prepare("DELETE FROM sessions WHERE expires_at <= ?").bind(nowIso()).run();
   await db.prepare("DELETE FROM page_views WHERE created_at < datetime('now','-180 days')").run();
 }
@@ -120,6 +132,23 @@ async function ensureSchema(db) {
 async function audit(db, actor, action, target = null, detail = null, request = null) {
   await db.prepare("INSERT INTO audit_log(actor_user_id,action,target_user_id,detail,ip,created_at) VALUES(?,?,?,?,?,?)")
     .bind(actor?.id || null, action, target, detail, request ? requestIp(request) : null, nowIso()).run();
+}
+
+async function notifyNewSignup(env, signup) {
+  if (!env.RESEND_API_KEY) return { sent: false, reason: "not_configured" };
+  const from = env.SIGNUP_FROM_EMAIL || "Market Insight <no-reply@hamad.id>";
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from,
+      to: ["admin@hamad.id"],
+      subject: "New Market Insight user signup",
+      text: `A new user created an account.\n\nName: ${signup.firstName} ${signup.lastName}\nEmail: ${signup.email}\nCreated: ${signup.createdAt}`
+    })
+  });
+  if (!response.ok) throw new Error(`Signup notification failed (${response.status})`);
+  return { sent: true };
 }
 
 const deviceType = userAgentValue => {
@@ -227,6 +256,42 @@ async function handleApi(context) {
       .bind(username, passwordHash, salt, PBKDF2_ITERATIONS, "admin", created, created).run();
     await audit(env.AUTH_DB, null, "bootstrap_admin", Number(result.meta.last_row_id), username, request);
     return json({ ok: true }, 201);
+  }
+
+  if (path === "/api/auth/signup" && request.method === "POST") {
+    if (!(await initialized(env.AUTH_DB))) return json({ error: "Initial administrator setup must be completed first" }, 409);
+    const body = await readJson(request);
+    const firstName = String(body.firstName || "").trim();
+    const lastName = String(body.lastName || "").trim();
+    const email = String(body.email || "").trim().toLowerCase();
+    const password = String(body.password || "");
+    const passwordConfirmation = String(body.passwordConfirmation || "");
+    if (!firstName || firstName.length > 80) return json({ error: "Enter a valid first name" }, 400);
+    if (!lastName || lastName.length > 80) return json({ error: "Enter a valid last name" }, 400);
+    if (!validEmail(email)) return json({ error: "Enter a valid email address" }, 400);
+    if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
+    if (password !== passwordConfirmation) return json({ error: "Passwords do not match" }, 400);
+    if (String(body.website || "")) return json({ ok: true }, 201);
+    const recent = await env.AUTH_DB.prepare("SELECT COUNT(*) AS count FROM audit_log WHERE action='signup_created' AND ip=? AND created_at>=datetime('now','-1 hour')")
+      .bind(requestIp(request)).first();
+    if (Number(recent?.count || 0) >= 5) return json({ error: "Too many signup attempts. Try again later." }, 429);
+    const salt = randomBase64(16), passwordHash = await hashPassword(password, salt), time = nowIso();
+    try {
+      const result = await env.AUTH_DB.prepare("INSERT INTO users(username,email,first_name,last_name,password_hash,password_salt,password_iterations,role,active,created_at,updated_at,last_login_at) VALUES(?,?,?,?,?,?,?,?,1,?,?,?)")
+        .bind(email, email, firstName, lastName, passwordHash, salt, PBKDF2_ITERATIONS, "user", time, time, time).run();
+      const userId = Number(result.meta.last_row_id);
+      const token = randomBase64(32), tokenHash = await sha256(token);
+      const expires = new Date(Date.now() + SESSION_HOURS * 3600 * 1000).toISOString();
+      await env.AUTH_DB.prepare("INSERT INTO sessions(token_hash,user_id,created_at,expires_at,ip,user_agent) VALUES(?,?,?,?,?,?)")
+        .bind(tokenHash, userId, time, expires, requestIp(request), userAgent(request)).run();
+      await audit(env.AUTH_DB, null, "signup_created", userId, `${firstName} ${lastName} <${email}>`, request);
+      const notification = notifyNewSignup(env, { firstName, lastName, email, createdAt: time })
+        .catch(error => console.error("Signup notification error", error));
+      if (context.waitUntil) context.waitUntil(notification); else await notification;
+      return json({ ok: true, user: { id: userId, username: email, role: "user" } }, 201, { "Set-Cookie": sessionCookie(token) });
+    } catch (error) {
+      return json({ error: /unique/i.test(String(error)) ? "An account with this email already exists" : "Unable to create account" }, 409);
+    }
   }
 
   if (path === "/api/auth/login" && request.method === "POST") {
