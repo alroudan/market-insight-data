@@ -184,8 +184,61 @@ document.querySelectorAll('.tabs button').forEach(button=>{button.onclick=()=>{d
 document.querySelectorAll('.nav a').forEach(link=>link.addEventListener('click',event=>{const href=link.getAttribute('href'),hash=new URL(href,location.href).hash;if(!hash)return;const target=document.querySelector(hash);if(!target)return;event.preventDefault();document.querySelectorAll('.nav a').forEach(item=>item.classList.remove('active'));link.classList.add('active');target.scrollIntoView({behavior:'smooth',block:'start'});history.replaceState(null,'',href)}));
 if(marketRequestedTab==='hotlist'){document.querySelectorAll('.nav a').forEach(item=>item.classList.remove('active'));document.querySelector('#nav-hotlist')?.classList.add('active');document.querySelector('.tabs button[data-tab="hotlist"]')?.click()}
 </script><script>
-function renderTradingView(symbol){const host=document.querySelector('.chart');host.innerHTML='<div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div>';const script=document.createElement('script');script.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';script.async=true;script.textContent=JSON.stringify({autosize:true,symbol:'KSE:'+symbol,interval:'D',range:'6M',timezone:'Asia/Kuwait',theme:document.documentElement.dataset.theme==='dark'?'dark':'light',style:'1',locale:'en',backgroundColor:document.documentElement.dataset.theme==='dark'?'rgba(23,33,31,1)':'rgba(255,254,250,1)',gridColor:document.documentElement.dataset.theme==='dark'?'rgba(51,66,62,.65)':'rgba(217,221,216,.55)',studies:['STD;Volume','STD;SMA','STD;EMA','STD;RSI','STD;MACD'],hide_top_toolbar:false,hide_legend:false,allow_symbol_change:true,save_image:false,calendar:false,support_host:'https://www.tradingview.com'});host.firstElementChild.appendChild(script);document.querySelector('.cardtitle h2').textContent='TradingView · 1D candles · RSI · MACD · MA';document.querySelector('.cardtitle .pill').textContent='KSE:'+symbol}
-renderTradingView(initialTicker);document.querySelector('#stocklist').addEventListener('click',e=>{const b=e.target.closest('.stockbtn');if(b)setTimeout(()=>renderTradingView(b.dataset.ticker),0)});
+let tradingViewLoader;
+let tradingViewRenderId=0;
+function loadTradingViewLibrary(){
+ if(window.TradingView?.widget)return Promise.resolve();
+ if(!tradingViewLoader)tradingViewLoader=new Promise((resolve,reject)=>{
+  const existing=document.querySelector('script[data-market-insight-tv]');
+  if(existing){existing.addEventListener('load',resolve,{once:true});existing.addEventListener('error',reject,{once:true});return}
+  const script=document.createElement('script');
+  script.src='https://s3.tradingview.com/tv.js';
+  script.async=true;
+  script.dataset.marketInsightTv='true';
+  script.onload=resolve;
+  script.onerror=reject;
+  document.head.appendChild(script);
+ });
+ return tradingViewLoader;
+}
+async function renderTradingView(symbol){
+ const renderId=++tradingViewRenderId;
+ const host=document.querySelector('.chart');
+ const containerId='tradingview-chart-'+renderId;
+ host.innerHTML='<div class="tradingview-widget-container" style="height:100%;width:100%"><div id="'+containerId+'" style="height:100%;width:100%"></div></div>';
+ document.querySelector('.cardtitle h2').textContent='TradingView · 1D candles · RSI · MACD · MA';
+ document.querySelector('.cardtitle .pill').textContent='KSE:'+symbol;
+ try{
+  await loadTradingViewLibrary();
+  if(renderId!==tradingViewRenderId)return;
+  new TradingView.widget({
+   autosize:true,
+   symbol:'KSE:'+symbol,
+   interval:'D',
+   timezone:'Asia/Kuwait',
+   theme:document.documentElement.dataset.theme==='dark'?'dark':'light',
+   style:'1',
+   locale:'en',
+   backgroundColor:document.documentElement.dataset.theme==='dark'?'rgba(23,33,31,1)':'rgba(255,254,250,1)',
+   gridColor:document.documentElement.dataset.theme==='dark'?'rgba(51,66,62,.65)':'rgba(217,221,216,.55)',
+   studies:['STD;Volume','STD;SMA','STD;EMA','STD;RSI','STD;MACD'],
+   withdateranges:true,
+   hide_top_toolbar:false,
+   hide_side_toolbar:false,
+   hide_legend:false,
+   allow_symbol_change:true,
+   save_image:false,
+   calendar:false,
+   enable_publishing:false,
+   support_host:'https://www.tradingview.com',
+   container_id:containerId
+  });
+ }catch(error){
+  if(renderId===tradingViewRenderId)host.innerHTML='<div class="feedmeta" style="padding:24px">TradingView chart unavailable. Please reload.</div>';
+ }
+}
+renderTradingView(initialTicker);
+document.querySelector('#stocklist').addEventListener('click',e=>{const b=e.target.closest('.stockbtn');if(b)setTimeout(()=>renderTradingView(b.dataset.ticker),0)});
 </script><script>
 function kuwaitClock(){const parts=Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Kuwait',weekday:'short',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date()).filter(part=>part.type!=='literal').map(part=>[part.type,part.value]));return{day:parts.weekday,minutes:Number(parts.hour)*60+Number(parts.minute)}}
 function lastBoursaCloseKey(){const now=new Date(Date.now()+3*60*60*1000),minutes=now.getUTCHours()*60+now.getUTCMinutes(),day=now.getUTCDay(),isTradingDay=day>=0&&day<=4;if(!isTradingDay||minutes<796)now.setUTCDate(now.getUTCDate()-1);while(now.getUTCDay()===5||now.getUTCDay()===6)now.setUTCDate(now.getUTCDate()-1);return now.toISOString().slice(0,10)}
