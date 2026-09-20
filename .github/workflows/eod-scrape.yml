@@ -76,3 +76,5 @@ jobs:
             git pull --rebase origin main
             git push
           fi
+
+# Manual EOD refresh requested for 2026-09-20
