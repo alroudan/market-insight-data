@@ -163,7 +163,7 @@ const kuwaitParts = Object.fromEntries(
 );
 const kuwaitMinutes = kuwaitParts.hour * 60 + kuwaitParts.minute;
 const tradingDateCursor = new Date(Date.UTC(kuwaitParts.year, kuwaitParts.month - 1, kuwaitParts.day));
-if (kuwaitMinutes < 13 * 60 + 16) tradingDateCursor.setUTCDate(tradingDateCursor.getUTCDate() - 1);
+if (kuwaitMinutes < 13 * 60 + 20) tradingDateCursor.setUTCDate(tradingDateCursor.getUTCDate() - 1);
 while ([5, 6].includes(tradingDateCursor.getUTCDay())) {
   tradingDateCursor.setUTCDate(tradingDateCursor.getUTCDate() - 1);
 }
@@ -474,55 +474,73 @@ try {
   const reportBrowser = await chromium.launch({ headless: true });
   try {
     const page = await reportBrowser.newPage({ locale: "en-GB" });
-    await page.goto("https://www.boursakuwait.com.kw/en/market/reports#daily-all", {
+    const officialUrl = "https://www.boursakuwait.com.kw/en/";
+    await page.goto(officialUrl, {
       waitUntil: "domcontentloaded",
       timeout: 60000
     });
-    await page.waitForFunction(() => document.body.innerText.includes("Value Traded"), null, { timeout: 60000 });
+    await page.waitForFunction(
+      () => document.body.innerText.includes("Market Summary") && document.body.innerText.includes("All-Share"),
+      null,
+      { timeout: 60000 }
+    );
     const reportText = await page.locator("body").innerText();
-    const match = reportText.match(/All-Share\s+(\d{2})\/(\d{2})\/(\d{4})[\s\S]*?Value Traded\s+([\d,.]+)/);
-    if (!match) throw new Error("Daily All-Share report fields were not found");
-    const reportTradingDate = match[3] + "-" + match[2] + "-" + match[1];
-    const valueTradedKwd = Number(match[4].replace(/,/g, ""));
+    const summaryStart = reportText.lastIndexOf("Market Summary");
+    const summaryText = summaryStart >= 0 ? reportText.slice(summaryStart) : reportText;
+    const dateMatch = summaryText.match(/Market Summary\s+(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})\s+Closed/i);
+    const valueMatch = reportText.match(/Market Summary\s+Volume\s+[\d,]+\s+Value\s+([\d,.]+)\s+Trades/i);
+    const monthNumber = { Jan: "01", Feb: "02", Mar: "03", Apr: "04", May: "05", Jun: "06", Jul: "07", Aug: "08", Sep: "09", Oct: "10", Nov: "11", Dec: "12" };
+    if (!dateMatch || !valueMatch) throw new Error("Official homepage date or market value was not found");
+    const reportTradingDate = dateMatch[3] + "-" + monthNumber[dateMatch[2]] + "-" + dateMatch[1].padStart(2, "0");
+    const valueTradedKwd = Number(valueMatch[1].replace(/,/g, ""));
+    const readIndex = (label) => {
+      const match = summaryText.match(new RegExp(label + "\\s+([\\d,.]+)\\s+([+-]?[\\d,.]+)\\s+([+-]?[\\d.]+)%", "i"));
+      if (!match) throw new Error("Official " + label + " index fields were not found");
+      return {
+        close: Number(match[1].replace(/,/g, "")),
+        pointChange: Number(match[2].replace(/,/g, "")),
+        changePercent: Number(match[3])
+      };
+    };
     if (reportTradingDate !== tradingDate || !Number.isFinite(valueTradedKwd)) {
-      throw new Error("Official report date/value did not match the requested session");
+      throw new Error("Official homepage is not final for " + tradingDate + " (published " + reportTradingDate + ")");
     }
     officialMarketReport = {
       tradingDate: reportTradingDate,
       valueTradedKwd,
-      source: "Boursa Kuwait Daily All-Share Report",
-      sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all"
+      source: "Boursa Kuwait official Market Summary",
+      sourceUrl: officialUrl,
+      indexes: {
+        BKP: readIndex("Premier Market"),
+        BKM: readIndex("Main Market"),
+        BKA: readIndex("All-Share")
+      }
     };
   } finally {
     await reportBrowser.close();
   }
 } catch (error) {
-  failures.push({ ticker: "OFFICIAL_MARKET_VALUE", error: error.message });
+  failures.push({ ticker: "OFFICIAL_MARKET_SUMMARY", error: error.message });
 }
 
 if (!officialMarketReport) {
-  const aggregatedValueTradedKwd = Object.values(results)
-    .reduce((total, item) => total + (Number.isFinite(item.tradedValueKwd) ? item.tradedValueKwd : 0), 0);
-  if (aggregatedValueTradedKwd > 0) {
-    officialMarketReport = {
-      tradingDate,
-      valueTradedKwd: aggregatedValueTradedKwd,
-      source: "TradingView Kuwait EOD stock traded values (market aggregate fallback)",
-      sourceUrl: "https://www.tradingview.com/markets/stocks-kuwait/market-movers-active/"
-    };
-  }
+  throw new Error("Official Boursa Kuwait final market summary is unavailable; refusing to publish an incomplete TradingView aggregate");
 }
 
-const verifiedOfficialDailyValues = {
-  "2026-09-14": { valueTradedKwd: 121813003.672, source: "Boursa Kuwait Daily All-Share Report (verified fallback)", sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all" },
-  "2026-09-15": { valueTradedKwd: 130400000, source: "Verified Kuwait market close report (rounded)", sourceUrl: "https://qna.org.qa/ar-QA/News-Area/News/2026-9/15/%D8%A8%D9%88%D8%B1%D8%B5%D8%A9-%D8%A7%D9%84%D9%83%D9%88%D9%8A%D8%AA-%D8%AA%D8%BA%D9%84%D9%82-%D8%B9%D9%84%D9%89-%D8%A7%D9%86%D8%AE%D9%81%D8%A7%D8%B6" }
-};
-if (!officialMarketReport && verifiedOfficialDailyValues[tradingDate]) {
-  officialMarketReport = {
-    tradingDate,
-    ...verifiedOfficialDailyValues[tradingDate]
-  };
-}
+const applyOfficialIndex = (existing, ticker, name) => ({
+  ...(existing || {}),
+  ticker,
+  name,
+  close: officialMarketReport.indexes[ticker].close,
+  pointChange: officialMarketReport.indexes[ticker].pointChange,
+  changePercent: officialMarketReport.indexes[ticker].changePercent,
+  tradingDate: officialMarketReport.tradingDate,
+  source: officialMarketReport.source,
+  sourceUrl: officialMarketReport.sourceUrl
+});
+premierIndex = applyOfficialIndex(premierIndex, "BKP", "Boursa Kuwait Premier Market Index");
+mainIndex = applyOfficialIndex(mainIndex, "BKM", "Boursa Kuwait Main Market Index");
+allShareIndex = applyOfficialIndex(allShareIndex, "BKA", "Boursa Kuwait All Share Index");
 
 const officialYtdBaseline = tradingDate.startsWith("2026-") ? {
   throughDate: "2026-08-31",
@@ -558,7 +576,7 @@ const snapshot = {
   sourceUrl: endpoint,
   generatedAt: fetchedAt,
   tradingDate,
-  schedule: "13:16 Asia/Kuwait, Sunday-Thursday",
+  schedule: "13:20 Asia/Kuwait, Sunday-Thursday",
   freshCount,
   totalCount: Object.keys(results).length,
   failures,
