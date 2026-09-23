@@ -2,9 +2,9 @@
   "source": "TradingView Kuwait market scanner",
   "officialDisclosureSource": "Boursa Kuwait",
   "sourceUrl": "https://scanner.tradingview.com/kuwait/scan",
-  "generatedAt": "2026-09-23T10:23:47.657Z",
+  "generatedAt": "2026-09-23T11:30:31.289Z",
   "tradingDate": "2026-09-23",
-  "schedule": "13:16 Asia/Kuwait, Sunday-Thursday",
+  "schedule": "13:20 Asia/Kuwait, Sunday-Thursday",
   "freshCount": 136,
   "totalCount": 136,
   "failures": [
@@ -31,17 +31,13 @@
     {
       "ticker": "EQUIPMENT_EPS",
       "error": "Cumulative EPS row or comparative period was not found"
-    },
-    {
-      "ticker": "OFFICIAL_MARKET_VALUE",
-      "error": "page.waitForFunction: Timeout 60000ms exceeded."
     }
   ],
   "premierIndex": {
     "ticker": "BKP",
     "name": "Boursa Kuwait Premier Market Index",
-    "close": 9231.86,
-    "changePercent": 1.0170797173842474,
+    "close": 9223.53,
+    "changePercent": 0.93,
     "performance1MonthPercent": -0.8360106512676568,
     "performanceYtdPercent": -2.6025105132225033,
     "averageVolume30d": 0,
@@ -49,13 +45,16 @@
     "averageVolumeChangeVsPreviousQuarterPercent": null,
     "tradedValueChangeVsPreviousQuarterPercent": 32.24,
     "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026",
-    "tradingDate": "2026-09-23"
+    "tradingDate": "2026-09-23",
+    "pointChange": 84.62,
+    "source": "Boursa Kuwait official Market Summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/"
   },
   "mainIndex": {
     "ticker": "BKM",
     "name": "Boursa Kuwait Main Market Index",
-    "close": 9138.86,
-    "changePercent": 0.5579793467317435,
+    "close": 9137.79,
+    "changePercent": 0.55,
     "performance1MonthPercent": -0.03445631759317301,
     "performanceYtdPercent": 9.914330695781961,
     "averageVolume30d": 0,
@@ -63,13 +62,16 @@
     "averageVolumeChangeVsPreviousQuarterPercent": null,
     "tradedValueChangeVsPreviousQuarterPercent": 172.7,
     "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026",
-    "tradingDate": "2026-09-23"
+    "tradingDate": "2026-09-23",
+    "pointChange": 49.64,
+    "source": "Boursa Kuwait official Market Summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/"
   },
   "allShareIndex": {
     "ticker": "BKA",
     "name": "Boursa Kuwait All Share Index",
-    "close": 8837.38,
-    "changePercent": 0.9369128589947727,
+    "close": 8830.61,
+    "changePercent": 0.86,
     "performance1MonthPercent": -0.6973472488156705,
     "performanceYtdPercent": -0.643311672250592,
     "averageVolume30d": 0,
@@ -77,18 +79,21 @@
     "averageVolumeChangeVsPreviousQuarterPercent": null,
     "tradedValueChangeVsPreviousQuarterPercent": 63.93,
     "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026",
-    "tradingDate": "2026-09-23"
+    "tradingDate": "2026-09-23",
+    "pointChange": 75.26,
+    "source": "Boursa Kuwait official Market Summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/"
   },
   "marketStats": {
-    "latestValueTradedKwd": 111804944.25529999,
+    "latestValueTradedKwd": 117291504.034,
     "latestValueTradedDate": "2026-09-23",
     "averageDailyValueTradedYtdKwd": 81959001.23009938,
-    "latestValueVsYtdAveragePercent": 36.415698797266096,
+    "latestValueVsYtdAveragePercent": 43.109972393032024,
     "averageThroughDate": "2026-08-31",
     "ytdTotalValueTradedKwd": 13195399198.046,
     "tradingSessionCount": 161,
-    "source": "TradingView Kuwait EOD stock traded values (market aggregate fallback)",
-    "sourceUrl": "https://www.tradingview.com/markets/stocks-kuwait/market-movers-active/",
+    "source": "Boursa Kuwait official Market Summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
     "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
   },
