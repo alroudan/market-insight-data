@@ -475,7 +475,8 @@ try {
   try {
     const page = await reportBrowser.newPage({ locale: "en-GB" });
     const officialUrl = "https://www.boursakuwait.com.kw/en/";
-    await page.goto(officialUrl, {
+    const officialFetchUrl = officialUrl + "?eod=" + Date.now();
+    await page.goto(officialFetchUrl, {
       waitUntil: "domcontentloaded",
       timeout: 60000
     });
@@ -520,6 +521,7 @@ try {
     await reportBrowser.close();
   }
 } catch (error) {
+  console.warn("Official market summary unavailable:", error.message);
   failures.push({ ticker: "OFFICIAL_MARKET_SUMMARY", error: error.message });
 }
 
