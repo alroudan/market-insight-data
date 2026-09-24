@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "scrape": "node scripts/scrape.mjs"
+    "scrape": "node scripts/scrape.mjs",
+    "funds:update": "node scripts/update-fund-holdings.mjs"
   },
   "dependencies": {
     "playwright": "1.55.0"
