@@ -76,3 +76,4 @@ jobs:
             git push
           fi
 
+# Priority trigger: 2026-09-24 13:20 Kuwait
