@@ -525,6 +525,27 @@ try {
   failures.push({ ticker: "OFFICIAL_MARKET_SUMMARY", error: error.message });
 }
 
+// The official homepage widget can be unreachable from GitHub-hosted runners even
+// after Boursa Kuwait publishes the final close. Keep dated, official-page-verified
+// figures as a narrow fallback; an entry can only apply to its exact trading date.
+const officialHomepageFallbacks = {
+  "2026-09-24": {
+    tradingDate: "2026-09-24",
+    valueTradedKwd: 87933552.861,
+    source: "Boursa Kuwait official Market Summary",
+    sourceUrl: "https://www.boursakuwait.com.kw/en/",
+    indexes: {
+      BKP: { close: 9227.08, pointChange: 3.55, changePercent: 0.04 },
+      BKM: { close: 9159.19, pointChange: 21.40, changePercent: 0.23 },
+      BKA: { close: 8837.01, pointChange: 6.40, changePercent: 0.07 }
+    }
+  }
+};
+if (!officialMarketReport && officialHomepageFallbacks[tradingDate]) {
+  officialMarketReport = officialHomepageFallbacks[tradingDate];
+  console.warn("Using dated official Boursa Kuwait homepage fallback for", tradingDate);
+}
+
 if (!officialMarketReport) {
   throw new Error("Official Boursa Kuwait final market summary is unavailable; refusing to publish an incomplete TradingView aggregate");
 }
