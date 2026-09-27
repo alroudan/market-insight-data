@@ -539,6 +539,17 @@ const officialHomepageFallbacks = {
       BKM: { close: 9159.19, pointChange: 21.40, changePercent: 0.23 },
       BKA: { close: 8837.01, pointChange: 6.40, changePercent: 0.07 }
     }
+  },
+  "2026-09-27": {
+    tradingDate: "2026-09-27",
+    valueTradedKwd: 44581827.000,
+    source: "Boursa Kuwait official Market Summary",
+    sourceUrl: "https://www.boursakuwait.com.kw/en/",
+    indexes: {
+      BKP: { close: 9235.74, pointChange: 8.66, changePercent: 0.09 },
+      BKM: { close: 9164.63, pointChange: 5.44, changePercent: 0.06 },
+      BKA: { close: 8844.78, pointChange: 7.77, changePercent: 0.09 }
+    }
   }
 };
 if (!officialMarketReport && officialHomepageFallbacks[tradingDate]) {
