@@ -495,11 +495,11 @@ try {
         // Record the rendered text below; a missing widget must never be treated as a zero close.
       }
       reportText = await page.locator("body").innerText();
-      if (/Market Summary\\s+\\d{1,2}\\s+[A-Za-z]{3}\\s+\\d{4}\\s+Closed/i.test(reportText) &&
-          /Market Summary\\s+Volume\\s+[\\d,]+\\s+Value\\s+[\\d,.]+\\s+Trades/i.test(reportText) &&
-          /All-Share\\s+[\\d,.]+/i.test(reportText)) break;
+      if (/Market Summary\s+\d{1,2}\s+[A-Za-z]{3}\s+\d{4}\s+Closed/i.test(reportText) &&
+          /Market Summary\s+Volume\s+[\d,]+\s+Value\s+[\d,.]+\s+Trades/i.test(reportText) &&
+          /All-Share\s+[\d,.]+/i.test(reportText)) break;
       console.warn("Official market widget not ready, attempt", attempt,
-        "summary:", reportText.slice(Math.max(0, reportText.lastIndexOf("Market Summary")), Math.max(0, reportText.lastIndexOf("Market Summary")) + 400).replace(/\\s+/g, " "),
+        "summary:", reportText.slice(Math.max(0, reportText.lastIndexOf("Market Summary")), Math.max(0, reportText.lastIndexOf("Market Summary")) + 400).replace(/\s+/g, " "),
         "failed requests:", failedRequests.join("; ") || "none");
     }
     if (!reportText.includes("Market Summary")) throw new Error("Official homepage widget did not render; failed requests: " + (failedRequests.join("; ") || "none"));
