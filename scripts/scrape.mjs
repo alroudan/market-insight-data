@@ -576,23 +576,38 @@ if (!officialMarketReport && officialHomepageFallbacks[tradingDate]) {
 }
 
 if (!officialMarketReport) {
-  throw new Error("Official Boursa Kuwait final market summary is unavailable; refusing to publish an incomplete TradingView aggregate");
+  // TradingView publishes the three index quotes, but its scanner's sum of
+  // stock Value.Traded is not the exchange-wide reported traded value.
+  // Publish fresh stocks and indexes; leave the official total unavailable.
+  if (freshCount < 100 || [premierIndex, mainIndex, allShareIndex].some(
+    (item) => item?.tradingDate !== tradingDate || !Number.isFinite(item.close) || item.close <= 0
+  )) {
+    throw new Error("No official market summary and TradingView stock/index close is incomplete; preserving previous snapshot");
+  }
+  for (const item of [premierIndex, mainIndex, allShareIndex]) {
+    item.source = "TradingView Kuwait index scanner";
+    item.sourceUrl = "https://www.tradingview.com/symbols/KSE-" + item.ticker + "/";
+    item.pointChange = item.changePercent != null
+      ? item.close - item.close / (1 + item.changePercent / 100)
+      : null;
+  }
+  console.warn("Official market turnover unavailable; publishing TradingView stocks and three index closes with official turnover blank");
+} else {
+  const applyOfficialIndex = (existing, ticker, name) => ({
+    ...(existing || {}),
+    ticker,
+    name,
+    close: officialMarketReport.indexes[ticker].close,
+    pointChange: officialMarketReport.indexes[ticker].pointChange,
+    changePercent: officialMarketReport.indexes[ticker].changePercent,
+    tradingDate: officialMarketReport.tradingDate,
+    source: officialMarketReport.source,
+    sourceUrl: officialMarketReport.sourceUrl
+  });
+  premierIndex = applyOfficialIndex(premierIndex, "BKP", "Boursa Kuwait Premier Market Index");
+  mainIndex = applyOfficialIndex(mainIndex, "BKM", "Boursa Kuwait Main Market Index");
+  allShareIndex = applyOfficialIndex(allShareIndex, "BKA", "Boursa Kuwait All Share Index");
 }
-
-const applyOfficialIndex = (existing, ticker, name) => ({
-  ...(existing || {}),
-  ticker,
-  name,
-  close: officialMarketReport.indexes[ticker].close,
-  pointChange: officialMarketReport.indexes[ticker].pointChange,
-  changePercent: officialMarketReport.indexes[ticker].changePercent,
-  tradingDate: officialMarketReport.tradingDate,
-  source: officialMarketReport.source,
-  sourceUrl: officialMarketReport.sourceUrl
-});
-premierIndex = applyOfficialIndex(premierIndex, "BKP", "Boursa Kuwait Premier Market Index");
-mainIndex = applyOfficialIndex(mainIndex, "BKM", "Boursa Kuwait Main Market Index");
-allShareIndex = applyOfficialIndex(allShareIndex, "BKA", "Boursa Kuwait All Share Index");
 
 const officialYtdBaseline = tradingDate.startsWith("2026-") ? {
   throughDate: "2026-08-31",
