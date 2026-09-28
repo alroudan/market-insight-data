@@ -475,17 +475,34 @@ try {
   try {
     const page = await reportBrowser.newPage({ locale: "en-GB" });
     const officialUrl = "https://www.boursakuwait.com.kw/en/";
-    const officialFetchUrl = officialUrl + "?eod=" + Date.now();
-    await page.goto(officialFetchUrl, {
-      waitUntil: "domcontentloaded",
-      timeout: 60000
+    const failedRequests = [];
+    page.on("requestfailed", (request) => {
+      if (failedRequests.length < 8) failedRequests.push(new URL(request.url()).origin + new URL(request.url()).pathname + ": " + (request.failure()?.errorText || "failed"));
     });
-    await page.waitForFunction(
-      () => document.body.innerText.includes("Market Summary") && document.body.innerText.includes("All-Share"),
-      null,
-      { timeout: 60000 }
-    );
-    const reportText = await page.locator("body").innerText();
+    let reportText = "";
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      await page.goto(officialUrl + "?eod=" + Date.now(), {
+        waitUntil: "domcontentloaded",
+        timeout: 30000
+      });
+      try {
+        await page.waitForFunction(
+          () => document.body.innerText.includes("Market Summary") && document.body.innerText.includes("All-Share"),
+          null,
+          { timeout: 15000 }
+        );
+      } catch {
+        // Record the rendered text below; a missing widget must never be treated as a zero close.
+      }
+      reportText = await page.locator("body").innerText();
+      if (/Market Summary\\s+\\d{1,2}\\s+[A-Za-z]{3}\\s+\\d{4}\\s+Closed/i.test(reportText) &&
+          /Market Summary\\s+Volume\\s+[\\d,]+\\s+Value\\s+[\\d,.]+\\s+Trades/i.test(reportText) &&
+          /All-Share\\s+[\\d,.]+/i.test(reportText)) break;
+      console.warn("Official market widget not ready, attempt", attempt,
+        "summary:", reportText.slice(Math.max(0, reportText.lastIndexOf("Market Summary")), Math.max(0, reportText.lastIndexOf("Market Summary")) + 400).replace(/\\s+/g, " "),
+        "failed requests:", failedRequests.join("; ") || "none");
+    }
+    if (!reportText.includes("Market Summary")) throw new Error("Official homepage widget did not render; failed requests: " + (failedRequests.join("; ") || "none"));
     const summaryStart = reportText.lastIndexOf("Market Summary");
     const summaryText = summaryStart >= 0 ? reportText.slice(summaryStart) : reportText;
     const dateMatch = summaryText.match(/Market Summary\s+(\d{1,2})\s+([A-Za-z]{3})\s+(\d{4})\s+Closed/i);
@@ -497,13 +514,14 @@ try {
     const readIndex = (label) => {
       const match = summaryText.match(new RegExp(label + "\\s+([\\d,.]+)\\s+([+-]?[\\d,.]+)\\s+([+-]?[\\d.]+)%", "i"));
       if (!match) throw new Error("Official " + label + " index fields were not found");
+      if (Number(match[1].replace(/,/g, "")) <= 0) throw new Error("Official " + label + " index is zero");
       return {
         close: Number(match[1].replace(/,/g, "")),
         pointChange: Number(match[2].replace(/,/g, "")),
         changePercent: Number(match[3])
       };
     };
-    if (reportTradingDate !== tradingDate || !Number.isFinite(valueTradedKwd)) {
+    if (reportTradingDate !== tradingDate || !Number.isFinite(valueTradedKwd) || valueTradedKwd <= 0) {
       throw new Error("Official homepage is not final for " + tradingDate + " (published " + reportTradingDate + ")");
     }
     officialMarketReport = {
