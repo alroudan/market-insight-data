@@ -54,7 +54,7 @@ jobs:
 
       - name: Install scraper dependencies
         if: steps.freshness.outputs.already_current != 'true'
-        run: npm ci
+        run: npm install
 
       - name: Install Chromium
         if: steps.freshness.outputs.already_current != 'true'
