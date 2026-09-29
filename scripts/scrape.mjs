@@ -469,6 +469,70 @@ const freshCount = Object.values(results).filter((item) => item.fetchedAt === fe
 if (freshCount === 0) throw new Error("No fresh TradingView Kuwait records; previous snapshot preserved");
 
 let officialMarketReport = null;
+// The dated daily reports expose the final close and turnover for each market.
+// Reject stale or partially rendered reports rather than carrying yesterday's data.
+try {
+  const { chromium } = await import("playwright");
+  const browser = await chromium.launch({ headless: true });
+  try {
+    const pages = [
+      { ticker: "BKP", hash: "daily-premier", label: "Premier Market" },
+      { ticker: "BKM", hash: "daily-main", label: "Main Market" },
+      { ticker: "BKA", hash: "daily-all", label: "All-Share" }
+    ];
+    const indexes = {};
+    const values = {};
+    for (const { ticker, hash, label } of pages) {
+      const page = await browser.newPage({ locale: "en-GB" });
+      try {
+        const url = "https://www.boursakuwait.com.kw/en/market/reports#" + hash;
+        await page.goto(url, { waitUntil: "domcontentloaded", timeout: 30000 });
+        await page.waitForFunction(
+          (heading) => document.body.innerText.includes("Daily Report\n" + heading),
+          label,
+          { timeout: 18000 }
+        );
+        const text = await page.locator("body").innerText();
+        const dateMatch = text.match(new RegExp("Daily Report\\s+" + label + "\\s+(\\d{2})/(\\d{2})/(\\d{4})"));
+        const valueMatch = text.match(/Value Traded\s+([\d,]+\.\d{3})/);
+        const closeMatch = text.match(/Index\s+([\d,]+\.\d{2})/);
+        if (!dateMatch || !valueMatch || !closeMatch) throw new Error(label + " report fields missing");
+        const publishedDate = `${dateMatch[3]}-${dateMatch[2]}-${dateMatch[1]}`;
+        if (publishedDate !== tradingDate) throw new Error(label + " report is dated " + publishedDate + "; expected " + tradingDate);
+        const value = Number(valueMatch[1].replace(/,/g, ""));
+        const close = Number(closeMatch[1].replace(/,/g, ""));
+        if (!(value > 0 && close > 0)) throw new Error(label + " report contains invalid figures");
+        values[ticker] = value;
+        const scanner = { BKP: premierIndex, BKM: mainIndex, BKA: allShareIndex }[ticker];
+        const changePercent = scanner?.tradingDate === tradingDate ? scanner.changePercent : null;
+        indexes[ticker] = {
+          close,
+          changePercent,
+          pointChange: changePercent != null ? close - close / (1 + changePercent / 100) : null
+        };
+      } finally {
+        await page.close();
+      }
+    }
+    if (Math.abs(values.BKP + values.BKM - values.BKA) > 0.002) {
+      throw new Error("Premier and Main traded values do not reconcile with All-Share");
+    }
+    officialMarketReport = {
+      tradingDate,
+      valueTradedKwd: values.BKA,
+      source: "Boursa Kuwait official daily market reports",
+      sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all",
+      indexes
+    };
+    console.log("Official daily reports verified:", tradingDate, "KWD", values.BKA);
+  } finally {
+    await browser.close();
+  }
+} catch (error) {
+  console.warn("Official daily market reports unavailable:", error.message);
+  failures.push({ ticker: "OFFICIAL_DAILY_REPORTS", error: error.message });
+}
+if (!officialMarketReport) {
 try {
   const { chromium } = await import("playwright");
   const reportBrowser = await chromium.launch({ headless: true });
@@ -541,6 +605,7 @@ try {
 } catch (error) {
   console.warn("Official market summary unavailable:", error.message);
   failures.push({ ticker: "OFFICIAL_MARKET_SUMMARY", error: error.message });
+}
 }
 
 // The official homepage widget can be unreachable from GitHub-hosted runners even
