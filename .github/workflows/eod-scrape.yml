@@ -31,6 +31,23 @@ jobs:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Probe TradingView index traded value
+        if: github.event_name == 'push'
+        run: |
+          node - <<'NODE'
+          const response = await fetch("https://scanner.tradingview.com/kuwait/scan", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              symbols: { tickers: ["KSE:BKP", "KSE:BKM", "KSE:BKA"], query: { types: [] } },
+              columns: ["name", "close", "volume", "Value.Traded"],
+              range: [0, 10]
+            })
+          });
+          console.log("scanner status", response.status);
+          console.log(JSON.stringify(await response.json()));
+          NODE
+
       - name: Skip duplicate completed trading day
         id: freshness
         shell: bash
