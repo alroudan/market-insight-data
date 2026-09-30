@@ -9,10 +9,8 @@ on:
       - ".github/workflows/eod-scrape.yml"
   workflow_dispatch:
   schedule:
-    - cron: "17 10 * * 0-4" # 13:17 Kuwait: begin as final delayed feed becomes available
-    - cron: "20 10 * * 0-4" # 13:20 Kuwait: target close update (priority)
-    - cron: "25 10 * * 0-4" # recovery if source has not populated
-    - cron: "35 10 * * 0-4"
+    - cron: "32 10 * * 0-4" # 13:32 Kuwait: delayed closing data target
+    - cron: "40 10 * * 0-4" # recovery if official source has not populated
     - cron: "50 10 * * 0-4"
     - cron: "10 11 * * 0-4"
 
