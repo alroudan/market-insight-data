@@ -93,17 +93,18 @@
     "pointChange": -65.67000000000007
   },
   "marketStats": {
-    "latestValueTradedKwd": null,
-    "latestValueTradedDate": null,
+    "latestValueTradedKwd": 74546116.8,
+    "latestValueTradedDate": "2026-10-01",
     "averageDailyValueTradedYtdKwd": 81959001.23009938,
-    "latestValueVsYtdAveragePercent": null,
+    "latestValueVsYtdAveragePercent": -9.04462514042571,
     "averageThroughDate": "2026-08-31",
     "ytdTotalValueTradedKwd": 13195399198.046,
     "tradingSessionCount": 161,
-    "source": null,
-    "sourceUrl": null,
+    "source": "Boursa Kuwait official homepage — All-Share Value Traded",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
-    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
+    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary",
+    "verifiedAt": "2026-10-01T10:48:10.244Z"
   },
   "stocks": {
     "CATTL": {
