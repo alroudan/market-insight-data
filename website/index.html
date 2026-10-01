@@ -295,7 +295,7 @@ async function updateValuationMultiples(ticker){const request=++fundamentalReque
 function nextEodRefreshDelay(){const now=new Date(Date.now()+3*60*60*1000),next=new Date(now);next.setUTCHours(13,16,0,0);if(next<=now)next.setUTCDate(next.getUTCDate()+1);while(next.getUTCDay()===5||next.getUTCDay()===6)next.setUTCDate(next.getUTCDate()+1);return next-now}
 function scheduleEodRefresh(){setTimeout(()=>{location.reload()},nextEodRefreshDelay())}scheduleEodRefresh();
 </script><script>
-const MARKET_DATA_URL='./latest.json';
+const MARKET_DATA_URL='./latest.json?revision=20261001-turnover';
 function hydrateFullMarket(snapshot){
   const entries=Object.values(snapshot.stocks||{}).filter(item=>item&&item.ticker&&Number.isFinite(Number(item.close))).sort((a,b)=>(a.name||a.ticker).localeCompare(b.name||b.ticker));
   if(!entries.length)return;
