@@ -93,17 +93,18 @@
     "pointChange": -51.44999999999891
   },
   "marketStats": {
-    "latestValueTradedKwd": null,
-    "latestValueTradedDate": null,
+    "latestValueTradedKwd": 63010751.592,
+    "latestValueTradedDate": "2026-10-05",
     "averageDailyValueTradedYtdKwd": 81959001.23009938,
-    "latestValueVsYtdAveragePercent": null,
+    "latestValueVsYtdAveragePercent": -23.119180753438286,
     "averageThroughDate": "2026-08-31",
     "ytdTotalValueTradedKwd": 13195399198.046,
     "tradingSessionCount": 161,
-    "source": null,
-    "sourceUrl": null,
+    "source": "Boursa Kuwait official homepage — All-Share Value Traded",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
-    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
+    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary",
+    "verifiedAt": "2026-10-05T10:42:26.711Z"
   },
   "stocks": {
     "ALTIJARIA": {
