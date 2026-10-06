@@ -93,17 +93,18 @@
     "pointChange": 15.520000000000437
   },
   "marketStats": {
-    "latestValueTradedKwd": null,
-    "latestValueTradedDate": null,
+    "latestValueTradedKwd": 74012278.926,
+    "latestValueTradedDate": "2026-10-06",
     "averageDailyValueTradedYtdKwd": 81959001.23009938,
-    "latestValueVsYtdAveragePercent": null,
+    "latestValueVsYtdAveragePercent": -9.695972601946433,
     "averageThroughDate": "2026-08-31",
     "ytdTotalValueTradedKwd": 13195399198.046,
     "tradingSessionCount": 161,
-    "source": null,
-    "sourceUrl": null,
+    "source": "Boursa Kuwait official homepage — All-Share Value Traded",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
-    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
+    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary",
+    "verifiedAt": "2026-10-06T10:38:21.101Z"
   },
   "stocks": {
     "IFAHR": {
