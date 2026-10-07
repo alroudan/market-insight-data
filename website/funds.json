@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-06T18:12:09.888Z",
+  "generatedAt": "2026-10-07T11:34:36.957Z",
   "source": "https://www.boursakuwait.com.kw/ar/participants/participants/mutual-funds",
   "reportingPeriod": "30/09/2026",
   "funds": [
@@ -1287,13 +1287,62 @@
       "id": "3144",
       "nameArabic": "صندوق الوطني للأسهم الخليجية",
       "managerArabic": "شركة الوطني للاستثمار",
-      "reportingDate": "31/08/2026",
-      "monthlyPercent": 2.68,
-      "quarterPercent": -0.43,
-      "ytdPercent": 0.78,
+      "reportingDate": "30/09/2026",
+      "monthlyPercent": -2.54,
+      "quarterPercent": -0.71,
+      "ytdPercent": -1.73,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3144",
-      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18784/Boursa_HTML_ar.html",
-      "holdings": null
+      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html",
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": "31/08/2026",
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html",
+        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18784/Boursa_HTML_ar.html",
+        "current": [
+          {
+            "nameArabic": "1 - مصرف الراجحي (السعودية)",
+            "weightPercent": 14.28
+          },
+          {
+            "nameArabic": "2 - بيت التمويل الكويتي (الكويت)",
+            "weightPercent": 6.43
+          },
+          {
+            "nameArabic": "3 - البنك الأهلي السعودي (السعودية)",
+            "weightPercent": 6.4
+          },
+          {
+            "nameArabic": "4 - بنك قطر الوطني (قطر)",
+            "weightPercent": 5.48
+          },
+          {
+            "nameArabic": "5 - شركة الاتصالات السعودية (السعودية)",
+            "weightPercent": 4.46
+          }
+        ],
+        "previous": [
+          {
+            "nameArabic": "1 - مصرف الراجحي (السعودية)",
+            "weightPercent": 14.16
+          },
+          {
+            "nameArabic": "2 - البنك الأهلي السعودي (السعودية)",
+            "weightPercent": 6.54
+          },
+          {
+            "nameArabic": "3 - بيت التمويل الكويتي (الكويت)",
+            "weightPercent": 6.26
+          },
+          {
+            "nameArabic": "4 - بنك قطر الوطني (قطر)",
+            "weightPercent": 5.53
+          },
+          {
+            "nameArabic": "5 - شركة الاتصالات السعودية (السعودية)",
+            "weightPercent": 4.39
+          }
+        ]
+      }
     },
     {
       "id": "3145",
@@ -2200,25 +2249,123 @@
       "id": "3263",
       "nameArabic": "الصندوق الأهلي الخليجي",
       "managerArabic": "شركة أهلي كابيتال للاستثمار",
-      "reportingDate": "31/08/2026",
-      "monthlyPercent": 4.46,
-      "quarterPercent": 1.2,
-      "ytdPercent": 5.47,
+      "reportingDate": "30/09/2026",
+      "monthlyPercent": -3.61,
+      "quarterPercent": -0.62,
+      "ytdPercent": 1.67,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3263",
-      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18810/Boursa_HTML_ar.html",
-      "holdings": null
+      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html",
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": "31/08/2026",
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html",
+        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18810/Boursa_HTML_ar.html",
+        "current": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 11.59
+          },
+          {
+            "nameArabic": "البنك الاهلي السعودي",
+            "weightPercent": 7.66
+          },
+          {
+            "nameArabic": "نقد",
+            "weightPercent": 3.98
+          },
+          {
+            "nameArabic": "بنك أبوظبي اﻷول",
+            "weightPercent": 3.74
+          },
+          {
+            "nameArabic": "شركة إتحاد إتصالات",
+            "weightPercent": 3.54
+          }
+        ],
+        "previous": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 11.92
+          },
+          {
+            "nameArabic": "البنك الاهلي السعودي",
+            "weightPercent": 8.04
+          },
+          {
+            "nameArabic": "بنك أبوظبي اﻷول",
+            "weightPercent": 3.6
+          },
+          {
+            "nameArabic": "شركة إتحاد إتصالات",
+            "weightPercent": 3.53
+          },
+          {
+            "nameArabic": "شركة التعدين العربية السعودية",
+            "weightPercent": 3.49
+          }
+        ]
+      }
     },
     {
       "id": "3261",
       "nameArabic": "الصندوق الأهلي الكويتي",
       "managerArabic": "شركة أهلي كابيتال للاستثمار",
-      "reportingDate": "31/08/2026",
-      "monthlyPercent": 2.22,
-      "quarterPercent": 5.01,
-      "ytdPercent": -0.15,
+      "reportingDate": "30/09/2026",
+      "monthlyPercent": -1.59,
+      "quarterPercent": 0.29,
+      "ytdPercent": -1.74,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3261",
-      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18811/Boursa_HTML_ar.html",
-      "holdings": null
+      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html",
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": "31/08/2026",
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html",
+        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18811/Boursa_HTML_ar.html",
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.73
+          },
+          {
+            "nameArabic": "شركة الإتصالات المتنقلة (ش.م.ك.ع)‏",
+            "weightPercent": 10.69
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 9.21
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.75
+          },
+          {
+            "nameArabic": "بنك الخليج",
+            "weightPercent": 6.35
+          }
+        ],
+        "previous": [
+          {
+            "nameArabic": "شركة الإتصالات المتنقلة (ش.م.ك.ع)‏",
+            "weightPercent": 10.7
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.51
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 9.31
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.51
+          },
+          {
+            "nameArabic": "بنك الخليج",
+            "weightPercent": 6.65
+          }
+        ]
+      }
     },
     {
       "id": "3264",
@@ -2343,6 +2490,6 @@
       }
     }
   ],
-  "holdingsGeneratedAt": "2026-10-06T18:12:09.888Z",
+  "holdingsGeneratedAt": "2026-10-07T11:34:36.957Z",
   "holdingsSource": "https://www.boursakuwait.com.kw/ar/fund/monthly_information"
 }
