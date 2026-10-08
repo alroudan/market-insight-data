@@ -4,6 +4,14 @@ const DATA_FILE = new URL('../website/funds.json', import.meta.url);
 const API = 'https://www.boursakuwait.com.kw/data-api/client-services';
 const REPORT_TEXT = /(?:نموذج الإفصاح عن المعلومات الشهرية|المعلومات الشهرية)/;
 
+function latestCompletedMonthPeriod(now = new Date()) {
+  const kuwait = new Date(now.toLocaleString('en-US', { timeZone: 'Asia/Kuwait' }));
+  const end = new Date(kuwait.getFullYear(), kuwait.getMonth(), 0);
+  return `${String(end.getDate()).padStart(2, '0')}/${String(end.getMonth() + 1).padStart(2, '0')}/${end.getFullYear()}`;
+}
+
+const TARGET_PERIOD = latestCompletedMonthPeriod();
+
 const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
 
 async function fetchText(url, attempts = 3) {
@@ -61,7 +69,7 @@ function parseOfficialReport(html, url) {
     const weightPercent = Number(cleanText(match[3]).replace(/,/g, '').replace('%', ''));
     if (nameArabic && Number.isFinite(weightPercent)) holdings.push({ nameArabic, weightPercent });
   }
-  if (!date || !holdings.length) throw new Error(`Official holdings were not parseable: ${url}`);
+  if (!date) throw new Error(`Official reporting date was not parseable: ${url}`);
   return {
     period: date,
     url,
@@ -79,32 +87,52 @@ function periodValue(period) {
 
 async function disclosuresForFund(fund) {
   const query = new URLSearchParams({ RT: '3520', FID: fund.id, L: 'A' });
-  const response = JSON.parse(await fetchText(`${API}?${query}`));
+  let response = [];
+  let discoverySucceeded = false;
+  try {
+    response = JSON.parse(await fetchText(`${API}?${query}`));
+    discoverySucceeded = true;
+  } catch (error) {
+    console.warn(`${fund.id}: disclosure discovery failed: ${error.message}`);
+  }
   const urls = [
     fund.officialReport,
     ...response
       .filter(item => item.FalseNews === 0 && REPORT_TEXT.test(item.Title || '') && item.Url)
       .map(item => item.Url)
   ];
-  return [...new Set(urls)].filter(url => /\.html(?:$|\?)/i.test(url));
+  return {
+    discoverySucceeded,
+    urls: [...new Set(urls)].filter(url => /\.html(?:$|\?)/i.test(url))
+  };
 }
 
 async function updateFund(fund) {
-  const urls = await disclosuresForFund(fund);
+  const { urls, discoverySucceeded } = await disclosuresForFund(fund);
   const reports = [];
-  for (const url of urls.slice(0, 10)) {
+  for (const url of urls.slice(0, 20)) {
     try {
       const report = parseOfficialReport(await fetchText(url), url);
       if (!reports.some(item => item.period === report.period)) reports.push(report);
-      if (reports.length >= 2) break;
     } catch (error) {
       console.warn(`${fund.id}: ${error.message}`);
     }
   }
   reports.sort((a, b) => periodValue(b.period) - periodValue(a.period));
-  const current = reports.find(report => report.url === fund.officialReport) || reports[0];
-  const previous = reports.find(report => periodValue(report.period) < periodValue(current?.period));
-  if (!current) return { ...fund, holdings: null };
+  const current = reports.find(report => report.period === TARGET_PERIOD);
+  const previous = reports.find(report => current && periodValue(report.period) < periodValue(current.period));
+  if (!current) {
+    if (!discoverySucceeded) return fund;
+    return {
+      ...fund,
+      reportingDate: null,
+      monthlyPercent: null,
+      quarterPercent: null,
+      ytdPercent: null,
+      officialReport: null,
+      holdings: null
+    };
+  }
   return {
     ...fund,
     reportingDate: current.period,
@@ -134,7 +162,7 @@ async function mapLimited(items, limit, mapper) {
         output[index] = await mapper(items[index]);
       } catch (error) {
         console.error(`${items[index].id}: ${error.message}`);
-        output[index] = { ...items[index], holdings: null };
+        output[index] = items[index];
       }
     }
   }
@@ -147,7 +175,7 @@ const previousFunds = JSON.stringify(data.funds);
 data.funds = await mapLimited(data.funds, 5, updateFund);
 if (JSON.stringify(data.funds) !== previousFunds) {
   data.generatedAt = new Date().toISOString();
-  data.reportingPeriod = data.funds.map(fund => fund.reportingDate).filter(Boolean).sort((a, b) => periodValue(b) - periodValue(a))[0] || data.reportingPeriod;
+  data.reportingPeriod = TARGET_PERIOD;
   data.holdingsGeneratedAt = new Date().toISOString();
 }
 data.holdingsSource = 'https://www.boursakuwait.com.kw/ar/fund/monthly_information';
@@ -156,4 +184,5 @@ await writeFile(DATA_FILE, `${JSON.stringify(data, null, 2)}\n`);
 const complete = data.funds.filter(fund => fund.holdings?.previous?.length).length;
 const currentOnly = data.funds.filter(fund => fund.holdings?.current?.length && !fund.holdings?.previous?.length).length;
 const missing = data.funds.length - complete - currentOnly;
-console.log(`Fund holdings updated: ${complete} compared, ${currentOnly} current-only, ${missing} unavailable.`);
+const unpublished = data.funds.filter(fund => fund.reportingDate !== TARGET_PERIOD).length;
+console.log(`Fund holdings updated for ${TARGET_PERIOD}: ${complete} compared, ${currentOnly} current-only, ${missing} unavailable; ${unpublished} fund(s) not published.`);
