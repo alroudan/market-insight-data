@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-08T11:28:57.131Z",
+  "generatedAt": "2026-10-08T17:57:29.367Z",
   "source": "https://www.boursakuwait.com.kw/ar/participants/participants/mutual-funds",
   "reportingPeriod": "30/09/2026",
   "funds": [
@@ -26,12 +26,40 @@
       "nameArabic": "صندوق زاجل للخدمات والاتصالات",
       "managerArabic": "شركة الاستثمارات الوطنية",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -2.39,
+      "monthlyPercent": null,
       "quarterPercent": 0.14,
-      "ytdPercent": -1.05,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3239",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19351/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19351/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "شركة إتحاد إتصالات",
+            "weightPercent": 9.96
+          },
+          {
+            "nameArabic": "شركة الإتصالات السعودية",
+            "weightPercent": 9.1
+          },
+          {
+            "nameArabic": "مجموعة الدكتور سليمان الحبيب للخدمات الطبية",
+            "weightPercent": 8.09
+          },
+          {
+            "nameArabic": "الشركة المتحدة للاستثمار والتطوير العقاري",
+            "weightPercent": 7.07
+          },
+          {
+            "nameArabic": "شركة جبل عمر للتطوير",
+            "weightPercent": 5.95
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Arab services & telecom equities",
       "investmentUniverseArabic": "أسهم الخدمات والاتصالات العربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19351/Boursa_HTML_ar.html",
@@ -44,12 +72,40 @@
       "nameArabic": "صندوق موارد للصناعة والخدمات النفطية",
       "managerArabic": "شركة الاستثمارات الوطنية",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -4.67,
-      "quarterPercent": -4.81,
-      "ytdPercent": -3.49,
+      "monthlyPercent": null,
+      "quarterPercent": null,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3238",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19348/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19348/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "شركة التعدين العربية السعودية",
+            "weightPercent": 10.54
+          },
+          {
+            "nameArabic": "الشركة السعودية للصناعات الأساسية",
+            "weightPercent": 9.24
+          },
+          {
+            "nameArabic": "شركة الزيت العربية السعودية",
+            "weightPercent": 8.53
+          },
+          {
+            "nameArabic": "شركة سابك للمغذيات الزراعية",
+            "weightPercent": 7.67
+          },
+          {
+            "nameArabic": "شركة أكوا باور",
+            "weightPercent": 7.54
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Arab industrial & oil-services equities",
       "investmentUniverseArabic": "أسهم الصناعة والخدمات النفطية العربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19348/Boursa_HTML_ar.html",
@@ -67,7 +123,35 @@
       "ytdPercent": 10.89,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3236",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19347/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19347/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك جي اف اتش ش.م.ب",
+            "weightPercent": 11.31
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 9.71
+          },
+          {
+            "nameArabic": "عقارات الكويت ش.م.ك",
+            "weightPercent": 9.04
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.92
+          },
+          {
+            "nameArabic": "شركة مجموعة الخليج للكابلات والصناعات الكهربائية (ش.م.ك.ع)",
+            "weightPercent": 8.3
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait & Arab equities",
       "investmentUniverseArabic": "أسهم كويتية وعربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19347/Boursa_HTML_ar.html",
@@ -82,10 +166,38 @@
       "reportingDate": "30/09/2026",
       "monthlyPercent": 0.3,
       "quarterPercent": 1.58,
-      "ytdPercent": -1.85,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3240",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19367/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19367/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 10.86
+          },
+          {
+            "nameArabic": "الاتصالات المتنقلة",
+            "weightPercent": 9.05
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 8.57
+          },
+          {
+            "nameArabic": "بنك الخليج ش.م.ك.ع",
+            "weightPercent": 7
+          },
+          {
+            "nameArabic": "شركة الإستشارات المـالية الدولية القابضة ش.م.ك.ع",
+            "weightPercent": 6.38
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19367/Boursa_HTML_ar.html",
@@ -103,7 +215,35 @@
       "ytdPercent": 5.14,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2949",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19398/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19398/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "الراجحي",
+            "weightPercent": 12.59
+          },
+          {
+            "nameArabic": "أوريدو",
+            "weightPercent": 11.29
+          },
+          {
+            "nameArabic": "شركة إعمار العقارية",
+            "weightPercent": 9.9
+          },
+          {
+            "nameArabic": "الاتصالات السعودية",
+            "weightPercent": 8.94
+          },
+          {
+            "nameArabic": "بنك الإنماء",
+            "weightPercent": 8.4
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC equities",
       "investmentUniverseArabic": "أسهم خليجية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19398/Boursa_HTML_ar.html",
@@ -121,7 +261,35 @@
       "ytdPercent": -0.29,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2929",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19406/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19406/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيتك",
+            "weightPercent": 10.69
+          },
+          {
+            "nameArabic": "وطني",
+            "weightPercent": 10.21
+          },
+          {
+            "nameArabic": "زين",
+            "weightPercent": 8.67
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.52
+          },
+          {
+            "nameArabic": "بنك الخليج",
+            "weightPercent": 7.25
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19406/Boursa_HTML_ar.html",
@@ -139,7 +307,35 @@
       "ytdPercent": 1.8,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2957",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19405/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19405/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "وديعة بنك بوبيان 92 يوم",
+            "weightPercent": 21.08
+          },
+          {
+            "nameArabic": "وديعة بنك وربة 181 يوم",
+            "weightPercent": 20.84
+          },
+          {
+            "nameArabic": "وديعة بيتك 182 يوم",
+            "weightPercent": 20.25
+          },
+          {
+            "nameArabic": "وديعة الدولي 92 يوم",
+            "weightPercent": 17.6
+          },
+          {
+            "nameArabic": "صندوق بوبيان للسيولة بالدولار الأمريكي",
+            "weightPercent": 6.75
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market & sukuk",
       "investmentUniverseArabic": "سوق نقد وصكوك",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19405/Boursa_HTML_ar.html",
@@ -157,7 +353,35 @@
       "ytdPercent": 1.11,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2952",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19403/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19403/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "زين",
+            "weightPercent": 14.18
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 13.47
+          },
+          {
+            "nameArabic": "بنك وربة",
+            "weightPercent": 10.35
+          },
+          {
+            "nameArabic": "مجموعة الصناعات الوطنية",
+            "weightPercent": 9.97
+          },
+          {
+            "nameArabic": "عقارات الكويت",
+            "weightPercent": 8.2
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19403/Boursa_HTML_ar.html",
@@ -211,7 +435,35 @@
       "ytdPercent": 3.83,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3203",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19366/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19366/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "أعيان للاجارة والاستثمار",
+            "weightPercent": 14.73
+          },
+          {
+            "nameArabic": "بنك الخليج ش.م.ك.ع",
+            "weightPercent": 14.57
+          },
+          {
+            "nameArabic": "شركة المباني ش.م.ك.ع",
+            "weightPercent": 14.53
+          },
+          {
+            "nameArabic": "شركة أجيليتي للمخازن العمومية",
+            "weightPercent": 14.47
+          },
+          {
+            "nameArabic": "شركة الاستثمارات الوطنية",
+            "weightPercent": 14.37
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait & Arab equities",
       "investmentUniverseArabic": "أسهم كويتية وعربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19366/Boursa_HTML_ar.html",
@@ -229,7 +481,35 @@
       "ytdPercent": -0.01,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3172",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19365/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19365/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الدولي",
+            "weightPercent": 14.46
+          },
+          {
+            "nameArabic": "أعيان للاجارة والاستثمار",
+            "weightPercent": 13.64
+          },
+          {
+            "nameArabic": "شركة المباني ش.م.ك.ع",
+            "weightPercent": 13.48
+          },
+          {
+            "nameArabic": "الصناعات الهندسية الثقيلة وبناء السفن",
+            "weightPercent": 12.96
+          },
+          {
+            "nameArabic": "شركة أعيان العقارية",
+            "weightPercent": 12.45
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait & Arab equities",
       "investmentUniverseArabic": "أسهم كويتية وعربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19365/Boursa_HTML_ar.html",
@@ -247,7 +527,35 @@
       "ytdPercent": -2.36,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2982",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19389/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19389/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "شركة الاستشارات المالية الدولية",
+            "weightPercent": 8.73
+          },
+          {
+            "nameArabic": "شركة مباني",
+            "weightPercent": 8.49
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 7.85
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 7.13
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقلة - زين",
+            "weightPercent": 6.86
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19389/Boursa_HTML_ar.html",
@@ -265,7 +573,35 @@
       "ytdPercent": -1.61,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2974",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19346/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19346/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 33.91
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 17.76
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 7.26
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقله (زين)",
+            "weightPercent": 5.89
+          },
+          {
+            "nameArabic": "شركة المباني ش.م.ك",
+            "weightPercent": 3.3
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait Premier Market equities",
       "investmentUniverseArabic": "أسهم السوق الأول الكويتي",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19346/Boursa_HTML_ar.html",
@@ -283,7 +619,35 @@
       "ytdPercent": -1.07,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2971",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19343/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19343/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 12.23
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.45
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.89
+          },
+          {
+            "nameArabic": "بنك الخليج",
+            "weightPercent": 7.5
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقله (زين )",
+            "weightPercent": 4.6
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait, GCC & Arab equities",
       "investmentUniverseArabic": "أسهم كويتية وخليجية وعربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19343/Boursa_HTML_ar.html",
@@ -301,7 +665,35 @@
       "ytdPercent": -0.75,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2972",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19350/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19350/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 17.77
+          },
+          {
+            "nameArabic": "مجموعة الصناعات الوطنية (القابضة)",
+            "weightPercent": 10.85
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقلة (زين)",
+            "weightPercent": 9.24
+          },
+          {
+            "nameArabic": "بنك وربة",
+            "weightPercent": 9.19
+          },
+          {
+            "nameArabic": "بنك الكويت الدولي",
+            "weightPercent": 5.97
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19350/Boursa_HTML_ar.html",
@@ -321,9 +713,9 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19469/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19469/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18794/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
             "nameArabic": "عقار استثماري حولي 93 قسيمة 22",
@@ -346,28 +738,7 @@
             "weightPercent": 11.2
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "عقار استثماري حولي 93 قسيمة 22",
-            "weightPercent": 13.2
-          },
-          {
-            "nameArabic": "عقار صناعي الشويخ الثالثة89",
-            "weightPercent": 12.8
-          },
-          {
-            "nameArabic": "عقار استثماري الجهراء قسيمة 6",
-            "weightPercent": 11.5
-          },
-          {
-            "nameArabic": "عقار استثماري الجهراء قسيمة 8",
-            "weightPercent": 11.5
-          },
-          {
-            "nameArabic": "عقار استثماري الجهراء قسيمة 4",
-            "weightPercent": 11.2
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "Real estate — Kuwait & overseas",
       "investmentUniverseArabic": "عقارات كويتية وخارجية",
@@ -381,12 +752,40 @@
       "nameArabic": "صندوق بيتك كابيتال للسوق الاول",
       "managerArabic": "بيتك كابيتال للاستثمار",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -0.55,
+      "monthlyPercent": null,
       "quarterPercent": 0.25,
       "ytdPercent": 0.59,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3192",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19332/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19332/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 35.71
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 10.64
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقله",
+            "weightPercent": 9.96
+          },
+          {
+            "nameArabic": "بنك الكويت الدولي",
+            "weightPercent": 6.71
+          },
+          {
+            "nameArabic": "شركة المباني",
+            "weightPercent": 6.46
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait Premier Market equities",
       "investmentUniverseArabic": "أسهم السوق الأول الكويتي",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19332/Boursa_HTML_ar.html",
@@ -399,12 +798,40 @@
       "nameArabic": "صندوق بيتك كابيتال للأسهم الخليجية",
       "managerArabic": "بيتك كابيتال للاستثمار",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -2.21,
-      "quarterPercent": -1.62,
-      "ytdPercent": -1.3,
+      "monthlyPercent": null,
+      "quarterPercent": null,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3233",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19315/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19315/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 13.53
+          },
+          {
+            "nameArabic": "النقد",
+            "weightPercent": 6.11
+          },
+          {
+            "nameArabic": "شركة الزيت العربية السعودية",
+            "weightPercent": 5.47
+          },
+          {
+            "nameArabic": "شركة سال السعودية للخدمات اللوجستية",
+            "weightPercent": 5.02
+          },
+          {
+            "nameArabic": "شركة الاتصالات السعودية",
+            "weightPercent": 4.95
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC equities",
       "investmentUniverseArabic": "أسهم خليجية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19315/Boursa_HTML_ar.html",
@@ -422,7 +849,35 @@
       "ytdPercent": 3,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3193",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19331/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19331/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "KIB WAKALAH 63Days",
+            "weightPercent": 10.26
+          },
+          {
+            "nameArabic": "KIB WAKALAH 56Days",
+            "weightPercent": 9.22
+          },
+          {
+            "nameArabic": "KFH WAKALAH 105DAYS",
+            "weightPercent": 3.05
+          },
+          {
+            "nameArabic": "KFH WAKALAH 364Days",
+            "weightPercent": 3
+          },
+          {
+            "nameArabic": "KFH WAKALAH 364Days",
+            "weightPercent": 2.88
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market — USD",
       "investmentUniverseArabic": "سوق نقد بالدولار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19331/Boursa_HTML_ar.html",
@@ -440,7 +895,35 @@
       "ytdPercent": 2.92,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3190",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19344/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19344/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "WARBA WAKALAH 98 DAYS",
+            "weightPercent": 3.32
+          },
+          {
+            "nameArabic": "KFH WAKALAh 98days",
+            "weightPercent": 2.38
+          },
+          {
+            "nameArabic": "KFH WAKALAh 91DAYS",
+            "weightPercent": 2.35
+          },
+          {
+            "nameArabic": "WARBA WAKALAH 42DAYS",
+            "weightPercent": 2.15
+          },
+          {
+            "nameArabic": "KIB WAKALAh 91DAYS",
+            "weightPercent": 2.01
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market — KWD",
       "investmentUniverseArabic": "سوق نقد بالدينار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19344/Boursa_HTML_ar.html",
@@ -458,7 +941,35 @@
       "ytdPercent": 2.9,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3235",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19352/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19352/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي وكالة - 350 يوما",
+            "weightPercent": 8.19
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي وكالة - 350 يوما",
+            "weightPercent": 6.83
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي وكالة - 350 يوما",
+            "weightPercent": 6.83
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي وكالة - 350 يوما",
+            "weightPercent": 6.83
+          },
+          {
+            "nameArabic": "أس أر سي صكوك 5 02/27/28",
+            "weightPercent": 6.67
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market — USD",
       "investmentUniverseArabic": "سوق نقد بالدولار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19352/Boursa_HTML_ar.html",
@@ -476,7 +987,35 @@
       "ytdPercent": 2.78,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3234",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19339/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19339/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي وكالة - 364 يوما",
+            "weightPercent": 7.36
+          },
+          {
+            "nameArabic": "بنك وربة وكالة - 280 يوما",
+            "weightPercent": 6.99
+          },
+          {
+            "nameArabic": "بنك وربة وكالة - 364 يوما",
+            "weightPercent": 4.42
+          },
+          {
+            "nameArabic": "بنك وربة وكالة - 364 يوما",
+            "weightPercent": 4.2
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي وكالة - 364 يوما",
+            "weightPercent": 3.75
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market — KWD",
       "investmentUniverseArabic": "سوق نقد بالدينار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19339/Boursa_HTML_ar.html",
@@ -496,53 +1035,32 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19463/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19463/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18791/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
-            "nameArabic": "KUWAIT INTERNATIONAL BANK, KUWAIT -  WAKALA DEPOSIT 7 DAYS",
+            "nameArabic": "KUWAIT INTERNATIONAL BANK, KUWAIT - WAKALA DEPOSIT 7 DAYS",
             "weightPercent": 5.55
           },
           {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT -  WAKALA DEPOSIT 189 DAYS",
+            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA DEPOSIT 189 DAYS",
             "weightPercent": 4.9
           },
           {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT -  WAKALA DEPOSIT 189 DAYS",
+            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA DEPOSIT 189 DAYS",
             "weightPercent": 4.86
           },
           {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT -  WAKALA DEPOSIT 364 DAYS",
+            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA DEPOSIT 364 DAYS",
             "weightPercent": 4.73
           },
           {
-            "nameArabic": "BOUBYAN BANK, KUWAIT -  WAKALA DEPOSIT 175 DAYS",
+            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA DEPOSIT 175 DAYS",
             "weightPercent": 4.08
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "BOUBYAN BANK, KUWAIT -  WAKALA DEPOSIT 63 DAYS",
-            "weightPercent": 5.1
-          },
-          {
-            "nameArabic": "BOUBYAN BANK, KUWAIT -  WAKALA DEPOSIT 56 DAYS",
-            "weightPercent": 4.96
-          },
-          {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT -  WAKALA DEPOSIT 189 DAYS",
-            "weightPercent": 4.71
-          },
-          {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT -  WAKALA DEPOSIT 189 DAYS",
-            "weightPercent": 4.67
-          },
-          {
-            "nameArabic": "BOUBYAN BANK, KUWAIT -  WAKALA DEPOSIT 175 DAYS",
-            "weightPercent": 3.92
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "Money market — USD",
       "investmentUniverseArabic": "سوق نقد بالدولار",
@@ -561,7 +1079,35 @@
       "ytdPercent": -1.73,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3144",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "1 - مصرف الراجحي (السعودية)",
+            "weightPercent": 14.28
+          },
+          {
+            "nameArabic": "2 - بيت التمويل الكويتي (الكويت)",
+            "weightPercent": 6.43
+          },
+          {
+            "nameArabic": "3 - البنك الأهلي السعودي (السعودية)",
+            "weightPercent": 6.4
+          },
+          {
+            "nameArabic": "4 - بنك قطر الوطني (قطر)",
+            "weightPercent": 5.48
+          },
+          {
+            "nameArabic": "5 - شركة الاتصالات السعودية (السعودية)",
+            "weightPercent": 4.46
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC equities",
       "investmentUniverseArabic": "أسهم خليجية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html",
@@ -599,9 +1145,9 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19446/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19446/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18785/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
             "nameArabic": "1-BURGAN BANK (2.75 15-Dec-31)",
@@ -612,7 +1158,7 @@
             "weightPercent": 5.38
           },
           {
-            "nameArabic": "3-BOS FUNDING LTD  (BOS 5.25 12-Sep-29)",
+            "nameArabic": "3-BOS FUNDING LTD (BOS 5.25 12-Sep-29)",
             "weightPercent": 4.97
           },
           {
@@ -620,32 +1166,11 @@
             "weightPercent": 4.85
           },
           {
-            "nameArabic": "5-HIKMA FINANCE USA LLC  (HIKMA 5.125 08-Jul-30)",
+            "nameArabic": "5-HIKMA FINANCE USA LLC (HIKMA 5.125 08-Jul-30)",
             "weightPercent": 4.76
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "1-BURGAN BANK (2.75 15-Dec-31)",
-            "weightPercent": 5.26
-          },
-          {
-            "nameArabic": "2-SAUDI ELECTRICITY SUKUK (SECO 5.225 18-Feb-30)",
-            "weightPercent": 5.14
-          },
-          {
-            "nameArabic": "3-BOS FUNDING LTD  (5.25 12-Sep-29)",
-            "weightPercent": 4.92
-          },
-          {
-            "nameArabic": "4-HIKMA FINANCE USA LLC  (HIKMA 5.125 08-Jul-30)",
-            "weightPercent": 4.69
-          },
-          {
-            "nameArabic": "5-QNB FINANCE LTD (QNBK Float 02-Apr-29 FRN)",
-            "weightPercent": 4.43
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "GCC & regional bonds — USD",
       "investmentUniverseArabic": "سندات خليجية وإقليمية بالدولار",
@@ -666,12 +1191,12 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19455/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19455/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18789/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
-            "nameArabic": "GULF BANK, KUWAIT  - FIXED DEPOSIT 364 DAYS",
+            "nameArabic": "GULF BANK, KUWAIT - FIXED DEPOSIT 364 DAYS",
             "weightPercent": 3.9
           },
           {
@@ -679,40 +1204,19 @@
             "weightPercent": 3.43
           },
           {
-            "nameArabic": "BANK OF BAHRAIN AND KUWAIT, KUWAIT  - FIXED DEPOSIT 364 DAYS",
+            "nameArabic": "BANK OF BAHRAIN AND KUWAIT, KUWAIT - FIXED DEPOSIT 364 DAYS",
             "weightPercent": 3.32
           },
           {
-            "nameArabic": "GULF BANK, KUWAIT  - FIXED DEPOSIT 56 DAYS",
+            "nameArabic": "GULF BANK, KUWAIT - FIXED DEPOSIT 56 DAYS",
             "weightPercent": 3.13
           },
           {
-            "nameArabic": "GULF BANK, KUWAIT  - FIXED DEPOSIT 57 DAYS",
+            "nameArabic": "GULF BANK, KUWAIT - FIXED DEPOSIT 57 DAYS",
             "weightPercent": 3.13
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "GULF BANK, KUWAIT  - FIXED DEPOSIT 364 DAYS",
-            "weightPercent": 3.55
-          },
-          {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA DEPOSIT 371 DAYS",
-            "weightPercent": 3.12
-          },
-          {
-            "nameArabic": "GULF BANK, KUWAIT  - FIXED DEPOSIT 56 DAYS",
-            "weightPercent": 3.09
-          },
-          {
-            "nameArabic": "BANK OF BAHRAIN AND KUWAIT, KUWAIT  - FIXED DEPOSIT 364 DAYS",
-            "weightPercent": 3.02
-          },
-          {
-            "nameArabic": "GULF BANK, KUWAIT  - FIXED DEPOSIT 56 DAYS",
-            "weightPercent": 2.97
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "Money market — USD",
       "investmentUniverseArabic": "سوق نقد بالدولار",
@@ -733,53 +1237,32 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19458/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19458/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18790/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT  357 DAYS",
+            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA DEPOSIT 357 DAYS",
             "weightPercent": 3.99
           },
           {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA  DEPOSIT  350 DAYS",
+            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA DEPOSIT 350 DAYS",
             "weightPercent": 3.52
           },
           {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA  DEPOSIT  364 DAYS",
+            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA DEPOSIT 364 DAYS",
             "weightPercent": 3.51
           },
           {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT  182 DAYS",
+            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA DEPOSIT 182 DAYS",
             "weightPercent": 3.36
           },
           {
-            "nameArabic": "WARBA BANK, KUWAIT - WAKALA  DEPOSIT  364 DAYS",
+            "nameArabic": "WARBA BANK, KUWAIT - WAKALA DEPOSIT 364 DAYS",
             "weightPercent": 3.29
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "WARBA BANK, KUWAIT - WAKALA  DEPOSIT  63 DAYS",
-            "weightPercent": 4.89
-          },
-          {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT  56 DAYS",
-            "weightPercent": 4.31
-          },
-          {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT  357 DAYS",
-            "weightPercent": 4.04
-          },
-          {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA  DEPOSIT  350 DAYS",
-            "weightPercent": 3.56
-          },
-          {
-            "nameArabic": "KUWAIT FINANCE HOUSE, KUWAIT - WAKALA  DEPOSIT  364 DAYS",
-            "weightPercent": 3.56
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "Money market — KWD",
       "investmentUniverseArabic": "سوق نقد بالدينار",
@@ -800,20 +1283,20 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19449/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19449/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18788/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
-            "nameArabic": "KUWAIT INTERNATIONAL BANK, KUWAIT - WAKALA  DEPOSIT 63 DAYS",
+            "nameArabic": "KUWAIT INTERNATIONAL BANK, KUWAIT - WAKALA DEPOSIT 63 DAYS",
             "weightPercent": 4.23
           },
           {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT 63 DAYS",
+            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA DEPOSIT 63 DAYS",
             "weightPercent": 4.16
           },
           {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT 364 DAYS",
+            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA DEPOSIT 364 DAYS",
             "weightPercent": 3.7
           },
           {
@@ -825,28 +1308,7 @@
             "weightPercent": 3.24
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "BOUBYAN BANK, KUWAIT - WAKALA  DEPOSIT 364 DAYS",
-            "weightPercent": 3.68
-          },
-          {
-            "nameArabic": "GULF BANK, KUWAIT- FIXED DEPOSIT 63 DAYS",
-            "weightPercent": 3.68
-          },
-          {
-            "nameArabic": "GULF BANK, KUWAIT- FIXED DEPOSIT 63 DAYS",
-            "weightPercent": 3.45
-          },
-          {
-            "nameArabic": "GULF BANK, KUWAIT- FIXED DEPOSIT 196 DAYS",
-            "weightPercent": 3.28
-          },
-          {
-            "nameArabic": "BANK OF BAHRAIN & KUWAIT- FIXED DEPOSIT 364 DAYS",
-            "weightPercent": 3.22
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "Money market — KWD",
       "investmentUniverseArabic": "سوق نقد بالدينار",
@@ -860,12 +1322,40 @@
       "nameArabic": "صندوق وفرة للسندات",
       "managerArabic": "شركة وفرة للاستثمار الدولي",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -1.53,
-      "quarterPercent": -1.46,
-      "ytdPercent": -0.05,
+      "monthlyPercent": null,
+      "quarterPercent": null,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3100",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19368/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19368/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الدولي - دولار امريكي 2030",
+            "weightPercent": 7.9
+          },
+          {
+            "nameArabic": "بنك وربة (الشريحة الاولى) - دولار امريكي 2030",
+            "weightPercent": 6.97
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني - دولار أمريكي 2030",
+            "weightPercent": 6.95
+          },
+          {
+            "nameArabic": "بنك وربة - دولار امريكي 2029",
+            "weightPercent": 6.92
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي - دولار امريكي 2029",
+            "weightPercent": 6.91
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC bonds — USD",
       "investmentUniverseArabic": "سندات خليجية بالدولار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19368/Boursa_HTML_ar.html",
@@ -878,12 +1368,40 @@
       "nameArabic": "صندوق وفرة الخليجي الاسلامي",
       "managerArabic": "شركة وفرة للاستثمار الدولي",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -3.9,
-      "quarterPercent": -2.13,
-      "ytdPercent": -2.73,
+      "monthlyPercent": null,
+      "quarterPercent": null,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3105",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19364/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19364/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 22.45
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 8.02
+          },
+          {
+            "nameArabic": "شركة الزيت العربية السعودية",
+            "weightPercent": 6.21
+          },
+          {
+            "nameArabic": "شركة اعمار العقارية",
+            "weightPercent": 4.97
+          },
+          {
+            "nameArabic": "شركة التعدين العربية السعودية",
+            "weightPercent": 4.6
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC equities",
       "investmentUniverseArabic": "أسهم خليجية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19364/Boursa_HTML_ar.html",
@@ -896,12 +1414,40 @@
       "nameArabic": "صندوق وفرة",
       "managerArabic": "شركة وفرة للاستثمار الدولي",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -1.56,
+      "monthlyPercent": null,
       "quarterPercent": 0.75,
-      "ytdPercent": -1.15,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3103",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19354/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19354/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 11.32
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.26
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.46
+          },
+          {
+            "nameArabic": "شركة مجموعة عربي القابضة",
+            "weightPercent": 7.95
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقلة",
+            "weightPercent": 7.86
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19354/Boursa_HTML_ar.html",
@@ -914,12 +1460,40 @@
       "nameArabic": "صندوق الفجر",
       "managerArabic": "شركة وفرة للاستثمار الدولي",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -0.53,
-      "quarterPercent": -0.2,
-      "ytdPercent": -0.07,
+      "monthlyPercent": null,
+      "quarterPercent": null,
+      "ytdPercent": null,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3001",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19355/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19355/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 15.37
+          },
+          {
+            "nameArabic": "مجموعة الصناعات الوطنية (القابضة)",
+            "weightPercent": 13.18
+          },
+          {
+            "nameArabic": "بنك وربة",
+            "weightPercent": 12.78
+          },
+          {
+            "nameArabic": "شركة الاتصالات المتنقلة",
+            "weightPercent": 12.69
+          },
+          {
+            "nameArabic": "الشركة التجارية العقارية",
+            "weightPercent": 8.09
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19355/Boursa_HTML_ar.html",
@@ -932,12 +1506,40 @@
       "nameArabic": "صندوق مصارف الاسثماري",
       "managerArabic": "شركة وفرة للاستثمار الدولي",
       "reportingDate": "30/09/2026",
-      "monthlyPercent": -2.8,
+      "monthlyPercent": null,
       "quarterPercent": 2.07,
       "ytdPercent": 4.06,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3008",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19356/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19356/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 27.22
+          },
+          {
+            "nameArabic": "البنك الاهلي السعودي",
+            "weightPercent": 10.79
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 7.88
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 7.03
+          },
+          {
+            "nameArabic": "بنك ابوظبي الاول",
+            "weightPercent": 5.56
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Banking equities",
       "investmentUniverseArabic": "أسهم البنوك",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19356/Boursa_HTML_ar.html",
@@ -957,9 +1559,9 @@
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19464/Boursa_HTML_ar.html",
       "holdings": {
         "currentPeriod": "30/09/2026",
-        "previousPeriod": "31/08/2026",
+        "previousPeriod": null,
         "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19464/Boursa_HTML_ar.html",
-        "previousOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18663/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
         "current": [
           {
             "nameArabic": "Wakalah Deposit – Boubyan Bank – 210 Days",
@@ -982,28 +1584,7 @@
             "weightPercent": 4.49
           }
         ],
-        "previous": [
-          {
-            "nameArabic": "Wakalah Deposit – Kuwait International Bank – 280 Days",
-            "weightPercent": 5.96
-          },
-          {
-            "nameArabic": "Wakalah Deposit – Kuwait International Bank – 224 Days",
-            "weightPercent": 5.11
-          },
-          {
-            "nameArabic": "Wakalah Deposit – Warba Bank – 364 Days",
-            "weightPercent": 4.55
-          },
-          {
-            "nameArabic": "Wakalah Deposit – Boubyan Bank – 224 Days",
-            "weightPercent": 4.53
-          },
-          {
-            "nameArabic": "Wakalah Deposit – Kuwait International Bank – 273 Days",
-            "weightPercent": 3.88
-          }
-        ]
+        "previous": []
       },
       "investmentUniverseEnglish": "Money market — KWD",
       "investmentUniverseArabic": "سوق نقد بالدينار",
@@ -1076,7 +1657,35 @@
       "ytdPercent": -2.8,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2998",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19395/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19395/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 11.3
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 11.2
+          },
+          {
+            "nameArabic": "بنك الخليج ش.م.ك.ع",
+            "weightPercent": 10.7
+          },
+          {
+            "nameArabic": "شركة مجموعة عربي القابضة",
+            "weightPercent": 10
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 9.5
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Equities & options",
       "investmentUniverseArabic": "أسهم وخيارات مالية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19395/Boursa_HTML_ar.html",
@@ -1094,7 +1703,35 @@
       "ytdPercent": 2.6,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3020",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19400/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19400/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 8.4
+          },
+          {
+            "nameArabic": "شركة مجموعة الإمارات للاتصالات ش.م.ع.",
+            "weightPercent": 5.7
+          },
+          {
+            "nameArabic": "شركة التعدين العربية السعودية",
+            "weightPercent": 5
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 5
+          },
+          {
+            "nameArabic": "البنك الأهلي السعودي",
+            "weightPercent": 4.9
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC momentum equities",
       "investmentUniverseArabic": "أسهم خليجية باستراتيجية الزخم",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19400/Boursa_HTML_ar.html",
@@ -1112,7 +1749,35 @@
       "ytdPercent": 3.842,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3022",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19414/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19414/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "عقار برج الندى – دسمان (استثماري)",
+            "weightPercent": 19.07
+          },
+          {
+            "nameArabic": "عقار برج المها - بنيد القار (استثماري)",
+            "weightPercent": 11.99
+          },
+          {
+            "nameArabic": "3. عقار برج نوف B- شرق (تجاري)",
+            "weightPercent": 11.68
+          },
+          {
+            "nameArabic": "4. عقار مجمع الفروانية – الفروانية (تجاري)",
+            "weightPercent": 9.87
+          },
+          {
+            "nameArabic": "5. عقار برج نوف A – شرق (تجاري)",
+            "weightPercent": 8.11
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Real estate",
       "investmentUniverseArabic": "عقارات",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19414/Boursa_HTML_ar.html",
@@ -1130,7 +1795,35 @@
       "ytdPercent": 2.6,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3019",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19402/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19402/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 14.4
+          },
+          {
+            "nameArabic": "مجموعة الصناعات الوطنية القابضة",
+            "weightPercent": 12
+          },
+          {
+            "nameArabic": "الاتصالات المتنقلة",
+            "weightPercent": 9.6
+          },
+          {
+            "nameArabic": "بنك الخليج ش.م.ك.ع",
+            "weightPercent": 9.4
+          },
+          {
+            "nameArabic": "عقارات الكويت ش.م.ك",
+            "weightPercent": 8.1
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19402/Boursa_HTML_ar.html",
@@ -1148,7 +1841,35 @@
       "ytdPercent": 1.9,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3014",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19401/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19401/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.2
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 10.2
+          },
+          {
+            "nameArabic": "شركة مجموعة عربي القابضة",
+            "weightPercent": 8.1
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 7.7
+          },
+          {
+            "nameArabic": "الاتصالات المتنقلة",
+            "weightPercent": 6.9
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19401/Boursa_HTML_ar.html",
@@ -1166,7 +1887,35 @@
       "ytdPercent": -0.5,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3012",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19404/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19404/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 11.1
+          },
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.8
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8
+          },
+          {
+            "nameArabic": "شركة مجموعة عربي القابضة",
+            "weightPercent": 7.6
+          },
+          {
+            "nameArabic": "الاتصالات المتنقلة",
+            "weightPercent": 3
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait, GCC & Arab equities",
       "investmentUniverseArabic": "أسهم كويتية وخليجية وعربية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19404/Boursa_HTML_ar.html",
@@ -1184,7 +1933,35 @@
       "ytdPercent": -2.44,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3266",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19335/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19335/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "1. بيت التمويل الكويتي",
+            "weightPercent": 9.32
+          },
+          {
+            "nameArabic": "2. مصرف الراجحي",
+            "weightPercent": 7.76
+          },
+          {
+            "nameArabic": "3. مجموعة اﻻمارات للاتصاﻻت",
+            "weightPercent": 6.69
+          },
+          {
+            "nameArabic": "4. شركة الدار العقارية",
+            "weightPercent": 6.02
+          },
+          {
+            "nameArabic": "5. إعمار العقارية",
+            "weightPercent": 5.04
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC equities",
       "investmentUniverseArabic": "أسهم خليجية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19335/Boursa_HTML_ar.html",
@@ -1202,7 +1979,35 @@
       "ytdPercent": 1.25,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3394",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19349/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19349/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "Boubyan Bank -Wakala Deposit-357",
+            "weightPercent": 8.55
+          },
+          {
+            "nameArabic": "Boubyan Bank -Wakala Deposit-282",
+            "weightPercent": 4.23
+          },
+          {
+            "nameArabic": "Boubyan Bank -Wakala Deposit-324",
+            "weightPercent": 4.23
+          },
+          {
+            "nameArabic": "Al Ahli Bank of Kuwait - Fixed Deposit-156",
+            "weightPercent": 3.81
+          },
+          {
+            "nameArabic": "Al Ahli Bank of Kuwait - Fixed Deposit-198",
+            "weightPercent": 3.53
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market — USD",
       "investmentUniverseArabic": "سوق نقد بالدولار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19349/Boursa_HTML_ar.html",
@@ -1220,7 +2025,35 @@
       "ytdPercent": 1.67,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3263",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "مصرف الراجحي",
+            "weightPercent": 11.59
+          },
+          {
+            "nameArabic": "البنك الاهلي السعودي",
+            "weightPercent": 7.66
+          },
+          {
+            "nameArabic": "نقد",
+            "weightPercent": 3.98
+          },
+          {
+            "nameArabic": "بنك أبوظبي اﻷول",
+            "weightPercent": 3.74
+          },
+          {
+            "nameArabic": "شركة إتحاد إتصالات",
+            "weightPercent": 3.54
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "GCC equities",
       "investmentUniverseArabic": "أسهم خليجية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html",
@@ -1238,7 +2071,35 @@
       "ytdPercent": -1.74,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3261",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "بيت التمويل الكويتي",
+            "weightPercent": 10.73
+          },
+          {
+            "nameArabic": "شركة الإتصالات المتنقلة (ش.م.ك.ع)‏",
+            "weightPercent": 10.69
+          },
+          {
+            "nameArabic": "بنك الكويت الوطني",
+            "weightPercent": 9.21
+          },
+          {
+            "nameArabic": "بنك بوبيان",
+            "weightPercent": 8.75
+          },
+          {
+            "nameArabic": "بنك الخليج",
+            "weightPercent": 6.35
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Kuwait equities",
       "investmentUniverseArabic": "أسهم كويتية",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html",
@@ -1256,7 +2117,35 @@
       "ytdPercent": 7.03,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3264",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19370/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19370/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "BGINAX2 BLACKROCK GIF I NA EQ IN X2U",
+            "weightPercent": 18.58
+          },
+          {
+            "nameArabic": "IVV - ISHARES CORE SP ETF",
+            "weightPercent": 13.22
+          },
+          {
+            "nameArabic": "MBB - ISHARES MBS ETF",
+            "weightPercent": 6.04
+          },
+          {
+            "nameArabic": "ISHARES MSCI EM EXCHINA UCI USD A EQUITY",
+            "weightPercent": 5.99
+          },
+          {
+            "nameArabic": "BRAWDUA - BLK SUS ADV WRLD E F- DUSDA",
+            "weightPercent": 5
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Global multi-asset / fund of funds",
       "investmentUniverseArabic": "أصول متعددة عالمية / صندوق صناديق",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19370/Boursa_HTML_ar.html",
@@ -1274,7 +2163,35 @@
       "ytdPercent": 2.84,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3302",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19342/Boursa_HTML_ar.html",
-      "holdings": null,
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19342/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "Boubyan -Wakala Deposit-364",
+            "weightPercent": 4.06
+          },
+          {
+            "nameArabic": "Boubyan -Wakala Deposit-371",
+            "weightPercent": 4.06
+          },
+          {
+            "nameArabic": "Boubyan -Wakala Deposit-364",
+            "weightPercent": 3.05
+          },
+          {
+            "nameArabic": "Boubyan KD Money Market Fund II",
+            "weightPercent": 2.65
+          },
+          {
+            "nameArabic": "Warba Islamic KD Money Market Fund",
+            "weightPercent": 2.65
+          }
+        ],
+        "previous": []
+      },
       "investmentUniverseEnglish": "Money market — KWD",
       "investmentUniverseArabic": "سوق نقد بالدينار",
       "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19342/Boursa_HTML_ar.html",
@@ -1283,6 +2200,6 @@
       "fundNatureSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19342/Boursa_HTML_ar.html"
     }
   ],
-  "holdingsGeneratedAt": "2026-10-08T11:28:57.131Z",
+  "holdingsGeneratedAt": "2026-10-08T17:57:29.367Z",
   "holdingsSource": "https://www.boursakuwait.com.kw/ar/fund/monthly_information"
 }
