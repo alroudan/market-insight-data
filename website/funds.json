@@ -13,7 +13,10 @@
       "ytdPercent": 1.9,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3198",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18706/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18706/Boursa_HTML_ar.html"
     },
     {
       "id": "3239",
@@ -25,7 +28,10 @@
       "ytdPercent": -1.05,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3239",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19351/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Arab services & telecom equities",
+      "investmentUniverseArabic": "أسهم الخدمات والاتصالات العربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19351/Boursa_HTML_ar.html"
     },
     {
       "id": "3238",
@@ -37,7 +43,10 @@
       "ytdPercent": -3.49,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3238",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19348/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Arab industrial & oil-services equities",
+      "investmentUniverseArabic": "أسهم الصناعة والخدمات النفطية العربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19348/Boursa_HTML_ar.html"
     },
     {
       "id": "3236",
@@ -49,7 +58,10 @@
       "ytdPercent": 10.89,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3236",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19347/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait & Arab equities",
+      "investmentUniverseArabic": "أسهم كويتية وعربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19347/Boursa_HTML_ar.html"
     },
     {
       "id": "3240",
@@ -61,7 +73,10 @@
       "ytdPercent": -1.85,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3240",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19367/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19367/Boursa_HTML_ar.html"
     },
     {
       "id": "2949",
@@ -73,7 +88,10 @@
       "ytdPercent": 5.14,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2949",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19398/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19398/Boursa_HTML_ar.html"
     },
     {
       "id": "2929",
@@ -85,7 +103,10 @@
       "ytdPercent": -0.29,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2929",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19406/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19406/Boursa_HTML_ar.html"
     },
     {
       "id": "2957",
@@ -97,7 +118,10 @@
       "ytdPercent": 1.8,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2957",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19405/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market & sukuk",
+      "investmentUniverseArabic": "سوق نقد وصكوك",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19405/Boursa_HTML_ar.html"
     },
     {
       "id": "2952",
@@ -109,7 +133,10 @@
       "ytdPercent": 1.11,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2952",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19403/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19403/Boursa_HTML_ar.html"
     },
     {
       "id": "3348",
@@ -121,7 +148,10 @@
       "ytdPercent": 2.577,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3348",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18752/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18752/Boursa_HTML_ar.html"
     },
     {
       "id": "3322",
@@ -133,7 +163,10 @@
       "ytdPercent": 2.505,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3322",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18750/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18750/Boursa_HTML_ar.html"
     },
     {
       "id": "3203",
@@ -145,7 +178,10 @@
       "ytdPercent": 3.83,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3203",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19366/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait & Arab equities",
+      "investmentUniverseArabic": "أسهم كويتية وعربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19366/Boursa_HTML_ar.html"
     },
     {
       "id": "3172",
@@ -157,7 +193,10 @@
       "ytdPercent": -0.01,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3172",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19365/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait & Arab equities",
+      "investmentUniverseArabic": "أسهم كويتية وعربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19365/Boursa_HTML_ar.html"
     },
     {
       "id": "2982",
@@ -169,7 +208,10 @@
       "ytdPercent": -2.36,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2982",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19389/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19389/Boursa_HTML_ar.html"
     },
     {
       "id": "2974",
@@ -181,7 +223,10 @@
       "ytdPercent": -1.61,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2974",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19346/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait Premier Market equities",
+      "investmentUniverseArabic": "أسهم السوق الأول الكويتي",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19346/Boursa_HTML_ar.html"
     },
     {
       "id": "2971",
@@ -193,7 +238,10 @@
       "ytdPercent": -1.07,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2971",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19343/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait, GCC & Arab equities",
+      "investmentUniverseArabic": "أسهم كويتية وخليجية وعربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19343/Boursa_HTML_ar.html"
     },
     {
       "id": "2972",
@@ -205,7 +253,10 @@
       "ytdPercent": -0.75,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2972",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19350/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19350/Boursa_HTML_ar.html"
     },
     {
       "id": "3184",
@@ -217,7 +268,10 @@
       "ytdPercent": 2.687,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3184",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18794/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Real estate — Kuwait & overseas",
+      "investmentUniverseArabic": "عقارات كويتية وخارجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18794/Boursa_HTML_ar.html"
     },
     {
       "id": "3192",
@@ -229,7 +283,10 @@
       "ytdPercent": 0.59,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3192",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19332/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait Premier Market equities",
+      "investmentUniverseArabic": "أسهم السوق الأول الكويتي",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19332/Boursa_HTML_ar.html"
     },
     {
       "id": "3233",
@@ -241,7 +298,10 @@
       "ytdPercent": -1.3,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3233",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19315/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19315/Boursa_HTML_ar.html"
     },
     {
       "id": "3193",
@@ -253,7 +313,10 @@
       "ytdPercent": 3,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3193",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19331/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19331/Boursa_HTML_ar.html"
     },
     {
       "id": "3190",
@@ -265,7 +328,10 @@
       "ytdPercent": 2.92,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3190",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19344/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19344/Boursa_HTML_ar.html"
     },
     {
       "id": "3235",
@@ -277,7 +343,10 @@
       "ytdPercent": 2.9,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3235",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19352/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19352/Boursa_HTML_ar.html"
     },
     {
       "id": "3234",
@@ -289,7 +358,10 @@
       "ytdPercent": 2.78,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3234",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19339/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19339/Boursa_HTML_ar.html"
     },
     {
       "id": "3139",
@@ -301,7 +373,10 @@
       "ytdPercent": 2.37,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3139",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18791/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18791/Boursa_HTML_ar.html"
     },
     {
       "id": "3144",
@@ -313,7 +388,10 @@
       "ytdPercent": -1.73,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3144",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19444/Boursa_HTML_ar.html"
     },
     {
       "id": "3145",
@@ -325,7 +403,10 @@
       "ytdPercent": -0.02,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3145",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18783/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities & related overseas companies",
+      "investmentUniverseArabic": "أسهم كويتية وشركات خارجية مرتبطة بالكويت",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18783/Boursa_HTML_ar.html"
     },
     {
       "id": "3147",
@@ -337,7 +418,10 @@
       "ytdPercent": 0.53,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3147",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18785/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC & regional bonds — USD",
+      "investmentUniverseArabic": "سندات خليجية وإقليمية بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18785/Boursa_HTML_ar.html"
     },
     {
       "id": "3137",
@@ -349,7 +433,10 @@
       "ytdPercent": 2.47,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3137",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18789/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18789/Boursa_HTML_ar.html"
     },
     {
       "id": "3134",
@@ -361,7 +448,10 @@
       "ytdPercent": 2.24,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3134",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18790/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18790/Boursa_HTML_ar.html"
     },
     {
       "id": "3132",
@@ -373,7 +463,10 @@
       "ytdPercent": 2.23,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3132",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18788/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18788/Boursa_HTML_ar.html"
     },
     {
       "id": "3100",
@@ -385,7 +478,10 @@
       "ytdPercent": -0.05,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3100",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19368/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC bonds — USD",
+      "investmentUniverseArabic": "سندات خليجية بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19368/Boursa_HTML_ar.html"
     },
     {
       "id": "3105",
@@ -397,7 +493,10 @@
       "ytdPercent": -2.73,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3105",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19364/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19364/Boursa_HTML_ar.html"
     },
     {
       "id": "3103",
@@ -409,7 +508,10 @@
       "ytdPercent": -1.15,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3103",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19354/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19354/Boursa_HTML_ar.html"
     },
     {
       "id": "3001",
@@ -421,7 +523,10 @@
       "ytdPercent": -0.07,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3001",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19355/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19355/Boursa_HTML_ar.html"
     },
     {
       "id": "3008",
@@ -433,7 +538,10 @@
       "ytdPercent": 4.06,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3008",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19356/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Banking equities",
+      "investmentUniverseArabic": "أسهم البنوك",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19356/Boursa_HTML_ar.html"
     },
     {
       "id": "3317",
@@ -445,7 +553,10 @@
       "ytdPercent": 2.501,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3317",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18663/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18663/Boursa_HTML_ar.html"
     },
     {
       "id": "3176",
@@ -457,7 +568,10 @@
       "ytdPercent": 2.652,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3176",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18718/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18718/Boursa_HTML_ar.html"
     },
     {
       "id": "3191",
@@ -469,7 +583,10 @@
       "ytdPercent": 6.23,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3191",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18722/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18722/Boursa_HTML_ar.html"
     },
     {
       "id": "3251",
@@ -481,7 +598,10 @@
       "ytdPercent": 2.527,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3251",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18723/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18723/Boursa_HTML_ar.html"
     },
     {
       "id": "2998",
@@ -493,7 +613,10 @@
       "ytdPercent": -2.8,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#2998",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19395/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Equities & options",
+      "investmentUniverseArabic": "أسهم وخيارات مالية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19395/Boursa_HTML_ar.html"
     },
     {
       "id": "3020",
@@ -505,7 +628,10 @@
       "ytdPercent": 2.6,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3020",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19400/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC momentum equities",
+      "investmentUniverseArabic": "أسهم خليجية باستراتيجية الزخم",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19400/Boursa_HTML_ar.html"
     },
     {
       "id": "3022",
@@ -517,7 +643,10 @@
       "ytdPercent": 3.842,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3022",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19414/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Real estate",
+      "investmentUniverseArabic": "عقارات",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19414/Boursa_HTML_ar.html"
     },
     {
       "id": "3019",
@@ -529,7 +658,10 @@
       "ytdPercent": 2.6,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3019",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19402/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19402/Boursa_HTML_ar.html"
     },
     {
       "id": "3014",
@@ -541,7 +673,10 @@
       "ytdPercent": 1.9,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3014",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19401/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19401/Boursa_HTML_ar.html"
     },
     {
       "id": "3012",
@@ -553,7 +688,10 @@
       "ytdPercent": -0.5,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3012",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19404/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait, GCC & Arab equities",
+      "investmentUniverseArabic": "أسهم كويتية وخليجية وعربية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19404/Boursa_HTML_ar.html"
     },
     {
       "id": "3266",
@@ -565,7 +703,10 @@
       "ytdPercent": -2.44,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3266",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19335/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19335/Boursa_HTML_ar.html"
     },
     {
       "id": "3394",
@@ -577,7 +718,10 @@
       "ytdPercent": 1.25,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3394",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19349/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — USD",
+      "investmentUniverseArabic": "سوق نقد بالدولار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19349/Boursa_HTML_ar.html"
     },
     {
       "id": "3263",
@@ -589,7 +733,10 @@
       "ytdPercent": 1.67,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3263",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19436/Boursa_HTML_ar.html"
     },
     {
       "id": "3261",
@@ -601,7 +748,10 @@
       "ytdPercent": -1.74,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3261",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Kuwait equities",
+      "investmentUniverseArabic": "أسهم كويتية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19435/Boursa_HTML_ar.html"
     },
     {
       "id": "3264",
@@ -613,7 +763,10 @@
       "ytdPercent": 7.03,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3264",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19370/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Global multi-asset / fund of funds",
+      "investmentUniverseArabic": "أصول متعددة عالمية / صندوق صناديق",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19370/Boursa_HTML_ar.html"
     },
     {
       "id": "3302",
@@ -625,7 +778,10 @@
       "ytdPercent": 2.84,
       "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3302",
       "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19342/Boursa_HTML_ar.html",
-      "holdings": null
+      "holdings": null,
+      "investmentUniverseEnglish": "Money market — KWD",
+      "investmentUniverseArabic": "سوق نقد بالدينار",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19342/Boursa_HTML_ar.html"
     }
   ],
   "holdingsGeneratedAt": "2026-10-07T17:54:16.953Z",
