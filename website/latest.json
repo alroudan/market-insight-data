@@ -39,12 +39,13 @@
     "averageVolume30d": 0,
     "averageVolumePreviousQuarter": 0,
     "averageVolumeChangeVsPreviousQuarterPercent": null,
-    "tradedValueChangeVsPreviousQuarterPercent": 32.24,
-    "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026",
+    "tradedValueChangeVsPreviousQuarterPercent": -15.36,
+    "tradedValueComparisonPeriod": "Q3 2026 vs Q2 2026",
     "tradingDate": "2026-10-08",
     "pointChange": -31.55,
     "source": "Boursa Kuwait official daily market reports",
-    "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all"
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all",
+    "tradedValueComparisonSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026"
   },
   "mainIndex": {
     "ticker": "BKM",
@@ -56,12 +57,13 @@
     "averageVolume30d": 0,
     "averageVolumePreviousQuarter": 0,
     "averageVolumeChangeVsPreviousQuarterPercent": null,
-    "tradedValueChangeVsPreviousQuarterPercent": 172.7,
-    "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026",
+    "tradedValueChangeVsPreviousQuarterPercent": 13.65,
+    "tradedValueComparisonPeriod": "Q3 2026 vs Q2 2026",
     "tradingDate": "2026-10-08",
     "pointChange": -58.5,
     "source": "Boursa Kuwait official daily market reports",
-    "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all"
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all",
+    "tradedValueComparisonSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026"
   },
   "allShareIndex": {
     "ticker": "BKA",
@@ -73,12 +75,13 @@
     "averageVolume30d": 0,
     "averageVolumePreviousQuarter": 0,
     "averageVolumeChangeVsPreviousQuarterPercent": null,
-    "tradedValueChangeVsPreviousQuarterPercent": 63.93,
-    "tradedValueComparisonPeriod": "Q2 2026 vs Q1 2026",
+    "tradedValueChangeVsPreviousQuarterPercent": -4.47,
+    "tradedValueComparisonPeriod": "Q3 2026 vs Q2 2026",
     "tradingDate": "2026-10-08",
     "pointChange": -34.79,
     "source": "Boursa Kuwait official daily market reports",
-    "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all"
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all",
+    "tradedValueComparisonSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026"
   },
   "marketStats": {
     "latestValueTradedKwd": 84390819.147,
