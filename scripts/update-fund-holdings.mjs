@@ -97,6 +97,8 @@ async function disclosuresForFund(fund) {
   }
   const urls = [
     fund.officialReport,
+    fund.holdings?.currentOfficialReport,
+    fund.holdings?.previousOfficialReport,
     ...response
       .filter(item => item.FalseNews === 0 && REPORT_TEXT.test(item.Title || '') && item.Url)
       .map(item => item.Url)
@@ -105,6 +107,30 @@ async function disclosuresForFund(fund) {
     discoverySucceeded,
     urls: [...new Set(urls)].filter(url => /\.html(?:$|\?)/i.test(url))
   };
+}
+
+
+// Keep dated, source-backed holdings when an official report cannot be retrieved.
+// Only the immediately preceding month is eligible for a monthly comparison.
+function priorMonthPeriod(period) {
+  const [day, month, year] = String(period).split('/').map(Number);
+  if (!day || !month || !year) return null;
+  const end = new Date(Date.UTC(year, month - 1, 0));
+  return `${String(end.getUTCDate()).padStart(2, '0')}/${String(end.getUTCMonth() + 1).padStart(2, '0')}/${end.getUTCFullYear()}`;
+}
+
+function savedHoldingsReport(fund, period) {
+  const h = fund.holdings;
+  if (!h) return null;
+  for (const slot of ['current', 'previous']) {
+    const url = h[slot + 'OfficialReport'];
+    const holdings = h[slot];
+    if (h[slot + 'Period'] === period && url && holdings?.length &&
+        holdings.every(item => item.nameArabic && Number.isFinite(item.weightPercent))) {
+      return { period, url, holdings };
+    }
+  }
+  return null;
 }
 
 async function updateFund(fund) {
@@ -120,7 +146,11 @@ async function updateFund(fund) {
   }
   reports.sort((a, b) => periodValue(b.period) - periodValue(a.period));
   const current = reports.find(report => report.period === TARGET_PERIOD);
-  const previous = reports.find(report => current && periodValue(report.period) < periodValue(current.period));
+  const previousPeriod = current ? priorMonthPeriod(current.period) : null;
+  const previous = reports.find(report => report.period === previousPeriod && report.holdings.length) ||
+    savedHoldingsReport(fund, previousPeriod);
+  const currentHoldings = current?.holdings.length ? current.holdings :
+    (savedHoldingsReport(fund, current?.period)?.holdings || []);
   if (!current) {
     if (!discoverySucceeded) return fund;
     return {
@@ -145,7 +175,7 @@ async function updateFund(fund) {
       previousPeriod: previous?.period || null,
       currentOfficialReport: current.url,
       previousOfficialReport: previous?.url || null,
-      current: current.holdings,
+      current: currentHoldings,
       previous: previous?.holdings || []
     }
   };
