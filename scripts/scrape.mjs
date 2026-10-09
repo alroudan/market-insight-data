@@ -186,10 +186,13 @@ const recommendation = (value) => {
 };
 
 const indexColumns = ["description", "close", "change", "Perf.1M", "Perf.YTD", "volume", "average_volume_30d_calc", "average_volume_90d_calc"];
-const officialQuarterlyTradedValueChange = tradingDate.startsWith("2026-")
-  ? { BKP: 32.24, BKM: 172.70, BKA: 63.93 }
+// Official Q3 2026 summary; never reuse these figures outside the next quarter.
+const hasOfficialQuarterlyComparison = tradingDate >= "2026-10-01" && tradingDate < "2027-01-01";
+const officialQuarterlyTradedValueChange = hasOfficialQuarterlyComparison
+  ? { BKP: -15.36, BKM: 13.65, BKA: -4.47 }
   : {};
-const officialQuarterlyValuePeriod = tradingDate.startsWith("2026-") ? "Q2 2026 vs Q1 2026" : null;
+const officialQuarterlyValuePeriod = hasOfficialQuarterlyComparison ? "Q3 2026 vs Q2 2026" : null;
+const officialQuarterlyValueSourceUrl = hasOfficialQuarterlyComparison ? "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026" : null;
 try {
   const indexResponse = await fetch(endpoint, {
     method: "POST",
@@ -210,6 +213,7 @@ try {
       averageVolumeChangeVsPreviousQuarterPercent: average30d != null && average90d ? ((average30d / average90d) - 1) * 100 : null,
       tradedValueChangeVsPreviousQuarterPercent: officialQuarterlyTradedValueChange[ticker] ?? null,
       tradedValueComparisonPeriod: officialQuarterlyValuePeriod,
+      tradedValueComparisonSourceUrl: officialQuarterlyValueSourceUrl,
       tradingDate
     };
     if (ticker === "BKP") premierIndex = item;
