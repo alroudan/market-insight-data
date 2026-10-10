@@ -86,15 +86,17 @@
   "marketStats": {
     "latestValueTradedKwd": 84390819.147,
     "latestValueTradedDate": "2026-10-08",
-    "averageDailyValueTradedYtdKwd": 81959001.23009938,
-    "latestValueVsYtdAveragePercent": 2.967115119025565,
-    "averageThroughDate": "2026-08-31",
-    "ytdTotalValueTradedKwd": 13195399198.046,
-    "tradingSessionCount": 161,
+    "averageDailyValueTradedYtdKwd": 85478509.82721311,
+    "latestValueVsYtdAveragePercent": -1.272472674607661,
+    "averageThroughDate": "2026-09-30",
+    "ytdTotalValueTradedKwd": 15642567298.38,
+    "tradingSessionCount": 183,
     "source": "Boursa Kuwait official daily market reports",
     "sourceUrl": "https://www.boursakuwait.com.kw/en/market/reports#daily-all",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
-    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
+    "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary",
+    "averageSeptemberSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/p2vhs53592c/2026",
+    "tradingCalendarSourceUrl": "https://www.boursakuwait.com.kw/en/securities/trading/market-holidays/"
   },
   "stocks": {
     "KFH": {
