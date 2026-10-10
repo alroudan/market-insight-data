@@ -658,9 +658,9 @@ if (!officialMarketReport) {
 }
 
 const officialYtdBaseline = tradingDate.startsWith("2026-") ? {
-  throughDate: "2026-08-31",
-  totalValueTradedKwd: 13195399198.046,
-  tradingSessions: 161,
+  throughDate: "2026-09-30",
+  totalValueTradedKwd: 15642567298.380,
+  tradingSessions: 183,
   source: "Boursa Kuwait monthly and quarterly market summaries",
   sourceUrl: "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
 } : null;
