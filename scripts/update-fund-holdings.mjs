@@ -44,10 +44,13 @@ function cleanText(value = '') {
 }
 
 function parsePercent(value = '') {
-  const cleaned = cleanText(value).replace(/,/g, '').replace('%', '').trim();
+  const cleaned = cleanText(value).replace(/,/g, '').replace(/%/g, '').replace(/\s+/g, '');
+  if (!cleaned) return null;
+  const parentheses = cleaned.startsWith('(') && cleaned.endsWith(')');
   const trailingNegative = cleaned.endsWith('-');
-  const number = Number(cleaned.replace(/-$/, ''));
-  return Number.isFinite(number) ? (trailingNegative ? -number : number) : null;
+  const numeric = parentheses ? cleaned.slice(1, -1) : trailingNegative ? cleaned.slice(0, -1) : cleaned;
+  const number = Number(numeric);
+  return Number.isFinite(number) ? (parentheses || trailingNegative ? -Math.abs(number) : number) : null;
 }
 
 function returnValue(html, label) {
