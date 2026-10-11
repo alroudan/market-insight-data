@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-11T05:33:57.851Z",
+  "generatedAt": "2026-10-11T10:48:10.476Z",
   "source": "https://www.boursakuwait.com.kw/ar/participants/participants/mutual-funds",
   "reportingPeriod": "30/09/2026",
   "funds": [
@@ -672,6 +672,40 @@
       "fundNatureEnglish": "Islamic",
       "fundNatureArabic": "إسلامي",
       "fundNatureSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_18752/Boursa_HTML_ar.html"
+    },
+    {
+      "id": "3412",
+      "nameArabic": "صندوق البدر الإسلامي للأسهم الخليجية",
+      "managerArabic": "شركة الخليج كابيتال للاستثمار (ش.م.ك.م)",
+      "reportingDate": "30/09/2026",
+      "monthlyPercent": 0.119,
+      "quarterPercent": 0.119,
+      "ytdPercent": 0.119,
+      "monthlyPage": "https://www.boursakuwait.com.kw/ar/fund/monthly_information#3412",
+      "officialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19508/Boursa_HTML_ar.html",
+      "holdings": {
+        "currentPeriod": "30/09/2026",
+        "previousPeriod": null,
+        "currentOfficialReport": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19508/Boursa_HTML_ar.html",
+        "previousOfficialReport": null,
+        "current": [
+          {
+            "nameArabic": "KIB Wakala Deposit - 7 DAYS",
+            "weightPercent": 100
+          },
+          {
+            "nameArabic": "Cash",
+            "weightPercent": 0.024
+          }
+        ],
+        "previous": []
+      },
+      "investmentUniverseEnglish": "GCC equities",
+      "investmentUniverseArabic": "أسهم خليجية",
+      "investmentUniverseSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19508/Boursa_HTML_ar.html",
+      "fundNatureEnglish": "Islamic",
+      "fundNatureArabic": "إسلامي",
+      "fundNatureSource": "https://ifsahdocs.boursakuwait.com.kw/DiscAssets/2026_19508/Boursa_HTML_ar.html"
     },
     {
       "id": "3322",
