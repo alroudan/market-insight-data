@@ -92,15 +92,15 @@
     "pointChange": -121.23999999999978
   },
   "marketStats": {
-    "latestValueTradedKwd": null,
-    "latestValueTradedDate": null,
+    "latestValueTradedKwd": 69932024.753,
+    "latestValueTradedDate": "2026-10-14",
     "averageDailyValueTradedYtdKwd": 85478509.82721311,
-    "latestValueVsYtdAveragePercent": null,
+    "latestValueVsYtdAveragePercent": -18.187594876933254,
     "averageThroughDate": "2026-09-30",
     "ytdTotalValueTradedKwd": 15642567298.38,
     "tradingSessionCount": 183,
-    "source": null,
-    "sourceUrl": null,
+    "source": "Boursa Kuwait homepage — All-Share market summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
     "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
   },
