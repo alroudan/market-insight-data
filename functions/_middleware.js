@@ -39,7 +39,10 @@ const hashPassword = async (password, saltBase64, iterations = PBKDF2_ITERATIONS
 };
 const validUsername = username => /^[A-Za-z0-9._-]{3,32}$/.test(username);
 const validEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && email.length <= 254;
-const validPassword = password => typeof password === "string" && password.length > 0;
+const MIN_PASSWORD_LENGTH = 5;
+const validPassword = password => typeof password === "string" && password.length >= MIN_PASSWORD_LENGTH && password.length <= 128;
+const PASSWORD_RULE = `Password must be at least ${MIN_PASSWORD_LENGTH} characters`;
+const LOGIN_IP_LIMIT = 10; // failed sign-ins per device (IP) per 15 minutes
 const nowIso = () => new Date().toISOString();
 const cookieValue = (request, name) => {
   const header = request.headers.get("cookie") || "";
@@ -131,6 +134,10 @@ async function ensureSchema(db) {
     await db.prepare("ALTER TABLE users ADD COLUMN email TEXT").run();
     await db.prepare("UPDATE users SET email=lower(username) WHERE username LIKE '%@%'").run();
   }
+  if (!(userColumns.results || []).some(column => column.name === "pending")) {
+    await db.prepare("ALTER TABLE users ADD COLUMN pending INTEGER NOT NULL DEFAULT 0").run();
+  }
+  await db.prepare("CREATE INDEX IF NOT EXISTS idx_audit_ip_action ON audit_log(ip, action, created_at)").run();
   await db.prepare("CREATE UNIQUE INDEX IF NOT EXISTS idx_users_email ON users(email COLLATE NOCASE) WHERE email IS NOT NULL").run();
   await db.prepare("DELETE FROM sessions WHERE expires_at <= ?").bind(nowIso()).run();
   await db.prepare("DELETE FROM page_views WHERE created_at < datetime('now','-180 days')").run();
@@ -150,8 +157,8 @@ async function notifyNewSignup(env, signup) {
     body: JSON.stringify({
       from,
       to: ["admin@hamad.id"],
-      subject: "New Market Insight user signup",
-      text: `A new user created an account.\n\nName: ${signup.firstName} ${signup.lastName}\nEmail: ${signup.email}\nCreated: ${signup.createdAt}`
+      subject: "New Market Insight signup awaiting approval",
+      text: `A new user signed up and is waiting for your approval.\n\nName: ${signup.firstName} ${signup.lastName}\nEmail: ${signup.email}\nCreated: ${signup.createdAt}\n\nApprove or delete the account in the admin panel: https://market.hamad.id/admin`
     })
   });
   if (!response.ok) throw new Error(`Signup notification failed (${response.status})`);
@@ -255,7 +262,7 @@ async function handleApi(context) {
       (env.ADMIN_SETUP_TOKEN && safeEqual(bootstrapPassword, env.ADMIN_SETUP_TOKEN));
     if (!allowed) return json({ error: "Current site password is incorrect" }, 403);
     if (!validUsername(username)) return json({ error: "Username must be 3–32 characters using letters, numbers, dot, dash or underscore" }, 400);
-    if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
+    if (!validPassword(password)) return json({ error: PASSWORD_RULE }, 400);
     const salt = randomBase64(16);
     const passwordHash = await hashPassword(password, salt);
     const created = nowIso();
@@ -276,7 +283,7 @@ async function handleApi(context) {
     if (!firstName || firstName.length > 80) return json({ error: "Enter a valid first name" }, 400);
     if (!lastName || lastName.length > 80) return json({ error: "Enter a valid last name" }, 400);
     if (!validEmail(email)) return json({ error: "Enter a valid email address" }, 400);
-    if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
+    if (!validPassword(password)) return json({ error: PASSWORD_RULE }, 400);
     if (password !== passwordConfirmation) return json({ error: "Passwords do not match" }, 400);
     if (String(body.website || "")) return json({ ok: true }, 201);
     const recent = await env.AUTH_DB.prepare("SELECT COUNT(*) AS count FROM audit_log WHERE action='signup_created' AND ip=? AND created_at>=datetime('now','-1 hour')")
@@ -284,18 +291,15 @@ async function handleApi(context) {
     if (Number(recent?.count || 0) >= 5) return json({ error: "Too many signup attempts. Try again later." }, 429);
     const salt = randomBase64(16), passwordHash = await hashPassword(password, salt), time = nowIso();
     try {
-      const result = await env.AUTH_DB.prepare("INSERT INTO users(username,email,first_name,last_name,password_hash,password_salt,password_iterations,role,active,created_at,updated_at,last_login_at) VALUES(?,?,?,?,?,?,?,?,1,?,?,?)")
-        .bind(email, email, firstName, lastName, passwordHash, salt, PBKDF2_ITERATIONS, "user", time, time, time).run();
+      // New accounts wait for administrator approval and get no session until approved.
+      const result = await env.AUTH_DB.prepare("INSERT INTO users(username,email,first_name,last_name,password_hash,password_salt,password_iterations,role,active,pending,created_at,updated_at) VALUES(?,?,?,?,?,?,?,?,0,1,?,?)")
+        .bind(email, email, firstName, lastName, passwordHash, salt, PBKDF2_ITERATIONS, "user", time, time).run();
       const userId = Number(result.meta.last_row_id);
-      const token = randomBase64(32), tokenHash = await sha256(token);
-      const expires = new Date(Date.now() + SESSION_HOURS * 3600 * 1000).toISOString();
-      await env.AUTH_DB.prepare("INSERT INTO sessions(token_hash,user_id,created_at,expires_at,ip,user_agent) VALUES(?,?,?,?,?,?)")
-        .bind(tokenHash, userId, time, expires, requestIp(request), userAgent(request)).run();
-      await audit(env.AUTH_DB, null, "signup_created", userId, `${firstName} ${lastName} <${email}>`, request);
+      await audit(env.AUTH_DB, null, "signup_created", userId, `${firstName} ${lastName} <${email}> · awaiting approval`, request);
       const notification = notifyNewSignup(env, { firstName, lastName, email, createdAt: time })
         .catch(error => console.error("Signup notification error", error));
       if (context.waitUntil) context.waitUntil(notification); else await notification;
-      return json({ ok: true, user: { id: userId, username: email, role: "user" } }, 201, { "Set-Cookie": sessionCookie(token) });
+      return json({ ok: true, pending: true }, 201);
     } catch (error) {
       return json({ error: /unique/i.test(String(error)) ? "An account with this email already exists" : "Unable to create account" }, 409);
     }
@@ -305,14 +309,24 @@ async function handleApi(context) {
     const body = await readJson(request);
     const username = String(body.username || "").trim();
     const password = String(body.password || "");
+    const ipFailures = await env.AUTH_DB.prepare("SELECT COUNT(*) AS count FROM audit_log WHERE ip=? AND action IN ('login_failed','login_failed_unknown') AND created_at>=?")
+      .bind(requestIp(request), new Date(Date.now() - 15 * 60 * 1000).toISOString()).first();
+    if (Number(ipFailures?.count || 0) >= LOGIN_IP_LIMIT) return json({ error: "Too many sign-in attempts from this device. Try again in 15 minutes." }, 429);
     const user = await env.AUTH_DB.prepare("SELECT * FROM users WHERE username=? COLLATE NOCASE").bind(username).first();
     const dummySalt = "AAAAAAAAAAAAAAAAAAAAAA==";
     const computed = await hashPassword(password, user?.password_salt || dummySalt, Number(user?.password_iterations || 120000));
     const locked = user?.locked_until && new Date(user.locked_until).getTime() > Date.now();
-    if (!user || !user.active || locked || !safeEqual(computed, user.password_hash)) {
+    const passwordOk = Boolean(user) && safeEqual(computed, user.password_hash);
+    if (user && passwordOk && !locked && !user.active && Number(user.pending)) {
+      return json({ error: "Your account is awaiting administrator approval." }, 403);
+    }
+    if (!user || !user.active || locked || !passwordOk) {
+      if (!user) await audit(env.AUTH_DB, null, "login_failed_unknown", null, null, request);
       if (user) {
         const attempts = Number(user.failed_attempts || 0) + 1;
-        const lockedUntil = attempts >= 5 ? new Date(Date.now() + 15 * 60 * 1000).toISOString() : null;
+        // Administrators are protected by the per-device limit instead, so a
+        // stranger can't lock the owner out by guessing wrong on purpose.
+        const lockedUntil = attempts >= 5 && user.role !== "admin" ? new Date(Date.now() + 15 * 60 * 1000).toISOString() : null;
         await env.AUTH_DB.prepare("UPDATE users SET failed_attempts=?,locked_until=?,updated_at=? WHERE id=?")
           .bind(attempts >= 5 ? 0 : attempts, lockedUntil, nowIso(), user.id).run();
         await audit(env.AUTH_DB, user, "login_failed", user.id, lockedUntil ? "Account locked for 15 minutes" : null, request);
@@ -355,7 +369,7 @@ async function handleApi(context) {
     const body = await readJson(request);
     const currentPassword = String(body.currentPassword || "");
     const newPassword = String(body.newPassword || "");
-    if (!validPassword(newPassword)) return json({ error: "New password cannot be empty" }, 400);
+    if (!validPassword(newPassword)) return json({ error: PASSWORD_RULE }, 400);
     const record = await env.AUTH_DB.prepare("SELECT password_hash,password_salt,password_iterations FROM users WHERE id=?").bind(user.id).first();
     const computed = await hashPassword(currentPassword, record.password_salt, Number(record.password_iterations || 120000));
     if (!safeEqual(computed, record.password_hash)) return json({ error: "Current password is incorrect" }, 403);
@@ -371,7 +385,7 @@ async function handleApi(context) {
   if (path === "/api/admin/users" && request.method === "GET") {
     const auth = await requireAdmin(context);
     if (auth.response) return auth.response;
-    const result = await env.AUTH_DB.prepare("SELECT id,username,role,active,created_at,updated_at,last_login_at,locked_until FROM users ORDER BY username COLLATE NOCASE").all();
+    const result = await env.AUTH_DB.prepare("SELECT id,username,first_name,last_name,role,active,pending,created_at,updated_at,last_login_at,locked_until FROM users ORDER BY pending DESC, username COLLATE NOCASE").all();
     return json({ users: result.results || [], currentUserId: auth.user.id });
   }
 
@@ -381,7 +395,7 @@ async function handleApi(context) {
     const body = await readJson(request);
     const username = String(body.username || "").trim(), password = String(body.password || ""), role = body.role === "admin" ? "admin" : "user";
     if (!validUsername(username)) return json({ error: "Username must be 3–32 characters using letters, numbers, dot, dash or underscore" }, 400);
-    if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
+    if (!validPassword(password)) return json({ error: PASSWORD_RULE }, 400);
     const salt = randomBase64(16), passwordHash = await hashPassword(password, salt), time = nowIso();
     try {
       const result = await env.AUTH_DB.prepare("INSERT INTO users(username,password_hash,password_salt,password_iterations,role,active,created_at,updated_at) VALUES(?,?,?,?,?,1,?,?)")
@@ -398,12 +412,12 @@ async function handleApi(context) {
     const auth = await requireAdmin(context);
     if (auth.response) return auth.response;
     const targetId = Number(userMatch[1]), action = userMatch[2];
-    const target = await env.AUTH_DB.prepare("SELECT id,username,role,active FROM users WHERE id=?").bind(targetId).first();
+    const target = await env.AUTH_DB.prepare("SELECT id,username,role,active,pending FROM users WHERE id=?").bind(targetId).first();
     if (!target) return json({ error: "User not found" }, 404);
     const body = await readJson(request);
     if (action === "password") {
       const password = String(body.password || "");
-      if (!validPassword(password)) return json({ error: "Password cannot be empty" }, 400);
+      if (!validPassword(password)) return json({ error: PASSWORD_RULE }, 400);
       const salt = randomBase64(16), passwordHash = await hashPassword(password, salt);
       await env.AUTH_DB.batch([
         env.AUTH_DB.prepare("UPDATE users SET password_hash=?,password_salt=?,password_iterations=?,updated_at=? WHERE id=?").bind(passwordHash, salt, PBKDF2_ITERATIONS, nowIso(), targetId),
@@ -413,9 +427,10 @@ async function handleApi(context) {
     } else if (action === "status") {
       const active = body.active ? 1 : 0;
       if (targetId === auth.user.id && !active) return json({ error: "You cannot suspend your own account" }, 400);
-      await env.AUTH_DB.prepare("UPDATE users SET active=?,updated_at=? WHERE id=?").bind(active, nowIso(), targetId).run();
+      const wasPending = Number(target.pending) === 1;
+      await env.AUTH_DB.prepare("UPDATE users SET active=?,pending=CASE WHEN ?=1 THEN 0 ELSE pending END,updated_at=? WHERE id=?").bind(active, active, nowIso(), targetId).run();
       if (!active) await env.AUTH_DB.prepare("DELETE FROM sessions WHERE user_id=?").bind(targetId).run();
-      await audit(env.AUTH_DB, auth.user, active ? "user_enabled" : "user_suspended", targetId, target.username, request);
+      await audit(env.AUTH_DB, auth.user, active ? (wasPending ? "user_approved" : "user_enabled") : "user_suspended", targetId, target.username, request);
     } else if (action === "role") {
       const role = body.role === "admin" ? "admin" : "user";
       if (targetId === auth.user.id && role !== "admin") return json({ error: "You cannot remove your own administrator role" }, 400);
@@ -495,7 +510,7 @@ async function handleApi(context) {
     const auth = await requireAdmin(context);
     if (auth.response) return auth.response;
     const result = await env.AUTH_DB.prepare(`
-      SELECT a.id,a.detail,a.created_at,target.username AS target_username,
+      SELECT a.id,a.detail,a.created_at,target.username AS target_username,target.id AS target_id,target.pending AS target_pending,
         CASE WHEN nr.event_id IS NULL THEN 0 ELSE 1 END AS is_read
       FROM audit_log a
       LEFT JOIN users target ON target.id=a.target_user_id
