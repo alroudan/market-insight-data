@@ -2,7 +2,7 @@
 // 13:32 run publishes stock prices. Poll it and patch only the official index
 // closes and All-Share traded value into the already-published snapshot.
 import { readFile, writeFile } from "node:fs/promises";
-import { applyOfficialIndexes, buildMarketStats, fetchOfficialDailyReport } from "./official-report.mjs";
+import { applyOfficialIndexes, buildMarketStats, fetchHomepageSummary, fetchOfficialDailyReport } from "./official-report.mjs";
 
 const file = new URL("../data/latest.json", import.meta.url);
 const maxMinutes = Number(process.env.OFFICIAL_WAIT_MINUTES || 180);
@@ -23,9 +23,15 @@ for (let attempt = 1; ; attempt += 1) {
     report = await fetchOfficialDailyReport(tradingDate);
     break;
   } catch (error) {
-    lastError = error.message;
-    console.log(`Attempt ${attempt}: ${lastError}`);
+    lastError = "daily report: " + error.message;
   }
+  try {
+    report = await fetchHomepageSummary(tradingDate);
+    break;
+  } catch (error) {
+    lastError += "; homepage: " + error.message;
+  }
+  console.log(`Attempt ${attempt}: ${lastError}`);
   if (Date.now() + intervalMinutes * 60_000 > deadline) break;
   await new Promise((resolve) => setTimeout(resolve, intervalMinutes * 60_000));
 }
@@ -42,4 +48,4 @@ snapshot.failures = (snapshot.failures || []).filter(
 );
 snapshot.officialReportAppliedAt = new Date().toISOString();
 await writeFile(file, JSON.stringify(snapshot, null, 2) + "\n");
-console.log("Official daily report applied:", tradingDate, "KWD", report.valueTradedKwd);
+console.log("Official figures applied from", report.source + ":", tradingDate, "KWD", report.valueTradedKwd);
