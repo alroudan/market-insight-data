@@ -156,12 +156,16 @@ async function notifyNewSignup(env, signup) {
     headers: { "Authorization": `Bearer ${env.RESEND_API_KEY}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from,
-      to: ["admin@hamad.id"],
+      to: String(env.SIGNUP_NOTIFY_TO || "admin@hamad.id").split(",").map(v => v.trim()).filter(Boolean),
       subject: "New Market Insight signup awaiting approval",
       text: `A new user signed up and is waiting for your approval.\n\nName: ${signup.firstName} ${signup.lastName}\nEmail: ${signup.email}\nCreated: ${signup.createdAt}\n\nApprove or delete the account in the admin panel: https://market.hamad.id/admin`
     })
   });
-  if (!response.ok) throw new Error(`Signup notification failed (${response.status})`);
+  if (!response.ok) {
+    let reason = "";
+    try { const body = await response.json(); reason = body.message || body.error || ""; } catch {}
+    throw new Error(`Email service returned ${response.status}${reason ? ": " + reason : ""}`);
+  }
   return { sent: true };
 }
 
@@ -297,7 +301,7 @@ async function handleApi(context) {
       const userId = Number(result.meta.last_row_id);
       await audit(env.AUTH_DB, null, "signup_created", userId, `${firstName} ${lastName} <${email}> · awaiting approval`, request);
       const notification = notifyNewSignup(env, { firstName, lastName, email, createdAt: time })
-        .catch(error => console.error("Signup notification error", error));
+        .catch(error => audit(env.AUTH_DB, null, "signup_email_failed", userId, String(error.message || error).slice(0, 300), null).catch(() => {}));
       if (context.waitUntil) context.waitUntil(notification); else await notification;
       return json({ ok: true, pending: true }, 201);
     } catch (error) {
@@ -520,6 +524,20 @@ async function handleApi(context) {
     `).bind(auth.user.id).all();
     const events = result.results || [];
     return json({ events, unreadCount: events.filter(event => !Number(event.is_read)).length });
+  }
+
+  if (path === "/api/admin/test-email" && request.method === "POST") {
+    const auth = await requireAdmin(context);
+    if (auth.response) return auth.response;
+    try {
+      const result = await notifyNewSignup(env, { firstName: "Test", lastName: "Notification", email: "test@example.com", createdAt: nowIso() });
+      if (!result.sent) return json({ ok: false, error: "Email service is not configured (RESEND_API_KEY missing)" }, 200);
+      await audit(env.AUTH_DB, auth.user, "test_email_sent", null, String(env.SIGNUP_NOTIFY_TO || "admin@hamad.id"), request);
+      return json({ ok: true, to: String(env.SIGNUP_NOTIFY_TO || "admin@hamad.id"), from: env.SIGNUP_FROM_EMAIL || "Market Insight <no-reply@hamad.id>" });
+    } catch (error) {
+      await audit(env.AUTH_DB, auth.user, "signup_email_failed", null, String(error.message || error).slice(0, 300), request);
+      return json({ ok: false, error: String(error.message || error) }, 200);
+    }
   }
 
   if (path === "/api/admin/signup-notifications/read" && request.method === "POST") {
