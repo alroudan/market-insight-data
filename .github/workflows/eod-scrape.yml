@@ -23,6 +23,7 @@ concurrency:
 
 jobs:
   scrape:
+    if: ${{ false }} # Paused by owner; resume only on explicit request.
     runs-on: ubuntu-latest
     timeout-minutes: 220
     steps:
