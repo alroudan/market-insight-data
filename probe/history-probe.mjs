@@ -90,7 +90,9 @@ function newRules(t, i) {
   const dayRange = h[i] - l[i], closeLoc = dayRange > 0 ? (c[i] - l[i]) / dayRange : 1, closeOk = closeLoc >= 0.75;
   const ext = c[i] / sma20 - 1, extOk = ext <= 0.08;
   let score = 0; score += volOk ? 25 : 0; score += trendOk ? 20 : 0; score += rsOk ? 20 + 10 * (rs - 0.7) / 0.3 : 0; score += closeOk ? 15 : 0; score += extOk ? 10 : 0;
-  return { score, volOk, trendOk, rsOk, closeOk, extOk, value: val20, setup: high52 ? "52w" : range ? "range" : "squeeze", required: volOk && trendOk };
+  const level = high52 ? prevHigh250 : range ? prevHigh20 : upper;
+  return { score, volOk, trendOk, rsOk, closeOk, extOk, value: val20, setup: high52 ? "52w" : range ? "range" : "squeeze", required: volOk && trendOk,
+    close: c[i], level, stop: Math.max(level * 0.98, c[i] - 1.5 * (I.atr[i] || 0)), ext: ext * 100, volRatio: avgV20 ? v[i] / avgV20 : null, rs: rs * 100, closeLoc: closeLoc * 100, sma50, atr: I.atr[i] };
 }
 // --- evaluate
 const H5 = [5, 10, 20];
@@ -112,14 +114,12 @@ function evaluate(name, fn, pick, opts = {}) {
   const years = {}; for (const r of sig) (years[r.d.slice(0, 4)] ??= []).push(r);
   return { name, all: st(sig), weakMarket: st(sig.filter((r) => r.weak)), normalMarket: st(sig.filter((r) => !r.weak)), illiquidShare: +(sig.filter((r) => r.value < 50000).length / Math.max(1, sig.length) * 100).toFixed(0), perYear: Object.fromEntries(Object.entries(years).map(([y, r]) => [y, st(r)])), sessions: T - 280 };
 }
-const out = { coverage: { stocks: loaded.length, from: dates[260], to: dates[T - 21] }, results: [
-  evaluate("OLD: current Hot List", oldRules, () => true),
-  evaluate("OLD + liquidity filter (>= KD 100k/day)", (t, i) => { const r = oldRules(t, i); if (!r) return null; let s = 0; for (let k = i - 19; k <= i; k++) s += S[t].c[k] / 1000 * S[t].v[k]; return s / 20 >= 100000 ? r : null; }, () => true),
-  evaluate("NEW: trigger + volume + trend required", newRules, (r) => r.required),
-  evaluate("NEW: score >= 70", newRules, (r) => r.required && r.score >= 70),
-  evaluate("NEW: score >= 70, weak market needs >= 85", newRules, (r, weak) => r.required && r.score >= (weak ? 85 : 70)),
-  evaluate("NEW: score >= 85 (all conditions)", newRules, (r) => r.required && r.score >= 85),
-  evaluate("NEW: score >= 70, skip weak markets", newRules, (r, weak) => r.required && r.score >= 70 && !weak)
-] };
-await writeFile("probe/result.json", JSON.stringify(out, null, 1));
-for (const r of out.results) console.log(r.name, JSON.stringify(r.all));
+// per-setup stats and recent example days
+const perSetup = {};
+for (const setup of ["range", "52w", "squeeze"]) perSetup[setup] = evaluate(setup, (t, i) => { const r = newRules(t, i); return r && r.setup === setup ? r : null; }, (r) => r.required).all;
+const recent = [];
+for (let i = T - 1; i >= T - 120 && recent.length < 4; i--) {
+  const rows = loaded.map((t) => { const r = newRules(t, i); return r && r.required ? { t, name: snap.stocks[t].name, nameAr: snap.stocks[t].nameArabic, ...r, fwd10: i + 10 < T ? S[t].c[i + 10] / S[t].c[i] - 1 - (mkt[i + 10] / mkt[i] - 1) : null } : null; }).filter(Boolean).sort((a, b) => b.score - a.score);
+  if (rows.length >= 2) recent.push({ date: dates[i], breadth: breadth[i], rows });
+}
+await writeFile("probe/result.json", JSON.stringify({ perSetup, recent, todayBreadth: breadth[T - 1], lastDate: dates[T - 1] }, null, 1));
