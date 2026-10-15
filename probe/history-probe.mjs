@@ -1,19 +1,13 @@
-// Probe 6: which endpoint feeds the homepage All-Share "Market Summary" widget?
+// Probe 7: raw index snapshot feeds used by the homepage.
 import { writeFile } from "node:fs/promises";
-import { chromium } from "playwright";
-const out = { ranAt: new Date().toISOString(), requests: [], report: null, text: null };
-try { const r = await fetch("https://www.boursakuwait.com.kw/data-api/client-services?L=E&DT=1&MT=A&RT=3522", { headers: { "user-agent": "Mozilla/5.0 Market Insight EOD collector", accept: "application/json" } }); const j = await r.json(); out.report = j["Market Summary"]?.[0]; } catch (e) { out.report = e.message; }
-const browser = await chromium.launch();
-const page = await browser.newPage({ locale: "en-GB", userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" });
-page.on("response", async (res) => {
-  const url = res.url();
-  if (!/boursakuwait/.test(url) || /\.(png|jpg|svg|css|woff2?|ttf|ico|gif|webp)(\?|$)/i.test(url)) return;
-  let body = ""; try { body = (await res.text()).slice(0, 400); } catch {}
-  out.requests.push({ url: url.slice(0, 300), status: res.status(), type: res.request().resourceType(), body: /Turnover|Value|Market Summary|All-Share|Index/i.test(body) ? body : body.slice(0, 80) });
-});
-await page.goto("https://www.boursakuwait.com.kw/en/", { waitUntil: "domcontentloaded", timeout: 45000 }).catch(e => out.gotoError = e.message);
-await page.waitForTimeout(30000);
-const text = await page.locator("body").innerText().catch(() => "");
-const k = text.lastIndexOf("Market Summary"); out.text = text.slice(Math.max(0, k - 50), k + 700);
-await browser.close();
+const out = {};
+const ua = { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", accept: "application/json", referer: "https://www.boursakuwait.com.kw/en/" };
+for (const [k, url] of Object.entries({
+  rt303: "https://www.boursakuwait.com.kw/price?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=303&SRC=KSE&AS=1",
+  rt301: "https://www.boursakuwait.com.kw/price?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=301",
+  chart: "https://www.boursakuwait.com.kw/chartDel?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=37&E=KSE&S=01&AE=1&CM=5&NOD=1&CT=3",
+  chartDaily: "https://www.boursakuwait.com.kw/chartDel?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=37&E=KSE&S=01&AE=1&CM=1&NOD=800&CT=3"
+})) {
+  try { const r = await fetch(url, { headers: ua }); const t = await r.text(); out[k] = { status: r.status, len: t.length, head: t.slice(0, 1500), tail: t.slice(-600) }; } catch (e) { out[k] = e.message; }
+}
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
