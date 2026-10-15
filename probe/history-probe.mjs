@@ -26,7 +26,7 @@ for (const [name, ua] of Object.entries(uas)) {
 }
 // Shape of the official report payload (looking for index history arrays)
 const shape = (v, d = 0) => Array.isArray(v) ? { array: v.length, first: d < 3 ? shape(v[0], d + 1) : typeof v[0], last: d < 1 ? v.at(-1) : undefined } : v && typeof v === "object" ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, d < 4 ? shape(x, d + 1) : typeof x])) : v;
-for (const mt of ["A", "P"]) {
-  try { const r = await fetch(`https://www.boursakuwait.com.kw/data-api/client-services?L=E&DT=1&MT=${mt}&RT=3522`, { headers: { "user-agent": uas.collector, accept: "application/json" } }); out.boursa["shape_" + mt] = shape(await r.json()); } catch (e) { out.boursa["shape_" + mt] = e.message; }
+for (const q of ["DT=2", "DT=5", "DT=30", "DT=20261001", "DT=1&D=20261001", "DT=1&TD=20261001", "DT=1&Date=20261001"]) {
+  try { const r = await fetch(`https://www.boursakuwait.com.kw/data-api/client-services?L=E&${q}&MT=A&RT=3522`, { headers: { "user-agent": uas.collector, accept: "application/json" } }); const t = await r.text(); let j = null; try { j = JSON.parse(t) } catch {} out.boursa[q] = { status: r.status, date: j?.["Market Summary"]?.[0]?.TransactionDate, index: j?.["Market Summary"]?.[0]?.Index, turnover: j?.["Market Summary"]?.[0]?.Turnover, sample: j ? undefined : t.slice(0, 120) }; } catch (e) { out.boursa[q] = e.message; }
 }
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
