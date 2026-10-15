@@ -15,7 +15,6 @@ concurrency:
 
 jobs:
   update:
-    if: ${{ false }} # Paused by owner; resume only on explicit request.
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
