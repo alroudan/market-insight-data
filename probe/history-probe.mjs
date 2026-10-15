@@ -1,13 +1,21 @@
-// Probe 7: raw index snapshot feeds used by the homepage.
+// Probe 8: read Premier / Main / All-Share tabs of the homepage Market Summary table.
 import { writeFile } from "node:fs/promises";
-const out = {};
-const ua = { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", accept: "application/json", referer: "https://www.boursakuwait.com.kw/en/" };
-for (const [k, url] of Object.entries({
-  rt303: "https://www.boursakuwait.com.kw/price?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=303&SRC=KSE&AS=1",
-  rt301: "https://www.boursakuwait.com.kw/price?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=301",
-  chart: "https://www.boursakuwait.com.kw/chartDel?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=37&E=KSE&S=01&AE=1&CM=5&NOD=1&CT=3",
-  chartDaily: "https://www.boursakuwait.com.kw/chartDel?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=37&E=KSE&S=01&AE=1&CM=1&NOD=800&CT=3"
-})) {
-  try { const r = await fetch(url, { headers: ua }); const t = await r.text(); out[k] = { status: r.status, len: t.length, head: t.slice(0, 1500), tail: t.slice(-600) }; } catch (e) { out[k] = e.message; }
+import { chromium } from "playwright";
+const out = { ranAt: new Date().toISOString(), tabs: {} };
+const browser = await chromium.launch();
+const page = await browser.newPage({ locale: "en-GB", viewport: { width: 1400, height: 1000 }, userAgent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" });
+await page.goto("https://www.boursakuwait.com.kw/en/", { waitUntil: "domcontentloaded", timeout: 45000 });
+await page.waitForFunction(() => /Market Summary[\s\S]{0,40}Closed/.test(document.body.innerText), null, { timeout: 60000 }).catch(e => out.waitError = e.message);
+const block = async () => { const t = await page.locator("body").innerText(); const k = t.indexOf("Delayed by 15 Minutes"); return t.slice(Math.max(0, k - 80), k + 260).replace(/\s+/g, " "); };
+out.default = await block();
+for (const name of ["Main Market", "All-Share", "Premier Market"]) {
+  try {
+    const candidates = page.getByText(name, { exact: true });
+    const n = await candidates.count(); out.tabs[name + "_count"] = n;
+    let clicked = false;
+    for (let i = 0; i < n && !clicked; i++) { const c = candidates.nth(i); const box = await c.boundingBox(); if (!box) continue; const before = await block(); await c.click({ timeout: 3000 }).catch(() => {}); await page.waitForTimeout(2500); const after = await block(); if (after !== before && after.startsWith(name)) { out.tabs[name] = after; clicked = true; } else if (after !== before) { out.tabs[name + "_alt" + i] = after; } }
+  } catch (e) { out.tabs[name + "_error"] = e.message; }
 }
+const t = await page.locator("body").innerText(); const k = t.indexOf("Market Summary"); out.banner = t.slice(Math.max(0, k - 30), k + 160).replace(/\s+/g, " ");
+await browser.close();
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
