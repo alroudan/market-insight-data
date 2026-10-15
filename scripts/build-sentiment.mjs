@@ -42,7 +42,7 @@ async function yahooHistory(ticker) {
       const rows = new Map();
       result.timestamp.forEach((ts, index) => {
         const close = quote.close[index];
-        if (close != null && close > 0) rows.set(kuwaitDate(ts), { close, volume: quote.volume[index] || 0 });
+        if (close != null && close > 0) rows.set(kuwaitDate(ts), { close, volume: quote.volume[index] || 0, open: quote.open?.[index] || close, high: quote.high?.[index] || close, low: quote.low?.[index] || close });
       });
       return rows;
     } catch (error) {
@@ -64,6 +64,12 @@ await Promise.all(Array.from({ length: 6 }, async () => {
 }));
 const loaded = tickers.filter((ticker) => histories[ticker]?.size);
 if (loaded.length < 100) throw new Error(`Only ${loaded.length} stock histories loaded; keeping previous sentiment file`);
+
+// Share the downloaded history with the Hot List builder (same workflow run).
+if (process.env.HISTORY_CACHE) {
+  const { writeFile: write } = await import("node:fs/promises");
+  await write(process.env.HISTORY_CACHE, JSON.stringify(Object.fromEntries(loaded.map((t) => [t, [...histories[t].entries()]]))));
+}
 
 // Today's bar from the published snapshot (same close/volume as the rest of the site).
 const today = snapshot.tradingDate;

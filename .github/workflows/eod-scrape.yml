@@ -72,9 +72,18 @@ jobs:
       - name: Update Fear & Greed index
         if: steps.freshness.outputs.already_current != 'true'
         continue-on-error: true
+        env:
+          HISTORY_CACHE: /tmp/kse-history.json
         run: |
           cp data/latest.json website/latest.json
           node scripts/build-sentiment.mjs
+
+      - name: Update Hot List
+        if: steps.freshness.outputs.already_current != 'true'
+        continue-on-error: true
+        env:
+          HISTORY_CACHE: /tmp/kse-history.json
+        run: node scripts/build-hotlist.mjs
 
       - name: Commit updated snapshot
         if: steps.freshness.outputs.already_current != 'true'
@@ -84,6 +93,7 @@ jobs:
           git config user.email "actions@users.noreply.github.com"
           git add data/latest.json website/latest.json
           [ -f website/sentiment.json ] && git add website/sentiment.json
+          [ -f website/hotlist.json ] && git add website/hotlist.json data/hotlist-log.json
           if git diff --cached --quiet; then
             echo "No data changes to commit."
           else

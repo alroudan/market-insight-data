@@ -22,6 +22,9 @@ const columns = [
   "price_52_week_high",
   "price_52_week_low",
   "close",
+  "open",
+  "high",
+  "low",
   "change",
   "Perf.1M",
   "Perf.YTD",
@@ -486,6 +489,9 @@ results[ticker] = {
     fetchedAt,
     tradingDate,
     close: finite(d.close),
+    open: finite(d.open),
+    high: finite(d.high),
+    low: finite(d.low),
     previousClose: finite(d.close) != null && finite(d.change) != null && (1 + finite(d.change) / 100) !== 0
       ? finite(d.close) / (1 + finite(d.change) / 100)
       : null,
