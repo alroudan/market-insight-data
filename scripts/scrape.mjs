@@ -1,4 +1,5 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { applyOfficialIndexes, buildMarketStats, fetchOfficialDailyReport } from "./official-report.mjs";
 
 const stocks = JSON.parse(await readFile(new URL("../stocks.json", import.meta.url), "utf8"));
 const dataDir = new URL("../data/", import.meta.url);
@@ -255,35 +256,97 @@ const reportedPeriodLabel = (header, year) => {
   return normalized ? normalized.replace(/\b\d{4}\b/g, "").trim() + " " + year : String(year);
 };
 
+const MONTHS = { jan: 0, feb: 1, mar: 2, apr: 3, may: 4, jun: 5, jul: 6, aug: 7, sep: 8, oct: 9, nov: 10, dec: 11 };
+const MONTH_LABELS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+const PERIOD_WORDS = { 3: "Three", 6: "Six", 9: "Nine" };
+
+// IFSAH headers look like "01-Jan-2026 to 30-Jun-2026".
+const parseDateRange = (cell) => {
+  const match = String(cell || "").match(/(\d{1,2})-([A-Za-z]{3})-(\d{4})\s+to\s+(\d{1,2})-([A-Za-z]{3})-(\d{4})/);
+  if (!match || MONTHS[match[2].toLowerCase()] == null || MONTHS[match[5].toLowerCase()] == null) return null;
+  const startMonth = Number(match[3]) * 12 + MONTHS[match[2].toLowerCase()];
+  const endMonth = Number(match[6]) * 12 + MONTHS[match[5].toLowerCase()];
+  return {
+    months: endMonth - startMonth + 1,
+    endKey: endMonth,
+    endYear: Number(match[6]),
+    label: Number(match[4]) + " " + MONTH_LABELS[MONTHS[match[5].toLowerCase()]] + " " + match[6]
+  };
+};
+
+const rangeLabel = (range) => range.months === 12
+  ? "Year ended " + range.label
+  : (PERIOD_WORDS[range.months] || String(range.months)) + " months ended " + range.label;
+
+const parseEpsCell = (cell) => {
+  const normalized = String(cell).replace(/,/g, "").replace(/[٠-٩]/g, (digit) => String(digit.charCodeAt(0) - 0x0660)).trim();
+  const matches = [...normalized.matchAll(/\(?\s*(-?\d+(?:\.\d+)?)\s*\)?/g)];
+  if (!matches.length) return null;
+  const match = matches.at(-1);
+  const parenthesized = /\(\s*-?\d/.test(match[0]);
+  const absolute = Math.abs(Number(match[1]));
+  const value = parenthesized ? -absolute : Number(match[1]);
+  return Number.isFinite(value) && Math.abs(value) <= 1000 ? value : null;
+};
+
+const EPS_LABEL = /(?:earnings.*per share|loss(?:es)?.*per share|\beps\b|ربحي?ة\s+السهم|خسار[ةه]\s+السهم|ربح\s+السهم|العائد\s+على\s+السهم)/i;
+
 const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
   const rows = tableRows(html);
-  let epsIndex = -1;
-  let epsValues = [];
-  let epsScore = -1;
+  const candidates = [];
+  let hasDiscontinued = false;
   for (let index = 0; index < rows.length; index += 1) {
     const label = rows[index][0] || "";
-    if (!/(?:earnings.*per share|\beps\b)/i.test(label) || /disclosure|abstract|continuing operations|discontinued operations/i.test(label)) continue;
-    let labelScore = 0;
-    if (/attributable to (?:the )?(?:equity )?(?:shareholders|owners) of (?:the )?parent/i.test(label)) labelScore += 8;
-    if (/\bbasic\b/i.test(label)) labelScore += 5;
-    if (/\bdiluted\b/i.test(label)) labelScore += 2;
-    if (/\bfils?\b/i.test(label)) labelScore += 2;
-    if (/basic.*(?:and|&)?.*diluted|earnings.*basic.*diluted/i.test(label)) labelScore += 1;
-    const values = rows[index].slice(1).map((cell) => {
-      const normalized = String(cell).replace(/,/g, "").trim();
-      const matches = [...normalized.matchAll(/\(?\s*(-?\d+(?:\.\d+)?)\s*\)?/g)];
-      if (!matches.length) return null;
-      const match = matches.at(-1);
-      const parenthesized = /\(\s*-?\d/.test(match[0]);
-      const absolute = Math.abs(Number(match[1]));
-      return parenthesized ? -absolute : Number(match[1]);
-    }).filter((value) => Number.isFinite(value) && Math.abs(value) <= 1000);
-    if (values.length >= 2 && labelScore > epsScore) { epsIndex = index; epsValues = values; epsScore = labelScore; }
+    if (!EPS_LABEL.test(label) || /disclosure|abstract|إفصاح/i.test(label)) continue;
+    const cells = rows[index].slice(1).map(parseEpsCell);
+    const values = cells.filter((value) => value != null);
+    if (/discontinued|المتوقفة|غير المستمرة/i.test(label)) {
+      if (values.some((value) => value !== 0)) hasDiscontinued = true;
+      continue;
+    }
+    if (values.length < 2) continue;
+    const continuing = /continuing operations|العمليات المستمرة/i.test(label);
+    let score = 0;
+    if (/attributable to (?:the )?(?:equity )?(?:shareholders|owners) of (?:the )?parent|مساهمي (?:الشركة )?الأم|لمساهمي/i.test(label)) score += 8;
+    if (/\bbasic\b|الأساسي/i.test(label)) score += 5;
+    if (/\bdiluted\b|المخفف/i.test(label)) score += 2;
+    if (/\bfils?\b|فلس/i.test(label)) score += 2;
+    if (/basic.*(?:and|&)?.*diluted|earnings.*basic.*diluted/i.test(label)) score += 1;
+    candidates.push({ index, cells, values, continuing, score });
   }
-  if (epsIndex < 0 || epsValues.length < 2 || epsScore < 5) return null;
+  // A "continuing operations" figure equals total EPS only when the company
+  // reports no discontinued operations; otherwise it would overstate/understate.
+  const usable = candidates.filter((item) => item.score >= 5 && (!item.continuing || !hasDiscontinued));
+  const best = usable.sort((a, b) => Number(a.continuing) - Number(b.continuing) || b.score - a.score)[0];
+  if (!best) return null;
+
+  // Prefer exact period labels from the dated column headers.
+  for (let index = best.index - 1; index >= Math.max(0, best.index - 60); index -= 1) {
+    const ranges = rows[index].slice(1).map(parseDateRange);
+    if (ranges.filter(Boolean).length < 2) continue;
+    const columns = ranges.map((range, column) => ({ range, value: best.cells[column] }))
+      .filter((column) => column.range && column.value != null);
+    const longest = Math.max(...columns.map((column) => column.range.months));
+    const cumulative = columns.filter((column) => column.range.months === longest).sort((a, b) => b.range.endKey - a.range.endKey);
+    const current = cumulative[0];
+    const previous = cumulative.find((column) => column.range.endKey === current?.range.endKey - 12);
+    if (current && previous) {
+      return {
+        reportedEpsFils: current.value,
+        reportedEpsPeriod: rangeLabel(current.range),
+        previousReportedEpsFils: previous.value,
+        previousReportedEpsPeriod: rangeLabel(previous.range),
+        reportedEpsSource: "Latest Boursa Kuwait IFSAH financial statement",
+        reportedEpsSourceUrl: sourceUrl
+      };
+    }
+    break;
+  }
+
+  const epsValues = best.values;
   let header = "";
   let years = [];
-  for (let index = epsIndex - 1; index >= Math.max(0, epsIndex - 25); index -= 1) {
+  for (let index = best.index - 1; index >= Math.max(0, best.index - 25); index -= 1) {
     const joined = rows[index].join(" ");
     if (!years.length) {
       const rowYears = rows[index].flatMap((cell) => cell.match(/\b20\d{2}\b/g) || [])
@@ -313,6 +376,12 @@ const parseReportedEps = (html, sourceUrl, filingMeta = {}) => {
     reportedEpsSourceUrl: sourceUrl
   };
 };
+
+const epsDiagnostics = (html) => tableRows(html)
+  .filter((row) => EPS_LABEL.test(row[0] || ""))
+  .slice(0, 6)
+  .map((row) => row.slice(0, 5).join(" | ").slice(0, 160))
+  .join(" ;; ");
 
 const officialReportedEps = { ...verifiedReportedEpsFallback };
 try {
@@ -350,14 +419,19 @@ try {
             year: Number(filing.year) || 0,
             period: Number(filing.period) || 0
           }))
-        ).filter((filing) => /ifsahdocs.*HTML_en\.html/i.test(filing.sourceUrl))
-          .sort((a, b) => b.activatedDate.localeCompare(a.activatedDate) || b.year - a.year || a.period - b.period);
+        ).filter((filing) => /ifsahdocs.*HTML_(?:en|ar)\.html/i.test(filing.sourceUrl))
+          .sort((a, b) => b.activatedDate.localeCompare(a.activatedDate) || b.year - a.year || a.period - b.period
+            || Number(/HTML_ar/i.test(a.sourceUrl)) - Number(/HTML_ar/i.test(b.sourceUrl)));
         const latest = filings[0];
-        if (!latest) throw new Error("No standardized English IFSAH filing found");
+        if (!latest) {
+          const kinds = [...new Set((statementPayload.dataFields || []).flatMap((filing) => (filing.fileNames || []).map((file) => String(file.type).toUpperCase())))];
+          throw new Error("No standardized IFSAH HTML filing published (available: " + (kinds.join(", ") || "none") + ")");
+        }
         const filingResponse = await fetch(latest.sourceUrl, { headers: { "user-agent": "Mozilla/5.0 Market Insight EPS collector" } });
         if (!filingResponse.ok) throw new Error("IFSAH returned HTTP " + filingResponse.status);
-        const parsed = parseReportedEps(await filingResponse.text(), latest.sourceUrl, latest);
-        if (!parsed) throw new Error("Cumulative EPS row or comparative period was not found");
+        const filingHtml = await filingResponse.text();
+        const parsed = parseReportedEps(filingHtml, latest.sourceUrl, latest);
+        if (!parsed) throw new Error("Cumulative EPS row or comparative period was not found in " + latest.sourceUrl + " — EPS rows: " + (epsDiagnostics(filingHtml) || "none"));
         officialReportedEps[stock.ticker] = parsed;
       } catch (error) {
         const saved = previous.stocks?.[stock.ticker];
@@ -476,41 +550,8 @@ let officialMarketReport = null;
 // Use the JSON endpoint behind Boursa's dated daily market reports. The
 // browser-rendered report page is blocked on some GitHub-hosted runners.
 try {
-  const markets = { BKP: "P", BKM: "M", BKA: "A" };
-  const indexes = {};
-  const values = {};
-  for (const [ticker, market] of Object.entries(markets)) {
-    const url = `https://www.boursakuwait.com.kw/data-api/client-services?L=E&DT=1&MT=${market}&RT=3522`;
-    const response = await fetch(url, {
-      headers: { "user-agent": "Mozilla/5.0 Market Insight EOD collector", accept: "application/json" },
-      signal: AbortSignal.timeout(15000)
-    });
-    if (!response.ok) throw new Error(`${ticker} daily report HTTP ${response.status}`);
-    const payload = await response.json();
-    const summary = payload?.["Market Summary"]?.[0];
-    const publishedDate = String(summary?.TransactionDate || "");
-    const expectedDate = tradingDate.replaceAll("-", "");
-    if (publishedDate !== expectedDate) throw new Error(`${ticker} daily report dated ${publishedDate}; expected ${expectedDate}`);
-    const close = Number(summary.Index);
-    const pointChange = Number(summary.Change);
-    const value = Number(summary.Turnover);
-    if (![close, pointChange, value].every(Number.isFinite) || close <= 0 || value <= 0) {
-      throw new Error(`${ticker} daily report contains invalid figures`);
-    }
-    indexes[ticker] = { close, pointChange, changePercent: pointChange / (close - pointChange) * 100 };
-    values[ticker] = value;
-  }
-  if (Math.abs(values.BKP + values.BKM - values.BKA) > 0.002) {
-    throw new Error("Premier and Main traded values do not reconcile with All-Share");
-  }
-  officialMarketReport = {
-    tradingDate,
-    valueTradedKwd: values.BKA,
-    source: "Boursa Kuwait official daily market reports",
-    sourceUrl: "https://www.boursakuwait.com.kw/en/market/reports#daily-all",
-    indexes
-  };
-  console.log("Official daily reports verified:", tradingDate, "KWD", values.BKA);
+  officialMarketReport = await fetchOfficialDailyReport(tradingDate);
+  console.log("Official daily reports verified:", tradingDate, "KWD", officialMarketReport.valueTradedKwd);
 } catch (error) {
   console.warn("Official daily market reports unavailable:", error.message);
   failures.push({ ticker: "OFFICIAL_DAILY_REPORTS", error: error.message });
@@ -641,49 +682,12 @@ if (!officialMarketReport) {
   }
   console.warn("Official market turnover unavailable; publishing TradingView stocks and three index closes with official turnover blank");
 } else {
-  const applyOfficialIndex = (existing, ticker, name) => ({
-    ...(existing || {}),
-    ticker,
-    name,
-    close: officialMarketReport.indexes[ticker].close,
-    pointChange: officialMarketReport.indexes[ticker].pointChange,
-    changePercent: officialMarketReport.indexes[ticker].changePercent,
-    tradingDate: officialMarketReport.tradingDate,
-    source: officialMarketReport.source,
-    sourceUrl: officialMarketReport.sourceUrl
-  });
-  premierIndex = applyOfficialIndex(premierIndex, "BKP", "Boursa Kuwait Premier Market Index");
-  mainIndex = applyOfficialIndex(mainIndex, "BKM", "Boursa Kuwait Main Market Index");
-  allShareIndex = applyOfficialIndex(allShareIndex, "BKA", "Boursa Kuwait All Share Index");
+  const officialIndexes = { premierIndex, mainIndex, allShareIndex };
+  applyOfficialIndexes(officialIndexes, officialMarketReport);
+  ({ premierIndex, mainIndex, allShareIndex } = officialIndexes);
 }
 
-const officialYtdBaseline = tradingDate.startsWith("2026-") ? {
-  throughDate: "2026-09-30",
-  totalValueTradedKwd: 15642567298.380,
-  tradingSessions: 183,
-  source: "Boursa Kuwait monthly and quarterly market summaries",
-  sourceUrl: "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
-} : null;
-const latestValueTradedKwd = officialMarketReport?.valueTradedKwd ?? null;
-const averageDailyValueTradedYtdKwd = officialYtdBaseline
-  ? officialYtdBaseline.totalValueTradedKwd / officialYtdBaseline.tradingSessions
-  : null;
-const latestValueVsYtdAveragePercent = latestValueTradedKwd != null && averageDailyValueTradedYtdKwd
-  ? (latestValueTradedKwd / averageDailyValueTradedYtdKwd - 1) * 100
-  : null;
-const marketStats = {
-  latestValueTradedKwd,
-  latestValueTradedDate: officialMarketReport?.tradingDate || null,
-  averageDailyValueTradedYtdKwd,
-  latestValueVsYtdAveragePercent,
-  averageThroughDate: officialYtdBaseline?.throughDate || null,
-  ytdTotalValueTradedKwd: officialYtdBaseline?.totalValueTradedKwd || null,
-  tradingSessionCount: officialYtdBaseline?.tradingSessions || null,
-  source: officialMarketReport?.source || null,
-  sourceUrl: officialMarketReport?.sourceUrl || null,
-  averageSource: officialYtdBaseline?.source || null,
-  averageSourceUrl: officialYtdBaseline?.sourceUrl || null
-};
+const marketStats = buildMarketStats(tradingDate, officialMarketReport);
 
 const snapshot = {
   source: "TradingView Kuwait market scanner",
@@ -691,7 +695,7 @@ const snapshot = {
   sourceUrl: endpoint,
   generatedAt: fetchedAt,
   tradingDate,
-  schedule: "13:20 Asia/Kuwait, Sunday-Thursday",
+  schedule: "13:32 Asia/Kuwait, Sunday-Thursday; official turnover added when Boursa publishes it",
   freshCount,
   totalCount: Object.keys(results).length,
   failures,
