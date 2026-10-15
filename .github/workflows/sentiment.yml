@@ -1,0 +1,37 @@
+name: Fear & Greed index rebuild
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build-sentiment.mjs"
+      - ".github/workflows/sentiment.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kuwait-market-sentiment
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Build Fear & Greed index
+        run: node scripts/build-sentiment.mjs
+      - name: Commit index
+        run: |
+          git config user.name "market-insight-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add website/sentiment.json
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git commit -m "Update Fear & Greed index"
+          git pull --rebase origin main
+          git push
