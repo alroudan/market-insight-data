@@ -1,206 +1,125 @@
-// Market Insight Fear & Greed index for Boursa Kuwait (All-Share).
-//
-// Six equally weighted parts, each ranked against its own trailing 2 years
-// (500 sessions) and scored 0–100 (50 = typical):
-//   momentum      rebuilt All-Share index vs its 125-session average
-//   breadth       share of stocks above their 50-session average
-//   strength      new 52-week highs minus new 52-week lows (10-session mean)
-//   volatility    20-session realised volatility vs its 1-year average (inverted)
-//   participation value traded in rising minus falling stocks (10-session share)
-//   safeHaven     20-session return of the rest of the market vs the 10 largest
-//
-// Daily history comes from Yahoo Finance (prices in fils). Today's bar is taken
-// from the published TradingView snapshot so it matches the rest of the site.
-// The All-Share index has no public history, so it is rebuilt from its member
-// stocks (market-cap weighted, chain-linked) and checked against the official
-// 1-month and YTD performance.
+// Probe 10: backtest the current Hot List rules vs the proposed method on ~5y of daily data.
 import { readFile, writeFile } from "node:fs/promises";
-
-const WINDOW = 500;          // ~2 years of sessions for ranking
-const MIN_RANK_OBS = 250;    // minimum history before a part is scored
-const HISTORY_OUT = 800;     // sessions of index history written for the site
-const MAX_DAILY_MOVE = 0.35; // larger single-day moves are treated as unadjusted corporate actions
-
-const snapshot = JSON.parse(await readFile(new URL("../website/latest.json", import.meta.url), "utf8"));
-
-const tickers = Object.keys(snapshot.stocks);
-const kuwaitDate = (unixSeconds) => new Date((unixSeconds + 3 * 3600) * 1000).toISOString().slice(0, 10);
-
-async function yahooHistory(ticker) {
-  const url = `https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(ticker + ".KW")}?range=5y&interval=1d`;
-  for (let attempt = 1; attempt <= 3; attempt += 1) {
+const snap = JSON.parse(await readFile("website/latest.json", "utf8"));
+const tickers = Object.keys(snap.stocks);
+const kd = (ts) => new Date((ts + 3 * 3600) * 1000).toISOString().slice(0, 10);
+async function hist(t) {
+  for (let a = 1; a <= 3; a++) {
     try {
-      const response = await fetch(url, {
-        headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36" },
-        signal: AbortSignal.timeout(25000)
-      });
-      if (response.status === 404) return null;
-      if (!response.ok) throw new Error("HTTP " + response.status);
-      const result = (await response.json()).chart?.result?.[0];
-      const quote = result?.indicators?.quote?.[0];
-      if (!result?.timestamp || !quote) return null;
-      const rows = new Map();
-      result.timestamp.forEach((ts, index) => {
-        const close = quote.close[index];
-        if (close != null && close > 0) rows.set(kuwaitDate(ts), { close, volume: quote.volume[index] || 0 });
-      });
-      return rows;
-    } catch (error) {
-      if (attempt === 3) { console.warn(ticker, "history unavailable:", error.message); return null; }
-      await new Promise((resolve) => setTimeout(resolve, 1500 * attempt));
+      const r = await fetch(`https://query2.finance.yahoo.com/v8/finance/chart/${t}.KW?range=5y&interval=1d`, { headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36" }, signal: AbortSignal.timeout(25000) });
+      if (r.status === 404) return null; if (!r.ok) throw new Error(r.status);
+      const res = (await r.json()).chart.result[0], q = res.indicators.quote[0], m = new Map();
+      res.timestamp.forEach((ts, i) => { if (q.close[i] > 0) m.set(kd(ts), { o: q.open[i] || q.close[i], h: q.high[i] || q.close[i], l: q.low[i] || q.close[i], c: q.close[i], v: q.volume[i] || 0 }); });
+      return m;
+    } catch (e) { if (a === 3) return null; await new Promise((r) => setTimeout(r, 1500 * a)); }
+  }
+}
+const H = {}; let cur = 0;
+await Promise.all(Array.from({ length: 6 }, async () => { while (cur < tickers.length) { const t = tickers[cur++]; H[t] = await hist(t); await new Promise((r) => setTimeout(r, 150)); } }));
+const loaded = tickers.filter((t) => H[t]?.size > 300);
+const cnt = new Map(); for (const t of loaded) for (const d of H[t].keys()) cnt.set(d, (cnt.get(d) || 0) + 1);
+const dates = [...cnt].filter(([, n]) => n >= loaded.length * 0.4).map(([d]) => d).sort(); const T = dates.length;
+const S = {};
+for (const t of loaded) {
+  const o = [], h = [], l = [], c = [], v = [], tr = []; let last = null;
+  for (const d of dates) { const r = H[t].get(d); if (r) { last = r; o.push(r.o); h.push(r.h); l.push(r.l); c.push(r.c); v.push(r.v); tr.push(true); } else { o.push(last?.c ?? null); h.push(last?.c ?? null); l.push(last?.c ?? null); c.push(last?.c ?? null); v.push(0); tr.push(false); } }
+  S[t] = { o, h, l, c, v, tr, start: c.findIndex((x) => x != null) };
+}
+// --- corporate-action guard: daily moves beyond 35% are treated as data breaks
+const brk = {}; for (const t of loaded) { const c = S[t].c; brk[t] = c.map((x, i) => i > 0 && x != null && c[i - 1] != null && Math.abs(x / c[i - 1] - 1) > 0.35); }
+const lastBreak = (t, i, n) => { for (let k = i; k > i - n && k > 0; k--) if (brk[t][k]) return true; return false; };
+// --- market proxy (cap-weighted, chain-linked)
+const shares = {}; for (const t of loaded) { const s = snap.stocks[t]; if (s.marketCapKwd > 0 && s.close > 0) shares[t] = s.marketCapKwd / s.close; }
+const mkt = [1000]; for (let i = 1; i < T; i++) { let wr = 0, w = 0; for (const t in shares) { const c = S[t].c; if (c[i] == null || c[i - 1] == null || brk[t][i]) continue; const ww = shares[t] * c[i - 1]; wr += ww * (c[i] / c[i - 1] - 1); w += ww; } mkt.push(mkt[i - 1] * (1 + (w ? wr / w : 0))); }
+// --- indicator helpers
+const sma = (a, i, n) => { if (i + 1 < n) return null; let s = 0; for (let k = i - n + 1; k <= i; k++) { if (a[k] == null) return null; s += a[k]; } return s / n; };
+const maxR = (a, i0, i1) => { let m = -Infinity; for (let k = i0; k <= i1; k++) if (a[k] != null && a[k] > m) m = a[k]; return m; };
+const minR = (a, i0, i1) => { let m = Infinity; for (let k = i0; k <= i1; k++) if (a[k] != null && a[k] < m) m = a[k]; return m; };
+function emaSeries(a, n) { const out = new Array(a.length).fill(null), k = 2 / (n + 1); let e = null; for (let i = 0; i < a.length; i++) { if (a[i] == null) continue; e = e == null ? a[i] : a[i] * k + e * (1 - k); out[i] = e; } return out; }
+function wilder(a, n) { const out = new Array(a.length).fill(null); let s = null, cntn = 0, acc = 0; for (let i = 0; i < a.length; i++) { if (a[i] == null) continue; if (s == null) { acc += a[i]; cntn++; if (cntn === n) { s = acc / n; out[i] = s; } } else { s = (s * (n - 1) + a[i]) / n; out[i] = s; } } return out; }
+const IND = {};
+for (const t of loaded) {
+  const { h, l, c, v } = S[t], n = T;
+  const ema12 = emaSeries(c, 12), ema26 = emaSeries(c, 26), macd = c.map((_, i) => ema12[i] != null && ema26[i] != null ? ema12[i] - ema26[i] : null), sig = emaSeries(macd, 9), ema20 = emaSeries(c, 20);
+  const up = c.map((x, i) => i && x != null && c[i - 1] != null ? Math.max(x - c[i - 1], 0) : null), dn = c.map((x, i) => i && x != null && c[i - 1] != null ? Math.max(c[i - 1] - x, 0) : null);
+  const au = wilder(up, 14), ad = wilder(dn, 14), rsi = au.map((u, i) => u == null || ad[i] == null ? null : ad[i] === 0 ? 100 : 100 - 100 / (1 + u / ad[i]));
+  const trr = c.map((_, i) => i && h[i] != null && c[i - 1] != null ? Math.max(h[i] - l[i], Math.abs(h[i] - c[i - 1]), Math.abs(l[i] - c[i - 1])) : null);
+  const pdm = c.map((_, i) => { if (!i || h[i] == null || h[i - 1] == null) return null; const u = h[i] - h[i - 1], d = l[i - 1] - l[i]; return u > d && u > 0 ? u : 0; });
+  const mdm = c.map((_, i) => { if (!i || h[i] == null || h[i - 1] == null) return null; const u = h[i] - h[i - 1], d = l[i - 1] - l[i]; return d > u && d > 0 ? d : 0; });
+  const atr = wilder(trr, 14), sp = wilder(pdm, 14), sm = wilder(mdm, 14);
+  const pdi = atr.map((a, i) => a && sp[i] != null ? 100 * sp[i] / a : null), mdi = atr.map((a, i) => a && sm[i] != null ? 100 * sm[i] / a : null);
+  const dx = pdi.map((p, i) => p != null && mdi[i] != null && p + mdi[i] > 0 ? 100 * Math.abs(p - mdi[i]) / (p + mdi[i]) : null), adx = wilder(dx, 14);
+  IND[t] = { macd, sig, rsi, ema20, atr, pdi, mdi, adx };
+}
+// --- breadth regime
+const breadth = dates.map((_, i) => { let a = 0, e = 0; for (const t of loaded) { const c = S[t].c; if (c[i] == null || i - S[t].start < 49) continue; e++; const m = sma(c, i, 50); if (m && c[i] > m) a++; } return e >= 40 ? a / e : null; });
+// 3-month return rank
+const ret63 = {}; for (const t of loaded) ret63[t] = S[t].c.map((x, i) => i >= 63 && x != null && S[t].c[i - 63] != null && !lastBreak(t, i, 63) ? x / S[t].c[i - 63] - 1 : null);
+const rsRank = dates.map((_, i) => { const arr = loaded.map((t) => [t, ret63[t][i]]).filter((x) => x[1] != null).sort((a, b) => a[1] - b[1]); const m = {}; arr.forEach(([t], k) => m[t] = arr.length > 1 ? k / (arr.length - 1) : 0.5); return m; });
+
+function oldRules(t, i) {
+  const { h, l, c, v } = S[t], I = IND[t]; if (i - S[t].start < 252 || !S[t].tr[i] || lastBreak(t, i, 252)) return null;
+  const close = c[i], sma20 = sma(c, i, 20), sma50 = sma(c, i, 50), sma200 = sma(c, i, 200), rsi = I.rsi[i], macd = I.macd[i], signal = I.sig[i], adx = I.adx[i], plusDi = I.pdi[i], minusDi = I.mdi[i];
+  let sd = 0; for (let k = i - 19; k <= i; k++) sd += (c[k] - sma20) ** 2; sd = Math.sqrt(sd / 20); const upper = sma20 + 2 * sd, lower = sma20 - 2 * sd;
+  let pv = 0, vv = 0; for (let k = i - 19; k <= i; k++) { pv += c[k] * v[k]; vv += v[k]; } const vwma = vv ? pv / vv : null;
+  const high20 = maxR(h, i - 20, i), month = c[i - 21] ? (close / c[i - 21] - 1) * 100 : null, avg10 = sma(v, i, 10), relVol = avg10 > 0 ? v[i] / avg10 : null, high52 = maxR(h, i - 251, i);
+  const ck = { trend: close > sma20 && sma20 > sma50, longTrend: sma50 > sma200, momentum: macd > signal, rsi: rsi >= 52 && rsi <= 72, volume: relVol >= 1.2, dmi: adx >= 25 && plusDi > minusDi, month: month > 0, near20: close >= high20 * .995, near52: close >= high52 * .99, bbBreak: close > upper, vwma: close > vwma };
+  const bw = sma20 > 0 ? (upper - lower) / sma20 : null, setups = [];
+  if (ck.near20 && ck.trend && ck.volume && ck.rsi) setups.push("20d"); if (ck.near52 && ck.trend && ck.volume && ck.rsi) setups.push("52w"); if (ck.bbBreak && ck.volume && ck.momentum) setups.push("bb");
+  if (bw != null && bw <= .08 && close >= upper * .995 && ck.volume && ck.momentum) setups.push("sq"); if (ck.trend && ck.dmi && ck.momentum && ck.month) setups.push("adx");
+  if (ck.trend && ck.momentum && ck.rsi && relVol >= 1.5 && ck.month) setups.push("volmom"); if (ck.trend && ck.longTrend && ck.dmi && ck.month) setups.push("ma"); if (ck.near20 && ck.vwma && ck.volume && ck.momentum) setups.push("vwma");
+  if (!(ck.volume && setups.some((s) => ["20d", "52w", "bb", "sq", "vwma"].includes(s)))) return null;
+  const pil = [ck.near20 || ck.near52 || ck.bbBreak, ck.trend && ck.longTrend, ck.momentum && ck.dmi, ck.rsi && ck.month, ck.volume, bw != null && bw <= .08];
+  return { score: pil.filter(Boolean).length, value: close / 1000 * v[i] };
+}
+function newRules(t, i) {
+  const { h, l, c, v, tr } = S[t], I = IND[t]; if (i - S[t].start < 252 || !tr[i] || lastBreak(t, i, 252)) return null;
+  let val20 = 0, days = 0; for (let k = i - 19; k <= i; k++) { val20 += c[k] / 1000 * v[k]; if (tr[k] && v[k] > 0) days++; } val20 /= 20;
+  if (val20 < 100000 || days < 18 || c[i] < 50) return null;
+  const prevHigh20 = maxR(h, i - 20, i - 1), prevHigh250 = maxR(h, i - 250, i - 1);
+  const sma20 = sma(c, i, 20), sma50 = sma(c, i, 50), sma200 = sma(c, i, 200), sma50ago = sma(c, i - 10, 50);
+  let sd = 0; for (let k = i - 19; k <= i; k++) sd += (c[k] - sma20) ** 2; sd = Math.sqrt(sd / 20); const upper = sma20 + 2 * sd;
+  const bw = (i0) => { const m = sma(c, i0, 20); let s = 0; for (let k = i0 - 19; k <= i0; k++) s += (c[k] - m) ** 2; return 4 * Math.sqrt(s / 20) / m; };
+  const bwHist = []; for (let k = i - 125; k <= i - 1; k++) bwHist.push(bw(k)); const bwMinRecent = Math.min(...bwHist.slice(-5)), bwSorted = [...bwHist].sort((a, b) => a - b), bwP20 = bwSorted[Math.floor(bwSorted.length * 0.2)];
+  const range = c[i] > prevHigh20 * 1.005, high52 = c[i] > prevHigh250, squeeze = bwMinRecent <= bwP20 && c[i] > upper;
+  if (!(range || high52 || squeeze)) return null;
+  const avgV20 = sma(v, i - 1, 20) || 0, v3 = (v[i] + v[i - 1] + v[i - 2]) / 3;
+  const volOk = avgV20 > 0 && v[i] >= 1.5 * avgV20 && v3 >= 1.2 * avgV20;
+  const trendOk = c[i] > sma50 && (sma50 > sma200 || sma50 > sma50ago);
+  const rs = rsRank[i][t] ?? 0, rsOk = rs >= 0.7;
+  const dayRange = h[i] - l[i], closeLoc = dayRange > 0 ? (c[i] - l[i]) / dayRange : 1, closeOk = closeLoc >= 0.75;
+  const ext = c[i] / sma20 - 1, extOk = ext <= 0.08;
+  let score = 0; score += volOk ? 25 : 0; score += trendOk ? 20 : 0; score += rsOk ? 20 + 10 * (rs - 0.7) / 0.3 : 0; score += closeOk ? 15 : 0; score += extOk ? 10 : 0;
+  return { score, volOk, trendOk, rsOk, closeOk, extOk, value: val20, setup: high52 ? "52w" : range ? "range" : "squeeze", required: volOk && trendOk };
+}
+// --- evaluate
+const H5 = [5, 10, 20];
+function evaluate(name, fn, pick, opts = {}) {
+  const lastSig = {}, sig = [];
+  for (let i = 260; i < T - 20; i++) {
+    const regimeWeak = breadth[i] != null && breadth[i] < 0.3;
+    for (const t of loaded) {
+      const r = fn(t, i); if (!r || !pick(r, regimeWeak)) continue;
+      if (lastSig[t] != null && i - lastSig[t] < 10) continue; lastSig[t] = i;
+      const c = S[t].c, row = { d: dates[i], t, weak: regimeWeak, value: r.value };
+      let bad = false;
+      for (const h of H5) { if (lastBreak(t, i + h, h)) { bad = true; break; } row["r" + h] = c[i + h] / c[i] - 1; row["x" + h] = row["r" + h] - (mkt[i + h] / mkt[i] - 1); }
+      if (!bad) { row.next = S[t].o[i + 1] ? c[i + 10] / S[t].o[i + 1] - 1 - (mkt[i + 10] / mkt[i] - 1) : null; sig.push(row); }
     }
   }
+  const q = (a, p) => { const s = [...a].sort((x, y) => x - y); return s[Math.floor((s.length - 1) * p)]; };
+  const st = (rows) => { const o = { n: rows.length }; for (const h of H5) { const r = rows.map((x) => x["r" + h]), x = rows.map((x) => x["x" + h]); if (!r.length) continue; o["avg" + h] = +(r.reduce((a, b) => a + b, 0) / r.length * 100).toFixed(2); o["excess" + h] = +(x.reduce((a, b) => a + b, 0) / x.length * 100).toFixed(2); o["medExcess" + h] = +(q(x, 0.5) * 100).toFixed(2); o["beat" + h] = +(x.filter((v) => v > 0).length / x.length * 100).toFixed(0); o["up" + h] = +(r.filter((v) => v > 0).length / r.length * 100).toFixed(0); o["worst5pct" + h] = +(q(r, 0.05) * 100).toFixed(1); } const nx = rows.map((x) => x.next).filter((x) => x != null); if (nx.length) o.excess10NextOpen = +(nx.reduce((a, b) => a + b, 0) / nx.length * 100).toFixed(2); return o; };
+  const years = {}; for (const r of sig) (years[r.d.slice(0, 4)] ??= []).push(r);
+  return { name, all: st(sig), weakMarket: st(sig.filter((r) => r.weak)), normalMarket: st(sig.filter((r) => !r.weak)), illiquidShare: +(sig.filter((r) => r.value < 50000).length / Math.max(1, sig.length) * 100).toFixed(0), perYear: Object.fromEntries(Object.entries(years).map(([y, r]) => [y, st(r)])), sessions: T - 280 };
 }
-
-// ---- Load history -------------------------------------------------------
-const histories = {};
-let cursor = 0;
-await Promise.all(Array.from({ length: 6 }, async () => {
-  while (cursor < tickers.length) {
-    const ticker = tickers[cursor++];
-    histories[ticker] = await yahooHistory(ticker);
-    await new Promise((resolve) => setTimeout(resolve, 150));
-  }
-}));
-const loaded = tickers.filter((ticker) => histories[ticker]?.size);
-if (loaded.length < 100) throw new Error(`Only ${loaded.length} stock histories loaded; keeping previous sentiment file`);
-
-// Today's bar from the published snapshot (same close/volume as the rest of the site).
-const today = snapshot.tradingDate;
-for (const ticker of loaded) {
-  const stock = snapshot.stocks[ticker];
-  if (stock?.tradingDate === today && stock.close > 0) {
-    histories[ticker].set(today, { close: stock.close, volume: stock.volume || 0 });
-  }
-}
-
-// Trading calendar: dates on which at least 40% of loaded stocks have a bar.
-const counts = new Map();
-for (const ticker of loaded) for (const date of histories[ticker].keys()) counts.set(date, (counts.get(date) || 0) + 1);
-const dates = [...counts.entries()].filter(([, n]) => n >= loaded.length * 0.4).map(([d]) => d).sort();
-const T = dates.length;
-
-// Aligned arrays: close forward-filled after listing, volume 0 on missing days.
-const close = {}, volume = {}, traded = {};
-for (const ticker of loaded) {
-  const rows = histories[ticker];
-  const c = new Array(T).fill(null), v = new Array(T).fill(0), t = new Array(T).fill(false);
-  let last = null;
-  dates.forEach((date, i) => {
-    const row = rows.get(date);
-    if (row) { last = row.close; v[i] = row.volume; t[i] = true; }
-    c[i] = last;
-  });
-  close[ticker] = c; volume[ticker] = v; traded[ticker] = t;
-}
-const dailyReturn = (ticker, i) => {
-  const c = close[ticker];
-  if (i === 0 || c[i] == null || c[i - 1] == null) return null;
-  const r = c[i] / c[i - 1] - 1;
-  return Math.abs(r) > MAX_DAILY_MOVE ? 0 : r;
-};
-
-// ---- Rebuilt cap-weighted indices --------------------------------------
-const shares = {};
-for (const ticker of loaded) {
-  const s = snapshot.stocks[ticker];
-  if (s.marketCapKwd > 0 && s.close > 0) shares[ticker] = s.marketCapKwd / s.close; // close in fils; scale cancels out
-}
-const largest = Object.keys(shares).sort((a, b) => shares[b] * snapshot.stocks[b].close - shares[a] * snapshot.stocks[a].close).slice(0, 10);
-const largestSet = new Set(largest);
-function chainIndex(members) {
-  const level = new Array(T).fill(null);
-  level[0] = 1000;
-  for (let i = 1; i < T; i += 1) {
-    let weighted = 0, weight = 0;
-    for (const ticker of members) {
-      const r = dailyReturn(ticker, i);
-      const prev = close[ticker][i - 1];
-      if (r == null || prev == null) continue;
-      const w = shares[ticker] * prev;
-      weighted += w * r; weight += w;
-    }
-    level[i] = level[i - 1] * (1 + (weight ? weighted / weight : 0));
-  }
-  return level;
-}
-
-// ---- Premier membership from Boursa (MARKET_ID = P) --------------------
-let premier = new Set();
-try {
-  const r = await fetch("https://www.boursakuwait.com.kw/price?UID=&SID=&L=EN&UNC=1&UE=KSE&H=1&M=1&RT=303&SRC=KSE&AS=1", { headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36", referer: "https://www.boursakuwait.com.kw/en/" } });
-  const j = await r.json();
-  for (const row of j.DAT.TD) { const f = row.split("|"); if (f[1].endsWith("`R") && f[8] === "P") premier.add(f[1].split("`")[0]); }
-} catch (e) { console.log("premier list failed", e.message); }
-const mean = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
-const sd = (arr) => { const m = mean(arr); return Math.sqrt(mean(arr.map((v) => (v - m) ** 2))); };
-const erf = (x) => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; };
-const phi = (z) => 0.5 * (1 + erf(z / Math.SQRT2));
-const listedSince = {}; for (const t of loaded) listedSince[t] = close[t].findIndex((v) => v != null);
-
-function rawSeries(universe) {
-  const caps = universe.filter((t) => shares[t]);
-  const market = chainIndex(caps);
-  const sorted = [...caps].sort((a, b) => shares[b] * snapshot.stocks[b].close - shares[a] * snapshot.stocks[a].close);
-  const big = sorted.slice(0, 10), bigSet = new Set(big);
-  const top = chainIndex(big), rest = chainIndex(caps.filter((t) => !bigSet.has(t)));
-  const raw = { momentum: [], breadth: [], strength: [], volatility: [], participation: [], safeHaven: [], activity: [] };
-  const ret = market.map((v, i) => (i ? v / market[i - 1] - 1 : 0));
-  const realised = ret.map((_, i) => (i < 20 ? null : Math.sqrt(mean(ret.slice(i - 19, i + 1).map((r) => r * r)))));
-  const nhl = [], up = [], down = [], all = [];
-  const minN = Math.min(40, Math.floor(universe.length * 0.6));
-  for (let i = 0; i < T; i++) {
-    let above = 0, el = 0, hi = 0, lo = 0, el52 = 0, u = 0, d = 0, a = 0;
-    for (const t of universe) {
-      const c = close[t]; if (!c || c[i] == null) continue; const age = i - listedSince[t];
-      if (age >= 49) { el++; let s = 0; for (let k = i - 49; k <= i; k++) s += c[k]; if (c[i] > s / 50) above++; }
-      if (age >= 251 && traded[t][i]) { el52++; let h = -Infinity, l = Infinity; for (let k = i - 251; k < i; k++) { if (c[k] > h) h = c[k]; if (c[k] < l) l = c[k]; } if (c[i] > h) hi++; else if (c[i] < l) lo++; }
-      const r = dailyReturn(t, i); if (traded[t][i] && r != null) { const v = c[i] / 1000 * volume[t][i]; a += v; if (r > 0) u += v; else if (r < 0) d += v; }
-    }
-    raw.breadth.push(el >= minN ? above / el : null); nhl.push(el52 >= minN ? (hi - lo) / el52 : null); up.push(u); down.push(d); all.push(a);
-    const m125 = i >= 124 ? mean(market.slice(i - 124, i + 1)) : null; raw.momentum.push(m125 ? market[i] / m125 - 1 : null);
-    if (i >= 251 && realised[i] != null) { const y = realised.slice(i - 249, i + 1).filter((v) => v != null); raw.volatility.push(realised[i] / mean(y)); } else raw.volatility.push(null);
-    raw.safeHaven.push(i >= 20 ? rest[i] / rest[i - 20] - top[i] / top[i - 20] : null);
-  }
-  for (let i = 0; i < T; i++) {
-    const w = nhl.slice(Math.max(0, i - 9), i + 1); raw.strength.push(i >= 9 && w.every((v) => v != null) ? mean(w) : null);
-    if (i >= 9) { let U = 0, D = 0, A = 0; for (let k = i - 9; k <= i; k++) { U += up[k]; D += down[k]; A += all[k]; } raw.participation.push(A > 0 ? (U - D) / A : null); } else raw.participation.push(null);
-    raw.activity.push(i >= 259 ? mean(all.slice(i - 9, i + 1)) / mean(all.slice(i - 259, i + 1)) : null);
-  }
-  return raw;
-}
-function score(series, mode, invert) {
-  return series.map((value, i) => {
-    if (value == null) return null;
-    const w = series.slice(Math.max(0, i - 499), i + 1).filter((v) => v != null);
-    if (w.length < 250) return null;
-    let s;
-    if (mode === "rank") { let b = 0, e = 0; for (const v of w) { if (v < value) b++; else if (v === value) e++; } s = (b + 0.5 * e) / w.length * 100; }
-    else { const z = (value - mean(w)) / (sd(w) || 1); s = phi(z) * 100; }
-    return invert ? 100 - s : s;
-  });
-}
-function variant(name, raw, mode, parts) {
-  const sc = Object.fromEntries(parts.map((p) => [p, score(raw[p], mode, p === "volatility")]));
-  const comp = dates.map((_, i) => { const v = parts.map((p) => sc[p][i]); return v.every((x) => x != null) ? mean(v) : null; });
-  const at = (d) => { const i = dates.lastIndexOf(d); return i >= 0 && comp[i] != null ? +comp[i].toFixed(1) : null; };
-  const valid = comp.map((v, i) => [dates[i], v]).filter((x) => x[1] != null);
-  const vals = valid.map((x) => x[1]);
-  const minRow = valid.reduce((m, x) => (x[1] < m[1] ? x : m));
-  const dist = { XF: 0, F: 0, N: 0, G: 0, XG: 0 }; vals.forEach((v) => dist[v < 25 ? "XF" : v < 45 ? "F" : v < 55 ? "N" : v < 75 ? "G" : "XG"]++);
-  const near = (d) => { const r = valid.find((x) => x[0] >= d); return r ? +r[1].toFixed(1) : null; };
-  return { name, today: at(dates[T - 1]), oct14: at("2026-10-14"), parts: Object.fromEntries(parts.map((p) => [p, +(sc[p][T - 1] ?? NaN).toFixed(1)])), min: [minRow[0], +minRow[1].toFixed(1)], aug2024: near("2024-08-05"), apr2025: near("2025-04-07"), dist };
-}
-const allU = loaded, premU = loaded.filter((t) => premier.has(t));
-const rawAll = rawSeries(allU), rawPrem = premU.length >= 20 ? rawSeries(premU) : null;
-const base = ["momentum", "breadth", "strength", "volatility", "participation", "safeHaven"];
-const alt = ["momentum", "breadth", "volatility", "activity", "safeHaven"];
-const out = { premierCount: premU.length, premier: premU, variants: [
-  variant("A current: All-Share, rank", rawAll, "rank", base),
-  variant("B All-Share, z-score", rawAll, "z", base),
-  variant("C All-Share, rank, 5 parts (no strength; activity level instead of money flow)", rawAll, "rank", alt),
-  variant("D All-Share, z-score, 5 parts", rawAll, "z", alt),
-  ...(rawPrem ? [variant("E Premier, rank", rawPrem, "rank", base), variant("F Premier, z-score", rawPrem, "z", base), variant("G Premier, z-score, 5 parts", rawPrem, "z", alt)] : [])
+const out = { coverage: { stocks: loaded.length, from: dates[260], to: dates[T - 21] }, results: [
+  evaluate("OLD: current Hot List", oldRules, () => true),
+  evaluate("OLD + liquidity filter (>= KD 100k/day)", (t, i) => { const r = oldRules(t, i); if (!r) return null; let s = 0; for (let k = i - 19; k <= i; k++) s += S[t].c[k] / 1000 * S[t].v[k]; return s / 20 >= 100000 ? r : null; }, () => true),
+  evaluate("NEW: trigger + volume + trend required", newRules, (r) => r.required),
+  evaluate("NEW: score >= 70", newRules, (r) => r.required && r.score >= 70),
+  evaluate("NEW: score >= 70, weak market needs >= 85", newRules, (r, weak) => r.required && r.score >= (weak ? 85 : 70)),
+  evaluate("NEW: score >= 85 (all conditions)", newRules, (r) => r.required && r.score >= 85),
+  evaluate("NEW: score >= 70, skip weak markets", newRules, (r, weak) => r.required && r.score >= 70 && !weak)
 ] };
-await (await import("node:fs/promises")).writeFile("probe/result.json", JSON.stringify(out, null, 1));
-console.log(JSON.stringify(out.variants.map((v) => [v.name, v.today, v.oct14])));
+await writeFile("probe/result.json", JSON.stringify(out, null, 1));
+for (const r of out.results) console.log(r.name, JSON.stringify(r.all));
