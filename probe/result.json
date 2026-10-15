@@ -1,238 +1,7 @@
 {
- "ranAt": "2026-10-15T10:42:50.581Z",
- "indexes": {
-  "^BKP.KW": {
-   "r1mo": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "last": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "granularity": "1d",
-    "range": "1mo"
-   },
-   "r1y": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "last": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "granularity": "1d",
-    "range": "1y"
-   },
-   "r2y": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "last": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "granularity": "1d",
-    "range": "2y"
-   },
-   "period": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "last": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "granularity": "1d",
-    "range": ""
-   },
-   "wk": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "last": [
-     "2026-10-15",
-     8891.9697265625
-    ],
-    "granularity": "1wk",
-    "range": "5y"
-   }
-  },
-  "^BKA.KW": {
-   "r1mo": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "last": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "granularity": "1d",
-    "range": "1mo"
-   },
-   "r1y": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "last": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "granularity": "1d",
-    "range": "1y"
-   },
-   "r2y": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "last": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "granularity": "1d",
-    "range": "2y"
-   },
-   "period": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "last": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "granularity": "1d",
-    "range": ""
-   },
-   "wk": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "last": [
-     "2026-10-15",
-     8475.9296875
-    ],
-    "granularity": "1wk",
-    "range": "5y"
-   }
-  },
-  "^BKM.KW": {
-   "r1mo": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "last": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "granularity": "1d",
-    "range": "1mo"
-   },
-   "r1y": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "last": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "granularity": "1d",
-    "range": "1y"
-   },
-   "r2y": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "last": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "granularity": "1d",
-    "range": "2y"
-   },
-   "period": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "last": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "granularity": "1d",
-    "range": ""
-   },
-   "wk": {
-    "rows": 1,
-    "first": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "last": [
-     "2026-10-15",
-     8587.9599609375
-    ],
-    "granularity": "1wk",
-    "range": "5y"
-   }
-  }
- },
- "agility": {
-  "AGLTY.KW": "HTTP 404",
-  "AGILITY.KW": "HTTP 404",
-  "MKHZN.KW": {
-   "rows": 493,
-   "first": [
-    "2024-10-15",
-    252
-   ],
-   "last": [
-    "2026-10-15",
-    138
-   ],
-   "granularity": "1d",
-   "range": "2y"
-  },
-  "ALG.KW": {
-   "rows": 494,
-   "first": [
-    "2024-10-15",
-    731.468017578125
-   ],
-   "last": [
-    "2026-10-15",
-    878
-   ],
-   "granularity": "1d",
-   "range": "2y"
-  }
- },
+ "ranAt": "2026-10-15T10:43:48.261Z",
+ "indexes": {},
+ "agility": {},
  "boursa": {
   "collector_report": {
    "status": 200,
@@ -242,21 +11,135 @@
    "status": 200,
    "sample": "{\"dataFields\":[{\"rowId\":\"1500\",\"stkCode\":\"101\",\"fileNames\":[{\"fileName\":\"https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html\",\"type\":\"HTML\"},"
   },
-  "chrome_report": {
-   "status": 200,
-   "sample": "{\"Market Summary\":[{\"Volume\":295944889,\"Turnover\":69932024.753,\"NoOfTrades\":21741,\"ChartStartDate\":\"20261014\",\"SymbolsTraded\":null,\"Index\":8533.600,\"Change\":-12"
+  "shape_A": {
+   "Market Summary": {
+    "array": 1,
+    "first": {
+     "Volume": 295944889,
+     "Turnover": 69932024.753,
+     "NoOfTrades": 21741,
+     "ChartStartDate": "20261014",
+     "SymbolsTraded": null,
+     "Index": 8533.6,
+     "Change": -121.24,
+     "MktName": "All-Share",
+     "TransactionDate": 20261014,
+     "MarketCap": 51104602688.3322
+    }
+   },
+   "Summary by Sector": {
+    "array": 13,
+    "first": {
+     "NoOfTradesPerc": 23.375,
+     "TurnoverPerc": 33.628,
+     "Volume": 51678650,
+     "VolumePerc": 17.462,
+     "Turnover": 23517083.436,
+     "NoOfTrades": 5082,
+     "SectorName": "Banking"
+    }
+   },
+   "List of Traded Companies": {
+    "array": 139,
+    "first": {
+     "High": 831,
+     "CompanyName": "National Bank of Kuwait",
+     "Last": 819,
+     "Low": 817,
+     "Volume": 6985243,
+     "Turnover": 5747649.499,
+     "NoOfTrades": 1419,
+     "Change": -13,
+     "ChangePerc": -1.56,
+     "Open": 831
+    }
+   },
+   "Tops Stocks": {
+    "array": 1,
+    "first": {
+     "Gainers": {
+      "array": 5,
+      "first": "object"
+     },
+     "Volume": {
+      "array": 5,
+      "first": "object"
+     },
+     "Value": {
+      "array": 5,
+      "first": "object"
+     },
+     "Losers": {
+      "array": 5,
+      "first": "object"
+     }
+    }
+   }
   },
-  "chrome_statements": {
-   "status": 200,
-   "sample": "{\"dataFields\":[{\"rowId\":\"1500\",\"stkCode\":\"101\",\"fileNames\":[{\"fileName\":\"https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html\",\"type\":\"HTML\"},"
-  },
-  "none_report": {
-   "status": 403,
-   "sample": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;www&#46;boursakuwait&#4"
-  },
-  "none_statements": {
-   "status": 403,
-   "sample": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;www&#46;boursakuwait&#4"
+  "shape_P": {
+   "Market Summary": {
+    "array": 1,
+    "first": {
+     "Volume": 143403029,
+     "Turnover": 45921993.545,
+     "NoOfTrades": 12150,
+     "ChartStartDate": "20261014",
+     "SymbolsTraded": null,
+     "Index": 8945.69,
+     "Change": -125.09,
+     "MktName": "Premier Market",
+     "TransactionDate": 20261014,
+     "MarketCap": 42361022043.6834
+    }
+   },
+   "Summary by Sector": {
+    "array": 13,
+    "first": {
+     "NoOfTradesPerc": 41.745,
+     "TurnoverPerc": 51.029,
+     "Volume": 51515542,
+     "VolumePerc": 35.924,
+     "Turnover": 23433735.248,
+     "NoOfTrades": 5072,
+     "SectorName": "Banking"
+    }
+   },
+   "List of Traded Companies": {
+    "array": 39,
+    "first": {
+     "High": 831,
+     "CompanyName": "National Bank of Kuwait",
+     "Last": 819,
+     "Low": 817,
+     "Volume": 6985243,
+     "Turnover": 5747649.499,
+     "NoOfTrades": 1419,
+     "Change": -13,
+     "ChangePerc": -1.56,
+     "Open": 831
+    }
+   },
+   "Tops Stocks": {
+    "array": 1,
+    "first": {
+     "Gainers": {
+      "array": 0,
+      "first": "undefined"
+     },
+     "Volume": {
+      "array": 5,
+      "first": "object"
+     },
+     "Value": {
+      "array": 5,
+      "first": "object"
+     },
+     "Losers": {
+      "array": 5,
+      "first": "object"
+     }
+    }
+   }
   }
  }
 }
