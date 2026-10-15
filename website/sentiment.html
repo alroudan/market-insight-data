@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#122A07">
+<link rel="manifest" href="./manifest.webmanifest?v=3"><link rel="apple-touch-icon" href="./app-icon-192-moss-v3.png"><link rel="icon" type="image/png" href="./favicon-moss-v3.png">
+<title>Fear &amp; Greed · Market Insight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>try{const t=localStorage.getItem('marketInsightTheme');if(t==='dark')document.documentElement.dataset.theme='dark';const l=localStorage.getItem('marketInsightLanguage');if(l==='ar'){document.documentElement.lang='ar';document.documentElement.dir='rtl'}}catch{}</script>
+<style>
+:root{--bg:#f4f3e8;--ink:#182211;--muted:#68705e;--line:#d8dccd;--card:#fffef6;--green:#416b27;--red:#b6493d;--gold:#d6b968;--nav:#122A07}
+html[data-theme="dark"]{--bg:#0d1808;--ink:#f5f0dc;--muted:#abb49d;--line:#35452b;--card:#172410;--green:#a6c884;--red:#f08074;--gold:#e0c56e;--nav:#091805;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter','Noto Sans Arabic',sans-serif;font-variant-numeric:tabular-nums}
+html[dir="rtl"] body{font-family:'Noto Sans Arabic','Inter',sans-serif}
+.top{background:var(--nav);color:#f3ead0;padding:14px max(16px,env(safe-area-inset-left,0px))}
+.top-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;font-weight:700}
+.brand i{width:34px;height:34px;border-radius:10px;background:#122A07 url('./app-icon-192-moss-v3.png') center/cover no-repeat;display:block}
+.back{color:#e0c56e;text-decoration:none;font-weight:700;font-size:13px}
+.back:hover,.back:focus-visible{text-decoration:underline}
+main{max-width:1120px;margin:0 auto;padding:22px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px))}
+h1{font-size:24px;margin:0 0 4px}
+.lead{color:var(--muted);font-size:13px;margin:0 0 18px;max-width:70ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:16px}
+.card h2{font-size:15px;margin:0}
+.loading{color:var(--muted);padding:30px 0}
+</style>
+<link rel="stylesheet" href="./sentiment.css?v=1">
+</head>
+<body>
+<header class="top"><div class="top-inner"><a class="brand" href="/"><i aria-hidden="true"></i><span>Market Insight</span></a><a class="back" href="/" data-fg-en="← Back to dashboard" data-fg-ar="العودة إلى لوحة السوق →">← Back to dashboard</a></div></header>
+<main>
+  <h1 data-fg-en="Market Fear & Greed · All-Share" data-fg-ar="مؤشر الخوف والطمع · السوق العام">Market Fear &amp; Greed · All-Share</h1>
+  <p class="lead" data-fg-en="A daily reading of investor mood on Boursa Kuwait, built from six measures of price, breadth, risk and money flow." data-fg-ar="قراءة يومية لمزاج المستثمرين في بورصة الكويت مبنية على ستة مقاييس للسعر واتساع السوق والمخاطر والسيولة.">A daily reading of investor mood on Boursa Kuwait, built from six measures of price, breadth, risk and money flow.</p>
+  <div id="fear-greed-page" class="fear-greed-page"><p class="loading" data-fg-en="Loading…" data-fg-ar="جارٍ التحميل…">Loading…</p></div>
+</main>
+<script>try{if(document.documentElement.lang==='ar')document.querySelectorAll('[data-fg-ar]').forEach(el=>el.textContent=el.dataset.fgAr)}catch{}</script>
+<script src="./sentiment-panel.js?v=1"></script>
+</body>
+</html>
