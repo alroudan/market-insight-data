@@ -19,21 +19,13 @@
     {
       "ticker": "QIC_EPS",
       "error": "Cumulative EPS row or comparative period was not found in https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6448/HTML_en.html — EPS rows: Earnings per share |  |  |  |  ;; Basic EPS attributable to shareholders of Parent Company |  |  |  |  ;; Basic EPS attributable to shareholders of Parent Company from Continuing operations |  |  |  | "
-    },
-    {
-      "ticker": "OFFICIAL_DAILY_REPORTS",
-      "error": "BKP daily report dated 20261014; expected 20261015"
-    },
-    {
-      "ticker": "OFFICIAL_MARKET_SUMMARY",
-      "error": "Official homepage date or market value was not found"
     }
   ],
   "premierIndex": {
     "ticker": "BKP",
     "name": "Boursa Kuwait Premier Market Index",
     "close": 8891.97,
-    "changePercent": -0.600512649108131,
+    "changePercent": -0.6,
     "performance1MonthPercent": -4.547123307670179,
     "performanceYtdPercent": -6.188400323256551,
     "averageVolume30d": 0,
@@ -43,15 +35,15 @@
     "tradedValueComparisonPeriod": "Q3 2026 vs Q2 2026",
     "tradedValueComparisonSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026",
     "tradingDate": "2026-10-15",
-    "source": "TradingView Kuwait index scanner",
-    "sourceUrl": "https://www.tradingview.com/symbols/KSE-BKP/",
-    "pointChange": -53.720000000001164
+    "source": "Boursa Kuwait homepage — All-Share market summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
+    "pointChange": -53.72
   },
   "mainIndex": {
     "ticker": "BKM",
     "name": "Boursa Kuwait Main Market Index",
     "close": 8587.96,
-    "changePercent": -1.040873259593788,
+    "changePercent": -1.04,
     "performance1MonthPercent": -9.536429979943723,
     "performanceYtdPercent": 3.2885803527078314,
     "averageVolume30d": 0,
@@ -61,15 +53,15 @@
     "tradedValueComparisonPeriod": "Q3 2026 vs Q2 2026",
     "tradedValueComparisonSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026",
     "tradingDate": "2026-10-15",
-    "source": "TradingView Kuwait index scanner",
-    "sourceUrl": "https://www.tradingview.com/symbols/KSE-BKM/",
-    "pointChange": -90.33000000000175
+    "source": "Boursa Kuwait homepage — All-Share market summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
+    "pointChange": -90.33
   },
   "allShareIndex": {
     "ticker": "BKA",
     "name": "Boursa Kuwait All Share Index",
     "close": 8475.93,
-    "changePercent": -0.6757991937751954,
+    "changePercent": -0.68,
     "performance1MonthPercent": -5.436234197869288,
     "performanceYtdPercent": -4.707013243990737,
     "averageVolume30d": 0,
@@ -79,20 +71,20 @@
     "tradedValueComparisonPeriod": "Q3 2026 vs Q2 2026",
     "tradedValueComparisonSourceUrl": "https://reports.boursakuwait.com.kw/en/data-and-research/reports/market-summary-chart/t2wklug535926/2026",
     "tradingDate": "2026-10-15",
-    "source": "TradingView Kuwait index scanner",
-    "sourceUrl": "https://www.tradingview.com/symbols/KSE-BKA/",
-    "pointChange": -57.67000000000007
+    "source": "Boursa Kuwait homepage — All-Share market summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
+    "pointChange": -57.67
   },
   "marketStats": {
-    "latestValueTradedKwd": null,
-    "latestValueTradedDate": null,
+    "latestValueTradedKwd": 83613888.017,
+    "latestValueTradedDate": "2026-10-15",
     "averageDailyValueTradedYtdKwd": 85478509.82721311,
-    "latestValueVsYtdAveragePercent": null,
+    "latestValueVsYtdAveragePercent": -2.1813925090438113,
     "averageThroughDate": "2026-09-30",
     "ytdTotalValueTradedKwd": 15642567298.38,
     "tradingSessionCount": 183,
-    "source": null,
-    "sourceUrl": null,
+    "source": "Boursa Kuwait homepage — All-Share market summary",
+    "sourceUrl": "https://www.boursakuwait.com.kw/en/",
     "averageSource": "Boursa Kuwait monthly and quarterly market summaries",
     "averageSourceUrl": "https://reports.boursakuwait.com.kw/en/products-and-services/historical-data/reports/market-summary"
   },
@@ -9735,5 +9727,6 @@
         "high20Day": 155
       }
     }
-  }
+  },
+  "officialReportAppliedAt": "2026-10-15T11:21:41.297Z"
 }
