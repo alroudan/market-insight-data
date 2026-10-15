@@ -1,1405 +1,262 @@
 {
- "ranAt": "2026-10-15T10:41:56.747Z",
+ "ranAt": "2026-10-15T10:42:50.581Z",
  "indexes": {
   "^BKP.KW": {
-   "currency": "KWF",
-   "rows": 1,
-   "first": "2026-10-15",
-   "last": "2026-10-15",
-   "lastClose": 8891.9697265625,
-   "nullCloses": 0,
-   "zeroVolDays": 0
-  },
-  "^BKM.KW": {
-   "currency": "KWF",
-   "rows": 1,
-   "first": "2026-10-15",
-   "last": "2026-10-15",
-   "lastClose": 8587.9599609375,
-   "nullCloses": 0,
-   "zeroVolDays": 0
+   "r1mo": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "last": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "granularity": "1d",
+    "range": "1mo"
+   },
+   "r1y": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "last": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "granularity": "1d",
+    "range": "1y"
+   },
+   "r2y": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "last": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "granularity": "1d",
+    "range": "2y"
+   },
+   "period": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "last": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "granularity": "1d",
+    "range": ""
+   },
+   "wk": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "last": [
+     "2026-10-15",
+     8891.9697265625
+    ],
+    "granularity": "1wk",
+    "range": "5y"
+   }
   },
   "^BKA.KW": {
-   "currency": "KWF",
-   "rows": 1,
-   "first": "2026-10-15",
-   "last": "2026-10-15",
-   "lastClose": 8475.9296875,
-   "nullCloses": 0,
-   "zeroVolDays": 0
+   "r1mo": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "last": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "granularity": "1d",
+    "range": "1mo"
+   },
+   "r1y": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "last": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "granularity": "1d",
+    "range": "1y"
+   },
+   "r2y": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "last": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "granularity": "1d",
+    "range": "2y"
+   },
+   "period": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "last": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "granularity": "1d",
+    "range": ""
+   },
+   "wk": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "last": [
+     "2026-10-15",
+     8475.9296875
+    ],
+    "granularity": "1wk",
+    "range": "5y"
+   }
   },
-  "^BKX.KW": {
-   "error": "HTTP 404"
-  },
-  "^KWSE": {
-   "error": "HTTP 404"
+  "^BKM.KW": {
+   "r1mo": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "last": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "granularity": "1d",
+    "range": "1mo"
+   },
+   "r1y": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "last": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "granularity": "1d",
+    "range": "1y"
+   },
+   "r2y": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "last": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "granularity": "1d",
+    "range": "2y"
+   },
+   "period": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "last": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "granularity": "1d",
+    "range": ""
+   },
+   "wk": {
+    "rows": 1,
+    "first": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "last": [
+     "2026-10-15",
+     8587.9599609375
+    ],
+    "granularity": "1wk",
+    "range": "5y"
+   }
   }
  },
- "stocks": {
-  "URC": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 229,
-   "nullCloses": 3,
-   "zeroVolDays": 24,
-   "tvClose": 229
-  },
-  "RASIYAT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 724,
-   "nullCloses": 4,
-   "zeroVolDays": 17,
-   "tvClose": 724
-  },
-  "JTC": {
-   "currency": "KWF",
-   "rows": 1205,
-   "first": "2021-11-11",
-   "last": "2026-10-15",
-   "lastClose": 400,
-   "nullCloses": 3,
-   "zeroVolDays": 103,
-   "tvClose": 400
-  },
-  "GBK": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 312,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 312
-  },
-  "FUTUREKID": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 139,
-   "nullCloses": 4,
-   "zeroVolDays": 55,
-   "tvClose": 139
-  },
-  "TIJARA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 106,
-   "nullCloses": 4,
-   "zeroVolDays": 33,
-   "tvClose": 106
-  },
-  "AMAR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 97.9000015258789,
-   "nullCloses": 4,
-   "zeroVolDays": 368,
-   "tvClose": 97.9
-  },
-  "IFA": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 437,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 437
-  },
-  "FTI": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 608,
-   "nullCloses": 4,
-   "zeroVolDays": 356,
-   "tvClose": 608
-  },
-  "ABAR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 192,
-   "nullCloses": 4,
-   "zeroVolDays": 37,
-   "tvClose": 192
-  },
-  "PAPCO": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 244,
-   "nullCloses": 4,
-   "zeroVolDays": 476,
-   "tvClose": 244
-  },
-  "KFOUC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 394,
-   "nullCloses": 4,
-   "zeroVolDays": 88,
-   "tvClose": 394
-  },
-  "MUBARRAD": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 139,
-   "nullCloses": 4,
-   "zeroVolDays": 66,
-   "tvClose": 139
-  },
-  "ALENMA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 105,
-   "nullCloses": 4,
-   "zeroVolDays": 23,
-   "tvClose": 105
-  },
-  "NIND": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 215,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 215
-  },
-  "SRE": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 370,
-   "nullCloses": 4,
-   "zeroVolDays": 14,
-   "tvClose": 370
-  },
-  "ALDEERA": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 436,
-   "nullCloses": 3,
-   "zeroVolDays": 295,
-   "tvClose": 436
-  },
-  "ALMANAR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 108,
-   "nullCloses": 4,
-   "zeroVolDays": 169,
-   "tvClose": 108
-  },
-  "PHC": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 182,
-   "nullCloses": 3,
-   "zeroVolDays": 36,
-   "tvClose": 182
-  },
-  "INOVEST": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 90.4000015258789,
-   "nullCloses": 4,
-   "zeroVolDays": 37,
-   "tvClose": 90.4
-  },
-  "AAYAN": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 280,
-   "nullCloses": 4,
-   "zeroVolDays": 14,
-   "tvClose": 280
-  },
-  "SHIP": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 580,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 580
-  },
-  "OSOUL": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 217,
-   "nullCloses": 4,
-   "zeroVolDays": 184,
-   "tvClose": 217
-  },
-  "BURG": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 175,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 175
-  },
-  "EQUIPMENT": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 153,
-   "nullCloses": 3,
-   "zeroVolDays": 283,
-   "tvClose": 153
-  },
-  "HUMANSOFT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 2300,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 2300
-  },
-  "INJAZZAT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 135,
-   "nullCloses": 4,
-   "zeroVolDays": 206,
-   "tvClose": 135
-  },
-  "KPROJ": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 70.19999694824219,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 70.2
-  },
-  "OULAFUEL": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 312,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 312
-  },
-  "AREEC": {
-   "currency": "KWF",
-   "rows": 1221,
-   "first": "2021-10-17",
-   "last": "2026-10-14",
-   "lastClose": 312,
-   "nullCloses": 5,
-   "zeroVolDays": 250,
-   "tvClose": 312
-  },
-  "KCIN": {
-   "currency": "KWF",
-   "rows": 1221,
-   "first": "2021-10-17",
-   "last": "2026-10-14",
-   "lastClose": 1271,
-   "nullCloses": 5,
-   "zeroVolDays": 566,
-   "tvClose": 1271
-  },
-  "ALG": {
-   "currency": "KWF",
-   "rows": 1043,
-   "first": "2022-07-14",
-   "last": "2026-10-15",
-   "lastClose": 878,
-   "nullCloses": 3,
-   "zeroVolDays": 12,
-   "tvClose": 878
-  },
-  "NINV": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 259,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 259
-  },
-  "NIH": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 149,
-   "nullCloses": 3,
-   "zeroVolDays": 22,
-   "tvClose": 149
-  },
-  "BEYOUT": {
-   "currency": "KWF",
-   "rows": 575,
-   "first": "2024-06-19",
-   "last": "2026-10-15",
-   "lastClose": 308,
-   "nullCloses": 1,
-   "zeroVolDays": 7,
-   "tvClose": 308
-  },
-  "ACICO": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 504,
-   "nullCloses": 4,
-   "zeroVolDays": 315,
-   "tvClose": 504
-  },
-  "MUNSHAAT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 229,
-   "nullCloses": 4,
-   "zeroVolDays": 151,
-   "tvClose": 229
-  },
-  "QIC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 134,
-   "nullCloses": 4,
-   "zeroVolDays": 700,
-   "tvClose": 134
-  },
-  "KIB": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 238,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 238
-  },
-  "OOREDOO": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1691,
-   "nullCloses": 4,
-   "zeroVolDays": 16,
-   "tvClose": 1691
-  },
-  "BOUBYAN": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 665,
-   "nullCloses": 3,
-   "zeroVolDays": 12,
-   "tvClose": 665
-  },
-  "SANAM": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 321,
-   "nullCloses": 3,
-   "zeroVolDays": 93,
-   "tvClose": 321
-  },
-  "DIGITUS": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1660,
-   "nullCloses": 3,
-   "zeroVolDays": 303,
-   "tvClose": 1660
-  },
-  "ALAQARIA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 58,
-   "nullCloses": 4,
-   "zeroVolDays": 277,
-   "tvClose": 58
-  },
-  "ALOLA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 110,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 110
-  },
-  "JAZEERA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1462,
-   "nullCloses": 4,
-   "zeroVolDays": 17,
-   "tvClose": 1462
-  },
-  "AZNOULA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 131,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 131
-  },
-  "NCCI": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 89.69999694824219,
-   "nullCloses": 4,
-   "zeroVolDays": 16,
-   "tvClose": 89.7
-  },
-  "MEZZAN": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1148,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 1148
-  },
-  "ASC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 758,
-   "nullCloses": 4,
-   "zeroVolDays": 234,
-   "tvClose": 758
-  },
-  "UNICAP": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 250,
-   "nullCloses": 4,
-   "zeroVolDays": 120,
-   "tvClose": 250
-  },
-  "SPEC": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 255,
-   "nullCloses": 3,
-   "zeroVolDays": 19,
-   "tvClose": 255
-  },
-  "ALTIJARIA": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 175,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 175
-  },
-  "ABK": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 295,
-   "nullCloses": 3,
-   "zeroVolDays": 12,
-   "tvClose": 295
-  },
-  "STC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 578,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 578
-  },
-  "OSOS": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 180,
-   "nullCloses": 4,
-   "zeroVolDays": 318,
-   "tvClose": 180
-  },
-  "NRE": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 127,
-   "nullCloses": 4,
-   "zeroVolDays": 13,
-   "tvClose": 127
-  },
-  "PCEM": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 568,
-   "nullCloses": 4,
-   "zeroVolDays": 33,
-   "tvClose": 568
-  },
-  "KINS": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 414,
-   "nullCloses": 3,
-   "zeroVolDays": 142,
-   "tvClose": 414
-  },
-  "ALSAFAT": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 157,
-   "nullCloses": 3,
-   "zeroVolDays": 28,
-   "tvClose": 157
-  },
-  "SHUAIBA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 219,
-   "nullCloses": 4,
-   "zeroVolDays": 155,
-   "tvClose": 219
-  },
-  "MANAZEL": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 44.5,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 44.5
-  },
-  "MABANEE": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 931,
-   "nullCloses": 3,
-   "zeroVolDays": 15,
-   "tvClose": 931
-  },
-  "MARKAZ": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 125,
-   "nullCloses": 4,
-   "zeroVolDays": 33,
-   "tvClose": 125
-  },
-  "IPG": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 799,
-   "nullCloses": 4,
-   "zeroVolDays": 466,
-   "tvClose": 799
-  },
-  "AINS": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 777,
-   "nullCloses": 3,
-   "zeroVolDays": 435,
-   "tvClose": 777
-  },
-  "SECH": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 84,
-   "nullCloses": 4,
-   "zeroVolDays": 13,
-   "tvClose": 84
-  },
-  "TAM": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 390,
-   "nullCloses": 4,
-   "zeroVolDays": 298,
-   "tvClose": 390
-  },
-  "GINS": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1274,
-   "nullCloses": 3,
-   "zeroVolDays": 533,
-   "tvClose": 1274
-  },
-  "BOURSA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 2857,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 2857
-  },
-  "ALKOUT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 666,
-   "nullCloses": 4,
-   "zeroVolDays": 887,
-   "tvClose": 666
-  },
-  "KBT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 67,
-   "nullCloses": 4,
-   "zeroVolDays": 28,
-   "tvClose": 67
-  },
-  "ARKAN": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 282,
-   "nullCloses": 4,
-   "zeroVolDays": 321,
-   "tvClose": 282
-  },
-  "ARABREC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 205,
-   "nullCloses": 4,
-   "zeroVolDays": 13,
-   "tvClose": 205
-  },
-  "TAMINV": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-14",
-   "lastClose": 1210,
-   "nullCloses": 4,
-   "zeroVolDays": 716,
-   "tvClose": 1210
-  },
-  "VALMORE": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 200,
-   "nullCloses": 3,
-   "zeroVolDays": 46,
-   "tvClose": 200
-  },
-  "WARBACAP": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 791,
-   "nullCloses": 4,
-   "zeroVolDays": 82,
-   "tvClose": 791
-  },
-  "WINSRE": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 168,
-   "nullCloses": 4,
-   "zeroVolDays": 123,
-   "tvClose": 168
-  },
-  "KCEM": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 368,
-   "nullCloses": 4,
-   "zeroVolDays": 32,
-   "tvClose": 368
-  },
-  "SENERGY": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 215,
-   "nullCloses": 3,
-   "zeroVolDays": 96,
-   "tvClose": 215
-  },
-  "KHOT": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 185,
-   "nullCloses": 3,
-   "zeroVolDays": 626,
-   "tvClose": 185
-  },
-  "UPAC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 253,
-   "nullCloses": 4,
-   "zeroVolDays": 224,
-   "tvClose": 253
-  },
-  "ASIYA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 40.099998474121094,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 40.1
-  },
-  "WETHAQ": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 108,
-   "nullCloses": 4,
-   "zeroVolDays": 104,
-   "tvClose": 108
-  },
-  "SOOR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 287,
-   "nullCloses": 4,
-   "zeroVolDays": 13,
-   "tvClose": 287
-  },
-  "GFC": {
-   "currency": "KWF",
-   "rows": 1221,
-   "first": "2021-10-17",
-   "last": "2026-10-14",
-   "lastClose": 377,
-   "nullCloses": 5,
-   "zeroVolDays": 560,
-   "tvClose": 377
-  },
-  "MENA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 129,
-   "nullCloses": 4,
-   "zeroVolDays": 309,
-   "tvClose": 129
-  },
-  "ALFTAQA": {
-   "currency": "KWF",
-   "rows": 201,
-   "first": "2025-12-21",
-   "last": "2026-10-15",
-   "lastClose": 253,
-   "nullCloses": 0,
-   "zeroVolDays": 5,
-   "tvClose": 253
-  },
-  "MAZAYA": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 73,
-   "nullCloses": 3,
-   "zeroVolDays": 14,
-   "tvClose": 73
-  },
-  "ATC": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 514,
-   "nullCloses": 3,
-   "zeroVolDays": 700,
-   "tvClose": 514
-  },
-  "NICBM": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 266,
-   "nullCloses": 4,
-   "zeroVolDays": 270,
-   "tvClose": 266
-  },
-  "MIDAN": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 860,
-   "nullCloses": 3,
-   "zeroVolDays": 948,
-   "tvClose": 860
-  },
-  "ARZAN": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 275,
-   "nullCloses": 3,
-   "zeroVolDays": 12,
-   "tvClose": 275
-  },
-  "EMIRATES": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 122,
-   "nullCloses": 4,
-   "zeroVolDays": 195,
-   "tvClose": 122
-  },
-  "CATTL": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 138,
-   "nullCloses": 4,
-   "zeroVolDays": 126,
-   "tvClose": 138
-  },
-  "NAPESCO": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1510,
-   "nullCloses": 4,
-   "zeroVolDays": 375,
-   "tvClose": 1510
-  },
-  "NOOR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 442,
-   "nullCloses": 4,
-   "zeroVolDays": 24,
-   "tvClose": 442
-  },
-  "CLEANING": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 334,
-   "nullCloses": 4,
-   "zeroVolDays": 68,
-   "tvClose": 334
-  },
-  "FACIL": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 230,
-   "nullCloses": 4,
-   "zeroVolDays": 35,
-   "tvClose": 230
-  },
-  "MADAR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 102,
-   "nullCloses": 4,
-   "zeroVolDays": 327,
-   "tvClose": 102
-  },
-  "MRC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 171,
-   "nullCloses": 4,
-   "zeroVolDays": 148,
-   "tvClose": 171
-  },
-  "KRE": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 357,
-   "nullCloses": 3,
-   "zeroVolDays": 14,
-   "tvClose": 357
-  },
-  "AQAR": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 98.5,
-   "nullCloses": 4,
-   "zeroVolDays": 175,
-   "tvClose": 98.5
-  },
-  "GIH": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 357,
-   "nullCloses": 4,
-   "zeroVolDays": 59,
-   "tvClose": 357
-  },
-  "KAMCO": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 187,
-   "nullCloses": 4,
-   "zeroVolDays": 16,
-   "tvClose": 187
-  },
-  "NBK": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 815,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 815
-  },
-  "KFH": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 760,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 760
-  },
-  "GFH": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 163,
-   "nullCloses": 4,
-   "zeroVolDays": 16,
-   "tvClose": 163
-  },
-  "ENERGYH": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 230,
-   "nullCloses": 4,
-   "zeroVolDays": 138,
-   "tvClose": 230
-  },
-  "KUWAITRE": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 351,
-   "nullCloses": 3,
-   "zeroVolDays": 687,
-   "tvClose": 351
-  },
-  "EKTTITAB": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 31,
-   "nullCloses": 3,
-   "zeroVolDays": 229,
-   "tvClose": 31
-  },
-  "SOKOUK": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 72,
-   "nullCloses": 4,
-   "zeroVolDays": 18,
-   "tvClose": 72
-  },
-  "KFIC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 175,
-   "nullCloses": 4,
-   "zeroVolDays": 216,
-   "tvClose": 175
-  },
-  "ARGAN": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 118,
-   "nullCloses": 3,
-   "zeroVolDays": 68,
-   "tvClose": 118
-  },
-  "BPCC": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 695,
-   "nullCloses": 3,
-   "zeroVolDays": 14,
-   "tvClose": 695
-  },
-  "ALIMTIAZ": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 61.5,
-   "nullCloses": 3,
-   "zeroVolDays": 35,
-   "tvClose": 61.5
-  },
-  "WARBABANK": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 258,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 258
-  },
-  "AAYANRE": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 168,
-   "nullCloses": 4,
-   "zeroVolDays": 26,
-   "tvClose": 168
-  },
-  "COAST": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 72.0999984741211,
-   "nullCloses": 4,
-   "zeroVolDays": 43,
-   "tvClose": 72.1
-  },
-  "BAYANINV": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 66.80000305175781,
-   "nullCloses": 3,
-   "zeroVolDays": 151,
-   "tvClose": 66.8
-  },
-  "KINV": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 176,
-   "nullCloses": 4,
-   "zeroVolDays": 19,
-   "tvClose": 176
-  },
-  "KMEFIC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 126,
-   "nullCloses": 4,
-   "zeroVolDays": 277,
-   "tvClose": 126
-  },
-  "KCPC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 311,
-   "nullCloses": 4,
-   "zeroVolDays": 43,
-   "tvClose": 311
-  },
-  "ZAIN": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 568,
-   "nullCloses": 4,
-   "zeroVolDays": 16,
-   "tvClose": 568
-  },
-  "CGC": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 799,
-   "nullCloses": 4,
-   "zeroVolDays": 15,
-   "tvClose": 799
-  },
-  "IFAHR": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 595,
-   "nullCloses": 3,
-   "zeroVolDays": 15,
-   "tvClose": 595
-  },
-  "TROLLEY": {
-   "currency": "KWF",
-   "rows": 139,
-   "first": "2026-03-29",
-   "last": "2026-10-15",
-   "lastClose": 876,
-   "nullCloses": 0,
-   "zeroVolDays": 5,
-   "tvClose": 876
-  },
-  "MARAKEZ": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 250,
-   "nullCloses": 4,
-   "zeroVolDays": 98,
-   "tvClose": 250
-  },
-  "INTEGRATED": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 363,
-   "nullCloses": 3,
-   "zeroVolDays": 13,
-   "tvClose": 363
-  },
-  "MKHZN": {
-   "error": "HTTP 404",
-   "tvClose": 138
-  },
-  "CBK": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 505,
-   "nullCloses": 4,
-   "zeroVolDays": 261,
-   "tvClose": 505
-  },
-  "THURAYA": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 212,
-   "nullCloses": 4,
-   "zeroVolDays": 638,
-   "tvClose": 212
-  },
-  "MASHAER": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 120,
-   "nullCloses": 4,
-   "zeroVolDays": 84,
-   "tvClose": 120
-  },
-  "TAHSSILAT": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 121,
-   "nullCloses": 4,
-   "zeroVolDays": 181,
-   "tvClose": 121
-  },
-  "CABLE": {
-   "currency": "KWF",
-   "rows": 1222,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 1588,
-   "nullCloses": 4,
-   "zeroVolDays": 16,
-   "tvClose": 1588
-  },
-  "MUNTAZAHAT": {
-   "currency": "KWF",
-   "rows": 1223,
-   "first": "2021-10-17",
-   "last": "2026-10-15",
-   "lastClose": 118,
-   "nullCloses": 3,
-   "zeroVolDays": 61,
-   "tvClose": 118
+ "agility": {
+  "AGLTY.KW": "HTTP 404",
+  "AGILITY.KW": "HTTP 404",
+  "MKHZN.KW": {
+   "rows": 493,
+   "first": [
+    "2024-10-15",
+    252
+   ],
+   "last": [
+    "2026-10-15",
+    138
+   ],
+   "granularity": "1d",
+   "range": "2y"
+  },
+  "ALG.KW": {
+   "rows": 494,
+   "first": [
+    "2024-10-15",
+    731.468017578125
+   ],
+   "last": [
+    "2026-10-15",
+    878
+   ],
+   "granularity": "1d",
+   "range": "2y"
   }
  },
  "boursa": {
-  "dailyReportAll": {
+  "collector_report": {
+   "status": 200,
+   "sample": "{\"Market Summary\":[{\"Volume\":295944889,\"Turnover\":69932024.753,\"NoOfTrades\":21741,\"ChartStartDate\":\"20261014\",\"SymbolsTraded\":null,\"Index\":8533.600,\"Change\":-12"
+  },
+  "collector_statements": {
+   "status": 200,
+   "sample": "{\"dataFields\":[{\"rowId\":\"1500\",\"stkCode\":\"101\",\"fileNames\":[{\"fileName\":\"https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html\",\"type\":\"HTML\"},"
+  },
+  "chrome_report": {
+   "status": 200,
+   "sample": "{\"Market Summary\":[{\"Volume\":295944889,\"Turnover\":69932024.753,\"NoOfTrades\":21741,\"ChartStartDate\":\"20261014\",\"SymbolsTraded\":null,\"Index\":8533.600,\"Change\":-12"
+  },
+  "chrome_statements": {
+   "status": 200,
+   "sample": "{\"dataFields\":[{\"rowId\":\"1500\",\"stkCode\":\"101\",\"fileNames\":[{\"fileName\":\"https://ifsahdocs.boursakuwait.com.kw/FinAssets/2026_6205/HTML_en.html\",\"type\":\"HTML\"},"
+  },
+  "none_report": {
    "status": 403,
-   "sample": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;www&#46;boursakuwait&#46;com&#46;kw&#47;data&#45;api&#47;client&#45;services&#63;\" on this server.<P>\nReference&#32;&#35;18&#46;d74e4317&#46;1792060925&#46;184b6e6"
+   "sample": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;www&#46;boursakuwait&#4"
+  },
+  "none_statements": {
+   "status": 403,
+   "sample": "<HTML><HEAD>\n<TITLE>Access Denied</TITLE>\n</HEAD><BODY>\n<H1>Access Denied</H1>\n \nYou don't have permission to access \"http&#58;&#47;&#47;www&#46;boursakuwait&#4"
   }
- },
- "summary": {
-  "stocks": 136,
-  "withTwoYears": 133,
-  "withAny": 135
  }
 }
