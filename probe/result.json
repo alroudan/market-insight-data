@@ -1,13 +1,225 @@
 {
- "ranAt": "2026-10-15T11:18:30.093Z",
- "tabs": {
-  "Main Market_count": 2,
-  "Main Market_alt1": "l-Share 8,475.93 -57.67 -0.68% REITs 0.00 View Full Chart -- -- Main Market * Delayed by 15 Minutes Trades 14,130 Volume 163,083,218 Value Traded 27,603,078.005 Market Cap 8,652,326,187.899 Date Time Index Value 0.00 The above chart is a minute based chart Kuwait Oil Price (USD) 106.23 0.16 +0.15% CPI 140.20 0.30 +0.21% GDP ",
-  "All-Share_count": 1,
-  "All-Share": "All-Share 8,475.93 -57.67 -0.68% REITs 0.00 View Full Chart -- -- All-Share * Delayed by 15 Minutes Trades 27,666 Volume 315,189,878 Value Traded 83,613,888.017 Market Cap 50,754,453,174.834 Date Time Index Value 0.00 The above chart is a minute based chart Kuwait Oil Price (USD) 106.23 0.16 +0.15% CPI 140.20 0.30 +0.21% GDP",
-  "Premier Market_count": 3,
-  "Premier Market_alt2": "hare 8,475.93 -57.67 -0.68% REITs 0.00 View Full Chart -- -- Premier Market * Delayed by 15 Minutes Trades 13,536 Volume 152,106,660 Value Traded 56,010,810.012 Market Cap 42,101,966,579.367 Date Time Index Value 0.00 The above chart is a minute based chart Kuwait Oil Price (USD) 106.23 0.16 +0.15% CPI 140.20 0.30 +0.21% GDP"
- },
- "default": "ll-Share 8,475.93 -57.67 -0.68% REITs 0.00 View Full Chart Premier Market * Delayed by 15 Minutes Trades 13,536 Volume 152,106,660 Value Traded 56,010,810.012 Market Cap 42,101,966,579.367 Date Time Index Value 0.00 The above chart is a minute based chart Kuwait Oil Price (USD) 106.23 0.16 +0.15% CPI 140.20 0.30 +0.21% GDP",
- "banner": "rket 8,891.97 -53.72 -0.60% Market Summary Volume 315,219,721 Value 83,650,011.374 Trades 27,715 Market Watch Market Summary 15 Oct 2026 Closed Economic Indicators View All Premier Marke"
+ "premierCount": 39,
+ "premier": [
+  "BURG",
+  "WARBABANK",
+  "BOURSA",
+  "ALFTAQA",
+  "SRE",
+  "TROLLEY",
+  "ARZAN",
+  "SHIP",
+  "MKHZN",
+  "BPCC",
+  "GFH",
+  "IFAHR",
+  "STC",
+  "AAYAN",
+  "NBK",
+  "KPROJ",
+  "URC",
+  "KINV",
+  "OULAFUEL",
+  "KRE",
+  "MABANEE",
+  "BEYOUT",
+  "JAZEERA",
+  "BOUBYAN",
+  "ZAIN",
+  "MEZZAN",
+  "NIND",
+  "IFA",
+  "NINV",
+  "ABK",
+  "HUMANSOFT",
+  "CGC",
+  "ALTIJARIA",
+  "GBK",
+  "KFH",
+  "INTEGRATED",
+  "ALG",
+  "KIB",
+  "CABLE"
+ ],
+ "variants": [
+  {
+   "name": "A current: All-Share, rank",
+   "today": 5.4,
+   "oct14": 7.8,
+   "parts": {
+    "momentum": 2.7,
+    "breadth": 1.1,
+    "strength": 0.1,
+    "volatility": 27.9,
+    "participation": 0.7,
+    "safeHaven": 0.1
+   },
+   "min": [
+    "2026-01-29",
+    4.8
+   ],
+   "aug2024": 21.2,
+   "apr2025": 27.7,
+   "dist": {
+    "XF": 77,
+    "F": 137,
+    "N": 83,
+    "G": 315,
+    "XG": 101
+   }
+  },
+  {
+   "name": "B All-Share, z-score",
+   "today": 8.8,
+   "oct14": 10.7,
+   "parts": {
+    "momentum": 3.2,
+    "breadth": 1.6,
+    "strength": 0.1,
+    "volatility": 43.5,
+    "participation": 2.4,
+    "safeHaven": 1.7
+   },
+   "min": [
+    "2026-03-09",
+    7.8
+   ],
+   "aug2024": 20.9,
+   "apr2025": 28.1,
+   "dist": {
+    "XF": 74,
+    "F": 133,
+    "N": 85,
+    "G": 295,
+    "XG": 126
+   }
+  },
+  {
+   "name": "C All-Share, rank, 5 parts (no strength; activity level instead of money flow)",
+   "today": 10,
+   "oct14": 11.9,
+   "parts": {
+    "momentum": 2.7,
+    "breadth": 1.1,
+    "volatility": 27.9,
+    "activity": 18.3,
+    "safeHaven": 0.1
+   },
+   "min": [
+    "2026-01-29",
+    5.3
+   ],
+   "aug2024": 24.4,
+   "apr2025": 30.7,
+   "dist": {
+    "XF": 68,
+    "F": 150,
+    "N": 116,
+    "G": 280,
+    "XG": 100
+   }
+  },
+  {
+   "name": "D All-Share, z-score, 5 parts",
+   "today": 13.7,
+   "oct14": 15.3,
+   "parts": {
+    "momentum": 3.2,
+    "breadth": 1.6,
+    "volatility": 43.5,
+    "activity": 18.6,
+    "safeHaven": 1.7
+   },
+   "min": [
+    "2026-02-01",
+    9.3
+   ],
+   "aug2024": 22.8,
+   "apr2025": 27.9,
+   "dist": {
+    "XF": 65,
+    "F": 154,
+    "N": 102,
+    "G": 285,
+    "XG": 108
+   }
+  },
+  {
+   "name": "E Premier, rank",
+   "today": 8.2,
+   "oct14": 10.1,
+   "parts": {
+    "momentum": 1.7,
+    "breadth": 0.8,
+    "strength": 0.1,
+    "volatility": 33.7,
+    "participation": 4.1,
+    "safeHaven": 8.7
+   },
+   "min": [
+    "2026-03-30",
+    5.9
+   ],
+   "aug2024": 27.9,
+   "apr2025": 34.1,
+   "dist": {
+    "XF": 87,
+    "F": 157,
+    "N": 105,
+    "G": 287,
+    "XG": 77
+   }
+  },
+  {
+   "name": "F Premier, z-score",
+   "today": 11,
+   "oct14": 13.4,
+   "parts": {
+    "momentum": 4.5,
+    "breadth": 1.4,
+    "strength": 0.1,
+    "volatility": 49,
+    "participation": 3.8,
+    "safeHaven": 7.1
+   },
+   "min": [
+    "2026-03-30",
+    8.3
+   ],
+   "aug2024": 26.8,
+   "apr2025": 33.3,
+   "dist": {
+    "XF": 78,
+    "F": 158,
+    "N": 108,
+    "G": 277,
+    "XG": 92
+   }
+  },
+  {
+   "name": "G Premier, z-score, 5 parts",
+   "today": 16.7,
+   "oct14": 18.4,
+   "parts": {
+    "momentum": 4.5,
+    "breadth": 1.4,
+    "volatility": 49,
+    "activity": 21.4,
+    "safeHaven": 7.1
+   },
+   "min": [
+    "2026-03-30",
+    10.8
+   ],
+   "aug2024": 26.1,
+   "apr2025": 32.1,
+   "dist": {
+    "XF": 63,
+    "F": 185,
+    "N": 117,
+    "G": 271,
+    "XG": 78
+   }
+  }
+ ]
 }
