@@ -10,12 +10,11 @@
   const PARTS = {
     momentum: ["Momentum", "الزخم", "All-Share vs its 125-day average", "المؤشر العام مقابل متوسط 125 يوماً"],
     breadth: ["Breadth", "اتساع السوق", "Stocks above their 50-day average", "الأسهم فوق متوسط 50 يوماً"],
-    strength: ["Strength", "القوة", "52-week highs vs 52-week lows", "قمم 52 أسبوعاً مقابل قيعانها"],
     volatility: ["Volatility", "التذبذب", "Recent swings vs the past year (higher = fear)", "التقلبات الأخيرة مقابل السنة (أعلى = خوف)"],
-    participation: ["Participation", "المشاركة", "Money traded in rising vs falling stocks", "السيولة في الأسهم المرتفعة مقابل المنخفضة"],
+    activity: ["Activity", "نشاط التداول", "Value traded vs its 1-year average", "قيمة التداول مقابل متوسط السنة"],
     safeHaven: ["Safe haven", "الملاذ الآمن", "Rest of the market vs the 10 largest stocks", "بقية السوق مقابل أكبر 10 أسهم"]
   };
-  const PART_KEYS = Object.keys(PARTS);
+  let PART_KEYS = Object.keys(PARTS);
   const zone = (v) => ZONES.find((z) => v < z[1]);
   const isArabic = () => document.documentElement.lang === "ar";
   const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -83,13 +82,13 @@
     const latest = data.latest, z = zone(latest.score);
     host.hidden = false;
     host.innerHTML = `
-      <div class="fg-head"><h2>${ar ? "مؤشر الخوف والطمع · السوق العام" : "Market Fear &amp; Greed · All-Share"}</h2><small>${ar ? "إقفال " + esc(fmtDate(data.tradingDate, true)) + " · من 0 إلى 100 · كل مكوّن مقارن بآخر سنتين · 50 = المعتاد" : "Close " + esc(fmtDate(data.tradingDate, false)) + " · 0–100 · each part ranked against the past 2 years · 50 = typical"}</small></div>
+      <div class="fg-head"><h2>${ar ? "مؤشر الخوف والطمع · السوق العام" : "Market Fear &amp; Greed · All-Share"}</h2><small>${ar ? "إقفال " + esc(fmtDate(data.tradingDate, true)) + " · من 0 إلى 100 · كل مكوّن مقارن بمتوسط آخر سنتين · 50 = المعتاد" : "Close " + esc(fmtDate(data.tradingDate, false)) + " · 0–100 · each part compared with its 2-year average · 50 = typical"}</small></div>
       <div class="fg-grid">
         <div class="fg-gauge">${gaugeSvg(latest.score)}<div class="fg-score">${Math.round(latest.score)}</div><div class="fg-state" style="color:var(${z[2]})">${ar ? z[4] : z[3]}</div><div class="fg-compare">${compareHtml(latest.compare, ar)}</div></div>
         <div class="fg-parts">${partsHtml(latest, ar)}</div>
         <div class="fg-history"><h3>${ar ? "آخر 12 شهراً" : "Past 12 months"}</h3>${historySvg(data.history.slice(-250), ar)}</div>
       </div>
-      <div class="fg-foot"><span>${ar ? "متوسط 6 مكوّنات بأوزان متساوية · يُحدَّث يومياً بعد الإقفال · لأغراض المعلومات فقط وليس توصية استثمارية" : "Average of 6 equally weighted parts · updated daily after the close · for information only, not investment advice"}</span><a class="fg-link" href="/sentiment">${ar ? "السجل الكامل والمنهجية ←" : "Full history &amp; methodology →"}</a></div>`;
+      <div class="fg-foot"><span>${ar ? "متوسط 5 مكوّنات بأوزان متساوية · يُحدَّث يومياً بعد الإقفال · لأغراض المعلومات فقط وليس توصية استثمارية" : "Average of 5 equally weighted parts · updated daily after the close · for information only, not investment advice"}</span><a class="fg-link" href="/sentiment">${ar ? "السجل الكامل والمنهجية ←" : "Full history &amp; methodology →"}</a></div>`;
   }
 
   function renderPage() {
@@ -98,27 +97,25 @@
     const ar = isArabic(); renderedLang = document.documentElement.lang;
     const latest = data.latest, z = zone(latest.score), c = data.check;
     const partCharts = PART_KEYS.map((key, idx) => {
-      const rows = data.history.map((r) => [r[0], r[2 + idx]]);
+      const col = 2 + data.method.parts.indexOf(key), rows = data.history.map((r) => [r[0], r[col]]);
       const [en, a, den, dar] = PARTS[key];
       return `<div class="fg-mini"><h3>${ar ? a : en} <b style="color:var(${zone(latest.parts[key].score)[2]})">${Math.round(latest.parts[key].score)}</b></h3><small>${ar ? dar : den}</small>${historySvg(rows, ar, { width: 320, height: 150, ticks: 3, years: true })}</div>`;
     }).join("");
     const method = ar ? `
       <li><b>الزخم:</b> مستوى المؤشر العام مقابل متوسطه لآخر 125 جلسة.</li>
       <li><b>اتساع السوق:</b> نسبة الأسهم التي يتداول سعرها فوق متوسط 50 جلسة.</li>
-      <li><b>القوة:</b> عدد الأسهم التي تسجل قمة جديدة لـ 52 أسبوعاً ناقص التي تسجل قاعاً جديداً، كمتوسط 10 جلسات.</li>
       <li><b>التذبذب:</b> تقلب المؤشر في آخر 20 جلسة مقارنة بمتوسطه السنوي. التذبذب الأعلى يعني خوفاً أكثر.</li>
-      <li><b>المشاركة:</b> قيمة التداول في الأسهم المرتفعة ناقص المنخفضة كنسبة من إجمالي قيمة التداول، لآخر 10 جلسات.</li>
+      <li><b>نشاط التداول:</b> متوسط قيمة التداول لآخر 10 جلسات مقابل متوسط السنة. النشاط المنخفض يعني ابتعاد المستثمرين (خوف)، والنشاط المرتفع يعني ثقة.</li>
       <li><b>الملاذ الآمن:</b> أداء بقية السوق مقابل أكبر 10 شركات في آخر 20 جلسة. عندما يلجأ المستثمرون للأسهم القيادية تنخفض القراءة.</li>
-      <li>كل مكوّن يُرتَّب مقابل آخر 500 جلسة (حوالي سنتين) ويُعطى درجة من 0 إلى 100، ثم يُحسب المتوسط بأوزان متساوية. التصنيفات: 0–25 خوف شديد، 25–45 خوف، 45–55 محايد، 55–75 طمع، 75–100 طمع شديد.</li>
+      <li>كل مكوّن يُقاس بعدد الانحرافات المعيارية عن متوسطه لآخر 500 جلسة (حوالي سنتين) ويُحوَّل إلى درجة من 0 إلى 100 باستخدام التوزيع الطبيعي (50 = المعتاد)، ثم يُحسب المتوسط بأوزان متساوية. التصنيفات: 0–25 خوف شديد، 25–45 خوف، 45–55 محايد، 55–75 طمع، 75–100 طمع شديد.</li>
       <li>لا يوجد سجل منشور للمؤشر العام، لذلك يُعاد بناؤه من أسعار الشركات المدرجة بالأوزان السوقية. مطابقته للأداء الرسمي: شهر ${c.rebuilt1MonthPercent}% مقابل ${c.official1MonthPercent}% رسمياً، ومنذ بداية السنة ${c.rebuiltYtdPercent}% مقابل ${c.officialYtdPercent}%.</li>
       <li>المصادر: سجل الأسعار اليومي من Yahoo Finance، وإقفال اليوم من بيانات TradingView المستخدمة في الموقع. البيانات غير مدققة بشكل مستقل.</li>` : `
       <li><b>Momentum:</b> the All-Share level vs its 125-session average.</li>
       <li><b>Breadth:</b> the share of listed stocks trading above their 50-session average.</li>
-      <li><b>Strength:</b> stocks at new 52-week highs minus those at new 52-week lows, averaged over 10 sessions.</li>
       <li><b>Volatility:</b> the index's 20-session volatility vs its 1-year average. Higher volatility scores as more fear.</li>
-      <li><b>Participation:</b> value traded in rising stocks minus falling stocks, as a share of all value traded over 10 sessions.</li>
+      <li><b>Activity:</b> average value traded over the last 10 sessions vs its 1-year average. Thin trading means investors are staying away (fear); busy trading means confidence.</li>
       <li><b>Safe haven:</b> the 20-session return of the rest of the market vs the 10 largest companies. When investors hide in the leaders, the score falls.</li>
-      <li>Each part is ranked against its own last 500 sessions (about 2 years) and scored 0–100, then the six are averaged with equal weights. Labels: 0–25 Extreme fear, 25–45 Fear, 45–55 Neutral, 55–75 Greed, 75–100 Extreme greed.</li>
+      <li>Each part is measured in standard deviations from its own average over the last 500 sessions (about 2 years) and converted to a 0–100 score with the normal curve (50 = typical). The five are averaged with equal weights. Labels: 0–25 Extreme fear, 25–45 Fear, 45–55 Neutral, 55–75 Greed, 75–100 Extreme greed.</li>
       <li>There is no published All-Share history, so the index is rebuilt from its listed companies, weighted by market value. Check against official performance: 1 month ${c.rebuilt1MonthPercent}% vs ${c.official1MonthPercent}% official; year to date ${c.rebuiltYtdPercent}% vs ${c.officialYtdPercent}%.</li>
       <li>Sources: daily price history from Yahoo Finance; today's close from the TradingView data used across this site. Data is not independently verified.</li>`;
     host.innerHTML = `
@@ -141,6 +138,6 @@
 
   fetch("./sentiment.json", { cache: "no-store" })
     .then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
-    .then((json) => { if (json?.latest && Array.isArray(json.history) && json.history.length > 20) { data = json; render(); } })
+    .then((json) => { if (json?.latest && Array.isArray(json.history) && json.history.length > 20) { data = json; if (Array.isArray(json.method?.parts)) PART_KEYS = json.method.parts.filter((p) => PARTS[p]); render(); } })
     .catch((error) => console.warn("Fear & Greed unavailable:", error.message));
 })();

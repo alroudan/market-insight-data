@@ -1,12 +1,12 @@
 // Market Insight Fear & Greed index for Boursa Kuwait (All-Share).
 //
-// Six equally weighted parts, each ranked against its own trailing 2 years
-// (500 sessions) and scored 0–100 (50 = typical):
+// Version 2. Five equally weighted parts, each scored 0–100 by how far today's
+// reading is from its own trailing 2-year (500-session) average, measured in
+// standard deviations and converted with the normal curve (50 = typical):
 //   momentum      rebuilt All-Share index vs its 125-session average
 //   breadth       share of stocks above their 50-session average
-//   strength      new 52-week highs minus new 52-week lows (10-session mean)
 //   volatility    20-session realised volatility vs its 1-year average (inverted)
-//   participation value traded in rising minus falling stocks (10-session share)
+//   activity      10-session average value traded vs its 1-year average
 //   safeHaven     20-session return of the rest of the market vs the 10 largest
 //
 // Daily history comes from Yahoo Finance (prices in fils). Today's bar is taken
@@ -132,7 +132,7 @@ const rest = chainIndex(capTickers.filter((t) => !largestSet.has(t)));
 // ---- Raw part series ---------------------------------------------------
 const mean = (arr) => arr.reduce((a, b) => a + b, 0) / arr.length;
 const sma = (arr, i, n) => (i + 1 < n ? null : mean(arr.slice(i - n + 1, i + 1)));
-const raw = { momentum: [], breadth: [], strength: [], volatility: [], participation: [], safeHaven: [] };
+const raw = { momentum: [], breadth: [], volatility: [], activity: [], safeHaven: [] };
 const marketReturns = market.map((v, i) => (i ? v / market[i - 1] - 1 : 0));
 const realised = marketReturns.map((_, i) => (i < 20 ? null : Math.sqrt(mean(marketReturns.slice(i - 19, i + 1).map((r) => r * r))) * Math.sqrt(250)));
 const netHighLow = new Array(T).fill(null), flowUp = new Array(T).fill(0), flowDown = new Array(T).fill(0), flowAll = new Array(T).fill(0);
@@ -175,27 +175,23 @@ for (let i = 0; i < T; i += 1) {
   raw.safeHaven.push(i >= 20 ? (rest[i] / rest[i - 20]) - (top[i] / top[i - 20]) : null);
 }
 for (let i = 0; i < T; i += 1) {
-  const window = netHighLow.slice(Math.max(0, i - 9), i + 1);
-  raw.strength.push(i >= 9 && window.every((v) => v != null) ? mean(window) : null);
-  if (i >= 9) {
-    let up = 0, down = 0, all = 0;
-    for (let k = i - 9; k <= i; k += 1) { up += flowUp[k]; down += flowDown[k]; all += flowAll[k]; }
-    raw.participation.push(all > 0 ? (up - down) / all : null);
-  } else raw.participation.push(null);
+  raw.activity.push(i >= 259 ? mean(flowAll.slice(i - 9, i + 1)) / mean(flowAll.slice(i - 259, i + 1)) : null);
 }
 
-// ---- Rank each part against its trailing 2 years -----------------------
+// ---- Score each part against its trailing 2 years ----------------------
 const invert = { volatility: true };
+const erf = (x) => { const t = 1 / (1 + 0.3275911 * Math.abs(x)); const y = 1 - (((((1.061405429 * t - 1.453152027) * t) + 1.421413741) * t - 0.284496736) * t + 0.254829592) * t * Math.exp(-x * x); return x >= 0 ? y : -y; };
+const normal = (z) => 0.5 * (1 + erf(z / Math.SQRT2));
 const scores = {};
 for (const [part, series] of Object.entries(raw)) {
   scores[part] = series.map((value, i) => {
     if (value == null) return null;
     const window = series.slice(Math.max(0, i - WINDOW + 1), i + 1).filter((v) => v != null);
     if (window.length < MIN_RANK_OBS) return null;
-    let below = 0, equal = 0;
-    for (const v of window) { if (v < value) below += 1; else if (v === value) equal += 1; }
-    const pct = ((below + 0.5 * equal) / window.length) * 100;
-    return invert[part] ? 100 - pct : pct;
+    const avg = mean(window);
+    const sd = Math.sqrt(mean(window.map((v) => (v - avg) ** 2))) || 1;
+    const score = normal((value - avg) / sd) * 100;
+    return invert[part] ? 100 - score : score;
   });
 }
 const parts = Object.keys(raw);
@@ -228,14 +224,15 @@ const check = {
 };
 
 const output = {
-  version: 1,
+  version: 2,
   generatedAt: new Date().toISOString(),
   tradingDate: dates[last],
   market: "All-Share",
   method: {
     parts,
     weights: "equal",
-    rankingWindowSessions: WINDOW,
+    scoring: "standard deviations from the trailing 2-year average, converted with the normal curve",
+    windowSessions: WINDOW,
     labels: { extremeFear: "0–25", fear: "25–45", neutral: "45–55", greed: "55–75", extremeGreed: "75–100" },
     largestTen: largest,
     sources: ["Yahoo Finance daily history (Boursa Kuwait listings)", "TradingView Kuwait scanner (latest close)"]
@@ -249,14 +246,14 @@ const output = {
     parts: Object.fromEntries(parts.map((p) => [p, { score: round(scores[p][last]), label: label(scores[p][last]), value: round(raw[p][last], 4) }])),
     compare: { day: back(1), week: back(5), month: back(21), year: back(250) }
   },
-  // [date, composite, momentum, breadth, strength, volatility, participation, safeHaven]
+  // [date, composite, ...parts in method.parts order]
   history: dates.slice(Math.max(firstScored, T - HISTORY_OUT)).map((date) => {
     const i = dates.indexOf(date);
     return [date, round(composite[i]), ...parts.map((p) => round(scores[p][i], 0))];
   })
 };
 
-if (previous && previous.tradingDate > output.tradingDate) throw new Error("Refusing to replace a newer sentiment file");
+if (previous && previous.version === output.version && previous.tradingDate > output.tradingDate) throw new Error("Refusing to replace a newer sentiment file");
 await writeFile(new URL("../website/sentiment.json", import.meta.url), JSON.stringify(output) + "\n");
 console.log(`Fear & Greed ${output.tradingDate}: ${output.latest.score} (${output.latest.label}) from ${loaded.length}/${tickers.length} stocks`);
 console.log("Parts:", JSON.stringify(Object.fromEntries(parts.map((p) => [p, output.latest.parts[p].score]))));
