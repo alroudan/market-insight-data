@@ -117,7 +117,7 @@ try {
   const dk = new Date(lastK.date + "T00:00:00Z"), mK = new Date(dk); mK.setUTCMonth(dk.getUTCMonth() - 1);
   const enough = (n) => kop.length > n;
   const kec = {
-    symbol: "KEC", en: "Kuwait Export Crude ($/bbl)", ar: "خام التصدير الكويتي (دولار/برميل)", timezone: "Asia/Kuwait", currency: "USD",
+    symbol: "KEC", en: "Kuwait crude ($/bbl)", ar: "خام الكويت (دولار/برميل)", timezone: "Asia/Kuwait", currency: "USD",
     date: lastK.date, close: round(lastK.value, 2), open: false, source: "Kuwait Petroleum Corporation via Boursa Kuwait",
     change1d: Number.isFinite(lastK.chg) ? round(lastK.chg, 2) : kop.length > 1 ? pct(lastK.value, backK(1)) : null,
     change1w: enough(5) ? pct(lastK.value, backK(5)) : null,
