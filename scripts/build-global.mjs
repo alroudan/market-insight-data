@@ -150,6 +150,33 @@ const GCC = [
   ["QSE:GNRI", "Qatar (QE Index)", "قطر (مؤشر بورصة قطر)", "Asia/Qatar", [0, 1, 2, 3, 4], "09:30", "13:15"],
   ["BAHRAIN:BHBX", "Bahrain All Share", "البحرين - المؤشر العام", "Asia/Bahrain", [0, 1, 2, 3, 4], "09:30", "13:00"]
 ];
+// Daily bars from TradingView's public chart feed (the same delayed data its free charts use).
+function tvDailyBars(symbol, count = 300) {
+  return new Promise((resolve, reject) => {
+    const ws = new WebSocket("wss://data.tradingview.com/socket.io/websocket?type=chart", { headers: { Origin: "https://www.tradingview.com" } });
+    const session = "cs_" + Math.random().toString(36).slice(2, 12);
+    const send = (m, p) => { const msg = JSON.stringify({ m, p }); ws.send("~m~" + msg.length + "~m~" + msg); };
+    let bars = null;
+    const timer = setTimeout(() => { try { ws.close(); } catch {} reject(new Error("chart feed timeout")); }, 25000);
+    const finish = (fn) => { clearTimeout(timer); try { ws.close(); } catch {} fn(); };
+    ws.onopen = () => {
+      send("set_auth_token", ["unauthorized_user_token"]);
+      send("chart_create_session", [session, ""]);
+      send("resolve_symbol", [session, "sym", "=" + JSON.stringify({ symbol, adjustment: "splits" })]);
+      send("create_series", [session, "s", "s1", "sym", "1D", count, ""]);
+    };
+    ws.onmessage = (event) => {
+      for (const part of String(event.data).split(/~m~\d+~m~/).filter(Boolean)) {
+        if (part.startsWith("~h~")) { ws.send("~m~" + part.length + "~m~" + part); continue; }
+        let j; try { j = JSON.parse(part); } catch { continue; }
+        if (j.m === "timescale_update" || j.m === "du") { const rows = j.p?.[1]?.s?.s; if (rows?.length) bars = rows.map((b) => b.v); }
+        if (j.m === "series_completed") finish(() => (bars?.length ? resolve(bars) : reject(new Error("no bars"))));
+        if (j.m === "symbol_error" || j.m === "series_error" || j.m === "critical_error") finish(() => reject(new Error(j.m + " " + JSON.stringify(j.p?.slice(2) || ""))));
+      }
+    };
+    ws.onerror = () => finish(() => reject(new Error("chart feed error")));
+  });
+}
 function localParts(tz, date = new Date()) {
   const f = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" });
   const o = Object.fromEntries(f.formatToParts(date).map((x) => [x.type, x.value]));
@@ -179,11 +206,23 @@ try {
       continue;
     }
     const close = round(Number(d[0]), 2), state = sessionState(tz, days, start, end);
-    // Unchanged close since the last run: still the same session, keep its date.
-    const date = prior && prior.close === close && prior.change1d === round(d[1]) && !state.open ? prior.date : state.date;
-    const hist = (prior?.history || []).filter((h) => h[0] < date);
-    if (!state.open) hist.push([date, close]);
-    const history = hist.slice(-260);
+    let date, history;
+    try {
+      // Exact trading dates and a year of closes from the chart feed.
+      const bars = await tvDailyBars(symbol);
+      const dayOf = (ts) => localParts(tz, new Date(ts * 1000)).day;
+      history = bars.filter((b) => b[4] > 0).map((b) => [dayOf(b[0]), round(b[4], 2)]);
+      date = history.at(-1)[0];
+      if (state.open) history = history.slice(0, -1);
+    } catch (error) {
+      // Feed unavailable (Bahrain's is restricted): fall back to the closes recorded by earlier runs.
+      // An unchanged close since the last run is the same session, so it keeps its date.
+      date = prior && prior.close === close && prior.change1d === round(d[1]) && !state.open ? prior.date : state.date;
+      const hist = (prior?.history || []).filter((h) => h[0] < date);
+      if (!state.open) hist.push([date, close]);
+      history = hist;
+    }
+    history = history.slice(-260);
     items.push({
       symbol, en, ar, timezone: tz, date, close, open: state.open, source: "TradingView",
       change1d: round(d[1]), change1w: round(d[2]), change1m: round(d[3]), changeYtd: round(d[4]), change1y: round(d[5]),
