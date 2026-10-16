@@ -77,6 +77,10 @@ for (const group of GROUPS) {
       const yearAgo = new Date(d); yearAgo.setUTCFullYear(d.getUTCFullYear() - 1);
       const yearRows = rows.filter((r) => r[0] > yearAgo.toISOString().slice(0, 10)).map((r) => r[1]);
       const live = meta?.regularMarketPrice;
+      const period = meta?.currentTradingPeriod?.regular, nowSec = Date.now() / 1000;
+      const open = period ? nowSec >= period.start && nowSec <= period.end : false;
+      const bps = symbol === "^TNX";
+      const diff = (b) => (b != null ? Math.round((close - b) * 100) : null);
       items.push({
         symbol, en, ar, timezone: tz, currency: meta?.currency || null,
         date: lastDate,
@@ -88,7 +92,9 @@ for (const group of GROUPS) {
         change1y: pct(close, onOrBefore(yearAgo.toISOString().slice(0, 10))),
         high52: round(Math.max(...yearRows), 2), low52: round(Math.min(...yearRows), 2),
         livePrice: live != null && Math.abs(live / close - 1) > 0.00001 ? round(live, 2) : null,
-        spark: rows.slice(-66).map((r) => round(r[1], 2))
+        spark: rows.slice(-66).map((r) => round(r[1], 2)),
+        open,
+        ...(bps ? { unit: "yield", bps1d: diff(back(1)), bps1w: diff(back(5)), bps1m: diff(onOrBefore(monthAgo.toISOString().slice(0, 10))), bpsYtd: diff(onOrBefore(`${Number(lastDate.slice(0, 4)) - 1}-12-31`)), bps1y: diff(onOrBefore(yearAgo.toISOString().slice(0, 10))) } : {})
       });
       ok += 1;
     } catch (error) {
