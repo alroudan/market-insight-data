@@ -1,62 +1,178 @@
 {
+ ".KWSEAS": {
+  "err": 1
+ },
+ ".BKA": {
+  "err": 3
+ },
+ ".TASI": {
+  "err": 3
+ },
+ ".DFMGI": {
+  "name": "DFM DFM GENERAL IDX",
+  "last": "5,867.31",
+  "chg": "+0.63%",
+  "prev": "5,830.47",
+  "time": "2026-10-16T06:55:00.000-0400",
+  "timedate": "6:55 AM EDT"
+ },
+ ".FTFADGI": {
+  "err": 1
+ },
+ ".ADI": {
+  "name": "FTSE ADX General Index Real Time"
+ },
+ ".QSI": {
+  "err": 3
+ },
+ ".BAX": {
+  "name": "BB ALL SHARE IDX",
+  "last": "1,876.013",
+  "chg": "-0.20%",
+  "prev": "1,879.784",
+  "time": "2026-10-15",
+  "timedate": "10/15/26 EDT"
+ },
  ".MSX30": {
-  "n": 495,
-  "last": {
-   "open": "7755.8470",
-   "high": "7765.5830",
-   "low": "7625.0200",
-   "close": "7682.0320",
-   "volume": 0,
-   "tradeTime": "20261015000000",
-   "tradeTimeinMills": 1792036800000
-  }
+  "name": "MSX 30 IDX",
+  "last": "7,678.054",
+  "chg": "-1.00%",
+  "prev": "7,755.303",
+  "time": "2026-10-15",
+  "timedate": "10/15/26 EDT"
  },
- ".MSM30": {
-  "n": 495,
-  "last": {
-   "open": "7755.8470",
-   "high": "7765.5830",
-   "low": "7625.0200",
-   "close": "7682.0320",
-   "volume": 0,
-   "tradeTime": "20261015000000",
-   "tradeTimeinMills": 1792036800000
-  }
+ ".SPX": {
+  "name": "S&P 500 Index",
+  "last": "7,684.25",
+  "chg": "-0.77%",
+  "prev": "7,744.06",
+  "time": "2026-10-16T12:58:36.000-0400",
+  "timedate": "12:58 PM EDT"
  },
- ".MSXI": "Error in getting bars for symbol: .MSXI and barType: ONE_DAY Security Master not found",
- ".MSM": "Error in getting bars for symbol: .MSM and barType: ONE_DAY Security Master not found",
- ".OMSX30": "Error in getting bars for symbol: .OMSX30 and barType: ONE_DAY Security Master not found",
- "MSX30": {
-  "n": 495,
-  "last": {
-   "open": "7755.8470",
-   "high": "7765.5830",
-   "low": "7625.0200",
-   "close": "7682.0320",
-   "volume": 0,
-   "tradeTime": "20261015000000",
-   "tradeTimeinMills": 1792036800000
-  }
+ ".DJI": {
+  "name": "Dow Jones Industrial Average",
+  "last": "52,053.24",
+  "chg": "-0.24%",
+  "prev": "52,177.69",
+  "time": "2026-10-16T12:58:36.000-0400",
+  "timedate": "12:58 PM EDT"
  },
- ".MSI30": "Error in getting bars for symbol: .MSI30 and barType: ONE_DAY Security Master not found",
- ".MSXSI": {
-  "n": 495,
-  "last": {
-   "open": "636.3440",
-   "high": "637.0690",
-   "low": "625.3450",
-   "close": "627.4260",
-   "volume": 0,
-   "tradeTime": "20261015000000",
-   "tradeTimeinMills": 1792036800000
-  }
+ ".IXIC": {
+  "name": "NASDAQ Composite",
+  "last": "26,293.124",
+  "chg": "-1.57%",
+  "prev": "26,713.026",
+  "time": "2026-10-16T12:58:36.000-0400",
+  "timedate": "12:58 PM EDT"
  },
- ".OMAN": "Error in getting bars for symbol: .OMAN and barType: ONE_DAY Security Master not found",
- "quotes": "{\"FormattedQuoteResult\":{\"FormattedQuote\":[{\"symbol\":\".MSX30\",\"symbolType\":\"symbol\",\"code\":0,\"name\":\"MSX 30 IDX\",\"shortName\":\".MSX30\",\"onAirName\":\"MSX 30 IDX\",\"altName\":\"MSX 30 IDX\",\"last\":\"7,678.054\",\"last_timedate\":\"10/15/26 EDT\",\"last_time\":\"2026-10-15\",\"changetype\":\"DOWN\",\"type\":\"INDEX\",\"subType\":\"Index\",\"exchange\":\"Exchange\",\"source\":\"Exchange\",\"open\":\"7,755.847\",\"high\":\"7,765.583\",\"low\":\"7,625.02\",\"change\":\"-77.249\",\"change_pct\":\"-1.00%\",\"currencyCode\":\"OMR\",\"volume\":\"0\",\"volume_alt\":\"0.0\",\"provider\":\"CNBC Quote Cache\",\"previous_day_closing\":\"7,755.303\",\"altSymbol\":\".MSX30\",\"realTime\":\"false\",\"curmktstatus\":\"REG_MKT\",\"yrhiprice\":\"7,765.58\",\"yrhidate\":\"10/15/26\",\"yrloprice\":\"4,333.15\",\"yrlodate\":\"03/27/25\",\"streamable\":\"1\",\"issue_id\":\"597028\",\"countryCode\":\"EU\",\"timeZone\":\"EDT\",\"feedSymbol\":\"/.MSX30\",\"portfolioindicator\":\"N\"},{\"symbol\":\".MSM30\",\"symbolType\":\"symbol\",\"code\":0,\"name\":\"MSX 30 IDX\",\"shortName\":\".MSX30\",\"onAirName\":\"MSX 30 IDX\",\"altName\":\"MSX 30 IDX\",\"last\":\"7,678.054\",\"last_timedate\":\"10/15/26 EDT\",\"last_time\":\"2026-10-15\",\"changetype\":\"DOWN\",\"type\":\"INDEX\",\"subType\":\"Index\",\"exchange\":\"Exchange\",\"source\":\"Exchange\",\"open\":\"7,755.847\",\"high\":\"7,765.583\",\"low\":\"7,625.02\",\"change\":\"-77.249\",\"change_pct\":\"-1.00%\",\"currencyCode\":\"OMR\",\"volume\":\"0\",\"volume_alt\":\"0.0\",\"provider\":\"CNBC Quote Cache\",\"previous_day_closing\":\"7,755.303\",\"altSymbol\":\".MSX30\",\"realTime\":\"false\",\"curmktstatus\":\"REG_MKT\",\"yrhiprice\":\"7,765.58\",\"yrhidate\":\"10/15/26\",\"yrloprice\":\"4,333.15\",\"",
- "lookup": "[{\"TotalMatchAvailable\":\"4\",\"TotalMatchReturned\":\"4\",\"TotalPageAvailable\":\"\",\"AppliedPageSize\":\"\",\"CurrentPage\":\"\",\"ResultGenTime\":\"Fri Oct 16 12:35:21 EDT 2026\",\"ServerInfo\":\"172-16-14-232-symbology-prod-dr\"},{\"issuerId\":\"202046\",\"issueType\":\"STOCK\",\"countryCode\":\"JP\",\"exchangeName\":\"Tokyo Stock Exchange\",\"issueId\":\"885992239\",\"symbolName\":\"195A.T-JP\",\"companyName\":\"Muscat Group Inc\"},{\"issuerId\":\"11523\",\"issueType\":\"STOCK\",\"countryCode\":\"GB\",\"exchangeName\":\"London Stock Exchange\",\"issueId\":\"3347736\",\"symbolName\":\"BKMA-GB\",\"companyName\":\"Bank Muscat SAOG\"},{\"issuerId\":\"11523\",\"issueType\":\"STOCK\",\"countryCode\":\"GB\",\"exchangeName\":\"London Stock Exchange\",\"issueId\":\"3317658\",\"symbolName\":\"BKM-GB\",\"companyName\":\"Bank Muscat SAOG\"},{\"issuerId\":\"11523\",\"issueType\":\"STOCK\",\"countryCode\":\"US\",\"exchangeName\":\"OTCPK\",\"issueId\":\"3257417\",\"symbolName\":\"BMUSY\",\"companyName\":\"Bank Muscat SAOG\"}]",
- "lookup2": "[{\"TotalMatchAvailable\":\"3\",\"TotalMatchReturned\":\"3\",\"TotalPageAvailable\":\"\",\"AppliedPageSize\":\"\",\"CurrentPage\":\"\",\"ResultGenTime\":\"Fri Oct 16 12:35:21 EDT 2026\",\"ServerInfo\":\"172-16-14-232-symbology-prod-dr\"},{\"issuerId\":\"39910\",\"issueType\":\"FUND\",\"countryCode\":\"US\",\"exchangeName\":\"NASDAQ\",\"issueId\":\"307342\",\"symbolName\":\"MSXAX\",\"companyName\":\"NYLIM S&P 500 Index Class A\"},{\"issuerId\":\"39910\",\"issueType\":\"FUND\",\"countryCode\":\"US\",\"exchangeName\":\"NASDAQ\",\"issueId\":\"615656420\",\"symbolName\":\"MSXMX\",\"companyName\":\"NYLIM S&P 500 Index SIMPLE Class\"},{\"issuerId\":\"65190\",\"issueType\":\"FUND\",\"countryCode\":\"US\",\"exchangeName\":\"NASDAQ\",\"issueId\":\"1009211987\",\"symbolName\":\"MSXXX\",\"companyName\":\"Morgan Stanley Institutional Liquidity Treasury Securities Portfolio Institution\"}]",
- "te": {
-  "st": 200,
-  "desc": "Oman&#39;s main stock market index, the MSM 30, fell to 7682 points on October 15, 2026, losing 0.98% from the previous session. Over the past month, the index has climbed 1.75% and is up 45.23% compared to the same time last year, according to trading on a contract for difference (CFD) that tracks this benchmark index from Oman. Oman Stock Market (MSM 30) - values, historical data, forecasts and news - updated on October of 2026."
+ ".RUT": {
+  "name": "Russell 2000 Index",
+  "last": "2,733.561",
+  "chg": "-1.22%",
+  "prev": "2,767.269",
+  "time": "2026-10-16T12:43:00.000-0400",
+  "timedate": "12:43 PM EDT"
+ },
+ ".STOXX50E": {
+  "name": "Euro STOXX 50 Index",
+  "last": "6,204.23",
+  "chg": "+0.58%",
+  "prev": "6,168.26",
+  "time": "2026-10-16T16:00:00.000+0000",
+  "timedate": "4:00 PM GMT"
+ },
+ ".FTSE": {
+  "name": "FTSE 100",
+  "last": "10,881.90",
+  "chg": "+0.38%",
+  "prev": "10,840.35",
+  "time": "2026-10-16T16:35:00.000+0100",
+  "timedate": "4:35 PM BST"
+ },
+ ".GDAXI": {
+  "name": "Germany DAX",
+  "last": "25,622.61",
+  "chg": "+0.95%",
+  "prev": "25,382.62",
+  "time": "2026-10-16T18:00:00.000+0200",
+  "timedate": "6:00 PM CEST"
+ },
+ ".FCHI": {
+  "name": "CAC 40 Index",
+  "last": "7,956.70",
+  "chg": "+0.28%",
+  "prev": "7,934.70",
+  "time": "2026-10-16T18:05:02.000+0200",
+  "timedate": "6:05 PM CEST"
+ },
+ ".N225": {
+  "name": "Nikkei 225 Index",
+  "last": "65,324.29",
+  "chg": "+1.39%",
+  "prev": "64,425.95",
+  "time": "2026-10-16T15:45:03.000+0900",
+  "timedate": "3:45 PM JST"
+ },
+ ".HSI": {
+  "name": "Hang Seng Index",
+  "last": "24,186.83",
+  "chg": "+0.52%",
+  "prev": "24,062.72",
+  "time": "2026-10-16T16:08:38.000+0800",
+  "timedate": "4:08 PM CTT"
+ },
+ ".SSEC": {
+  "name": "Shanghai",
+  "last": "3,716.284",
+  "chg": "+0.24%",
+  "prev": "3,707.476",
+  "time": "2026-10-16T15:00:00.000+0800",
+  "timedate": "3:00 PM CTT"
+ },
+ ".KS11": {
+  "name": "KOSPI Index",
+  "last": "5,668.05",
+  "chg": "+2.05%",
+  "prev": "5,554.22",
+  "time": "2026-10-16T20:05:40.000+0900",
+  "timedate": "8:05 PM JST"
+ },
+ ".BSESN": {
+  "err": 3
+ },
+ "@LCO.1": {
+  "name": "ICE Brent Crude (Dec'26)",
+  "last": "109.30",
+  "chg": "+3.19%",
+  "prev": "105.92",
+  "time": "2026-10-16T17:48:34.000+0100",
+  "timedate": "5:48 PM BST"
+ },
+ "@CL.1": {
+  "name": "WTI Crude (Nov'26)",
+  "last": "100.62",
+  "chg": "+2.70%",
+  "prev": "97.97",
+  "time": "2026-10-16T12:48:32.000-0400",
+  "timedate": "12:48 PM EDT"
+ },
+ "@GC.1": {
+  "name": "Gold COMEX (Dec'26)",
+  "last": "4,181.30",
+  "chg": "+0.27%",
+  "prev": "4,170.10",
+  "time": "2026-10-16T12:48:35.000-0400",
+  "timedate": "12:48 PM EDT"
+ },
+ "BTC.CM=": {
+  "name": "Bitcoin/USD Coin Metrics",
+  "last": "81,313.63",
+  "chg": "-1.26%",
+  "prev": "82,354.74",
+  "time": "2026-10-16T12:58:36.000-0400",
+  "timedate": "12:58 PM EDT"
+ },
+ "XBT=": {
+  "err": 1
  }
 }
