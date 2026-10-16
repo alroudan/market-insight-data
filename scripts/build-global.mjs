@@ -177,6 +177,20 @@ function tvDailyBars(symbol, count = 300) {
     ws.onerror = () => finish(() => reject(new Error("chart feed error")));
   });
 }
+// Daily closes from CNBC's public chart service (2 years). Used for the GCC indices whose
+// history TradingView doesn't give out (Bahrain) or doesn't carry (Oman).
+async function cnbcDailyCloses(symbol) {
+  const r = await fetch(`https://ts-api.cnbc.com/harmony/app/charts/1Y.json?symbol=${encodeURIComponent(symbol)}`, {
+    headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36", accept: "application/json" },
+    signal: AbortSignal.timeout(20000)
+  });
+  if (!r.ok) throw new Error("CNBC HTTP " + r.status);
+  const bars = (await r.json()).barData?.priceBars || [];
+  const rows = bars.map((b) => [String(b.tradeTime).replace(/^(\d{4})(\d{2})(\d{2}).*/, "$1-$2-$3"), round(Number(b.close), 2)]).filter((x) => x[1] > 0);
+  if (rows.length < 30) throw new Error("CNBC history too short");
+  return rows;
+}
+const CNBC_SYMBOL = { "BAHRAIN:BHBX": ".BAX", "MSX:MSX30": ".MSX30" };
 function localParts(tz, date = new Date()) {
   const f = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" });
   const o = Object.fromEntries(f.formatToParts(date).map((x) => [x.type, x.value]));
@@ -215,12 +229,21 @@ try {
       date = history.at(-1)[0];
       if (state.open) history = history.slice(0, -1);
     } catch (error) {
-      // Feed unavailable (Bahrain's is restricted): fall back to the closes recorded by earlier runs.
-      // An unchanged close since the last run is the same session, so it keeps its date.
+      // Feed unavailable (Bahrain's is restricted). An unchanged close since the last run is the
+      // same session, so it keeps its date; past closes come from CNBC, else from earlier runs.
       date = prior && prior.close === close && prior.change1d === round(d[1]) && !state.open ? prior.date : state.date;
-      const hist = (prior?.history || []).filter((h) => h[0] < date);
-      if (!state.open) hist.push([date, close]);
-      history = hist;
+      let past = (prior?.history || []).filter((h) => h[0] < date);
+      if (CNBC_SYMBOL[symbol]) {
+        try {
+          const cnbc = (await cnbcDailyCloses(CNBC_SYMBOL[symbol])).filter((h) => h[0] < date);
+          // Sanity check: CNBC's previous close must match the one implied by today's change.
+          const impliedPrev = close / (1 + Number(d[1]) / 100), cnbcPrev = cnbc.at(-1)?.[1];
+          if (!(cnbcPrev > 0) || Math.abs(cnbcPrev / impliedPrev - 1) > 0.001) throw new Error(`CNBC previous close ${cnbcPrev} vs ${round(impliedPrev, 2)}`);
+          past = cnbc;
+        }
+        catch (e) { failed.push(symbol + " history: " + e.message); }
+      }
+      history = state.open ? past : [...past, [date, close]];
     }
     history = history.slice(-260);
     items.push({
@@ -248,9 +271,16 @@ try {
     if (!(close > 0) || !Number.isFinite(change1d)) throw new Error("no MSX 30 level");
     const state = sessionState("Asia/Muscat", [0, 1, 2, 3, 4], "10:00", "14:00");
     const date = prior && prior.close === close && prior.change1d === change1d && !state.open ? prior.date : state.date;
-    const hist = (prior?.history || []).filter((h) => h[0] < date);
-    if (!state.open) hist.push([date, close]);
-    const history = hist.slice(-260);
+    let past = (prior?.history || []).filter((h) => h[0] < date);
+    try {
+      const cnbc = await cnbcDailyCloses(CNBC_SYMBOL[symbol]);
+      // Sanity check against the exchange: CNBC's previous close must match msx.om's
+      // (today's level minus today's points change) within 0.1%.
+      const officialPrev = close - num(row?.ChangeValue), cnbcPrev = cnbc.filter((h) => h[0] < date).at(-1)?.[1];
+      if (!(cnbcPrev > 0) || Math.abs(cnbcPrev / officialPrev - 1) > 0.001) throw new Error(`CNBC previous close ${cnbcPrev} vs official ${round(officialPrev, 2)}`);
+      past = cnbc.filter((h) => h[0] < date);
+    } catch (e) { failed.push(symbol + " history: " + e.message); }
+    const history = (state.open ? past : [...past, [date, close]]).slice(-520);
     const at = (n) => (history.length > n ? history[history.length - 1 - n][1] : null);
     const onOrBefore = (d) => { if (!history.length || history[0][0] > d) return null; for (let i = history.length - 1; i >= 0; i -= 1) if (history[i][0] <= d) return history[i][1]; return null; };
     const dd = new Date(date + "T00:00:00Z"), m1 = new Date(dd), y1 = new Date(dd);
@@ -258,10 +288,10 @@ try {
     const year = history.filter((h) => h[0] > y1.toISOString().slice(0, 10)).map((h) => h[1]);
     items.push({
       symbol, en: "Oman (MSX 30)", ar: "عُمان (مؤشر MSX 30)", timezone: "Asia/Muscat", date, close, open: state.open,
-      source: "Muscat Stock Exchange (msx.om)", sourceUrl: "https://www.msx.om/",
+      source: "Muscat Stock Exchange (msx.om); past closes from CNBC", sourceUrl: "https://www.msx.om/",
       change1d, change1w: pct(close, at(5)), change1m: pct(close, onOrBefore(m1.toISOString().slice(0, 10))),
       changeYtd: pct(close, onOrBefore(`${Number(date.slice(0, 4)) - 1}-12-31`)), change1y: pct(close, onOrBefore(y1.toISOString().slice(0, 10))),
-      high52: history.length >= 200 ? Math.max(...year) : null, low52: history.length >= 200 ? Math.min(...year) : null,
+      high52: year.length >= 200 ? Math.max(...year) : null, low52: year.length >= 200 ? Math.min(...year) : null,
       spark: history.length >= 5 ? history.slice(-66).map((h) => h[1]) : null,
       history
     });
