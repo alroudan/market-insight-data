@@ -1,4 +1,4 @@
-// Global markets snapshot for the "Global economy" page: US, Europe, Asia,
+// Global markets snapshot for the "Global economy" page: GCC, US, Europe, Asia,
 // oil (including Kuwait Export Crude), gold and Bitcoin. Daily history from Yahoo Finance.
 import { readFile, writeFile } from "node:fs/promises";
 
@@ -137,6 +137,69 @@ try {
   if (prior) groups.find((g) => g.id === "commodities").items.unshift({ ...prior, stale: true });
 }
 
+// GCC markets: TradingView's public scanner (Yahoo has no daily history for these).
+// The scanner gives the latest close and period changes but no dates or history, so the
+// trading date comes from each market's week and session times (a close that has not
+// changed since the last run keeps its earlier date), and the trend line is built up
+// from one close per trading day as this script runs.
+const GCC = [
+  ["KSE:BKA", "Kuwait All-Share", "الكويت - السوق العام", "Asia/Kuwait", [0, 1, 2, 3, 4], "09:00", "12:40"],
+  ["TADAWUL:TASI", "Saudi Arabia (TASI)", "السعودية (تاسي)", "Asia/Riyadh", [0, 1, 2, 3, 4], "10:00", "15:00"],
+  ["DFM:DFMGI", "Dubai (DFM)", "دبي (سوق دبي المالي)", "Asia/Dubai", [1, 2, 3, 4, 5], "10:00", "15:00"],
+  ["ADX:FADGI", "Abu Dhabi (FTSE ADX)", "أبوظبي (فوتسي سوق أبوظبي)", "Asia/Dubai", [1, 2, 3, 4, 5], "10:00", "15:00"],
+  ["QSE:GNRI", "Qatar (QE Index)", "قطر (مؤشر بورصة قطر)", "Asia/Qatar", [0, 1, 2, 3, 4], "09:30", "13:15"],
+  ["BAHRAIN:BHBX", "Bahrain All Share", "البحرين - المؤشر العام", "Asia/Bahrain", [0, 1, 2, 3, 4], "09:30", "13:00"]
+];
+function localParts(tz, date = new Date()) {
+  const f = new Intl.DateTimeFormat("en-CA", { timeZone: tz, year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", hourCycle: "h23", weekday: "short" });
+  const o = Object.fromEntries(f.formatToParts(date).map((x) => [x.type, x.value]));
+  return { day: `${o.year}-${o.month}-${o.day}`, hm: `${o.hour}:${o.minute}`, dow: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(o.weekday) };
+}
+function sessionState(tz, days, start, end) {
+  const now = localParts(tz);
+  if (days.includes(now.dow) && now.hm >= start && now.hm < end) return { open: true, date: now.day };
+  let probe = new Date(); if (!(days.includes(now.dow) && now.hm >= end)) probe = new Date(probe.getTime() - 86400000);
+  for (let i = 0; i < 10; i += 1) { const p = localParts(tz, probe); if (days.includes(p.dow)) return { open: false, date: p.day }; probe = new Date(probe.getTime() - 86400000); }
+  return { open: false, date: now.day };
+}
+try {
+  const cols = ["close", "change", "Perf.W", "Perf.1M", "Perf.YTD", "Perf.Y", "price_52_week_high", "price_52_week_low"];
+  const r = await fetch("https://scanner.tradingview.com/global/scan", {
+    method: "POST", headers: { "content-type": "application/json", "user-agent": "Mozilla/5.0 Market Insight global collector" },
+    body: JSON.stringify({ symbols: { tickers: GCC.map((x) => x[0]), query: { types: [] } }, columns: cols }), signal: AbortSignal.timeout(20000)
+  });
+  if (!r.ok) throw new Error("TradingView HTTP " + r.status);
+  const rows = new Map(((await r.json()).data || []).map((x) => [x.s, x.d]));
+  const items = [];
+  for (const [symbol, en, ar, tz, days, start, end] of GCC) {
+    const d = rows.get(symbol), prior = prevById.get(symbol);
+    if (!d || !(Number(d[0]) > 0)) {
+      failed.push(symbol + ": no data");
+      if (prior) items.push({ ...prior, stale: true });
+      continue;
+    }
+    const close = round(Number(d[0]), 2), state = sessionState(tz, days, start, end);
+    // Unchanged close since the last run: still the same session, keep its date.
+    const date = prior && prior.close === close && prior.change1d === round(d[1]) && !state.open ? prior.date : state.date;
+    const hist = (prior?.history || []).filter((h) => h[0] < date);
+    if (!state.open) hist.push([date, close]);
+    const history = hist.slice(-260);
+    items.push({
+      symbol, en, ar, timezone: tz, date, close, open: state.open, source: "TradingView",
+      change1d: round(d[1]), change1w: round(d[2]), change1m: round(d[3]), changeYtd: round(d[4]), change1y: round(d[5]),
+      high52: round(d[6]), low52: round(d[7]),
+      spark: history.length >= 5 ? history.slice(-66).map((h) => h[1]) : null,
+      history
+    });
+    ok += 1;
+  }
+  groups.unshift({ id: "gcc", en: "GCC markets", ar: "أسواق الخليج", items });
+} catch (error) {
+  failed.push("GCC: " + error.message);
+  const prior = previous?.groups?.find((g) => g.id === "gcc");
+  if (prior) groups.unshift({ ...prior, items: prior.items.map((i) => ({ ...i, stale: true })) });
+}
+
 if (ok < 10) throw new Error(`Only ${ok} instruments loaded; keeping previous file. ${failed.join("; ")}`);
 
 // Kuwait link: All-Share from the site's own snapshot, for side-by-side context.
@@ -147,5 +210,5 @@ try {
   if (a?.close) kuwait = { en: "Boursa Kuwait All-Share", ar: "السوق العام - بورصة الكويت", date: snap.tradingDate, close: a.close, change1d: round(a.changePercent), change1m: round(a.performance1MonthPercent), changeYtd: round(a.performanceYtdPercent) };
 } catch {}
 
-await writeFile(OUT, JSON.stringify({ version: 1, generatedAt: new Date().toISOString(), source: "Yahoo Finance (delayed)", failed, kuwait, groups }) + "\n");
+await writeFile(OUT, JSON.stringify({ version: 1, generatedAt: new Date().toISOString(), source: "Yahoo Finance and TradingView (delayed)", failed, kuwait, groups }) + "\n");
 console.log(`Global markets: ${ok} instruments${failed.length ? "; failed " + failed.join(", ") : ""}`);
