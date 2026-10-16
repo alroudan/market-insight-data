@@ -86,14 +86,16 @@ html[dir="rtl"] .range .mk{transform:translateX(50%)}
   .card{padding:14px}h1{font-size:21px}
   .bar-row{grid-template-columns:minmax(0,132px) minmax(0,1fr)}
   table,thead,tbody,tr,td{display:block}thead{display:none}
-  tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
   tr:last-child{border-bottom:0}
   td{border:0;padding:0;text-align:start}
-  td.c-last{text-align:end;font-weight:800}
-  td.c-1d{grid-column:2;text-align:end}
-  td.c-1w,td.c-1m,td.c-ytd,td.c-1y{display:inline-block;font-size:11.5px}
-  td.multi{grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px}
-  td.multi span{color:var(--muted)}
+  td.name{grid-column:1;grid-row:1/3;align-self:center}
+  td.c-last{grid-column:2;grid-row:1;text-align:end;font-weight:800;font-size:16px;line-height:1.2}
+  td.c-1d{grid-column:2;grid-row:2;text-align:end;font-weight:700;font-size:13px}
+  td.c-1w,td.c-1m,td.c-ytd,td.c-1y{display:none}
+  td.multi{grid-column:1/-1;grid-row:3;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:9px;font-size:12px;font-weight:700}
+  td.multi div{background:var(--sunk);border-radius:8px;padding:6px 4px;text-align:center;white-space:nowrap}
+  td.multi div>span:first-child{display:block;color:var(--muted);font-size:10px;font-weight:600;letter-spacing:.04em;margin-bottom:1px}
   td.spark,td.c-range{display:none}
 }
 </style>
