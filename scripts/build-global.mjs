@@ -193,6 +193,45 @@ try {
     });
     ok += 1;
   }
+  // Oman: MSX 30 from Muscat Stock Exchange's own website (TradingView and Yahoo don't carry it).
+  // The site gives the latest level and day change only, so longer changes come from the
+  // closes this script records, and fill in as that history grows.
+  try {
+    const symbol = "MSX:MSX30", prior = prevById.get(symbol);
+    const res = await fetch("https://www.msx.om/api.aspx/Indices", {
+      method: "POST", body: "{ 'Type': 'MSX30' }", signal: AbortSignal.timeout(20000),
+      headers: { "content-type": "application/json; charset=utf-8", accept: "application/json", referer: "https://www.msx.om/", origin: "https://www.msx.om", "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36" }
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const row = (await res.json()).d?.find((x) => x.Title === "MSX30" || x.index_symbol === "MSX30");
+    const num = (v) => Number(String(v ?? "").replace(/,/g, ""));
+    const close = round(num(row?.MSX30), 2), change1d = round(num(row?.Change));
+    if (!(close > 0) || !Number.isFinite(change1d)) throw new Error("no MSX 30 level");
+    const state = sessionState("Asia/Muscat", [0, 1, 2, 3, 4], "10:00", "14:00");
+    const date = prior && prior.close === close && prior.change1d === change1d && !state.open ? prior.date : state.date;
+    const hist = (prior?.history || []).filter((h) => h[0] < date);
+    if (!state.open) hist.push([date, close]);
+    const history = hist.slice(-260);
+    const at = (n) => (history.length > n ? history[history.length - 1 - n][1] : null);
+    const onOrBefore = (d) => { if (!history.length || history[0][0] > d) return null; for (let i = history.length - 1; i >= 0; i -= 1) if (history[i][0] <= d) return history[i][1]; return null; };
+    const dd = new Date(date + "T00:00:00Z"), m1 = new Date(dd), y1 = new Date(dd);
+    m1.setUTCMonth(dd.getUTCMonth() - 1); y1.setUTCFullYear(dd.getUTCFullYear() - 1);
+    const year = history.filter((h) => h[0] > y1.toISOString().slice(0, 10)).map((h) => h[1]);
+    items.push({
+      symbol, en: "Oman (MSX 30)", ar: "عُمان (مؤشر MSX 30)", timezone: "Asia/Muscat", date, close, open: state.open,
+      source: "Muscat Stock Exchange (msx.om)", sourceUrl: "https://www.msx.om/",
+      change1d, change1w: pct(close, at(5)), change1m: pct(close, onOrBefore(m1.toISOString().slice(0, 10))),
+      changeYtd: pct(close, onOrBefore(`${Number(date.slice(0, 4)) - 1}-12-31`)), change1y: pct(close, onOrBefore(y1.toISOString().slice(0, 10))),
+      high52: history.length >= 200 ? Math.max(...year) : null, low52: history.length >= 200 ? Math.min(...year) : null,
+      spark: history.length >= 5 ? history.slice(-66).map((h) => h[1]) : null,
+      history
+    });
+    ok += 1;
+  } catch (error) {
+    failed.push("MSX:MSX30: " + error.message);
+    const prior = prevById.get("MSX:MSX30");
+    if (prior) items.push({ ...prior, stale: true });
+  }
   groups.unshift({ id: "gcc", en: "GCC markets", ar: "أسواق الخليج", items });
 } catch (error) {
   failed.push("GCC: " + error.message);
