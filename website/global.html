@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#122A07">
+<link rel="manifest" href="./manifest.webmanifest?v=3"><link rel="apple-touch-icon" href="./app-icon-192-moss-v3.png"><link rel="icon" type="image/png" href="./favicon-moss-v3.png">
+<title>Global Markets · Market Insight</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script>try{if(localStorage.getItem('marketInsightTheme')==='dark')document.documentElement.dataset.theme='dark';if(localStorage.getItem('marketInsightLanguage')==='ar'){document.documentElement.lang='ar';document.documentElement.dir='rtl'}}catch{}</script>
+<style>
+:root{--bg:#f4f3e8;--ink:#182211;--muted:#68705e;--line:#d8dccd;--card:#fffef6;--sunk:#f1f3e9;--green:#416b27;--red:#b6493d;--gold:#d6b968;--nav:#122A07;--up:#2f7a3c;--down:#b6493d;--kw:#b49039}
+html[data-theme="dark"]{--bg:#0d1808;--ink:#f5f0dc;--muted:#abb49d;--line:#35452b;--card:#172410;--sunk:#22331a;--green:#a6c884;--red:#f08074;--gold:#e0c56e;--nav:#091805;--up:#8fd18a;--down:#f08074;--kw:#e0c56e;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter','Noto Sans Arabic',sans-serif;font-variant-numeric:tabular-nums}
+html[dir="rtl"] body{font-family:'Noto Sans Arabic','Inter',sans-serif}
+.top{background:var(--nav);color:#f3ead0;padding:14px max(16px,env(safe-area-inset-left,0px))}
+.top-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;color:inherit;text-decoration:none;font-weight:700}
+.brand i{width:34px;height:34px;border-radius:10px;background:#122A07 url('./app-icon-192-moss-v3.png') center/cover no-repeat;display:block}
+.top-links{display:flex;gap:14px;align-items:center}
+.top a.link{color:#e0c56e;text-decoration:none;font-weight:700;font-size:13px}
+.top a.link:hover,.top a.link:focus-visible{text-decoration:underline}
+.toggle{border:1px solid #2c4a1d;background:transparent;color:#f3ead0;border-radius:9px;padding:6px 10px;font:700 12px inherit;cursor:pointer}
+main{max-width:1180px;overflow-x:clip;margin:0 auto;padding:22px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));display:grid;gap:16px}
+.lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);font-weight:700}
+html[dir="rtl"] .lbl{letter-spacing:0}
+.head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end}
+h1{font-size:24px;margin:4px 0 0}
+.updated{font-size:12px;color:var(--muted);text-align:end}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;min-width:0}
+.card h2{font-size:15px;margin:0}
+.cardhead{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap;margin-bottom:12px}
+.cardhead small{color:var(--muted);font-size:11.5px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:14px}
+.tile span{display:block;font-size:11px;color:var(--muted)}
+.tile b{display:block;font-size:20px;margin-top:6px}
+.tile small{display:block;font-size:12px;margin-top:3px;font-weight:700}
+.flag{width:21px;height:14px;border-radius:2px;box-shadow:0 0 0 1px color-mix(in srgb,var(--ink) 15%,transparent);vertical-align:-2px;margin-inline-end:7px;flex:0 0 auto;overflow:hidden}
+.tile .flag{width:24px;height:16px;vertical-align:-1px}
+.up{color:var(--up)}.down{color:var(--down)}
+.bars{display:grid;gap:6px}
+.bar-row{display:grid;grid-template-columns:minmax(0,170px) minmax(0,1fr);gap:10px;align-items:center;font-size:12px}
+.bar-row .nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bar-row.kw .nm{font-weight:800;color:var(--kw)}
+.bar-track{position:relative;height:20px}
+.bar-track .zero{position:absolute;top:-2px;bottom:-2px;width:1px;background:var(--line)}
+.bar-track .b{position:absolute;top:3px;height:14px;border-radius:3px}
+.bar-track .v{position:absolute;top:2px;font-size:11px;font-weight:700;white-space:nowrap}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:end;padding:7px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+th:first-child{text-align:start}
+td{padding:10px 8px;border-bottom:1px solid var(--line);text-align:end;white-space:nowrap}
+td:first-child{text-align:start;white-space:normal}
+tr:last-child td{border-bottom:0}
+.name b{display:block}
+.name small{display:flex;align-items:center;gap:5px;color:var(--muted);font-size:10.5px;margin-top:2px}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);display:inline-block}
+.dot.open{background:var(--up)}
+.spark svg{width:96px;height:28px;display:block;margin-inline-start:auto}
+.range{width:120px;margin-inline-start:auto}
+.range .track{position:relative;height:6px;border-radius:6px;background:var(--sunk)}
+.range .mk{position:absolute;top:-3px;width:4px;height:12px;border-radius:2px;background:var(--ink);transform:translateX(-50%)}
+html[dir="rtl"] .range .mk{transform:translateX(50%)}
+.range .ends{display:flex;justify-content:space-between;font-size:9.5px;color:var(--muted);margin-top:3px}
+.tablewrap{overflow-x:auto}
+.commod{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.cm{border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;gap:8px}
+.cm .row{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.cm b{font-size:22px}
+.cm .chg{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;font-size:11px}
+.cm .chg div{background:var(--sunk);border-radius:7px;padding:5px 4px;text-align:center}
+.cm .chg span{display:block;color:var(--muted);font-size:9.5px}
+.cm svg{width:100%;height:56px;display:block}
+.note{font-size:12px;color:var(--muted);line-height:1.55;margin:10px 0 0}
+.foot{font-size:11.5px;color:var(--muted);line-height:1.55}
+.loading{color:var(--muted);padding:30px 0}
+@media(max-width:900px){.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.commod{grid-template-columns:1fr}.hide-md{display:none}}
+@media(max-width:640px){
+  .card{padding:14px}h1{font-size:21px}
+  .bar-row{grid-template-columns:minmax(0,110px) minmax(0,1fr)}
+  table,thead,tbody,tr,td{display:block}thead{display:none}
+  tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;padding:10px 0;border-bottom:1px solid var(--line)}
+  tr:last-child{border-bottom:0}
+  td{border:0;padding:0;text-align:start}
+  td.c-last{text-align:end;font-weight:800}
+  td.c-1d{grid-column:2;text-align:end}
+  td.c-1w,td.c-1m,td.c-ytd,td.c-1y{display:inline-block;font-size:11.5px}
+  td.multi{grid-column:1/-1;display:flex;gap:12px;flex-wrap:wrap;font-size:11.5px}
+  td.multi span{color:var(--muted)}
+  td.spark,td.c-range{display:none}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><a class="brand" href="/"><i aria-hidden="true"></i><span>Market Insight</span></a><div class="top-links"><button type="button" class="toggle" id="lang">AR</button><a class="link" href="/" id="back">← Dashboard</a></div></div></header>
+<main id="app"><p class="loading">Loading global markets…</p></main>
+<script>
+(function(){
+const T={
+  en:{title:"Global markets",kicker:"World economy",updated:"Updated",delayed:"Delayed data · Yahoo Finance",up:"Markets up today",best:"Best today",worst:"Worst today",brent:"Brent crude",ytdTitle:"Year to date: Kuwait vs the world",ytdNote:"Stock indices in local currency. Kuwait is the Boursa Kuwait All-Share index.",index:"Index",last:"Last",d1:"1D",w1:"1W",m1:"1M",ytd:"YTD",y1:"1Y",trend:"3 months",range:"52-week range",open:"Open",closed:"Closed",asOf:"Close",oilNote:"Oil prices drive Kuwait's government revenue and often move Gulf stock markets.",macroNote:"VIX above 20 signals elevated US market stress. The 10-year yield change is shown in basis points (0.01%).",foot:"Prices from Yahoo Finance, delayed by at least 15 minutes; open markets show the latest intraday price. Changes are in local currency. For information only, not investment advice.",back:"← Dashboard",bp:"bp",of:"of"},
+  ar:{title:"الأسواق العالمية",kicker:"الاقتصاد العالمي",updated:"آخر تحديث",delayed:"بيانات متأخرة · Yahoo Finance",up:"الأسواق المرتفعة اليوم",best:"الأفضل اليوم",worst:"الأسوأ اليوم",brent:"خام برنت",ytdTitle:"منذ بداية السنة: الكويت مقابل العالم",ytdNote:"مؤشرات الأسهم بالعملة المحلية. الكويت هو مؤشر السوق العام لبورصة الكويت.",index:"المؤشر",last:"الأخير",d1:"يوم",w1:"أسبوع",m1:"شهر",ytd:"منذ بداية السنة",y1:"سنة",trend:"3 أشهر",range:"نطاق 52 أسبوعاً",open:"مفتوح",closed:"مغلق",asOf:"إقفال",oilNote:"أسعار النفط تحدد إيرادات الحكومة الكويتية وغالباً ما تحرك أسواق الأسهم الخليجية.",macroNote:"مؤشر VIX فوق 20 يعني توتراً مرتفعاً في السوق الأمريكية. تغير عائد السندات لأجل 10 سنوات بالنقاط الأساسية (0.01%).",foot:"الأسعار من Yahoo Finance ومتأخرة 15 دقيقة على الأقل؛ الأسواق المفتوحة تعرض آخر سعر خلال الجلسة. التغيرات بالعملة المحلية. لأغراض المعلومات فقط وليست توصية استثمارية.",back:"لوحة السوق →",bp:"نقطة",of:"من"}
+};
+const FLAG_OF={"^GSPC":"us","^DJI":"us","^IXIC":"us","^RUT":"us","^VIX":"us","^TNX":"us","DX-Y.NYB":"us","^STOXX50E":"eu","^FTSE":"gb","^GDAXI":"de","^FCHI":"fr","^N225":"jp","^HSI":"hk","000001.SS":"cn","^KS11":"kr","^BSESN":"in","BZ=F":"oil","CL=F":"oil","GC=F":"gold",kw:"kw"};
+const star=(cx,cy,r,f)=>{let p='';for(let k=0;k<10;k++){const a=-Math.PI/2+k*Math.PI/5,rr=k%2?r*.4:r;p+=(k?'L':'M')+(cx+rr*Math.cos(a)).toFixed(2)+' '+(cy+rr*Math.sin(a)).toFixed(2)}return `<path d="${p}Z" fill="${f}"/>`};
+const FLAGS={
+ us:`<rect width="21" height="14" fill="#fff"/>${[0,2,4,6,8,10,12].map(i=>`<rect y="${i*14/13}" width="21" height="${14/13}" fill="#b22234"/>`).join('')}<rect width="9" height="7.5" fill="#3c3b6e"/>${[1.5,4,7.2].flatMap(x=>[1.5,3.7,5.9].map(y=>`<circle cx="${x}" cy="${y}" r=".55" fill="#fff"/>`)).join('')}`,
+ eu:`<rect width="21" height="14" fill="#003399"/>${Array.from({length:12},(_,k)=>{const a=k*Math.PI/6;return star(10.5+4.6*Math.cos(a),7+4.6*Math.sin(a),.85,'#ffcc00')}).join('')}`,
+ gb:`<rect width="21" height="14" fill="#012169"/><path d="M0 0L21 14M21 0L0 14" stroke="#fff" stroke-width="2.8"/><path d="M0 0L21 14M21 0L0 14" stroke="#c8102e" stroke-width="1"/><path d="M10.5 0V14M0 7H21" stroke="#fff" stroke-width="4.2"/><path d="M10.5 0V14M0 7H21" stroke="#c8102e" stroke-width="2.4"/>`,
+ de:`<rect width="21" height="4.67" fill="#000"/><rect y="4.67" width="21" height="4.67" fill="#dd0000"/><rect y="9.33" width="21" height="4.67" fill="#ffce00"/>`,
+ fr:`<rect width="7" height="14" fill="#0055a4"/><rect x="7" width="7" height="14" fill="#fff"/><rect x="14" width="7" height="14" fill="#ef4135"/>`,
+ jp:`<rect width="21" height="14" fill="#fff"/><circle cx="10.5" cy="7" r="4.2" fill="#bc002d"/>`,
+ hk:`<rect width="21" height="14" fill="#de2910"/>${Array.from({length:5},(_,k)=>`<ellipse cx="10.5" cy="4.6" rx="1.3" ry="2.6" fill="#fff" transform="rotate(${k*72} 10.5 7)"/>`).join('')}`,
+ cn:`<rect width="21" height="14" fill="#de2910"/>${star(3.6,3.6,2.4,'#ffde00')}${star(7.2,1.5,.8,'#ffde00')}${star(8.6,3,.8,'#ffde00')}${star(8.6,5.2,.8,'#ffde00')}${star(7.2,6.7,.8,'#ffde00')}`,
+ kr:`<rect width="21" height="14" fill="#fff"/><circle cx="10.5" cy="7" r="3.5" fill="#cd2e3a"/><path d="M7 7a3.5 3.5 0 0 0 7 0a1.75 1.75 0 0 0-3.5 0a1.75 1.75 0 0 1-3.5 0z" fill="#0047a0"/><g stroke="#000" stroke-width=".7"><path d="M2.6 3.2l2-1.4M3 3.8l2-1.4M3.4 4.4l2-1.4M15.8 2.4l2 1.4M16.2 1.8l2 1.4M15.4 3l2 1.4M2.6 10.8l2 1.4M3 10.2l2 1.4M3.4 9.6l2 1.4M15.8 11.6l2-1.4M16.2 12.2l2-1.4M15.4 11l2-1.4"/></g>`,
+ in:`<rect width="21" height="4.67" fill="#ff9933"/><rect y="4.67" width="21" height="4.67" fill="#fff"/><rect y="9.33" width="21" height="4.67" fill="#138808"/><circle cx="10.5" cy="7" r="1.9" fill="none" stroke="#000080" stroke-width=".55"/><circle cx="10.5" cy="7" r=".45" fill="#000080"/>`,
+ kw:`<rect width="21" height="4.67" fill="#007a3d"/><rect y="4.67" width="21" height="4.67" fill="#fff"/><rect y="9.33" width="21" height="4.67" fill="#ce1126"/><path d="M0 0L5.2 4.67V9.33L0 14Z" fill="#000"/>`,
+ oil:`<rect width="21" height="14" rx="2" fill="var(--sunk)"/><path d="M10.5 2.2C10.5 2.2 6.8 6.6 6.8 8.7a3.7 3.7 0 0 0 7.4 0C14.2 6.6 10.5 2.2 10.5 2.2z" fill="var(--ink)"/>`,
+ gold:`<rect width="21" height="14" rx="2" fill="var(--sunk)"/><path d="M4 10.5L6.2 4.5H14.8L17 10.5Z" fill="#d4a62a"/><path d="M6.2 4.5H14.8L14 6.3H7Z" fill="#f0cf6b"/>`
+};
+const flag=k=>{const f=FLAGS[FLAG_OF[k]];return f?`<svg class="flag" viewBox="0 0 21 14" aria-hidden="true">${f}</svg>`:''};
+let data=null;
+const lang=()=>document.documentElement.lang==='ar'?'ar':'en';
+const nf=(v,d=2)=>v==null?'—':new Intl.NumberFormat('en-US',{minimumFractionDigits:d,maximumFractionDigits:d}).format(v);
+const pc=v=>v==null?'—':(v>0?'+':'')+nf(v)+'%';
+const cls=v=>v==null?'':v>0?'up':v<0?'down':'';
+const fmtDate=(d,a)=>new Intl.DateTimeFormat(a?'ar-KW-u-nu-latn':'en-GB',{day:'numeric',month:'short',timeZone:'UTC'}).format(new Date(d+'T00:00:00Z'));
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function spark(values,w=96,h=28){if(!values||values.length<2)return'';const mn=Math.min(...values),mx=Math.max(...values),r=mx-mn||1,a=lang()==='ar';const pts=values.map((v,i)=>{const x=(a?(values.length-1-i):i)/(values.length-1)*(w-4)+2,y=h-2-(v-mn)/r*(h-4);return x.toFixed(1)+','+y.toFixed(1)}).join(' ');const col=values.at(-1)>=values[0]?'var(--up)':'var(--down)';const last=pts.split(' ').at(-1).split(',');return `<svg viewBox="0 0 ${w} ${h}" style="direction:ltr" aria-hidden="true"><polyline points="${pts}" fill="none" stroke="${col}" stroke-width="1.6" stroke-linejoin="round"/><circle cx="${last[0]}" cy="${last[1]}" r="2.2" fill="${col}"/></svg>`}
+function range(i){if(i.high52==null||i.low52==null)return'';const p=Math.max(0,Math.min(100,(i.close-i.low52)/((i.high52-i.low52)||1)*100)),a=lang()==='ar';return `<div class="range"><div class="track"><span class="mk" style="${a?'right':'left'}:${p}%"></span></div><div class="ends"><span>${nf(i.low52,i.low52<100?2:0)}</span><span>${nf(i.high52,i.high52<100?2:0)}</span></div></div>`}
+function chg(i,k){if(i.unit==='yield'){const b=i['bps'+k];return `<span class="${cls(b)}">${b==null?'—':(b>0?'+':'')+b+' '+T[lang()].bp}</span>`}const v=i['change'+k];return `<span class="${cls(v)}">${pc(v)}</span>`}
+function status(i,t,a){return `<small><span class="dot${i.open?' open':''}"></span>${i.open?t.open:t.closed+' · '+esc(fmtDate(i.date,a))}</small>`}
+function table(g,t,a){return `<div class="tablewrap"><table><thead><tr><th>${t.index}</th><th>${t.last}</th><th>${t.d1}</th><th>${t.w1}</th><th>${t.m1}</th><th>${t.ytd}</th><th class="hide-md">${t.y1}</th><th class="hide-md">${t.trend}</th><th class="hide-md">${t.range}</th></tr></thead><tbody>${g.items.map(i=>`<tr><td class="name"><b>${flag(i.symbol)}${esc(a?i.ar:i.en)}</b>${status(i,t,a)}</td><td class="c-last">${nf(i.close,i.close<100?2:2)}</td><td class="c-1d">${chg(i,'1d')}</td><td class="c-1w hide-sm">${chg(i,'1w')}</td><td class="c-1m">${chg(i,'1m')}</td><td class="c-ytd">${chg(i,'Ytd')}</td><td class="c-1y hide-md">${chg(i,'1y')}</td><td class="spark hide-md">${spark(i.spark)}</td><td class="c-range hide-md">${range(i)}</td></tr>`).join('')}</tbody></table></div>`}
+function mobileFix(){if(!matchMedia('(max-width:640px)').matches)return;document.querySelectorAll('tbody tr').forEach(tr=>{if(tr.querySelector('.multi'))return;const t=T[lang()],cells=['c-1w','c-1m','c-ytd','c-1y'].map(c=>tr.querySelector('.'+c)).filter(Boolean),labels=[t.w1,t.m1,t.ytd,t.y1];const td=document.createElement('td');td.className='multi';td.innerHTML=cells.map((c,k)=>`<div><span>${labels[k]}</span> ${c.innerHTML}</div>`).join('');cells.forEach(c=>c.remove());tr.appendChild(td)})}
+function commod(g,t,a){return `<div class="commod">${g.items.map(i=>`<div class="cm"><div class="row"><div><div style="font-weight:700;font-size:13px">${flag(i.symbol)}${esc(a?i.ar:i.en)}</div>${status(i,t,a)}</div><span class="${cls(i.change1d)}" style="font-weight:800">${pc(i.change1d)}</span></div><b>$${nf(i.close)}</b>${spark(i.spark,300,56).replace('<svg','<svg preserveAspectRatio="none"')}<div class="chg"><div><span>${t.w1}</span>${chg(i,'1w')}</div><div><span>${t.m1}</span>${chg(i,'1m')}</div><div><span>${t.ytd}</span>${chg(i,'Ytd')}</div><div><span>${t.y1}</span>${chg(i,'1y')}</div></div></div>`).join('')}</div><p class="note">${t.oilNote}</p>`}
+function ytdBars(t,a){const eq=data.groups.filter(g=>['us','europe','asia'].includes(g.id)).flatMap(g=>g.items).filter(i=>i.changeYtd!=null).map(i=>({n:a?i.ar:i.en,v:i.changeYtd,kw:false,s:i.symbol}));if(data.kuwait?.changeYtd!=null)eq.push({n:a?'الكويت - السوق العام':'Kuwait All-Share',v:data.kuwait.changeYtd,kw:true,s:'kw'});eq.sort((x,y)=>y.v-x.v);const mx=Math.max(...eq.map(e=>Math.abs(e.v)),1),neg=Math.min(...eq.map(e=>e.v))<0,zero=neg?50:0,scale=neg?50:100;return `<div class="bars">${eq.map(e=>{const w=Math.abs(e.v)/mx*scale*.82,start=e.v>=0?zero:zero-w,side=a?'right':'left',col=e.kw?'var(--kw)':e.v>=0?'var(--up)':'var(--down)',vpos=e.v>=0?zero+w+1:zero-w-1;return `<div class="bar-row${e.kw?' kw':''}"><span class="nm" title="${esc(e.n)}">${flag(e.s)}${esc(e.n)}</span><div class="bar-track"><span class="zero" style="${side}:${zero}%"></span><span class="b" style="${side}:${start}%;width:${w}%;background:${col};opacity:${e.kw?1:.75}"></span><span class="v ${cls(e.v)}" style="${side}:${vpos}%;${e.v<0?(a?'transform:translateX(100%)':'transform:translateX(-100%)'):''}">${pc(e.v)}</span></div></div>`}).join('')}</div><p class="note">${t.ytdNote}</p>`}
+function render(){
+  if(!data)return;const a=lang()==='ar',t=T[lang()];document.title=t.title+' · Market Insight';
+  document.getElementById('lang').textContent=a?'EN':'AR';document.getElementById('back').textContent=t.back;
+  const indices=data.groups.filter(g=>['us','europe','asia'].includes(g.id)).flatMap(g=>g.items).filter(i=>i.change1d!=null);
+  const ups=indices.filter(i=>i.change1d>0).length,sorted=[...indices].sort((x,y)=>y.change1d-x.change1d),best=sorted[0],worst=sorted.at(-1),brent=data.groups.find(g=>g.id==='commodities')?.items.find(i=>i.symbol==='BZ=F');
+  const updated=new Intl.DateTimeFormat(a?'ar-KW-u-nu-latn':'en-GB',{dateStyle:'medium',timeStyle:'short',timeZone:'Asia/Kuwait'}).format(new Date(data.generatedAt));
+  document.getElementById('app').innerHTML=`
+  <div class="head"><div><span class="lbl">${t.kicker}</span><h1>${t.title}</h1></div><div class="updated">${t.updated} ${esc(updated)} (${a?'الكويت':'Kuwait'})<br>${t.delayed}</div></div>
+  <div class="tiles"><div class="tile"><span>${t.up}</span><b>${ups} ${t.of} ${indices.length}</b></div><div class="tile"><span>${t.best}</span><b>${flag(best.symbol)}${esc((a?best.ar:best.en).split(' (')[0])}</b><small class="up">${pc(best.change1d)}</small></div><div class="tile"><span>${t.worst}</span><b>${flag(worst.symbol)}${esc((a?worst.ar:worst.en).split(' (')[0])}</b><small class="${cls(worst.change1d)}">${pc(worst.change1d)}</small></div><div class="tile"><span>${t.brent}</span><b>$${nf(brent?.close)}</b><small class="${cls(brent?.change1d)}">${pc(brent?.change1d)}</small></div></div>
+  <section class="card"><div class="cardhead"><h2>${t.ytdTitle}</h2></div>${ytdBars(t,a)}</section>
+  ${data.groups.map(g=>`<section class="card"><div class="cardhead"><h2>${esc(a?g.ar:g.en)}</h2></div>${g.id==='commodities'?commod(g,t,a):table(g,t,a)}${g.id==='macro'?`<p class="note">${t.macroNote}</p>`:''}</section>`).join('')}
+  <p class="foot">${t.foot}</p>`;
+  mobileFix();
+}
+document.getElementById('lang').onclick=()=>{const a=lang()!=='ar';document.documentElement.lang=a?'ar':'en';document.documentElement.dir=a?'rtl':'ltr';try{localStorage.setItem('marketInsightLanguage',a?'ar':'en')}catch{}render()};
+addEventListener('resize',()=>{clearTimeout(window._gr);window._gr=setTimeout(render,200)});
+(window.GLOBAL_DATA?Promise.resolve(window.GLOBAL_DATA):fetch('./global.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject(new Error('HTTP '+r.status)))).then(j=>{data=j;render()}).catch(e=>{document.getElementById('app').innerHTML='<p class="loading">Global market data is unavailable right now. Please try again later.</p>'});
+})();
+</script>
+</body>
+</html>

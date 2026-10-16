@@ -106,6 +106,41 @@ for (const group of GROUPS) {
   }
   groups.push({ id: group.id, en: group.en, ar: group.ar, items });
 }
+// Kuwait Export Crude (KEC) price as published by Boursa Kuwait (from KPC).
+try {
+  const r = await fetch("https://www.boursakuwait.com.kw/data-api/client-services?RT=3521", {
+    headers: { "user-agent": "Mozilla/5.0 Market Insight EOD collector", accept: "application/json" }, signal: AbortSignal.timeout(20000)
+  });
+  if (!r.ok) throw new Error("HTTP " + r.status);
+  const kop = ((await r.json()).KOP || [])
+    .map((x) => ({ date: String(x.Date || "").slice(0, 8).replace(/(\d{4})(\d{2})(\d{2})/, "$1-$2-$3"), value: Number(x.Value), chg: Number(x.Pchg) }))
+    .filter((x) => x.date.length === 10 && x.value > 0)
+    .sort((a, b) => a.date.localeCompare(b.date));
+  if (!kop.length) throw new Error("no Kuwait oil price");
+  const lastK = kop.at(-1), backK = (n) => kop[Math.max(0, kop.length - 1 - n)]?.value;
+  const onOrBeforeK = (date) => { for (let i = kop.length - 1; i >= 0; i -= 1) if (kop[i].date <= date) return kop[i].value; return null; };
+  const dk = new Date(lastK.date + "T00:00:00Z"), mK = new Date(dk); mK.setUTCMonth(dk.getUTCMonth() - 1);
+  const enough = (n) => kop.length > n;
+  const kec = {
+    symbol: "KEC", en: "Kuwait Export Crude ($/bbl)", ar: "خام التصدير الكويتي (دولار/برميل)", timezone: "Asia/Kuwait", currency: "USD",
+    date: lastK.date, close: round(lastK.value, 2), open: false, source: "Kuwait Petroleum Corporation via Boursa Kuwait",
+    change1d: Number.isFinite(lastK.chg) ? round(lastK.chg, 2) : kop.length > 1 ? pct(lastK.value, backK(1)) : null,
+    change1w: enough(5) ? pct(lastK.value, backK(5)) : null,
+    change1m: enough(15) ? pct(lastK.value, onOrBeforeK(mK.toISOString().slice(0, 10))) : null,
+    changeYtd: kop[0].date <= `${Number(lastK.date.slice(0, 4)) - 1}-12-31` ? pct(lastK.value, onOrBeforeK(`${Number(lastK.date.slice(0, 4)) - 1}-12-31`)) : null,
+    change1y: null,
+    spark: kop.length >= 10 ? kop.slice(-66).map((x) => round(x.value, 2)) : null,
+    historyPoints: kop.length
+  };
+  const commodities = groups.find((g) => g.id === "commodities");
+  commodities.items.unshift(kec);
+  ok += 1;
+} catch (error) {
+  failed.push("KEC: " + error.message);
+  const prior = prevById.get("KEC");
+  if (prior) groups.find((g) => g.id === "commodities").items.unshift({ ...prior, stale: true });
+}
+
 if (ok < 10) throw new Error(`Only ${ok} instruments loaded; keeping previous file. ${failed.join("; ")}`);
 
 // Kuwait link: All-Share from the site's own snapshot, for side-by-side context.
