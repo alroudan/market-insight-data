@@ -1,26 +1,111 @@
 {
- "indices": {
-  "st": 200,
-  "body": "{\"d\":[{\"Title\":\"MSX30\",\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:10 PM\",\"TimeAr\":\"08:10 م\",\"DelayTimeEn\":\"07:55 PM\",\"DelayTimeAr\":\"07:55 م\",\"StatusEn\":null,\"StatusAr\":null,\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"32,970,476.988\",\"Volume\":\"110,867,408\",\"Trades\":\"13,077\",\"SecTrades\":\"27\",\"Up\":\"1\",\"Down\":\"21\",\"Unchanged\":\"5\",\"AsOnDateEn\":null,\"AsOnDateAr\":null,\"AsOnTimeEn\":null,\"AsOnTimeAr\":null,\"index_symbol\":\"MSX30\",\"GMTTimeEn\":null,\"GMTTimeAr\":null}]}"
+ "tv": {
+  "TADAWUL:TASI": {
+   "n": 300,
+   "first": [
+    1754377200,
+    10837.97,
+    10921.85,
+    10816.12,
+    10921.85,
+    527086468
+   ],
+   "last": [
+    1792047600,
+    10120.83,
+    10133.99,
+    10034.79,
+    10106.54,
+    258732552
+   ]
+  },
+  "QSE:GNRI": {
+   "n": 300,
+   "first": [
+    1754287200,
+    11167.75,
+    11190.369,
+    11143.229,
+    11179.721
+   ],
+   "last": [
+    1792044000,
+    8931.13,
+    8931.13,
+    8767.7,
+    8810.17
+   ]
+  },
+  "BAHRAIN:BHBX": {
+   "err": "symbol_error",
+   "p": "[\"cs_6lp08dwaf9\",\"sds_sym_1\",\"permission denied\",\"group\",\"bahrain_dly\"]",
+   "log": [
+    null,
+    "series_loading",
+    "symbol_error",
+    "series_error"
+   ]
+  },
+  "MSX:MSX30": {
+   "err": "symbol_error",
+   "p": "[\"cs_yecyoebu8y\",\"sds_sym_1\",\"invalid symbol\"]",
+   "log": [
+    null,
+    "series_loading",
+    "symbol_error",
+    "series_error"
+   ]
+  },
+  "MSM:MSX30": {
+   "err": "symbol_error",
+   "p": "[\"cs_j3897ru6sp\",\"sds_sym_1\",\"invalid symbol\"]",
+   "log": [
+    null,
+    "series_loading",
+    "symbol_error",
+    "series_error"
+   ]
+  }
  },
- "api.aspx/IndexChart": {
-  "st": 401,
-  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
+ "msx": {
+  "https://www.msx.om/Indices.aspx": {
+   "st": 200,
+   "title": "Muscat Stock Exchange",
+   "text": "ERROR ! We are sorry, the resource you are looking is not avaliable. FOREIGN INVESTMENTS Introductory By Company By Sector INFO. & AWARENESS Introductory Publication RULES AND REGULATIONS Listing Requirements Trading Rules Clearing & Settlement Market Law Fees Ads with us RSS Company News Circulars and decisions Events and news Daily statistics Weekly statistics Monthly statistics Yearly statistics OTHER LINKS Financial Reports Glossary Bond Calculator Photo Gallery Links Exchange Events/Holidays Useful lnvestors' links FAQ's STAY CONNECTED Download Apps Now © Copyrights 2021, Muscat Stock Exc"
+  },
+  "https://www.msx.om/indices.aspx?type=MSX30": {
+   "st": 200,
+   "title": "Muscat Stock Exchange",
+   "text": "ERROR ! We are sorry, the resource you are looking is not avaliable. FOREIGN INVESTMENTS Introductory By Company By Sector INFO. & AWARENESS Introductory Publication RULES AND REGULATIONS Listing Requirements Trading Rules Clearing & Settlement Market Law Fees Ads with us RSS Company News Circulars and decisions Events and news Daily statistics Weekly statistics Monthly statistics Yearly statistics OTHER LINKS Financial Reports Glossary Bond Calculator Photo Gallery Links Exchange Events/Holidays Useful lnvestors' links FAQ's STAY CONNECTED Download Apps Now © Copyrights 2021, Muscat Stock Exc"
+  },
+  "https://www.msx.om/MSX30.aspx": {
+   "st": 200,
+   "title": "Muscat Stock Exchange",
+   "text": "ERROR ! We are sorry, the resource you are looking is not avaliable. FOREIGN INVESTMENTS Introductory By Company By Sector INFO. & AWARENESS Introductory Publication RULES AND REGULATIONS Listing Requirements Trading Rules Clearing & Settlement Market Law Fees Ads with us RSS Company News Circulars and decisions Events and news Daily statistics Weekly statistics Monthly statistics Yearly statistics OTHER LINKS Financial Reports Glossary Bond Calculator Photo Gallery Links Exchange Events/Holidays Useful lnvestors' links FAQ's STAY CONNECTED Download Apps Now © Copyrights 2021, Muscat Stock Exc"
+  },
+  "https://www.msx.om/market-indices.aspx": {
+   "st": 200,
+   "title": "Muscat Stock Exchange",
+   "text": "ERROR ! We are sorry, the resource you are looking is not avaliable. FOREIGN INVESTMENTS Introductory By Company By Sector INFO. & AWARENESS Introductory Publication RULES AND REGULATIONS Listing Requirements Trading Rules Clearing & Settlement Market Law Fees Ads with us RSS Company News Circulars and decisions Events and news Daily statistics Weekly statistics Monthly statistics Yearly statistics OTHER LINKS Financial Reports Glossary Bond Calculator Photo Gallery Links Exchange Events/Holidays Useful lnvestors' links FAQ's STAY CONNECTED Download Apps Now © Copyrights 2021, Muscat Stock Exc"
+  }
  },
- "api.aspx/IndicesChart": {
-  "st": 401,
-  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
- },
- "api.aspx/TrendChart": {
-  "st": 401,
-  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
- },
- "api.aspx/Trend": {
-  "st": 401,
-  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
- },
- "api.aspx/IndexHistory": {
-  "st": 401,
-  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
- }
+ "msxLinks": [
+  "https://www.msx.om/msmdocs/downloads/en_1790771863522_MSX%20INDICES%20MAINTAINCE%20q3.pdf",
+  "https://www.msx.om/msmdocs/downloads/en_1780379450975_The%20Annual%20Revision%20of%20MSX%20Indices%20Constituents%202026.pdf",
+  "https://www.msx.om/market-watch-history.aspx",
+  "https://www.msx.om/page.aspx?b1=Indices&b2=MSX-Indices&mi=&ti=MSX-Indices",
+  "https://www.msx.om/page.aspx?b1=Our-Profile&b2=History&p=HistoryEvents&ti=History"
+ ],
+ "msxReqs": [
+  {
+   "u": "https://www.msx.om/jss/json2.js",
+   "body": "/*\n    http://www.JSON.org/json2.js\n    2010-08-25\n\n    Public Domain.\n\n    NO WARRANTY EXPRESSED OR IMPLIED. USE AT YOUR OWN RISK.\n\n    See http://www.JSON.org/js.html\n\n\n    This code should be minified before deployment.\n    See http://javascript.crockford.com/jsmin.html\n\n    USE YOUR OWN COPY. IT",
+   "post": null
+  },
+  {
+   "u": "https://www.msx.om/api.aspx/Indices",
+   "body": "{\"d\":[{\"Title\":\"MSX30\",\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:18 PM\",\"TimeAr\":\"08:18 م\",\"DelayTimeEn\":\"08:03 PM\",\"DelayTimeAr\":\"08:03 م\",\"StatusEn\":null,\"StatusAr\":null,\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.",
+   "post": "{ 'Type': 'MSX30' }"
+  }
+ ]
 }
