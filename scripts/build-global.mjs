@@ -1,5 +1,5 @@
 // Global markets snapshot for the "Global economy" page: US, Europe, Asia,
-// oil (including Kuwait Export Crude) and gold. Daily history from Yahoo Finance.
+// oil (including Kuwait Export Crude), gold and Bitcoin. Daily history from Yahoo Finance.
 import { readFile, writeFile } from "node:fs/promises";
 
 const OUT = new URL("../website/global.json", import.meta.url);
@@ -23,10 +23,11 @@ const GROUPS = [
     ["^KS11", "KOSPI (Korea)", "كوسبي (كوريا)", "Asia/Seoul"],
     ["^BSESN", "Sensex (India)", "سينسكس (الهند)", "Asia/Kolkata"]
   ] },
-  { id: "commodities", en: "Oil & gold", ar: "النفط والذهب", items: [
+  { id: "commodities", en: "Oil, gold & Bitcoin", ar: "النفط والذهب والبيتكوين", items: [
     ["BZ=F", "Brent crude ($/bbl)", "خام برنت (دولار/برميل)", "Europe/London"],
     ["CL=F", "WTI crude ($/bbl)", "خام غرب تكساس (دولار/برميل)", "America/New_York"],
-    ["GC=F", "Gold ($/oz)", "الذهب (دولار/أونصة)", "America/New_York"]
+    ["GC=F", "Gold ($/oz)", "الذهب (دولار/أونصة)", "America/New_York"],
+    ["BTC-USD", "Bitcoin ($)", "بيتكوين (دولار)", "UTC"]
   ] }
 ];
 
