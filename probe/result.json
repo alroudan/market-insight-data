@@ -1,291 +1,97 @@
 {
- "home": {
+ "direct_Indices": {
   "st": 200,
-  "len": 178420,
-  "msx30": [
-   " MSX 30 | As on",
-   " <b><span class=\"load-MSX30\"></span></b><em><span class=\"load-change\"></span>% (<span class=\"load-change-value\"></span>)</em>",
-   " <li class=\"active\" id=\"liMSX30Index\"><a id=\"linkMSX30Index\" data-toggle=\"tab\" href=\"#prof-1\">",
-   " MSX30</a></li>",
-   " <div class=\"fir-pred indices-MSX30\">",
-   " ${MSX30}"
-  ],
-  "scripts": [
-   "jss/jquery-3.6.3.min.js",
-   "js/jquery-ui.min.js",
-   "highstock/code/highstock.js",
-   "highstock/code/modules/heatmap.js",
-   "highstock/code/modules/treemap.js",
-   "highstock/code/modules/no-data-to-display.js",
-   "jss/json2.js",
-   "Scripts/jquery.signalR-2.4.3.min.js",
-   "js/kinetic.js",
-   "js/jquery.final-countdown.js",
-   "js/jquery.tmpl.min.js",
-   "js/bootstrap.min.js",
-   "js/slick.js",
-   "js/jquery.bootstrap.newsbox.js",
-   "kendo/js/jszip.min.js",
-   "js/cbpFWTabs.js",
-   "js/kendo.custom.min.js",
-   "js/jquery.cookie.js",
-   "js/ArabicGlobalResources.js",
-   "js/site.js",
-   "js/securities.js",
-   "js/indices.js",
-   "js/company.js",
-   "js/fonts.js",
-   "js/wow.min.js",
-   "js/Ticker.js",
-   "js/custom.js",
-   "js/search.js",
-   "js/jquery.printElement.js",
-   "js/libs/html2canvas.min.js"
-  ],
-  "apis": []
+  "body": "\r\n\r\n<!DOCTYPE html>\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head><title>\r\n\r\n</title></head>\r\n<body>\r\n    <form method=\"post\" action=\"./InternalError.html\" id=\"form1\">\r\n<div class=\"aspNetHidden\">\r\n<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"q2BI99IQxqvyTMIDfO/Jll0IFHt1AC+/BRueEONmJIZDya8SdikUm8QetWjNcSUjyqQrbm2eQlpA7exkIN4QdINzNSBxhymW0V8dxbKIOJ20H03pafzIZa4kFwRZ7pI4\" />\r\n</div>\r\n\r\n<div class=\"aspNetHidden\">\r\n\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEGENERATOR\" id=\"__VIEWSTATEGENERATOR\" value=\"BFF6C652\" />\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\" value=\"\" />\r\n</div>\r\n        <div>\r\n        </div>\r\n    </form>\r\n<script type=\"text/javascript\" src=\"/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=607848576\" async></script></body>\r\n</html>\r\n"
  },
- "gotoErr": "page.goto: Timeout 60000ms exceeded.\nCall log:\n  - navigating to \"https://www.msx.om/\", waiting until \"networkidle\"\n",
- "text": " AACT 0.147(-2.00%) AAIC 0.208(-0.95%) ABOB 0.200(0.00%) ABRJ 0.439(-0.68%) AJSS 0.250(-3.47%) AMAN 0.067(0.00%) AMAT 0.107(-1.83%) AMII 0.079(2.60%) ASCO 0.227(-0.44%) ATMI 0.926(-0.64%) BACS 0.137(0.00%) BATP 0.197(-0.51%) BKDB 0.224(0.00%) BKMB 0.440(0.00%) BKNZ 0.151(-2.58%) BKSB 0.188(-1.57%) BMPB 0.905(-0.66%) BWPC 0.150(0.00%) DGEN 0.076(1.33%) DIDI 0.289(-1.70%) GECS 0.161(-3.01%) GFIC 0.388(-0.77%) GICI 0.070(-1.41%) GMPI 0.511(-1.73%) HECI 0.005(0.00%) JREF 0.105(0.96%) MBNS 1.020(0.00%) MCDE 0.092(-2.13%) MFCI 0.064(-4.48%) MGMC 0.139(0.00%) MHAS 1.350(7.14%) NAPI 0.084(-22.22%) NBOB 0.498(-0.40%) NFCI 0.216(0.00%) NGCI 0.124(-1.59%) NS26 0.101(-1.94%) OAB 0.283(-4.39%) OCHL 0.159(-1.85%) OEIO 0.120(0.00%) OFCI 0.022(0.00%) OGWF 1.070(-1.29%) OMCB 0.141(0.00%) OMIF 0.211(-8.26%) OMRF 0.105(0.00%) OMVS 0.410(0.00%) OOMS 1.550(0.00%) OQBI 0.260(-2.62%) OQEP 0.493(-0.60%) OQGN 0.224(-2.61%) ORCI 1.100(0.00%) ORDS 0.315(-0.63%) OTEL 1.356(-0.15%) OUIC 0.322(0.63%) PHPC 0.208(-2.35%) PRFD 0.176(-2.22%) RCCI 0.193(0.00%) RNSS 0.276(-0.36%) SBMB 0.108(0.00%) SIHC 0.101(-3.81%) SMNP 0.182(-1.62%) SPFI 0.694(-0.86%) SSPW 0.278(-1.07%) SUWP 0.197(-1.01%) TAOI 0.057(-5.00%) TFCI 0.108(-4.42%) UFCI 0.087(-2.25%) VOES 0.181(-2.69%) More 4 0 Search Login Feedback A- A+ Market Participants Listing & Trading New! Market Watch MSX Market Insights Indices E-services New! Publications Sustainable Investments Careers Events Calendar Tabadul Our Profile ع 1 2 3 Friday Oct 16, 2026 08:07 PM - GMT: 04:07 PM Delayed 15 minutes MSX 30 | AS ON 03:00 PM | OCT 15, 2026 | CLOSED 7,678.054 -1.000% (-77.249) 5 UP 43 DOWN 19 UNCHANGED Turnover 41,602,904.888 Volume 151,873,469 Trades 17,004 Traded Securities 67 TREND MSX TODAY TOP GAINERS TOP LOSERS MOST ACTIVE BY VOLUME MOST ACTIVE BY TURNOVER COMPANY PRICE PRICE CHG (%) Al MAHA PETROLEUM PRODUCTS MARKETING 1.350 0.090 7.14% AL MADINA INVESTMENT HOLDING 0.079 0.002 2.60% DHOFAR GENERATING 0.076 0.001 1.33% JABAL REIF 0.105 0.001 0.96% OMAN UNITED INSURANCE 0.322 0.002 0.63% INDICES PERFORMANCE MSX30 FINANCIAL INDUSTRY SERVICES SHARIAH TR INDICES FIXED INCOME 7,678.054 -1.000% (-77.249) Oct 16, 2026 | 04:07 PM GONE UP 1 GONE DOWN 21 UNCHANGED 5 TURNOVER 32,970,476.988 VOLUME 110,867,408 TRADES 13,077 TRADED SECURITIES 27 JREFJREF ABOB OMVS BKDB OEIO BKMB OTELOTEL RNSSRNSS NBOBNBOB ASCOASCO BATPBATP OQEPOQEP ORDSORDS ABRJABRJ AAICAAIC SUWPSUWP SSPWSSPW GICIGICI BKSBBKSB AMATAMAT AACTAACT PHPCPHPC BKNZBKNZ OQGNOQGN OQBIOQBI VOESVOES GECSGECS Login Please note the Market Data is delayed by 15 minutes. Access Real Time Role Forgot Password",
- "net": [
-  {
-   "u": "https://www.msx.om/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZMvCf-oCh4t1CYQAzQ-M8ybnzz0yw4p6oTG1Vv8piGJggUNWjjGb-D0HaHVqFE0eqQ2&t=639190887605538696",
-   "st": 200,
-   "ct": "application/x-javascript",
-   "body": "function WebForm_PostBackOptions(eventTarget, eventArgument, validation, validationGroup, actionUrl, trackFocus, clientSubmit) {\r\n    this.eventTarget = eventTarget;\r\n    this.eventArgument = eventArgument;\r\n    this.validation = validation;\r\n    this.validationGroup = validationGroup;\r\n    this.actionUrl = actionUrl;\r\n    this.trackFocus = trackFocus;\r\n    this.clientSubmit = clientSubmit;\r\n}\r\nfu"
-  },
-  {
-   "u": "https://www.msx.om/WebResource.axd?d=x2nkrMJGXkMELz33nwnakJ1vS9e67ilCp_lK_5ij6nW2M-1pi84De9egS24f-t7nTJ43N0gSuw99CepiZ5RyKnFpfU4tSfyWgN7I-FkJvxE1&t=639190887605538696",
-   "st": 200,
-   "ct": "application/x-javascript",
-   "body": "var Page_ValidationVer = \"125\";\r\nvar Page_IsValid = true;\r\nvar Page_BlockSubmit = false;\r\nvar Page_InvalidControlToBeFocused = null;\r\nvar Page_TextTypes = /^(text|password|file|search|tel|url|email|number|range|color|datetime|date|month|week|time|datetime-local)$/i;\r\nfunction ValidatorUpdateDisplay(val) {\r\n    if (typeof(val.display) == \"string\") {\r\n        if (val.display == \"None\") {\r\n          "
-  },
-  {
-   "u": "https://www.googletagmanager.com/gtag/js?id=G-BQNXL7KYTM",
-   "st": 200,
-   "ct": "application/javascript; charset=UTF-8",
-   "body": "\n// Copyright 2012 Google Inc. All rights reserved.\n \n(function(){\n\nvar data = {\n\n\"resource\": {\n  \"version\":\"1\",\n  \n  \"macros\":[{\"function\":\"__c\",\"vtp_value\":true},{\"function\":\"__e\"},{\"function\":\"__actids\"},{\"function\":\"__v\",\"vtp_name\":\"gtm.configContainerId\",\"vtp_dataLayerVersion\":1},{\"function\":\"__c\",\"vtp_value\":\"\"},{\"function\":\"__c\",\"vtp_value\":0}],\n  \"tags\":[{\"function\":\"__ogt_auto_events\",\"pr"
-  },
-  {
-   "u": "https://www.msx.om/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=1171969881",
-   "st": 200,
-   "ct": "application/javascript",
-   "body": "var _0xd370=['\\x77\\x36\\x41\\x66\\x77\\x34\\x56\\x55\\x53\\x77\\x3d\\x3d','\\x77\\x37\\x59\\x4f\\x56\\x47\\x5a\\x47\\x77\\x36\\x49\\x46\\x77\\x71\\x59\\x75\\x77\\x34\\x44\\x44\\x70\\x57\\x59\\x3d','\\x77\\x35\\x74\\x56\\x77\\x72\\x70\\x41\\x49\\x69\\x41\\x79\\x4b\\x38\\x4f\\x53\\x77\\x36\\x54\\x43\\x6b\\x79\\x37\\x44\\x69\\x73\\x4b\\x7a\\x77\\x34\\x46\\x6e\\x4a\\x73\\x4f\\x50\\x77\\x37\\x33\\x43\\x69\\x56\\x64\\x47','\\x4d\\x73\\x4f\\x59\\x77\\x70\\x4a\\x39\\x52\\x52\\x33\\x43\\x69\\x48\\"
-  },
+ "direct_MarketToday": {
+  "st": 200,
+  "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:08 PM\",\"TimeAr\":\"08:08 م\",\"DelayTimeEn\":\"07:53 PM\",\"DelayTimeAr\":\"07:53 م\",\"StatusEn\":\"Closed\",\"StatusAr\":\"مغلق\",\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"41,602,904.888\",\"Volume\":\"151,873,469\",\"Trades\":\"17,004\",\"SecTrades\":\"67\",\"Up\":\"5\",\"Down\":\"43\",\"Unchanged\":\"19\",\"AsOnDateEn\":null,\"AsOnDateAr\":null,\"AsOnTimeEn\":null,\"AsOnTimeAr\":null,\"index_symbol\":null,\"GMTTimeEn\":null,\"GMTTimeAr\":null}]}"
+ },
+ "reqs": [
   {
    "u": "https://www.msx.om/api.aspx/MarketToday",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:06 PM\",\"TimeAr\":\"08:06 م\",\"DelayTimeEn\":\"07:51 PM\",\"DelayTimeAr\":\"07:51 م\",\"StatusEn\":\"Closed\",\"StatusAr\":\"مغلق\",\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"41,602,904.888\",\"Volume\":\"151,873,469\",\"Trades\":\"17,004\",\"SecTrades\":\"67\",\"Up\":\""
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/MarketTodayDateTime",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:05 PM\",\"TimeAr\":\"08:05 م\",\"DelayTimeEn\":null,\"DelayTimeAr\":null,\"StatusEn\":null,\"StatusAr\":null,\"Image\":null,\"MSX30\":null,\"Change\":null,\"ChangeValue\":null,\"Turnover\":null,\"Volume\":null,\"Trades\":null,\"SecTrades\":null,\"Up\":null,\"Down\":null,\"Unchanged\":null,\"AsOnDateEn\":\"Oct 15, 2026\""
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/TopGLVT",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Change\":\"7.14\",\"ChangeVal\":\"0.090\",\"ClosePrice\":\"1.350\",\"LTP\":\"1.350\",\"Turnover\":\"12,020.865\",\"Volume\":\"9,156\",\"Symbol\":\"MHAS\",\"ShortNameAr\":\"المها لتسويق المنتجات النفطية\",\"ShortNameEn\":\"Al MAHA PETROLEUM PRODUCTS MARKETING\",\"LongNameAr\":\"المها لتسويق المنتجات النفطية\",\"LongNameEn\":\"Al MAHA PETROLEUM PRODUCTS MARKETING\",\"Image\":\"aro-1.png\",\"ClassName\":\"green_text-im\",\"TempTurnover\":\"12020"
+   "m": "POST",
+   "body": "{ 'Type': 'G' }"
   },
   {
    "u": "https://www.msx.om/api.aspx/Indices",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":\"MSX30\",\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:06 PM\",\"TimeAr\":\"08:06 م\",\"DelayTimeEn\":\"07:51 PM\",\"DelayTimeAr\":\"07:51 م\",\"StatusEn\":null,\"StatusAr\":null,\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"32,970,476.988\",\"Volume\":\"110,867,408\",\"Trades\":\"13,077\",\"SecTrades\":\"27\",\"Up\":\"1\","
+   "m": "POST",
+   "body": "{ 'Type': 'MSX30' }"
   },
   {
    "u": "https://www.msx.om/api.aspx/HeatMap",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Volume\":\"119283\",\"LTP\":\"0.105\",\"High\":\"0.105\",\"Low\":\"0.105\",\"IndexSymbol\":null,\"Change\":\"0.001\",\"ChangePer\":\"0.96\",\"NoOfTrades\":\"4\",\"Symbol\":\"JREF\",\"ShortNameAr\":\"صندوق جبل للاستثمار العقاري\",\"ShortNameEn\":\"JABAL REIF\",\"LongNameAr\":\"صندوق جبل للاستثمار العقاري\",\"LongNameEn\":\"JABAL REIF\",\"PrevClose\":\"0.104\",\"OpenPrice\":\"0.105\",\"BidPrice\":\"0.104\",\"BidVolume\":\"80761\",\"AskPrice\":\"0.109\",\"AskVo"
-  },
-  {
-   "u": "https://www.msx.om/_Incapsula_Resource?SWKMTFSR=1&e=0.07595776279019506",
-   "st": 200,
-   "ct": "text/plain",
-   "body": "1"
-  },
-  {
-   "u": "https://www.clarity.ms/tag/w4blgk3t69",
-   "st": 200,
-   "ct": "application/x-javascript",
-   "body": "!function(c,l,a,r,i,t,y){function sync(){(new Image).src=\"https://c.clarity.ms/c.gif\"}\"complete\"==document.readyState?sync():window.addEventListener(\"load\",sync);a[c].v||a[c].t||a[c](\"metadata\",(function(){a[c](\"set\", \"C_IS\", \"0\");}),!1,!0);if(a[c].v||a[c].t)return a[c](\"event\",c,\"dup.\"+i.projectId);a[c].t=!0,(t=l.createElement(r)).async=!0,t.src=\"https://scripts.clarity.ms/0.8.72/clarity.js\",(y=l"
-  },
-  {
-   "u": "https://stats.g.doubleclick.net/g/collect?v=2&ngs=1&ibt=1&tid=G-BQNXL7KYTM&cid=1960876583.1792166795&gtm=45je6ae1v892843833za208zd892843833xf1&rcb=9&aip=1&dma=0&gcd=13l3l3l3l1l1&npa=0&frm=0&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121246026~121246034",
-   "st": 204,
-   "ct": "text/plain",
-   "body": ""
+   "m": "POST",
+   "body": "{'Type': 'MSX30'}"
   },
   {
    "u": "https://www.msx.om/api.aspx/latestnews",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"NewsID\":\"116970\",\"TypeID\":\"1\",\"TitleEn\":\"Initial Unaudited Preliminary Financials for the Period ended on 30 Sep 2026\",\"TitleAr\":\" البيانات المالية الأولية غير المدققة  للفترة المنتهية في30 Sep 2026\",\"DateTimeEn\":\"10/15/2026 9:53:00 AM\",\"DateTimeAr\":null,\"Symbol\":\"ONES\",\"CompanyNameEn\":\"OMAN NATIONAL ENGINEERING \\u0026 INVESTMENT\",\"CompanyNameAr\":\"الوطنية العمانية للهندسة والاستثمار\",\"Date"
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/decisions",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"NewsID\":\"116982\",\"TypeID\":\"3\",\"TitleEn\":\"Listing Transfer of COLLECTIVE INVESTMENT FUNDS from the parallel Market (129/2026)\",\"TitleAr\":\" نقل ادراج صناديق الاستثمار الجماعي من السوق الموازنة (129/2026)\",\"DateTimeEn\":\"10/15/2026 2:42:00 PM\",\"DateTimeAr\":null,\"Symbol\":\"Decision\",\"CompanyNameEn\":\"\",\"CompanyNameAr\":\"\",\"DateText\":\"Oct\\u003cb\\u003e15\\u003c/b\\u003e\",\"DateTextEn\":\"Oct\\u003cb\\u003e"
-  },
-  {
-   "u": "https://analytics.google.com/g/collect?v=2&tid=G-BQNXL7KYTM&gtm=45je6ae1v892843833za208zd892843833xf1&_p=1792166794815&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAACAC&are=1&cid=1960876583.1792166795&frm=0&ibt=1&ngs=1&pscdl=noapi&rcb=9&sr=1280x720&uaa=x64&uab=64&uafvl=Chromium%3B130.0.6723.31%7CHeadlessChrome%3B130.0.6723.31%7CNot%253FA_Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&_s=1&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120469145~120469153~121246026~121246034&sid=1792166794&sct=1&seg=0&dl=https%3A%2F%2Fwww.msx.om%2F&dt=Muscat%20Stock%20Exchange&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=2042",
-   "st": 204,
-   "ct": "text/plain",
-   "body": ""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetNotificationsCenter",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"TitleAr\":\"معامل التحديد والأسهم الحرة لمؤشرات البورصة - نهاية سبتمبر 2026\",\"TitleEn\":\"Free Float \\u0026 Capping Factors End of Sep 2026\",\"LinkEn\":\"msmdocs/downloads/en_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"LinkAr\":\"msmdocs/downloads/ar_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"symbol\":\"MSX\",\"LongNameEn\":\"Muscat Stock Exchange\",\"LongNameAr\":\"بورصة مسقط\",\"type\":\"9\",\"NotiType\":\"3\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetSummaryTips",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketTicker",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Symbol\":\"AACT\",\"LTP\":\"0.147\",\"Change\":\"-2.00\",\"ClosePrice\":\"0.147\",\"Image\":\"aro-3.png\",\"ShortNameAr\":\"الأنوار لبـلاط السـيراميك\",\"ShortNameEn\":\"AL ANWAR  CERAMIC\",\"LongNameAr\":\"الأنوار لبـلاط السـيراميك\",\"LongNameEn\":\"AL ANWAR  CERAMIC\"},{\"Symbol\":\"AAIC\",\"LTP\":\"0.208\",\"Change\":\"-0.95\",\"ClosePrice\":\"0.208\",\"Image\":\"aro-3.png\",\"ShortNameAr\":\"الأنوار للإستثمارات\",\"ShortNameEn\":\"ALANWAR INVEST"
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/FinancialReports",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Symbol\":\"SHPS\",\"ReportYear\":\"2026\",\"LongNameEn\":null,\"LongNameAr\":null,\"NameEn\":\"Q3 (Un-Audited)\",\"NameAr\":\"الربع الثالث (غير مدقق)\",\"CategoryID\":\"3\",\"TitleEn\":\"Unaudited financial statements for Quarter 3 ended on 2026-09-30\",\"TitleAr\":\" البيان المالي غير المدقق للربع الثالث المنتهي في 2026-09-30\",\"FileNameEn\":\"SHPS_2026_Q3 (Un-Audited)_e.zip\",\"FileNameAr\":\"SHPS_2026_Q3 (Un-Audited)_a.zip"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/HeaderAdvertisement",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"ImgNameEn\":\"MSX-En-2025-16 (1).jpg\",\"ImgNameAr\":\"MSX-AR-2025-17.jpg\",\"GUIDEn\":null,\"GUIDAr\":null,\"LinkEn\":null,\"LinkAr\":null,\"TimePeriod\":\"15\",\"HAdvertisementTypeID\":null,\"UrlEn\":\"https://www.msx.om/downloads.aspx?b1=Publications\\u0026b2=MSX-Annual-Report\\u0026c=13\\u0026ti=MSX-Annual-Report\",\"UrlAr\":\"https://www.msx.om/downloads.aspx?b1=Publications\\u0026b2=MSX-Annual-Report\\u0026c=13\\u002"
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/Announcements",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"TitleEn\":\"disclosure guide\",\"TitleAr\":\"دليل الافصاح \",\"ContentEn\":\"\\u003cp\\u003e\\u003ca href=\\\"../MSMDOCS/downloads/en_1485675427299_Disclosure%20Guide.pdf\\\" target=\\\"_blank\\\"\\u003e\\u003cimg src=\\\"../MSMDOCS/Images/dalil%20%20englsih.jpg\\\" alt=\\\"\\\" width=\\\"238\\\" height=\\\"233\\\" /\\u003e\\u003c/a\\u003e\\u003c/p\\u003e\",\"ContentAr\":\"\\u003cp\\u003e\\u003ca href=\\\"../MSMDOCS/downloads/ar_148567575153"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Banners",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"FileNameEn\":\"WatchlistUpgradeEn.webp\",\"FileNameAr\":\"WatchlistUpgradeAr.webp\"},{\"FileNameEn\":\"Oman2040.webp\",\"FileNameAr\":\"Oman2040.webp\"},{\"FileNameEn\":\"muttrah-3.webp\",\"FileNameAr\":\"muttrah-3.webp\"}]}"
-  },
-  {
-   "u": "https://www.google.com/recaptcha/api2/reload?k=6LfXGJMcAAAAABgMA4Cg67RrDROx_mnigg5kq2u2",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": ")]}'\n[\"rresp\",\"0cAFcWeA6TH5Fokpglp7BACGp77sOjLkEsrf32CSYpA3gWiOkY1b884APFdwUfPTPQsOpcndEt0i4ho6yrWejBSUhxLbxgftPytD6pCBwLElgs_hPDH5lGc43gtXhwvEx70ZJRatMOw2-TBG-ZQ5uQd2wcxx5cw6_PISV2qlglCzXeU0i7D_4vZTMgDRqtyh2dday5zbkiaOCiAA-_nn0l8Xx6m4XtvW9ypvcLcMNq-r2t3oaRoE4z7kaRgW_Edav96lTtiQkzt12Q1pzCTv7gsEm5VUvg2qfp-KJvsb7R3DAB9JSNu5RPR1VUlv-lO3qtfZKoH4CnCHj4mkc1ey5F7gz1tN4Q-3i0nvajRaLHlkDlyUcTv7ekq7-IoqrxjUn"
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/MultiAsset",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"ListedSecurities\":\"184\",\"DepositedShares\":null,\"Brokers\":\"10\",\"ValueTraded\":\"10,450,926,487\",\"SharesTraded\":\"35,715,582,894\",\"InvestorNationalities\":\"142\",\"ForeignInvestment\":\"19\",\"MarketCap\":\"27,826,813,570\"}]}"
+   "m": "POST",
+   "body": null
+  },
+  {
+   "u": "https://www.msx.om/api.aspx/HeaderAdvertisement",
+   "m": "POST",
+   "body": "{'Type': '0'}"
+  },
+  {
+   "u": "https://www.msx.om/api.aspx/Banners",
+   "m": "POST",
+   "body": "{ 'mflag': '0' }"
+  },
+  {
+   "u": "https://www.msx.om/api.aspx/GetNotificationsCenter",
+   "m": "POST",
+   "body": null
+  },
+  {
+   "u": "https://www.msx.om/api.aspx/GetSummaryTips",
+   "m": "POST",
+   "body": null
   },
   {
    "u": "https://www.msx.om/api.aspx/Tips",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"TitleEn\":\"XBRL\",\"TitleAr\":\"نظام الافصاح الالكتروني \",\"ContentEn\":\"\\u003cp\\u003e\\u003ca href=\\\"https://cma.gov.om/home/XBRL/ABOUTXBRL\\\" target=\\\"_blank\\\"\\u003e\\u003cimg src=\\\"../MSMDOCS/Images/XBRL.jpg\\\" alt=\\\"\\\" width=\\\"238\\\" height=\\\"233\\\" /\\u003e\\u003c/a\\u003e\\u003c/p\\u003e\",\"ContentAr\":\"\\u003cp\\u003e\\u003ca href=\\\"https://cma.gov.om/home/XBRL/ABOUTXBRL\\\" target=\\\"_blank\\\"\\u003e\\u003cimg"
+   "m": "POST",
+   "body": null
   },
   {
-   "u": "https://www.msx.om/APIPage.aspx/GetmarketSectors",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":\"{\\\"Status\\\":\\\"Success\\\",\\\"Message\\\":\\\"\\\",\\\"Data\\\":[{\\\"SectorID\\\":\\\"1\\\",\\\"NameAr\\\":\\\"القطاع المالي\\\",\\\"NameEn\\\":\\\"Financial Sector\\\",\\\"Priority\\\":\\\"1\\\"},{\\\"SectorID\\\":\\\"2\\\",\\\"NameAr\\\":\\\"الصناديق الإستثمارية\\\",\\\"NameEn\\\":\\\"Mutual Funds\\\",\\\"Priority\\\":\\\"6\\\"},{\\\"SectorID\\\":\\\"3\\\",\\\"NameAr\\\":\\\"قطاع الصناعة\\\",\\\"NameEn\\\":\\\"Industrial Sector\\\",\\\"Priority\\\":\\\"2\\\"},{\\\"SectorID\\\":\\\"4\\\",\\\"NameAr\\\":\\\"سندا"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketToday",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:06 PM\",\"TimeAr\":\"08:06 م\",\"DelayTimeEn\":\"07:51 PM\",\"DelayTimeAr\":\"07:51 م\",\"StatusEn\":\"Closed\",\"StatusAr\":\"مغلق\",\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"41,602,904.888\",\"Volume\":\"151,873,469\",\"Trades\":\"17,004\",\"SecTrades\":\"67\",\"Up\":\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/TopGLVT",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Change\":\"7.14\",\"ChangeVal\":\"0.090\",\"ClosePrice\":\"1.350\",\"LTP\":\"1.350\",\"Turnover\":\"12,020.865\",\"Volume\":\"9,156\",\"Symbol\":\"MHAS\",\"ShortNameAr\":\"المها لتسويق المنتجات النفطية\",\"ShortNameEn\":\"Al MAHA PETROLEUM PRODUCTS MARKETING\",\"LongNameAr\":\"المها لتسويق المنتجات النفطية\",\"LongNameEn\":\"Al MAHA PETROLEUM PRODUCTS MARKETING\",\"Image\":\"aro-1.png\",\"ClassName\":\"green_text-im\",\"TempTurnover\":\"12020"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Indices",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":\"MSX30\",\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:06 PM\",\"TimeAr\":\"08:06 م\",\"DelayTimeEn\":\"07:51 PM\",\"DelayTimeAr\":\"07:51 م\",\"StatusEn\":null,\"StatusAr\":null,\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"32,970,476.988\",\"Volume\":\"110,867,408\",\"Trades\":\"13,077\",\"SecTrades\":\"27\",\"Up\":\"1\","
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketTodayDateTime",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:06 PM\",\"TimeAr\":\"08:06 م\",\"DelayTimeEn\":null,\"DelayTimeAr\":null,\"StatusEn\":null,\"StatusAr\":null,\"Image\":null,\"MSX30\":null,\"Change\":null,\"ChangeValue\":null,\"Turnover\":null,\"Volume\":null,\"Trades\":null,\"SecTrades\":null,\"Up\":null,\"Down\":null,\"Unchanged\":null,\"AsOnDateEn\":\"Oct 15, 2026\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetNotificationsCenter",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"TitleAr\":\"معامل التحديد والأسهم الحرة لمؤشرات البورصة - نهاية سبتمبر 2026\",\"TitleEn\":\"Free Float \\u0026 Capping Factors End of Sep 2026\",\"LinkEn\":\"msmdocs/downloads/en_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"LinkAr\":\"msmdocs/downloads/ar_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"symbol\":\"MSX\",\"LongNameEn\":\"Muscat Stock Exchange\",\"LongNameAr\":\"بورصة مسقط\",\"type\":\"9\",\"NotiType\":\"3\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetSummaryTips",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/HeatMap",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Volume\":\"119283\",\"LTP\":\"0.105\",\"High\":\"0.105\",\"Low\":\"0.105\",\"IndexSymbol\":null,\"Change\":\"0.001\",\"ChangePer\":\"0.96\",\"NoOfTrades\":\"4\",\"Symbol\":\"JREF\",\"ShortNameAr\":\"صندوق جبل للاستثمار العقاري\",\"ShortNameEn\":\"JABAL REIF\",\"LongNameAr\":\"صندوق جبل للاستثمار العقاري\",\"LongNameEn\":\"JABAL REIF\",\"PrevClose\":\"0.104\",\"OpenPrice\":\"0.105\",\"BidPrice\":\"0.104\",\"BidVolume\":\"80761\",\"AskPrice\":\"0.109\",\"AskVo"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketToday",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:07 PM\",\"TimeAr\":\"08:07 م\",\"DelayTimeEn\":\"07:52 PM\",\"DelayTimeAr\":\"07:52 م\",\"StatusEn\":\"Closed\",\"StatusAr\":\"مغلق\",\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"41,602,904.888\",\"Volume\":\"151,873,469\",\"Trades\":\"17,004\",\"SecTrades\":\"67\",\"Up\":\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/TopGLVT",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Change\":\"7.14\",\"ChangeVal\":\"0.090\",\"ClosePrice\":\"1.350\",\"LTP\":\"1.350\",\"Turnover\":\"12,020.865\",\"Volume\":\"9,156\",\"Symbol\":\"MHAS\",\"ShortNameAr\":\"المها لتسويق المنتجات النفطية\",\"ShortNameEn\":\"Al MAHA PETROLEUM PRODUCTS MARKETING\",\"LongNameAr\":\"المها لتسويق المنتجات النفطية\",\"LongNameEn\":\"Al MAHA PETROLEUM PRODUCTS MARKETING\",\"Image\":\"aro-1.png\",\"ClassName\":\"green_text-im\",\"TempTurnover\":\"12020"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Indices",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":\"MSX30\",\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:07 PM\",\"TimeAr\":\"08:07 م\",\"DelayTimeEn\":\"07:52 PM\",\"DelayTimeAr\":\"07:52 م\",\"StatusEn\":null,\"StatusAr\":null,\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"32,970,476.988\",\"Volume\":\"110,867,408\",\"Trades\":\"13,077\",\"SecTrades\":\"27\",\"Up\":\"1\","
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketTodayDateTime",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:07 PM\",\"TimeAr\":\"08:07 م\",\"DelayTimeEn\":null,\"DelayTimeAr\":null,\"StatusEn\":null,\"StatusAr\":null,\"Image\":null,\"MSX30\":null,\"Change\":null,\"ChangeValue\":null,\"Turnover\":null,\"Volume\":null,\"Trades\":null,\"SecTrades\":null,\"Up\":null,\"Down\":null,\"Unchanged\":null,\"AsOnDateEn\":\"Oct 15, 2026\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetNotificationsCenter",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"TitleAr\":\"معامل التحديد والأسهم الحرة لمؤشرات البورصة - نهاية سبتمبر 2026\",\"TitleEn\":\"Free Float \\u0026 Capping Factors End of Sep 2026\",\"LinkEn\":\"msmdocs/downloads/en_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"LinkAr\":\"msmdocs/downloads/ar_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"symbol\":\"MSX\",\"LongNameEn\":\"Muscat Stock Exchange\",\"LongNameAr\":\"بورصة مسقط\",\"type\":\"9\",\"NotiType\":\"3\""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetSummaryTips",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/HeatMap",
-   "st": 200,
-   "ct": "application/json; charset=utf-8",
-   "body": "{\"d\":[{\"Volume\":\"119283\",\"LTP\":\"0.105\",\"High\":\"0.105\",\"Low\":\"0.105\",\"IndexSymbol\":null,\"Change\":\"0.001\",\"ChangePer\":\"0.96\",\"NoOfTrades\":\"4\",\"Symbol\":\"JREF\",\"ShortNameAr\":\"صندوق جبل للاستثمار العقاري\",\"ShortNameEn\":\"JABAL REIF\",\"LongNameAr\":\"صندوق جبل للاستثمار العقاري\",\"LongNameEn\":\"JABAL REIF\",\"PrevClose\":\"0.104\",\"OpenPrice\":\"0.105\",\"BidPrice\":\"0.104\",\"BidVolume\":\"80761\",\"AskPrice\":\"0.109\",\"AskVo"
+   "u": "https://www.msx.om/api.aspx/MarketTicker",
+   "m": "POST",
+   "body": "{ 'Sector': '' }"
   }
- ]
+ ],
+ "inPage": {
+  "st": 200,
+  "body": "\r\n\r\n<!DOCTYPE html>\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head><title>\r\n\r\n</title></head>\r\n<body>\r\n    <form method=\"post\" action=\"./InternalError.html\" id=\"form1\">\r\n<div class=\"aspNetHidden\">\r\n<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"Y8jXl9EER6FhUaGmXkkc1Y/f2xN42LoDzV4vATkZrIJeUG6dWn6keqV+QdDUu5HlS03iNmx+8wrn/63vJbSNffKHXf+1l+ig8o/rNHLV2pb/CFcayAMHYpE7c8O6Xmk5\" />\r\n</div>\r\n\r\n<div class=\"aspNetHidden\">\r\n\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEGENERATOR\" id=\"__VIEWSTATEGENERATOR\" value=\"BFF6C652\" />\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\" value=\"\" />\r\n</div>\r\n        <div>\r\n        </div>\r\n    </form>\r\n</body>\r\n</html>\r\n"
+ },
+ "chartRefs": []
 }
