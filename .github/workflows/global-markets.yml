@@ -8,9 +8,12 @@ on:
       - ".github/workflows/global-markets.yml"
   workflow_dispatch:
   schedule:
-    # GitHub often starts scheduled runs late; several runs a day keep the page fresh.
-    - cron: "15 1,7,13,19 * * 1-5"
-    - cron: "15 7 * * 0,6"
+    # Times are UTC, set just after each region closes: Asia (~10:00), Europe (~16:30), US (~20:00/21:00).
+    # GitHub can start scheduled runs late; the daily close task also dispatches this workflow.
+    - cron: "30 10 * * 1-5"
+    - cron: "0 17 * * 1-5"
+    - cron: "30 21 * * 1-5"
+    - cron: "15 7 * * 6"
 
 permissions:
   contents: write
