@@ -1,33 +1,19 @@
 {
- "BAHRAIN": [],
- "BHB": [],
- "MSM": [],
- "MSX": [],
- "OMAN": [],
  "direct": [
   [
    "BAHRAIN:BHBX",
    "BHBX",
    "Bahrain All Share Index",
    1876.013,
-   -0.20060815497951814
-  ],
-  [
-   "TADAWUL:TASI",
-   "TASI",
-   "Tadawul All Shares Index",
-   10106.54,
-   -0.3184785621220501
+   -0.20060815497951814,
+   -1.2050166017605008,
+   -2.775189395313547,
+   -9.193995809206095,
+   -4.796575136346499,
+   2084.507,
+   1870.482
   ]
  ],
- "https://www.saudiexchange.sa/": {
-  "st": 403,
-  "len": 372,
-  "n": 1
- },
- "https://query1.finance.yahoo.com/v8/finance/chart/%5ETASI.SR?period1=1700000000&period2=1790000000&interval=1d": {
-  "st": 200,
-  "len": 1150,
-  "n": 1
- }
+ "search": "200 {\"symbols_remaining\":0,\"symbols\":[]}",
+ "search2": "200 {\"symbols_remaining\":0,\"symbols\":[{\"symbol\":\"57MX30\",\"description\":\"Korea Investment & Securities Co Ltd Warrant 2026-14.12.26 on KDQ 150 Series MX30\",\"type\":\"warrant\",\"exchange\":\"KRX\",\"found_by_isin\":false,\"found_by_cusip\":false,\"isin\":\"KRA5731N5G61\",\"currency_code\":\"KRW\",\"currency-logoid\":\"country/KR\",\"provider_id\":\"ice\",\"source_logoid\":\"source/KRX\",\"source2\":{\"id\":\"KRX\",\"name\":\"Korea Stock Exchange\",\"description\":\"Korea Stock Exchange\"},\"source_id\":\"KRX\",\"country\":\"KR\"}]}"
 }
