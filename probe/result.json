@@ -1,256 +1,156 @@
 {
- "n": 4633,
- "first": {
-  "Chg": "",
-  "Pchg": "",
-  "Value": 37.86,
-  "Date": "20041011000000"
+ "^TASI.SR": {
+  "http": 200,
+  "name": "Tadawul All Shares Index",
+  "ex": "SAU",
+  "tz": "Asia/Riyadh",
+  "cur": "SAR",
+  "price": 10106.54,
+  "last": "2026-10-15",
+  "n": 1
  },
- "last40": [
-  {
-   "Chg": 4.97,
-   "Pchg": 6.786,
-   "Value": 78.21,
-   "Date": "20260804000000"
-  },
-  {
-   "Chg": -3.88,
-   "Pchg": -4.961,
-   "Value": 74.33,
-   "Date": "20260805000000"
-  },
-  {
-   "Chg": 0.94,
-   "Pchg": 1.265,
-   "Value": 75.27,
-   "Date": "20260807000000"
-  },
-  {
-   "Chg": 8.79,
-   "Pchg": 11.678,
-   "Value": 84.06,
-   "Date": "20260811000000"
-  },
-  {
-   "Chg": -1.22,
-   "Pchg": -1.451,
-   "Value": 82.84,
-   "Date": "20260812000000"
-  },
-  {
-   "Chg": -0.17,
-   "Pchg": -0.205,
-   "Value": 82.67,
-   "Date": "20260814000000"
-  },
-  {
-   "Chg": 0.14,
-   "Pchg": 0.169,
-   "Value": 82.81,
-   "Date": "20260817000000"
-  },
-  {
-   "Chg": 2.42,
-   "Pchg": 2.922,
-   "Value": 85.23,
-   "Date": "20260818000000"
-  },
-  {
-   "Chg": 3.18,
-   "Pchg": 3.731,
-   "Value": 88.41,
-   "Date": "20260819000000"
-  },
-  {
-   "Chg": 5.3,
-   "Pchg": 5.995,
-   "Value": 93.71,
-   "Date": "20260821000000"
-  },
-  {
-   "Chg": -1.06,
-   "Pchg": -1.131,
-   "Value": 92.65,
-   "Date": "20260824000000"
-  },
-  {
-   "Chg": -5.22,
-   "Pchg": -5.634,
-   "Value": 87.43,
-   "Date": "20260825000000"
-  },
-  {
-   "Chg": 0.01,
-   "Pchg": 0.011,
-   "Value": 87.44,
-   "Date": "20260828000000"
-  },
-  {
-   "Chg": 2.21,
-   "Pchg": 2.527,
-   "Value": 89.65,
-   "Date": "20260831000000"
-  },
-  {
-   "Chg": 6.46,
-   "Pchg": 7.206,
-   "Value": 96.11,
-   "Date": "20260901000000"
-  },
-  {
-   "Chg": 2.12,
-   "Pchg": 2.206,
-   "Value": 98.23,
-   "Date": "20260902000000"
-  },
-  {
-   "Chg": -0.13,
-   "Pchg": -0.132,
-   "Value": 98.1,
-   "Date": "20260904000000"
-  },
-  {
-   "Chg": 3.12,
-   "Pchg": 3.18,
-   "Value": 101.22,
-   "Date": "20260907000000"
-  },
-  {
-   "Chg": 8.15,
-   "Pchg": 8.052,
-   "Value": 109.37,
-   "Date": "20260908000000"
-  },
-  {
-   "Chg": 8.73,
-   "Pchg": 7.982,
-   "Value": 118.1,
-   "Date": "20260909000000"
-  },
-  {
-   "Chg": 0.92,
-   "Pchg": 0.779,
-   "Value": 119.02,
-   "Date": "20260911000000"
-  },
-  {
-   "Chg": 4.39,
-   "Pchg": 3.688,
-   "Value": 123.41,
-   "Date": "20260914000000"
-  },
-  {
-   "Chg": 0.93,
-   "Pchg": 0.754,
-   "Value": 124.34,
-   "Date": "20260915000000"
-  },
-  {
-   "Chg": 1.96,
-   "Pchg": 1.576,
-   "Value": 126.3,
-   "Date": "20260916000000"
-  },
-  {
-   "Chg": -11.36,
-   "Pchg": -8.994,
-   "Value": 114.94,
-   "Date": "20260918000000"
-  },
-  {
-   "Chg": -5.64,
-   "Pchg": -4.907,
-   "Value": 109.3,
-   "Date": "20260921000000"
-  },
-  {
-   "Chg": -2.34,
-   "Pchg": -2.141,
-   "Value": 106.96,
-   "Date": "20260922000000"
-  },
-  {
-   "Chg": -0.66,
-   "Pchg": -0.617,
-   "Value": 106.3,
-   "Date": "20260923000000"
-  },
-  {
-   "Chg": 2.39,
-   "Pchg": 2.248,
-   "Value": 108.69,
-   "Date": "20260925000000"
-  },
-  {
-   "Chg": -2.18,
-   "Pchg": -2.006,
-   "Value": 106.51,
-   "Date": "20260928000000"
-  },
-  {
-   "Chg": -1.12,
-   "Pchg": -1.052,
-   "Value": 105.39,
-   "Date": "20260929000000"
-  },
-  {
-   "Chg": -3.15,
-   "Pchg": -2.989,
-   "Value": 102.24,
-   "Date": "20260930000000"
-  },
-  {
-   "Chg": 3.67,
-   "Pchg": 3.59,
-   "Value": 105.91,
-   "Date": "20261002000000"
-  },
-  {
-   "Chg": 1.31,
-   "Pchg": 1.237,
-   "Value": 107.22,
-   "Date": "20261005000000"
-  },
-  {
-   "Chg": -4.42,
-   "Pchg": -4.122,
-   "Value": 102.8,
-   "Date": "20261006000000"
-  },
-  {
-   "Chg": 0.41,
-   "Pchg": 0.399,
-   "Value": 103.21,
-   "Date": "20261007000000"
-  },
-  {
-   "Chg": 2.47,
-   "Pchg": 2.393,
-   "Value": 105.68,
-   "Date": "20261009000000"
-  },
-  {
-   "Chg": 1.27,
-   "Pchg": 1.202,
-   "Value": 106.95,
-   "Date": "20261012000000"
-  },
-  {
-   "Chg": -0.88,
-   "Pchg": -0.823,
-   "Value": 106.07,
-   "Date": "20261013000000"
-  },
-  {
-   "Chg": 0.16,
-   "Pchg": 0.151,
-   "Value": 106.23,
-   "Date": "20261014000000"
-  }
- ],
- "keys": [
-  "GDP",
-  "KOP",
-  "CPI"
- ]
+ "^TASI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "TASI.SR": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^DFMGI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "DFMGI.AE": {
+  "http": 200,
+  "name": "DFM General Index",
+  "ex": "DFM",
+  "tz": "Asia/Dubai",
+  "cur": "AED",
+  "price": 5867.31,
+  "last": "2026-10-16",
+  "n": 1
+ },
+ "^FTFADGI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "FADGI.FGI": {
+  "http": 200,
+  "name": "FTSE ADX General Index",
+  "ex": "FGI",
+  "tz": "Europe/London",
+  "cur": "AED",
+  "price": 9808.37,
+  "last": "2026-10-16",
+  "n": 1
+ },
+ "^ADI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^FTSEADX": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^QSI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^GNRI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^QSE": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^BHSEASI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^BAX": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "BHSEASI.BH": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^MSI": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^MSX30": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "MSX30.OM": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^OMXSPI": {
+  "http": 200,
+  "name": "OMX Stockholm_PI",
+  "ex": "STO",
+  "tz": "Europe/Stockholm",
+  "cur": "SEK",
+  "price": 1138.7452,
+  "last": "2026-10-16",
+  "n": 23
+ },
+ "^KWT": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^BKP": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^KWSE": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ },
+ "^XU100": {
+  "http": 404,
+  "last": null,
+  "n": 0,
+  "err": "No data found, symbol may be delisted"
+ }
 }
