@@ -1,13 +1,14 @@
 import { writeFile } from "node:fs/promises";
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+const syms = [".DFMGI",".BAX",".MSX30",".SPX",".DJI",".IXIC",".RUT",".STOXX50E",".FTSE",".GDAXI",".FCHI",".N225",".HSI",".SSEC",".KS11","@LCO.1","@CL.2","@GC.1","BTC.CM="];
 const out = {};
-const cols = ["description", "close", "change", "update_mode", "expiration"];
-const r = await fetch("https://scanner.tradingview.com/global/scan", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ symbols: { tickers: ["NYMEX:CL1!", "NYMEX:CLX2026", "NYMEX:CLZ2026", "ICEEUR:BRN1!", "COMEX:GC1!", "TVC:USOIL", "TVC:UKOIL"], query: { types: [] } }, columns: cols }) });
+for (let i = 0; i < syms.length; i += 9) {
+  const chunk = syms.slice(i, i + 9).map(encodeURIComponent).join("%7C");
+  const r = await fetch(`https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=${chunk}&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json`, { headers: { "user-agent": UA } });
+  for (const q of (await r.json()).FormattedQuoteResult?.FormattedQuote || []) out[q.symbol] = { name: q.name, last: q.last, chg: q.change_pct, prev: q.previous_day_closing, timedate: q.last_timedate };
+}
+// independent check for indices CNBC doesn't carry: TradingView for Sensex, TASI, ADX, QE, Kuwait
+const cols = ["close", "change"];
+const r = await fetch("https://scanner.tradingview.com/global/scan", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ symbols: { tickers: ["BSE:SENSEX"], query: { types: [] } }, columns: cols }) });
 out.tv = (await r.json()).data?.map((d) => [d.s, ...d.d]);
-const y = await fetch("https://query2.finance.yahoo.com/v8/finance/chart/CL%3DF?range=1d&interval=5m", { headers: { "user-agent": UA } });
-const res = (await y.json()).chart.result[0]; const c = res.indicators.quote[0].close;
-out.yahoo5m = res.timestamp.slice(-6).map((t, i) => [new Date(t * 1000).toISOString().slice(11, 16), c[c.length - 6 + i]]);
-out.yahooMeta = { rmp: res.meta.regularMarketPrice, rmt: new Date(res.meta.regularMarketTime * 1000).toISOString() };
-const q = await fetch("https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=%40CL.1%7C%40CL.2&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json", { headers: { "user-agent": UA } });
-out.cnbc = (await q.json()).FormattedQuoteResult.FormattedQuote.map((x) => [x.symbol, x.name, x.last, x.change_pct, x.last_timedate]);
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
