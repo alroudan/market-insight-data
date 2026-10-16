@@ -1,302 +1,71 @@
 {
- "https://www.msx.om/market-watch-history.aspx": {
-  "text": " AACT 0.147(-2.00%) AAIC 0.208(-0.95%) ABOB 0.200(0.00%) ABRJ 0.439(-0.68%) AJSS 0.250(-3.47%) AMAN 0.067(0.00%) AMAT 0.107(-1.83%) AMII 0.079(2.60%) ASCO 0.227(-0.44%) ATMI 0.926(-0.64%) BACS 0.137(0.00%) BATP 0.197(-0.51%) BKDB 0.224(0.00%) BKMB 0.440(0.00%) BKNZ 0.151(-2.58%) BKSB 0.188(-1.57%) BMPB 0.905(-0.66%) BWPC 0.150(0.00%) DGEN 0.076(1.33%) DIDI 0.289(-1.70%) GECS 0.161(-3.01%) GFIC 0.388(-0.77%) GICI 0.070(-1.41%) GMPI 0.511(-1.73%) HECI 0.005(0.00%) JREF 0.105(0.96%) MBNS 1.020(0.00%) MCDE 0.092(-2.13%) MFCI 0.064(-4.48%) MGMC 0.139(0.00%) MHAS 1.350(7.14%) NAPI 0.084(-22.22%) NBOB 0.498(-0.40%) NFCI 0.216(0.00%) NGCI 0.124(-1.59%) NS26 0.101(-1.94%) OAB 0.283(-4.39%) OCHL 0.159(-1.85%) OEIO 0.120(0.00%) OFCI 0.022(0.00%) OGWF 1.070(-1.29%) OMCB 0.141(0.00%) OMIF 0.211(-8.26%) OMRF 0.105(0.00%) OMVS 0.410(0.00%) OOMS 1.550(0.00%) OQBI 0.260(-2.62%) OQEP 0.493(-0.60%) OQGN 0.224(-2.61%) ORCI 1.100(0.00%) ORDS 0.315(-0.63%) OTEL 1.356(-0.15%) OUIC 0.322(0.63%) PHPC 0.208(-2.35%) PRFD 0.176(-2.22%) RCCI 0.193(0.00%) RNSS 0.276(-0.36%) SBMB 0.108(0.00%) SIHC 0.101(-3.81%) SMNP 0.182(-1.62%) SPFI 0.694(-0.86%) SSPW 0.278(-1.07%) SUWP 0.197(-1.01%) TAOI 0.057(-5.00%) TFCI 0.108(-4.42%) UFCI 0.087(-2.25%) VOES 0.181(-2.69%) More 4 0 Search Login Feedback A- A+ Market Participants Listing & Trading New! Market Watch MSX Market Insights Indices E-services New! Publications Sustainable Investments Careers Events Calendar Tabadul Our Profile ع Market Watch Historical All Regular Market Parallel Market Under_Monitoring Market Bonds Market Rights_Issue Market Book Building Market Public Offering Market Alternative Investment Market COLLECTIVE INVESTMENT FUNDS MARKET 1 Week 1 Month 3 Months 6 Months 1 Year 3 Years Choose... Show Excel PDF Print FOREIGN INVESTMENTS Introductory By Company By Sector COMPANY OWNERSHIP 5% or More Ownership Investor Ownership (%) RULES AND REGULATIONS Legislations Regulating Fees Trading Time Tender New! Supplier Register New! MSX ICV Mandatory List New! Whistleblower Financial Reports Financial Performance News Calendar AGMs Glossary Bond Calculator Photo Gallery Links Exchange Events/Holidays FAQ's Vacancies Companies Dividends RSS Company News Circulars and decisions Exchange News Daily statistics Weekly statistics Monthly statistics Yearly statistics STAY CONNECTED Ads Download Apps Now © Copyrights 2026, Muscat Stock Exchange. All Rights Reserved All currency units in this website are in Omani Riyals, unless stated otherwis",
-  "forms": [
-   {
-    "tag": "INPUT",
-    "id": "__EVENTTARGET",
-    "name": "__EVENTTARGET",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__EVENTARGUMENT",
-    "name": "__EVENTARGUMENT",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__VIEWSTATE",
-    "name": "__VIEWSTATE",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__VIEWSTATEGENERATOR",
-    "name": "__VIEWSTATEGENERATOR",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__VIEWSTATEENCRYPTED",
-    "name": "__VIEWSTATEENCRYPTED",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__EVENTVALIDATION",
-    "name": "__EVENTVALIDATION",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "hdnMarketType",
-    "name": "",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "hdnSectorType",
-    "name": "",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ColumnIndex",
-    "name": "",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "SortOrder",
-    "name": "",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_ContentPlaceHolder1_PDFContent",
-    "name": "ctl00$ContentPlaceHolder1$PDFContent",
-    "type": "hidden"
-   },
-   {
-    "tag": "SELECT",
-    "id": "marketType",
-    "name": "",
-    "type": "select-one",
-    "opts": [
-     "0=All",
-     "1=Regular Market",
-     "2=Parallel Market",
-     "3=Under_Monitoring Market",
-     "4=Bonds Market",
-     "5=Rights_Issue Market",
-     "6=Book Building Market",
-     "7=Public Offering Market",
-     "8=Alternative Investment Market",
-     "9=COLLECTIVE INVESTMENT FUNDS MARKET"
-    ]
-   },
-   {
-    "tag": "SELECT",
-    "id": "cmbTime",
-    "name": "",
-    "type": "select-one",
-    "opts": [
-     "1W=1 Week",
-     "1M=1 Month",
-     "3M=3 Months",
-     "6M=6 Months",
-     "1Y=1 Year",
-     "3Y=3 Years",
-     "8=Choose..."
-    ]
-   },
-   {
-    "tag": "INPUT",
-    "id": "txtDateFrm",
-    "name": "txtDateFrom",
-    "type": "text"
-   },
-   {
-    "tag": "INPUT",
-    "id": "txtDateTo",
-    "name": "txtDateTo",
-    "type": "text"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_UserNameTextBox",
-    "name": "ctl00$UserNameTextBox",
-    "type": "text"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_PasswordTextBox",
-    "name": "ctl00$PasswordTextBox",
-    "type": "password"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_LoginButton",
-    "name": "ctl00$LoginButton",
-    "type": "submit"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_EmailTextBox1",
-    "name": "ctl00$EmailTextBox1",
-    "type": "text"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_RetrievePasswordButton",
-    "name": "ctl00$RetrievePasswordButton",
-    "type": "submit"
-   },
-   {
-    "tag": "INPUT",
-    "id": "returnToken",
-    "name": "returnToken",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_MainSearch",
-    "name": "ctl00$MainSearch",
-    "type": "text"
-   },
-   {
-    "tag": "SELECT",
-    "id": "MainSearchType",
-    "name": "",
-    "type": "select-one",
-    "opts": [
-     "companies=Companies",
-     "downloads=Publications",
-     "financial=Financial Reports",
-     "news=News",
-     "events=Exchange News",
-     "funds=Mutual Funds",
-     "bonds=Bonds and Sukuk",
-     "brokers=Brokers",
-     "CD=Circulars / Decisions",
-     "All=All"
-    ]
-   }
-  ]
- },
- "https://www.msx.om/page.aspx?b1=Indices&b2=MSX-Indices&mi=&ti=MSX-Indices": {
-  "text": " AACT 0.147(-2.00%) AAIC 0.208(-0.95%) ABOB 0.200(0.00%) ABRJ 0.439(-0.68%) AJSS 0.250(-3.47%) AMAN 0.067(0.00%) AMAT 0.107(-1.83%) AMII 0.079(2.60%) ASCO 0.227(-0.44%) ATMI 0.926(-0.64%) BACS 0.137(0.00%) BATP 0.197(-0.51%) BKDB 0.224(0.00%) BKMB 0.440(0.00%) BKNZ 0.151(-2.58%) BKSB 0.188(-1.57%) BMPB 0.905(-0.66%) BWPC 0.150(0.00%) DGEN 0.076(1.33%) DIDI 0.289(-1.70%) GECS 0.161(-3.01%) GFIC 0.388(-0.77%) GICI 0.070(-1.41%) GMPI 0.511(-1.73%) HECI 0.005(0.00%) JREF 0.105(0.96%) MBNS 1.020(0.00%) MCDE 0.092(-2.13%) MFCI 0.064(-4.48%) MGMC 0.139(0.00%) MHAS 1.350(7.14%) NAPI 0.084(-22.22%) NBOB 0.498(-0.40%) NFCI 0.216(0.00%) NGCI 0.124(-1.59%) NS26 0.101(-1.94%) OAB 0.283(-4.39%) OCHL 0.159(-1.85%) OEIO 0.120(0.00%) OFCI 0.022(0.00%) OGWF 1.070(-1.29%) OMCB 0.141(0.00%) OMIF 0.211(-8.26%) OMRF 0.105(0.00%) OMVS 0.410(0.00%) OOMS 1.550(0.00%) OQBI 0.260(-2.62%) OQEP 0.493(-0.60%) OQGN 0.224(-2.61%) ORCI 1.100(0.00%) ORDS 0.315(-0.63%) OTEL 1.356(-0.15%) OUIC 0.322(0.63%) PHPC 0.208(-2.35%) PRFD 0.176(-2.22%) RCCI 0.193(0.00%) RNSS 0.276(-0.36%) SBMB 0.108(0.00%) SIHC 0.101(-3.81%) SMNP 0.182(-1.62%) SPFI 0.694(-0.86%) SSPW 0.278(-1.07%) SUWP 0.197(-1.01%) TAOI 0.057(-5.00%) TFCI 0.108(-4.42%) UFCI 0.087(-2.25%) VOES 0.181(-2.69%) More 4 0 Search Login Feedback A- A+ Market Participants Listing & Trading New! Market Watch MSX Market Insights Indices E-services New! Publications Sustainable Investments Careers Events Calendar Tabadul Our Profile ع Indices MSX Indices MSX 30 Index Sectorial Indices Shariah Index Total Return Indices Fixed Income Index MSX 30 Index Listen A Brief History About MSX30 Index: (Previously MSM30 and has been updated to MSX30 due to the Royal Decree no:5/2021 ) The index of Muscat Stock Exchange has been established in 1992. A number of companies included in the index sample has changed overtime to reach currently 30 companies, the most liquid in the market. It was launched on full market capitalization weightage methodology. Since July 1, 2009, MSX30 is being calculated on a free-float market capitalization methodology. A 10% capping (CAP) is set to ensure wider representation of smaller companies in the index. For more detailes download Index Guide ",
-  "forms": [
-   {
-    "tag": "INPUT",
-    "id": "__EVENTTARGET",
-    "name": "__EVENTTARGET",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__EVENTARGUMENT",
-    "name": "__EVENTARGUMENT",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__VIEWSTATE",
-    "name": "__VIEWSTATE",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__VIEWSTATEGENERATOR",
-    "name": "__VIEWSTATEGENERATOR",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__VIEWSTATEENCRYPTED",
-    "name": "__VIEWSTATEENCRYPTED",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "__EVENTVALIDATION",
-    "name": "__EVENTVALIDATION",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_UserNameTextBox",
-    "name": "ctl00$UserNameTextBox",
-    "type": "text"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_PasswordTextBox",
-    "name": "ctl00$PasswordTextBox",
-    "type": "password"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_LoginButton",
-    "name": "ctl00$LoginButton",
-    "type": "submit"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_EmailTextBox1",
-    "name": "ctl00$EmailTextBox1",
-    "type": "text"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_RetrievePasswordButton",
-    "name": "ctl00$RetrievePasswordButton",
-    "type": "submit"
-   },
-   {
-    "tag": "INPUT",
-    "id": "returnToken",
-    "name": "returnToken",
-    "type": "hidden"
-   },
-   {
-    "tag": "INPUT",
-    "id": "ctl00_MainSearch",
-    "name": "ctl00$MainSearch",
-    "type": "text"
-   },
-   {
-    "tag": "SELECT",
-    "id": "MainSearchType",
-    "name": "",
-    "type": "select-one",
-    "opts": [
-     "companies=Companies",
-     "downloads=Publications",
-     "financial=Financial Reports",
-     "news=News",
-     "events=Exchange News",
-     "funds=Mutual Funds",
-     "bonds=Bonds and Sukuk",
-     "brokers=Brokers",
-     "CD=Circulars / Decisions",
-     "All=All"
-    ]
-   }
-  ]
- },
- "reqs": [
-  {
-   "u": "https://analytics.google.com/g/collect?v=2&tid=G-BQNXL7KYTM&gtm=45je6ae1v892843833za208zd892843833xf1&_p=1792167606743&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAACAC&are=1&cid=580240985.1792167607&frm=0&ibt=1&ngs=1&pscdl=noapi&rcb=4&sr=1280x720&uaa=x64&uab=64&uafvl=Chromium%3B130.0.6723.31%7CHeadlessChrome%3B130.0.6723.31%7CNot%253FA_Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&_s=1&tag_exp=115616985~115938466~115938468~118897920~118897930~120213116~120385422~120469145~120469153~121246026~121246034&sid=1792167606&sct=1&seg=0&dl=https%3A%2F%2Fwww.msx.om%2Fmarket-watch-history.aspx&dt=Muscat%20Stock%20Exchange&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=2565",
-   "post": null,
-   "body": ""
-  },
-  {
-   "u": "https://www.msx.om/APIPage.aspx/GetmarketSectors",
-   "post": null,
-   "body": "{\"d\":\"{\\\"Status\\\":\\\"Success\\\",\\\"Message\\\":\\\"\\\",\\\"Data\\\":[{\\\"SectorID\\\":\\\"1\\\",\\\"NameAr\\\":\\\"القطاع المالي\\\",\\\"NameEn\\\":\\\"Financial Sector\\\",\\\"Priority\\\":\\\"1\\\"},{\\\"SectorID\\\":\\\"2\\\",\\\"NameAr\\\":\\\"الصناديق الإستثمارية\\\",\\\"NameEn\\\":\\\"Mutual Funds\\\",\\\"Priority\\\":\\\"6\\\"},{\\\"SectorID\\\":\\\"3\\\",\\\"NameAr\\\":\\\"قطاع الصناعة\\\",\\\"NameEn\\\":\\\"Industrial Sector\\\",\\\"Priority\\\":\\\"2\\\"},{\\\"SectorID\\\":\\\"4\\\",\\\"NameAr\\\":\\\"سندات وصكوك الشركات\\\",\\\"NameEn\\\":\\\"Corporate Bonds and Sukuk\\\",\\\"Priority\\\":\\\"4\\\"},{\\\"SectorID\\\":\\\"5\\\",\\\"NameAr\\\":\\\"قطاع الخدمات\\\",\\\"NameEn\\\":\\\"Services Sector\\\",\\\"Priority\\\":\\\"3\\\"},{\\\"SectorID\\\":\\\"6\\\",\\\"NameAr\\\":\\\"سندات وصكوك حكومية\\\",\\\"NameEn\\\":\\\"Government Bonds and Sukuk\\\",\\\"Priority\\\":\\\"5\\\"}]}\"}"
-  },
-  {
-   "u": "https://www.msx.om/APIPage.aspx/Getmarkets",
-   "post": null,
-   "body": "{\"d\":\"{\\\"Status\\\":\\\"Success\\\",\\\"Message\\\":\\\"\\\",\\\"Data\\\":[{\\\"MarketID\\\":\\\"1\\\",\\\"NameAr\\\":\\\"السوق النظامية\\\",\\\"NameEn\\\":\\\"Regular Market\\\",\\\"Status\\\":\\\"4\\\"},{\\\"MarketID\\\":\\\"2\\\",\\\"NameAr\\\":\\\"السوق الموازية\\\",\\\"NameEn\\\":\\\"Parallel Market\\\",\\\"Status\\\":\\\"4\\\"},{\\\"MarketID\\\":\\\"3\\\",\\\"NameAr\\\":\\\"سوق المتابعة\\\",\\\"NameEn\\\":\\\"Under_Monitoring Market\\\",\\\"Status\\\":\\\"1\\\"},{\\\"MarketID\\\":\\\"4\\\",\\\"NameAr\\\":\\\"السندات\\\",\\\"NameEn\\\":\\\"Bonds Market\\\",\\\"Status\\\":\\\"1\\\"},{\\\"MarketID\\\":\\\"5\\\",\\\"NameAr\\\":\\\"سوق حقوق_الأفضلية\\\",\\\"NameEn\\\":\\\"Rights_Issue Market\\\",\\\"Status\\\":\\\"4\\\"},{\\\"MarketID\\\":\\\"6\\\",\\\"NameAr\\\":\\\"سوق المزايده\\\",\\\"NameEn\\\":\\\"Book Building Market\\\",\\\"Status\\\":\\\"4\\\"},{\\\"MarketID\\\":\\\"7\\\",\\\"NameAr\\\":\\\"سوق الطرح العام\\\",\\\"NameEn\\\":\\\"Public Offering Market\\\",\\\"Status\\\":\\\"4\\\"},{\\\"MarketID\\\":\\\"8\\\",\\\"NameAr\\\":\\\"سوق الشركات الواعدة\\\",\\\"NameEn\\\":\\\"Alternative Investment Market\\\",\\\"Status\\\":\\\"4\\\"},{\\\"MarketID\\\":\\\"9\\\",\\\"NameAr\\\":\\\"سوق صناديق الاستثمار الجماعي\\\",\\\"NameEn\\\":\\\"COLLECTIVE INVESTMENT FUNDS MARKET\\\",\\\"Status\\\":\\\"4\\\"}]}\"}"
-  },
-  {
-   "u": "https://analytics.google.com/g/collect?v=2&tid=G-BQNXL7KYTM&gtm=45je6ae1v892843833za208zd892843833xf1&_p=1792167615373&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAACQC&are=1&cid=580240985.1792167607&frm=0&ibt=1&ngs=1&pscdl=noapi&rcb=9&sr=1280x720&uaa=x64&uab=64&uafvl=Chromium%3B130.0.6723.31%7CHeadlessChrome%3B130.0.6723.31%7CNot%253FA_Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&_s=1&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034&sid=1792167606&sct=1&seg=1&dl=https%3A%2F%2Fwww.msx.om%2Fpage.aspx%3Fb1%3DIndices%26b2%3DMSX-Indices%26mi%3D%26ti%3DMSX-Indices&dt=Muscat%20Stock%20Exchange&en=page_view&_ee=1&tfd=5611",
-   "post": null,
-   "body": ""
-  }
+ "links": [
+  "Muscat Stock Exchange - 30-09-2026 04:37 PM Free Float & Capping Factors End of Sep 2026 => https://www.msx.om/msmdocs/downloads/en_1790771863522_MSX%20INDICES%20MAINTAINCE%20q3.pdf",
+  "Muscat Stock Exchange - 01-06-2026 09:50 AM The Annual Revision of MSX Indices Constituents 2026 => https://www.msx.om/msmdocs/downloads/en_1780379450975_The%20Annual%20Revision%20of%20MSX%20Indices%20Constituents%202026.pdf",
+  "Muscat Stock Exchange - 03-05-2026 09:31 AM Annual Revision of MSXSI Index Constituents 2026 => https://www.msx.om/msmdocs/downloads/en_1777872692750_%D8%A7%D9%84%D9%85%D8%B1%D8%A7%D8%AC%D8%B9%D8%A9%20%D8%A7%D9%84%D8%B3%D9%86%D9%88%D9%8A%D8%A9%20%D9%84%D8%B9%D9%8A%D9%86%D8%A9%20%D8%A7%D9%84%D9%85%D8%A4%D8%B4%D8%B1%20%D8%A7%D9%84%D8%B4%D8%B1%D8%B9%D9%8A2026-ENG.pdf",
+  "Historical => https://www.msx.om/market-watch-history.aspx",
+  "Indices => https://www.msx.om/#",
+  "MSX Indices => https://www.msx.om/page.aspx?b1=Indices&b2=MSX-Indices&mi=&ti=MSX-Indices",
+  "Indices Data => https://www.msx.om/components.aspx",
+  "Indices Historical Data => https://www.msx.om/component-track.aspx",
+  "Indices Publications => https://www.msx.om/revision.aspx",
+  "Statistical Bulletins => https://www.msx.om/#",
+  "History => https://www.msx.om/page.aspx?b1=Our-Profile&b2=History&p=HistoryEvents&ti=History",
+  "TREND => https://www.msx.om/#market-1",
+  "TR Indices => https://www.msx.om/#prof-7",
+  "TR Indices => https://www.msx.om/#map-7",
+  "FIXED INCOME INDEX => https://www.msx.om/#map-11",
+  "5% or More Ownership => https://www.mcd.om/en/Default/Statistic/MajorInvestors5OrMore",
+  "Investor Ownership (%) => https://www.mcd.om/en/Default/Statistic/InvestorOwnershipPercentageInListedSecurities",
+  "Daily statistics => https://www.msx.om/rss.aspx?t=Daily",
+  "Weekly statistics => https://www.msx.om/rss.aspx?t=Weekly",
+  "Monthly statistics => https://www.msx.om/rss.aspx?t=Monthly",
+  "Yearly statistics => https://www.msx.om/rss.aspx?t=Yearly"
  ],
- "apiRefs": []
+ "trendReqs": [],
+ "scriptsWithChart": [],
+ "histSelects": [
+  {
+   "id": "marketType",
+   "opts": [
+    "0=All",
+    "1=Regular Market",
+    "2=Parallel Market",
+    "3=Under_Monitoring Market",
+    "4=Bonds Market",
+    "5=Rights_Issue Market",
+    "6=Book Building Market",
+    "7=Public Offering Market",
+    "8=Alternative Investment Market",
+    "9=COLLECTIVE INVESTMENT FUNDS MARKET"
+   ]
+  },
+  {
+   "id": "cmbTime",
+   "opts": [
+    "1W=1 Week",
+    "1M=1 Month",
+    "3M=3 Months",
+    "6M=6 Months",
+    "1Y=1 Year",
+    "3Y=3 Years",
+    "8=Choose..."
+   ]
+  },
+  {
+   "id": "MainSearchType",
+   "opts": [
+    "companies=Companies",
+    "downloads=Publications",
+    "financial=Financial Reports",
+    "news=News",
+    "events=Exchange News",
+    "funds=Mutual Funds",
+    "bonds=Bonds and Sukuk",
+    "brokers=Brokers",
+    "CD=Circulars / Decisions",
+    "All=All"
+   ]
+  }
+ ]
 }
