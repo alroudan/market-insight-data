@@ -123,7 +123,7 @@ try {
     change1w: enough(5) ? pct(lastK.value, backK(5)) : null,
     change1m: enough(15) ? pct(lastK.value, onOrBeforeK(mK.toISOString().slice(0, 10))) : null,
     changeYtd: kop[0].date <= `${Number(lastK.date.slice(0, 4)) - 1}-12-31` ? pct(lastK.value, onOrBeforeK(`${Number(lastK.date.slice(0, 4)) - 1}-12-31`)) : null,
-    change1y: null,
+    change1y: (() => { const y = new Date(dk); y.setUTCFullYear(dk.getUTCFullYear() - 1); return kop[0].date <= y.toISOString().slice(0, 10) ? pct(lastK.value, onOrBeforeK(y.toISOString().slice(0, 10))) : null; })(),
     spark: kop.length >= 10 ? kop.slice(-66).map((x) => round(x.value, 2)) : null,
     historyPoints: kop.length
   };
