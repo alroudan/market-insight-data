@@ -1,186 +1,33 @@
 {
- "yahoo": {
-  "^TASI.SR 2y": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-15"
-  },
-  "^TASI.SR 1y": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-15"
-  },
-  "^TASI.SR ytd": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-15"
-  },
-  "DFMGI.AE 2y": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-16"
-  },
-  "DFMGI.AE 1y": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-16"
-  },
-  "DFMGI.AE ytd": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-16"
-  },
-  "FADGI.FGI 2y": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-16"
-  },
-  "FADGI.FGI 1y": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-16"
-  },
-  "FADGI.FGI ytd": {
-   "n": 1,
-   "ts": 1,
-   "first": "2026-10-16"
-  }
- },
- "tv": [
-  {
-   "s": "TADAWUL:TASI",
-   "name": "TASI",
-   "description": "Tadawul All Shares Index",
-   "close": 10106.54,
-   "change": -0.3184785621220501,
-   "Perf.W": -4.118163827175251,
-   "Perf.1M": -7.045271850000091,
-   "Perf.YTD": -3.7685006741367513,
-   "Perf.Y": -12.900484683852373,
-   "price_52_week_high": 11781.68,
-   "price_52_week_low": 10034.79,
-   "currency": null,
-   "exchange": "TADAWUL"
-  },
-  {
-   "s": "DFM:DFMGI",
-   "name": "DFMGI",
-   "description": "DFM General Index",
-   "close": 5867.31,
-   "change": 0.6318530067044362,
-   "Perf.W": 1.173948955292355,
-   "Perf.1M": -1.0134325789809275,
-   "Perf.YTD": -2.9730002364773758,
-   "Perf.Y": -2.8444682890965316,
-   "price_52_week_high": 6785.48,
-   "price_52_week_low": 5233.1,
-   "currency": null,
-   "exchange": "DFM"
-  },
-  {
-   "s": "ADX:FADGI",
-   "name": "FADGI",
-   "description": "FTSE ADX General Index",
-   "close": 9808.37,
-   "change": 0.03906353587215644,
-   "Perf.W": 0.0744816637367256,
-   "Perf.1M": -3.2316718840796996,
-   "Perf.YTD": -1.8448430457372824,
-   "Perf.Y": -3.0838488726313953,
-   "price_52_week_high": 10755.36,
-   "price_52_week_low": 9298.6,
-   "currency": null,
-   "exchange": "ADX"
-  },
-  {
-   "s": "QSE:GNRI",
-   "name": "GNRI",
-   "description": "QE Index",
-   "close": 8810.17,
-   "change": -1.3543638934826738,
-   "Perf.W": -4.336367256132212,
-   "Perf.1M": -10.319291770197877,
-   "Perf.YTD": -18.140199810248745,
-   "Perf.Y": -18.013813614841727,
-   "price_52_week_high": 11518.391,
-   "price_52_week_low": 8767.7,
-   "currency": null,
-   "exchange": "QSE"
-  },
-  {
-   "s": "KSE:BKA",
-   "name": "BKA",
-   "description": "Boursa Kuwait All Share Index",
-   "close": 8475.93,
-   "change": -0.6757991937751954,
-   "Perf.W": -2.303088843141905,
-   "Perf.1M": -5.436234197869288,
-   "Perf.YTD": -4.707013243990737,
-   "Perf.Y": -4.403390346647719,
-   "price_52_week_high": 9120.98,
-   "price_52_week_low": 8286.76,
-   "currency": null,
-   "exchange": "KSE"
-  },
-  {
-   "s": "KSE:BKP",
-   "name": "BKP",
-   "description": "Boursa Kuwait Premier Market Index",
-   "close": 8891.97,
-   "change": -0.600512649108131,
-   "Perf.W": -1.9864023861960514,
-   "Perf.1M": -4.547123307670179,
-   "Perf.YTD": -6.188400323256551,
-   "Perf.Y": -5.40678835176198,
-   "price_52_week_high": 9756.75,
-   "price_52_week_low": 8828.03,
-   "currency": null,
-   "exchange": "KSE"
-  }
+ "BAHRAIN": [],
+ "BHB": [],
+ "MSM": [],
+ "MSX": [],
+ "OMAN": [],
+ "direct": [
+  [
+   "BAHRAIN:BHBX",
+   "BHBX",
+   "Bahrain All Share Index",
+   1876.013,
+   -0.20060815497951814
+  ],
+  [
+   "TADAWUL:TASI",
+   "TASI",
+   "Tadawul All Shares Index",
+   10106.54,
+   -0.3184785621220501
+  ]
  ],
- "tvStatus": 200,
- "stooq": {
-  "^tasi": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  },
-  "tasi.sa": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  },
-  "^dfm": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  },
-  "^adx": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  },
-  "^qse": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  },
-  "^bhb": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  },
-  "^msm": {
-   "st": 403,
-   "lines": 1,
-   "head": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.s",
-   "tail": "<meta charset=utf-8><title>Stooq</title><center style=font-family:arial;margin-top:50px><p><a href=/><img src=//static.stooq.com/stooq.svg height=68></a><p style=font-size:x-large>Access denied<p><small><a href=/>Main Page</a>"
-  }
+ "https://www.saudiexchange.sa/": {
+  "st": 403,
+  "len": 372,
+  "n": 1
+ },
+ "https://query1.finance.yahoo.com/v8/finance/chart/%5ETASI.SR?period1=1700000000&period2=1790000000&interval=1d": {
+  "st": 200,
+  "len": 1150,
+  "n": 1
  }
 }
