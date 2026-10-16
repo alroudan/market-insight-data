@@ -1,11 +1,20 @@
 import { writeFile } from "node:fs/promises";
-const g = ["MSX30","MSXI","MSM30","MSX","MSI","BKMSX30","MSX30I","OMAN","MSXSI","MSXFI","MSX30PR","MSXSH","MSXGLOBAL"];
-const tickers = [...g.map((x) => "MSM:" + x), ...g.map((x) => "MSX:" + x), "BAHRAIN:BHBX", "BAHRAIN:BHBI", "BAHRAIN:ESTX"];
-const cols = ["name","description","close","change","Perf.W","Perf.1M","Perf.YTD","Perf.Y","price_52_week_high","price_52_week_low"];
-const r = await fetch("https://scanner.tradingview.com/global/scan", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ symbols: { tickers, query: { types: [] } }, columns: cols }) });
-const out = { direct: (await r.json()).data?.map((d) => [d.s, ...d.d]) };
-const r2 = await fetch("https://symbol-search.tradingview.com/symbol_search/v3/?text=oman&hl=0&exchange=&lang=en&search_type=index&domain=production", { headers: { origin: "https://www.tradingview.com", referer: "https://www.tradingview.com/", "user-agent": "Mozilla/5.0" } });
-out.search = r2.status + " " + (await r2.text()).slice(0, 1500);
-const r3 = await fetch("https://symbol-search.tradingview.com/symbol_search/v3/?text=MSX30&hl=0&exchange=&lang=en&search_type=&domain=production", { headers: { origin: "https://www.tradingview.com", referer: "https://www.tradingview.com/", "user-agent": "Mozilla/5.0" } });
-out.search2 = r3.status + " " + (await r3.text()).slice(0, 1500);
+const out = {};
+const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
+try {
+  const r = await fetch("https://www.msx.om/", { headers: { "user-agent": UA } });
+  const t = await r.text();
+  out.home = { st: r.status, len: t.length, msx30: [...t.matchAll(/.{0,200}MSX ?30.{0,300}/gi)].slice(0, 6).map((m) => m[0].replace(/\s+/g, " ")), scripts: [...t.matchAll(/src="([^"]+\.js[^"]*)"/g)].map((m) => m[1]).slice(0, 30), apis: [...new Set([...t.matchAll(/["'](\/[A-Za-z0-9_\-\/]*(?:api|ajax|handler|ashx|asmx|json|Index|index)[A-Za-z0-9_\-\/.?=&]*)["']/g)].map((m) => m[1]))].slice(0, 60) };
+} catch (e) { out.home = e.message; }
+// Browser: capture network JSON responses and page text
+const { chromium } = await import("playwright");
+const b = await chromium.launch(); const p = await b.newPage({ userAgent: UA });
+const net = [];
+p.on("response", async (res) => { const u = res.url(); const ct = res.headers()["content-type"] || ""; if (/json|javascript|text\/plain|xml/.test(ct) && !/\.js(\?|$)/.test(u)) { let body = ""; try { body = (await res.text()).slice(0, 400); } catch {} net.push({ u, st: res.status(), ct, body }); } });
+try { await p.goto("https://www.msx.om/", { waitUntil: "networkidle", timeout: 60000 }); } catch (e) { out.gotoErr = e.message; }
+await p.waitForTimeout(5000);
+const text = await p.locator("body").innerText().catch(() => "");
+out.text = text.replace(/\s+/g, " ").slice(0, 3000);
+out.net = net.slice(0, 60);
+await b.close();
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
