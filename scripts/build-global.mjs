@@ -43,7 +43,16 @@ async function chart(symbol) {
       const q = res?.indicators?.quote?.[0];
       if (!res?.timestamp || !q) throw new Error("no data");
       const offset = res.meta?.gmtoffset || 0;
-      const rows = res.timestamp.map((ts, i) => [new Date((ts + offset) * 1000).toISOString().slice(0, 10), q.close[i]]).filter((x) => x[1] != null);
+      const dayOf = (ts) => new Date((ts + offset) * 1000).toISOString().slice(0, 10);
+      const rows = res.timestamp.map((ts, i) => [dayOf(ts), q.close[i]]).filter((x) => x[1] != null);
+      // Yahoo often lists today's session with an empty close (Asian indices after their close).
+      // Its latest quote then carries the session's price: use it for that day.
+      const live = res.meta?.regularMarketPrice, liveTime = res.meta?.regularMarketTime;
+      if (live > 0 && liveTime) {
+        const liveDay = dayOf(liveTime), last = rows.at(-1);
+        if (!last || liveDay > last[0]) rows.push([liveDay, live]);
+        else if (liveDay === last[0]) last[1] = live;
+      }
       return { rows, meta: res.meta };
     } catch (error) {
       if (attempt === 3) throw error;
@@ -76,12 +85,25 @@ for (const group of GROUPS) {
       const period = meta?.currentTradingPeriod?.regular, nowSec = Date.now() / 1000;
       const open = period ? nowSec >= period.start && nowSec <= period.end : false;
       const bps = symbol === "^TNX";
+      // Futures (=F) roll to the next contract before the history does, which can mix two
+      // contracts in the day change (e.g. December's price vs November's close). Take the day
+      // change against the current contract's own previous close instead.
+      let futuresPrev = null;
+      if (symbol.endsWith("=F")) {
+        try {
+          const r1 = await fetch(`https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(symbol)}?range=1d&interval=5m`, {
+            headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36" }, signal: AbortSignal.timeout(20000)
+          });
+          const m1 = (await r1.json()).chart?.result?.[0]?.meta;
+          if (m1?.chartPreviousClose > 0 && Math.abs(m1.regularMarketPrice / close - 1) < 0.002) futuresPrev = m1.chartPreviousClose;
+        } catch {}
+      }
       const diff = (b) => (b != null ? Math.round((close - b) * 100) : null);
       items.push({
         symbol, en, ar, timezone: tz, currency: meta?.currency || null,
         date: lastDate,
         close: round(close, 2),
-        change1d: pct(close, back(1)),
+        change1d: pct(close, futuresPrev ?? back(1)),
         change1w: pct(close, back(5)),
         change1m: pct(close, onOrBefore(monthAgo.toISOString().slice(0, 10))),
         changeYtd: pct(close, onOrBefore(`${Number(lastDate.slice(0, 4)) - 1}-12-31`)),

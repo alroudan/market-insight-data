@@ -156,10 +156,10 @@ function render(){
   document.getElementById('app').innerHTML=`
   <div class="head"><div><span class="lbl">${t.kicker}</span><h1>${t.title}</h1></div><div class="updated">${t.updated} ${esc(updated)} (${a?'الكويت':'Kuwait'})<br>${t.delayed}</div></div>
   <div class="tiles"><div class="tile"><span>${t.up}</span><b>${ups} ${t.of} ${indices.length}</b></div><div class="tile"><span>${t.best}</span><b>${flag(best.symbol)}${esc((a?best.ar:best.en).split(' (')[0])}</b><small class="up">${pc(best.change1d)}</small></div><div class="tile"><span>${t.worst}</span><b>${flag(worst.symbol)}${esc((a?worst.ar:worst.en).split(' (')[0])}</b><small class="${cls(worst.change1d)}">${pc(worst.change1d)}</small></div><div class="tile"><span>${t.brent}</span><b>$${nf(brent?.close)}</b><small class="${cls(brent?.change1d)}">${pc(brent?.change1d)}</small></div></div>
-  ${data.groups.filter(g=>g.id==='gcc').map(sec).join('')}
   ${data.groups.filter(g=>g.id==='commodities').map(sec).join('')}
-  <section class="card"><div class="cardhead"><h2>${t.ytdTitle}</h2></div>${ytdBars(t,a)}</section>
+  ${data.groups.filter(g=>g.id==='gcc').map(sec).join('')}
   ${data.groups.filter(g=>g.id!=='commodities'&&g.id!=='gcc').map(sec).join('')}
+  <section class="card"><div class="cardhead"><h2>${t.ytdTitle}</h2></div>${ytdBars(t,a)}</section>
   <p class="foot">${t.foot}</p>`;
   mobileFix();
 }
