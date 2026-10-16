@@ -1,5 +1,5 @@
 // Global markets snapshot for the "Global economy" page: US, Europe, Asia,
-// oil, gold and a few macro gauges. Daily history from Yahoo Finance.
+// oil (including Kuwait Export Crude) and gold. Daily history from Yahoo Finance.
 import { readFile, writeFile } from "node:fs/promises";
 
 const OUT = new URL("../website/global.json", import.meta.url);
@@ -27,11 +27,6 @@ const GROUPS = [
     ["BZ=F", "Brent crude ($/bbl)", "خام برنت (دولار/برميل)", "Europe/London"],
     ["CL=F", "WTI crude ($/bbl)", "خام غرب تكساس (دولار/برميل)", "America/New_York"],
     ["GC=F", "Gold ($/oz)", "الذهب (دولار/أونصة)", "America/New_York"]
-  ] },
-  { id: "macro", en: "Risk gauges", ar: "مؤشرات المخاطر", items: [
-    ["^VIX", "VIX (US volatility)", "مؤشر التقلب VIX", "America/New_York"],
-    ["^TNX", "US 10-year yield (%)", "عائد السندات الأمريكية 10 سنوات (%)", "America/New_York"],
-    ["DX-Y.NYB", "US dollar index", "مؤشر الدولار الأمريكي", "America/New_York"]
   ] }
 ];
 
