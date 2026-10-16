@@ -1,5 +1,14 @@
 import { writeFile } from "node:fs/promises";
 const out = {};
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
-for (const t of ["Daily", "Monthly"]) { try { const r = await fetch("https://www.msx.om/rss.aspx?t=" + t, { headers: { "user-agent": UA } }); const x = await r.text(); out[t] = { st: r.status, len: x.length, head: x.slice(0, 2500) }; } catch (e) { out[t] = e.message; } }
+const get = async (k, u, h = {}) => { try { const r = await fetch(u, { headers: { "user-agent": UA, accept: "application/json, text/html", ...h } }); const t = await r.text(); out[k] = { st: r.status, len: t.length, head: t.slice(0, 700).replace(/\s+/g, " ") }; return t; } catch (e) { out[k] = e.message; } };
+await get("inv_search", "https://api.investing.com/api/search/v2/search?q=MSX%2030", { "domain-id": "www" });
+await get("inv_search_bax", "https://api.investing.com/api/search/v2/search?q=Bahrain%20All%20Share", { "domain-id": "www" });
+await get("inv_page", "https://www.investing.com/indices/msi-historical-data");
+await get("cnbc_quote", "https://quote.cnbc.com/quote-html-webservice/restQuote/symbolType/symbol?symbols=.MSI%7C.BAX&requestMethod=itv&noform=1&partnerId=2&fund=1&exthrs=1&output=json&events=1");
+await get("cnbc_chart", "https://ts-api.cnbc.com/harmony/app/charts/1Y.json?symbol=.MSI");
+await get("cnbc_chart_bax", "https://ts-api.cnbc.com/harmony/app/charts/1Y.json?symbol=.BAX");
+await get("te", "https://tradingeconomics.com/bahrain/stock-market");
+await get("bhb", "https://bahrainbourse.com/en");
+await get("mubasher", "https://www.mubasher.info/api/1/stocks/charts/MSM/MSI?period=1y");
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
