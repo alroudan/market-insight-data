@@ -1,90 +1,142 @@
 {
+ ".DFMGI": {
+  "name": "DFM DFM GENERAL IDX",
+  "last": "5,867.31",
+  "chg": "+0.63%",
+  "prev": "5,830.47",
+  "timedate": "6:55 AM EDT"
+ },
+ ".BAX": {
+  "name": "BB ALL SHARE IDX",
+  "last": "1,876.013",
+  "chg": "-0.20%",
+  "prev": "1,879.784",
+  "timedate": "10/15/26 EDT"
+ },
+ ".MSX30": {
+  "name": "MSX 30 IDX",
+  "last": "7,678.054",
+  "chg": "-1.00%",
+  "prev": "7,755.303",
+  "timedate": "10/15/26 EDT"
+ },
+ ".SPX": {
+  "name": "S&P 500 Index",
+  "last": "7,669.56",
+  "chg": "-0.96%",
+  "prev": "7,744.06",
+  "timedate": "1:05 PM EDT"
+ },
+ ".DJI": {
+  "name": "Dow Jones Industrial Average",
+  "last": "51,968.57",
+  "chg": "-0.40%",
+  "prev": "52,177.69",
+  "timedate": "1:05 PM EDT"
+ },
+ ".IXIC": {
+  "name": "NASDAQ Composite",
+  "last": "26,226.936",
+  "chg": "-1.82%",
+  "prev": "26,713.026",
+  "timedate": "1:05 PM EDT"
+ },
+ ".RUT": {
+  "name": "Russell 2000 Index",
+  "last": "2,730.025",
+  "chg": "-1.35%",
+  "prev": "2,767.269",
+  "timedate": "12:50 PM EDT"
+ },
+ ".STOXX50E": {
+  "name": "Euro STOXX 50 Index",
+  "last": "6,204.23",
+  "chg": "+0.58%",
+  "prev": "6,168.26",
+  "timedate": "4:00 PM GMT"
+ },
+ ".FTSE": {
+  "name": "FTSE 100",
+  "last": "10,881.90",
+  "chg": "+0.38%",
+  "prev": "10,840.35",
+  "timedate": "4:35 PM BST"
+ },
+ ".GDAXI": {
+  "name": "Germany DAX",
+  "last": "25,622.61",
+  "chg": "+0.95%",
+  "prev": "25,382.62",
+  "timedate": "6:00 PM CEST"
+ },
+ ".FCHI": {
+  "name": "CAC 40 Index",
+  "last": "7,956.70",
+  "chg": "+0.28%",
+  "prev": "7,934.70",
+  "timedate": "6:05 PM CEST"
+ },
+ ".N225": {
+  "name": "Nikkei 225 Index",
+  "last": "65,324.29",
+  "chg": "+1.39%",
+  "prev": "64,425.95",
+  "timedate": "3:45 PM JST"
+ },
+ ".HSI": {
+  "name": "Hang Seng Index",
+  "last": "24,186.83",
+  "chg": "+0.52%",
+  "prev": "24,062.72",
+  "timedate": "4:08 PM CTT"
+ },
+ ".SSEC": {
+  "name": "Shanghai",
+  "last": "3,716.284",
+  "chg": "+0.24%",
+  "prev": "3,707.476",
+  "timedate": "3:00 PM CTT"
+ },
+ ".KS11": {
+  "name": "KOSPI Index",
+  "last": "5,668.05",
+  "chg": "+2.05%",
+  "prev": "5,554.22",
+  "timedate": "8:05 PM JST"
+ },
+ "@LCO.1": {
+  "name": "ICE Brent Crude (Dec'26)",
+  "last": "109.67",
+  "chg": "+3.54%",
+  "prev": "105.92",
+  "timedate": "5:55 PM BST"
+ },
+ "@CL.2": {
+  "name": "WTI Crude (Dec'26)",
+  "last": "98.72",
+  "chg": "+2.30%",
+  "prev": "96.50",
+  "timedate": "12:55 PM EDT"
+ },
+ "@GC.1": {
+  "name": "Gold COMEX (Dec'26)",
+  "last": "4,180.50",
+  "chg": "+0.25%",
+  "prev": "4,170.10",
+  "timedate": "12:55 PM EDT"
+ },
+ "BTC.CM=": {
+  "name": "Bitcoin/USD Coin Metrics",
+  "last": "81,179.70",
+  "chg": "-1.43%",
+  "prev": "82,354.74",
+  "timedate": "1:05 PM EDT"
+ },
  "tv": [
   [
-   "NYMEX:CL1!",
-   "Crude Oil Futures",
-   98.57,
-   0.6124323772583387,
-   "delayed_streaming_600",
-   null
-  ],
-  [
-   "NYMEX:CLX2026",
-   "Crude Oil Futures (Nov 2026)",
-   100.76,
-   2.847810554251308,
-   "delayed_streaming_600",
-   20261020
-  ],
-  [
-   "NYMEX:CLZ2026",
-   "Crude Oil Futures (Dec 2026)",
-   98.57,
-   2.145077720207247,
-   "delayed_streaming_600",
-   20261120
-  ],
-  [
-   "ICEEUR:BRN1!",
-   "Brent Crude Futures",
-   109.64,
-   3.512084592145014,
-   "delayed_streaming_600",
-   null
-  ],
-  [
-   "COMEX:GC1!",
-   "Gold Futures",
-   4179,
-   0.21342413850985914,
-   "delayed_streaming_600",
-   null
-  ]
- ],
- "yahoo5m": [
-  [
-   "16:30",
-   98.33000183105469
-  ],
-  [
-   "16:35",
-   98.41999816894531
-  ],
-  [
-   "16:40",
-   98.05000305175781
-  ],
-  [
-   "16:45",
-   98.55999755859375
-  ],
-  [
-   "16:50",
-   98.62000274658203
-  ],
-  [
-   "16:51",
-   98.61000061035156
-  ]
- ],
- "yahooMeta": {
-  "rmp": 98.61,
-  "rmt": "2026-10-16T16:51:34.000Z"
- },
- "cnbc": [
-  [
-   "@CL.1",
-   "WTI Crude (Nov'26)",
-   "100.85",
-   "+2.94%",
-   "12:51 PM EDT"
-  ],
-  [
-   "@CL.2",
-   "WTI Crude (Dec'26)",
-   "98.61",
-   "+2.19%",
-   "12:51 PM EDT"
+   "BSE:SENSEX",
+   74729.27,
+   0.5566259901520064
   ]
  ]
 }
