@@ -1,19 +1,16 @@
 import { writeFile } from "node:fs/promises";
-const out = { yahoo: {}, tv: null };
-for (const s of ["^TASI.SR","DFMGI.AE","FADGI.FGI"]) for (const range of ["2y","1y","ytd"]) {
-  const r = await fetch(`https://query2.finance.yahoo.com/v8/finance/chart/${encodeURIComponent(s)}?range=${range}&interval=1d`, { headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36" } });
-  const j = await r.json(); const res = j?.chart?.result?.[0];
-  const c = res?.indicators?.quote?.[0]?.close || [];
-  out.yahoo[s + " " + range] = { n: c.filter((x) => x != null).length, ts: (res?.timestamp || []).length, first: res?.timestamp ? new Date(res.timestamp[0] * 1000).toISOString().slice(0, 10) : null };
+const out = {};
+const cols = ["name","description","close","change","Perf.W","Perf.1M","Perf.YTD","Perf.Y","exchange","type","update_mode"];
+for (const ex of ["BAHRAIN","BHB","MSM","MSX","OMAN"]) {
+  const r = await fetch("https://scanner.tradingview.com/global/scan", { method: "POST", headers: { "content-type": "application/json", "user-agent": "Mozilla/5.0" },
+    body: JSON.stringify({ filter: [{ left: "exchange", operation: "equal", right: ex }, { left: "type", operation: "equal", right: "index" }], symbols: { query: { types: [] }, tickers: [] }, columns: cols, range: [0, 30] }) });
+  const t = await r.text(); try { out[ex] = JSON.parse(t).data?.map((d) => [d.s, ...d.d.slice(0, 4)]); } catch { out[ex] = t.slice(0, 200); }
 }
-const tickers = ["TADAWUL:TASI","DFM:DFMGI","ADX:FADGI","ADX:ADI","QSE:GNRI","BAHRAIN:BSEX","BAHRAIN:BAX","MSM:MSX30","MSM:MSI","KSE:BKA","KSE:BKP"];
-const cols = ["name","description","close","change","Perf.W","Perf.1M","Perf.YTD","Perf.Y","price_52_week_high","price_52_week_low","currency","exchange"];
-const r = await fetch("https://scanner.tradingview.com/global/scan", { method: "POST", headers: { "content-type": "application/json", "user-agent": "Mozilla/5.0" }, body: JSON.stringify({ symbols: { tickers, query: { types: [] } }, columns: cols }) });
-out.tvStatus = r.status; const t = await r.text();
-try { out.tv = JSON.parse(t).data.map((d) => ({ s: d.s, ...Object.fromEntries(cols.map((c, i) => [c, d.d[i]])) })); } catch { out.tv = t.slice(0, 500); }
-// TradingView history via the public chart data used by widgets is not available; try stooq for history
-out.stooq = {};
-for (const s of ["^tasi","tasi.sa","^dfm","^adx","^qse","^bhb","^msm"]) {
-  try { const r2 = await fetch(`https://stooq.com/q/d/l/?s=${encodeURIComponent(s)}&i=d`); const tx = await r2.text(); out.stooq[s] = { st: r2.status, lines: tx.split("\n").length, head: tx.slice(0, 120), tail: tx.trim().split("\n").slice(-1)[0] }; } catch (e) { out.stooq[s] = e.message; }
+const tickers = ["BAHRAIN:BAX","BAHRAIN:BHSEASI","BAHRAIN:BSEX","BAHRAIN:BHBX","MSM:MSX30","MSM:MSI","MSM:BKMSX30","MSM:MSX30I","TADAWUL:TASI"];
+const r = await fetch("https://scanner.tradingview.com/global/scan", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ symbols: { tickers, query: { types: [] } }, columns: cols }) });
+out.direct = (await r.json()).data?.map((d) => [d.s, ...d.d.slice(0, 4)]);
+// history candidate: TradingView chart history isn't public; try investing-free sources
+for (const u of ["https://www.saudiexchange.sa/","https://query1.finance.yahoo.com/v8/finance/chart/%5ETASI.SR?period1=1700000000&period2=1790000000&interval=1d"]) {
+  try { const r2 = await fetch(u, { headers: { "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124 Safari/537.36" } }); const tx = await r2.text(); out[u] = { st: r2.status, len: tx.length, n: (tx.match(/"close":\[([^\]]*)\]/)?.[1] || "").split(",").length }; } catch (e) { out[u] = e.message; }
 }
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
