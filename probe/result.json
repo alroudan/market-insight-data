@@ -1,314 +1,256 @@
 {
- "perSetup": {
-  "range": {
-   "n": 486,
-   "avg5": 0.96,
-   "excess5": 0.76,
-   "medExcess5": -0.1,
-   "beat5": 49,
-   "up5": 49,
-   "worst5pct5": -8.2,
-   "avg10": 1.85,
-   "excess10": 1.53,
-   "medExcess10": 0.02,
-   "beat10": 50,
-   "up10": 50,
-   "worst5pct10": -10,
-   "avg20": 2.68,
-   "excess20": 2.22,
-   "medExcess20": -0.25,
-   "beat20": 49,
-   "up20": 50,
-   "worst5pct20": -13.1,
-   "excess10NextOpen": 0.92
-  },
-  "52w": {
-   "n": 330,
-   "avg5": 1.5,
-   "excess5": 1.3,
-   "medExcess5": -0.06,
-   "beat5": 49,
-   "up5": 49,
-   "worst5pct5": -8.8,
-   "avg10": 3.23,
-   "excess10": 2.84,
-   "medExcess10": -0.2,
-   "beat10": 49,
-   "up10": 53,
-   "worst5pct10": -11.2,
-   "avg20": 5.17,
-   "excess20": 4.37,
-   "medExcess20": 0.5,
-   "beat20": 51,
-   "up20": 53,
-   "worst5pct20": -15.3,
-   "excess10NextOpen": 2.32
-  },
-  "squeeze": {
-   "n": 242,
-   "avg5": 1.43,
-   "excess5": 1.39,
-   "medExcess5": 0.12,
-   "beat5": 52,
-   "up5": 53,
-   "worst5pct5": -7.2,
-   "avg10": 2.83,
-   "excess10": 2.61,
-   "medExcess10": 0.19,
-   "beat10": 52,
-   "up10": 52,
-   "worst5pct10": -9.1,
-   "avg20": 3.5,
-   "excess20": 3.12,
-   "medExcess20": -0.16,
-   "beat20": 50,
-   "up20": 48,
-   "worst5pct20": -11.6,
-   "excess10NextOpen": 2.39
-  }
+ "n": 4633,
+ "first": {
+  "Chg": "",
+  "Pchg": "",
+  "Value": 37.86,
+  "Date": "20041011000000"
  },
- "recent": [
+ "last40": [
   {
-   "date": "2026-10-08",
-   "breadth": 0.23880597014925373,
-   "rows": [
-    {
-     "t": "PHC",
-     "name": "Privatization Holding Co. KSCC",
-     "nameAr": null,
-     "score": 89.73958333333334,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": true,
-     "extOk": false,
-     "value": 2120780.8260500003,
-     "setup": "squeeze",
-     "required": true,
-     "close": 197,
-     "level": 189.7224998520535,
-     "stop": 185.9280498550124,
-     "ext": 16.844602609727175,
-     "volRatio": 1.6595269756293904,
-     "rs": 99.21875,
-     "closeLoc": 75,
-     "sma50": 165.34,
-     "atr": 8.016569744503403,
-     "fwd10": null
-    },
-    {
-     "t": "MENA",
-     "name": "MENA Real Estate Company KSC",
-     "nameAr": "مينا العقارية",
-     "score": 82.65625,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": false,
-     "extOk": true,
-     "value": 910595.6899500001,
-     "setup": "52w",
-     "required": true,
-     "close": 138,
-     "level": 137,
-     "stop": 134.26,
-     "ext": 7.602339181286544,
-     "volRatio": 5.102339017236825,
-     "rs": 92.96875,
-     "closeLoc": 58.333333333333336,
-     "sma50": 119.94,
-     "atr": 5.117363451645046,
-     "fwd10": null
-    }
-   ]
+   "Chg": 4.97,
+   "Pchg": 6.786,
+   "Value": 78.21,
+   "Date": "20260804000000"
   },
   {
-   "date": "2026-09-29",
-   "breadth": 0.4253731343283582,
-   "rows": [
-    {
-     "t": "ARABREC",
-     "name": "Al-Arabiya Real Estate Co.",
-     "nameAr": "الشركة العربية العقارية ش.م.ك",
-     "score": 82.24806201550388,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": true,
-     "extOk": false,
-     "value": 451808.40745,
-     "setup": "range",
-     "required": true,
-     "close": 198,
-     "level": 196,
-     "stop": 192.07999999999998,
-     "ext": 11.769686706181194,
-     "volRatio": 2.6151769447160547,
-     "rs": 76.74418604651163,
-     "closeLoc": 83.33333333333334,
-     "sma50": 173.88,
-     "atr": 8.449885736809934,
-     "fwd10": 0.09191242861315552
-    },
-    {
-     "t": "IFA",
-     "name": "International Financial Advisors Holding K.P.S.C.",
-     "nameAr": "الاستشارات المالية الدولية القابضة",
-     "score": 72.15762273901808,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": false,
-     "extOk": false,
-     "value": 5209316.51235,
-     "setup": "52w",
-     "required": true,
-     "close": 480,
-     "level": 477,
-     "stop": 467.46,
-     "ext": 18.241162704766587,
-     "volRatio": 2.0269159532169945,
-     "rs": 91.47286821705426,
-     "closeLoc": 50,
-     "sma50": 377.96,
-     "atr": 14.34612906528997,
-     "fwd10": 0.003654852855579871
-    }
-   ]
+   "Chg": -3.88,
+   "Pchg": -4.961,
+   "Value": 74.33,
+   "Date": "20260805000000"
   },
   {
-   "date": "2026-09-17",
-   "breadth": 0.6492537313432836,
-   "rows": [
-    {
-     "t": "MUBARRAD",
-     "name": "Mubarrad Holding Co. (K.S.C.C)",
-     "nameAr": "شركة مبرد القابضة (ش.م.ك.ع)",
-     "score": 88.2051282051282,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": true,
-     "extOk": false,
-     "value": 544121.5140999999,
-     "setup": "52w",
-     "required": true,
-     "close": 171,
-     "level": 163,
-     "stop": 161.07748569024818,
-     "ext": 17.163412127440925,
-     "volRatio": 2.8815219080682173,
-     "rs": 94.61538461538461,
-     "closeLoc": 85.71428571428571,
-     "sma50": 134.96,
-     "atr": 6.615009539834547,
-     "fwd10": -0.08639900359620323
-    },
-    {
-     "t": "MASHAER",
-     "name": "Mashaer Holding Company K.S.C.(Public)",
-     "nameAr": "مشاعر القابضة ش م ك عامة",
-     "score": 80.8974358974359,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": false,
-     "extOk": true,
-     "value": 198639.99675,
-     "setup": "52w",
-     "required": true,
-     "close": 155,
-     "level": 153,
-     "stop": 149.94,
-     "ext": 7.7511296489398696,
-     "volRatio": 2.4560419807881066,
-     "rs": 87.6923076923077,
-     "closeLoc": 62.5,
-     "sma50": 133.78,
-     "atr": 5.145644595557643,
-     "fwd10": -0.058555200540176044
-    }
-   ]
+   "Chg": 0.94,
+   "Pchg": 1.265,
+   "Value": 75.27,
+   "Date": "20260807000000"
   },
   {
-   "date": "2026-09-16",
-   "breadth": 0.6716417910447762,
-   "rows": [
-    {
-     "t": "NICBM",
-     "name": "National Industries Company for Building Materials",
-     "nameAr": "الصناعات الوطنية ش.م.ك",
-     "score": 92.82051282051282,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": true,
-     "extOk": true,
-     "value": 320864.9642,
-     "setup": "range",
-     "required": true,
-     "close": 286,
-     "level": 284,
-     "stop": 278.32,
-     "ext": 6.736331405112894,
-     "volRatio": 15.110597547016914,
-     "rs": 78.46153846153847,
-     "closeLoc": 76.92307692307693,
-     "sma50": 267.54,
-     "atr": 7.9042757875144,
-     "fwd10": 0.03200786602360861
-    },
-    {
-     "t": "GIH",
-     "name": "Gulf Investment House KSCC",
-     "nameAr": "بيت الاستثمار الخليجي",
-     "score": 89.48717948717949,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": true,
-     "extOk": false,
-     "value": 1645909.6132,
-     "setup": "52w",
-     "required": true,
-     "close": 872,
-     "level": 831,
-     "stop": 833.5385331397828,
-     "ext": 23.163841807909602,
-     "volRatio": 2.2097263092072823,
-     "rs": 98.46153846153847,
-     "closeLoc": 100,
-     "sma50": 611.36,
-     "atr": 25.640977906811464,
-     "fwd10": -0.5061168532937713
-    },
-    {
-     "t": "MENA",
-     "name": "MENA Real Estate Company KSC",
-     "nameAr": "مينا العقارية",
-     "score": 86.66666666666667,
-     "volOk": true,
-     "trendOk": true,
-     "rsOk": true,
-     "closeOk": true,
-     "extOk": false,
-     "value": 930665.9539999999,
-     "setup": "52w",
-     "required": true,
-     "close": 136,
-     "level": 133,
-     "stop": 130.34,
-     "ext": 13.855169526998745,
-     "volRatio": 4.01157136353418,
-     "rs": 90,
-     "closeLoc": 90,
-     "sma50": 115.12,
-     "atr": 3.883383573302122,
-     "fwd10": -0.03694523969420305
-    }
-   ]
+   "Chg": 8.79,
+   "Pchg": 11.678,
+   "Value": 84.06,
+   "Date": "20260811000000"
+  },
+  {
+   "Chg": -1.22,
+   "Pchg": -1.451,
+   "Value": 82.84,
+   "Date": "20260812000000"
+  },
+  {
+   "Chg": -0.17,
+   "Pchg": -0.205,
+   "Value": 82.67,
+   "Date": "20260814000000"
+  },
+  {
+   "Chg": 0.14,
+   "Pchg": 0.169,
+   "Value": 82.81,
+   "Date": "20260817000000"
+  },
+  {
+   "Chg": 2.42,
+   "Pchg": 2.922,
+   "Value": 85.23,
+   "Date": "20260818000000"
+  },
+  {
+   "Chg": 3.18,
+   "Pchg": 3.731,
+   "Value": 88.41,
+   "Date": "20260819000000"
+  },
+  {
+   "Chg": 5.3,
+   "Pchg": 5.995,
+   "Value": 93.71,
+   "Date": "20260821000000"
+  },
+  {
+   "Chg": -1.06,
+   "Pchg": -1.131,
+   "Value": 92.65,
+   "Date": "20260824000000"
+  },
+  {
+   "Chg": -5.22,
+   "Pchg": -5.634,
+   "Value": 87.43,
+   "Date": "20260825000000"
+  },
+  {
+   "Chg": 0.01,
+   "Pchg": 0.011,
+   "Value": 87.44,
+   "Date": "20260828000000"
+  },
+  {
+   "Chg": 2.21,
+   "Pchg": 2.527,
+   "Value": 89.65,
+   "Date": "20260831000000"
+  },
+  {
+   "Chg": 6.46,
+   "Pchg": 7.206,
+   "Value": 96.11,
+   "Date": "20260901000000"
+  },
+  {
+   "Chg": 2.12,
+   "Pchg": 2.206,
+   "Value": 98.23,
+   "Date": "20260902000000"
+  },
+  {
+   "Chg": -0.13,
+   "Pchg": -0.132,
+   "Value": 98.1,
+   "Date": "20260904000000"
+  },
+  {
+   "Chg": 3.12,
+   "Pchg": 3.18,
+   "Value": 101.22,
+   "Date": "20260907000000"
+  },
+  {
+   "Chg": 8.15,
+   "Pchg": 8.052,
+   "Value": 109.37,
+   "Date": "20260908000000"
+  },
+  {
+   "Chg": 8.73,
+   "Pchg": 7.982,
+   "Value": 118.1,
+   "Date": "20260909000000"
+  },
+  {
+   "Chg": 0.92,
+   "Pchg": 0.779,
+   "Value": 119.02,
+   "Date": "20260911000000"
+  },
+  {
+   "Chg": 4.39,
+   "Pchg": 3.688,
+   "Value": 123.41,
+   "Date": "20260914000000"
+  },
+  {
+   "Chg": 0.93,
+   "Pchg": 0.754,
+   "Value": 124.34,
+   "Date": "20260915000000"
+  },
+  {
+   "Chg": 1.96,
+   "Pchg": 1.576,
+   "Value": 126.3,
+   "Date": "20260916000000"
+  },
+  {
+   "Chg": -11.36,
+   "Pchg": -8.994,
+   "Value": 114.94,
+   "Date": "20260918000000"
+  },
+  {
+   "Chg": -5.64,
+   "Pchg": -4.907,
+   "Value": 109.3,
+   "Date": "20260921000000"
+  },
+  {
+   "Chg": -2.34,
+   "Pchg": -2.141,
+   "Value": 106.96,
+   "Date": "20260922000000"
+  },
+  {
+   "Chg": -0.66,
+   "Pchg": -0.617,
+   "Value": 106.3,
+   "Date": "20260923000000"
+  },
+  {
+   "Chg": 2.39,
+   "Pchg": 2.248,
+   "Value": 108.69,
+   "Date": "20260925000000"
+  },
+  {
+   "Chg": -2.18,
+   "Pchg": -2.006,
+   "Value": 106.51,
+   "Date": "20260928000000"
+  },
+  {
+   "Chg": -1.12,
+   "Pchg": -1.052,
+   "Value": 105.39,
+   "Date": "20260929000000"
+  },
+  {
+   "Chg": -3.15,
+   "Pchg": -2.989,
+   "Value": 102.24,
+   "Date": "20260930000000"
+  },
+  {
+   "Chg": 3.67,
+   "Pchg": 3.59,
+   "Value": 105.91,
+   "Date": "20261002000000"
+  },
+  {
+   "Chg": 1.31,
+   "Pchg": 1.237,
+   "Value": 107.22,
+   "Date": "20261005000000"
+  },
+  {
+   "Chg": -4.42,
+   "Pchg": -4.122,
+   "Value": 102.8,
+   "Date": "20261006000000"
+  },
+  {
+   "Chg": 0.41,
+   "Pchg": 0.399,
+   "Value": 103.21,
+   "Date": "20261007000000"
+  },
+  {
+   "Chg": 2.47,
+   "Pchg": 2.393,
+   "Value": 105.68,
+   "Date": "20261009000000"
+  },
+  {
+   "Chg": 1.27,
+   "Pchg": 1.202,
+   "Value": 106.95,
+   "Date": "20261012000000"
+  },
+  {
+   "Chg": -0.88,
+   "Pchg": -0.823,
+   "Value": 106.07,
+   "Date": "20261013000000"
+  },
+  {
+   "Chg": 0.16,
+   "Pchg": 0.151,
+   "Value": 106.23,
+   "Date": "20261014000000"
   }
  ],
- "todayBreadth": 0.14925373134328357,
- "lastDate": "2026-10-15"
+ "keys": [
+  "GDP",
+  "KOP",
+  "CPI"
+ ]
 }
