@@ -1,20 +1,21 @@
 import { writeFile } from "node:fs/promises";
 const out = {};
 const UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36";
-try {
-  const r = await fetch("https://www.msx.om/", { headers: { "user-agent": UA } });
-  const t = await r.text();
-  out.home = { st: r.status, len: t.length, msx30: [...t.matchAll(/.{0,200}MSX ?30.{0,300}/gi)].slice(0, 6).map((m) => m[0].replace(/\s+/g, " ")), scripts: [...t.matchAll(/src="([^"]+\.js[^"]*)"/g)].map((m) => m[1]).slice(0, 30), apis: [...new Set([...t.matchAll(/["'](\/[A-Za-z0-9_\-\/]*(?:api|ajax|handler|ashx|asmx|json|Index|index)[A-Za-z0-9_\-\/.?=&]*)["']/g)].map((m) => m[1]))].slice(0, 60) };
-} catch (e) { out.home = e.message; }
-// Browser: capture network JSON responses and page text
+for (const ep of ["Indices", "MarketToday"]) {
+  try {
+    const r = await fetch("https://www.msx.om/api.aspx/" + ep, { method: "POST", headers: { "user-agent": UA, "content-type": "application/json; charset=utf-8", accept: "application/json", referer: "https://www.msx.om/", origin: "https://www.msx.om", "x-requested-with": "XMLHttpRequest" }, body: "{}" });
+    out["direct_" + ep] = { st: r.status, body: (await r.text()).slice(0, 4000) };
+  } catch (e) { out["direct_" + ep] = e.message; }
+}
 const { chromium } = await import("playwright");
 const b = await chromium.launch(); const p = await b.newPage({ userAgent: UA });
-const net = [];
-p.on("response", async (res) => { const u = res.url(); const ct = res.headers()["content-type"] || ""; if (/json|javascript|text\/plain|xml/.test(ct) && !/\.js(\?|$)/.test(u)) { let body = ""; try { body = (await res.text()).slice(0, 400); } catch {} net.push({ u, st: res.status(), ct, body }); } });
-try { await p.goto("https://www.msx.om/", { waitUntil: "networkidle", timeout: 60000 }); } catch (e) { out.gotoErr = e.message; }
-await p.waitForTimeout(5000);
-const text = await p.locator("body").innerText().catch(() => "");
-out.text = text.replace(/\s+/g, " ").slice(0, 3000);
-out.net = net.slice(0, 60);
+const reqs = [];
+p.on("request", (q) => { if (q.url().includes("api.aspx")) reqs.push({ u: q.url(), m: q.method(), body: q.postData() }); });
+try { await p.goto("https://www.msx.om/", { waitUntil: "domcontentloaded", timeout: 60000 }); } catch (e) { out.gotoErr = e.message; }
+await p.waitForTimeout(12000);
+out.reqs = reqs.slice(0, 40);
+out.inPage = await p.evaluate(async () => { const r = await fetch("/api.aspx/Indices", { method: "POST", headers: { "content-type": "application/json; charset=utf-8" }, body: "{}" }); return { st: r.status, body: (await r.text()).slice(0, 4000) }; }).catch((e) => e.message);
+// look for index history / chart endpoints in page scripts
+out.chartRefs = await p.evaluate(() => [...new Set((document.documentElement.innerHTML.match(/api\.aspx\/[A-Za-z]+/g) || []))]);
 await b.close();
 await writeFile("probe/result.json", JSON.stringify(out, null, 1));
