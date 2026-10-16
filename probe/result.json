@@ -1,97 +1,26 @@
 {
- "direct_Indices": {
+ "indices": {
   "st": 200,
-  "body": "\r\n\r\n<!DOCTYPE html>\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head><title>\r\n\r\n</title></head>\r\n<body>\r\n    <form method=\"post\" action=\"./InternalError.html\" id=\"form1\">\r\n<div class=\"aspNetHidden\">\r\n<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"q2BI99IQxqvyTMIDfO/Jll0IFHt1AC+/BRueEONmJIZDya8SdikUm8QetWjNcSUjyqQrbm2eQlpA7exkIN4QdINzNSBxhymW0V8dxbKIOJ20H03pafzIZa4kFwRZ7pI4\" />\r\n</div>\r\n\r\n<div class=\"aspNetHidden\">\r\n\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEGENERATOR\" id=\"__VIEWSTATEGENERATOR\" value=\"BFF6C652\" />\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\" value=\"\" />\r\n</div>\r\n        <div>\r\n        </div>\r\n    </form>\r\n<script type=\"text/javascript\" src=\"/_Incapsula_Resource?SWJIYLWA=719d34d31c8e3a6e6fffd425f7e032f3&ns=2&cb=607848576\" async></script></body>\r\n</html>\r\n"
+  "body": "{\"d\":[{\"Title\":\"MSX30\",\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:10 PM\",\"TimeAr\":\"08:10 م\",\"DelayTimeEn\":\"07:55 PM\",\"DelayTimeAr\":\"07:55 م\",\"StatusEn\":null,\"StatusAr\":null,\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"32,970,476.988\",\"Volume\":\"110,867,408\",\"Trades\":\"13,077\",\"SecTrades\":\"27\",\"Up\":\"1\",\"Down\":\"21\",\"Unchanged\":\"5\",\"AsOnDateEn\":null,\"AsOnDateAr\":null,\"AsOnTimeEn\":null,\"AsOnTimeAr\":null,\"index_symbol\":\"MSX30\",\"GMTTimeEn\":null,\"GMTTimeAr\":null}]}"
  },
- "direct_MarketToday": {
-  "st": 200,
-  "body": "{\"d\":[{\"Title\":null,\"DayEn\":\"Friday\",\"DayAr\":\"الجمعة\",\"DateEn\":\"Oct 16, 2026\",\"DateAr\":\"أكتوبر 16, 2026\",\"TimeEn\":\"08:08 PM\",\"TimeAr\":\"08:08 م\",\"DelayTimeEn\":\"07:53 PM\",\"DelayTimeAr\":\"07:53 م\",\"StatusEn\":\"Closed\",\"StatusAr\":\"مغلق\",\"Image\":\"Down\",\"MSX30\":\"7,678.054\",\"Change\":\"-1.000\",\"ChangeValue\":\"-77.249\",\"Turnover\":\"41,602,904.888\",\"Volume\":\"151,873,469\",\"Trades\":\"17,004\",\"SecTrades\":\"67\",\"Up\":\"5\",\"Down\":\"43\",\"Unchanged\":\"19\",\"AsOnDateEn\":null,\"AsOnDateAr\":null,\"AsOnTimeEn\":null,\"AsOnTimeAr\":null,\"index_symbol\":null,\"GMTTimeEn\":null,\"GMTTimeAr\":null}]}"
+ "api.aspx/IndexChart": {
+  "st": 401,
+  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
  },
- "reqs": [
-  {
-   "u": "https://www.msx.om/api.aspx/MarketToday",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketTodayDateTime",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/TopGLVT",
-   "m": "POST",
-   "body": "{ 'Type': 'G' }"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Indices",
-   "m": "POST",
-   "body": "{ 'Type': 'MSX30' }"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/HeatMap",
-   "m": "POST",
-   "body": "{'Type': 'MSX30'}"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/latestnews",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/decisions",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/FinancialReports",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Announcements",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MultiAsset",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/HeaderAdvertisement",
-   "m": "POST",
-   "body": "{'Type': '0'}"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Banners",
-   "m": "POST",
-   "body": "{ 'mflag': '0' }"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetNotificationsCenter",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetSummaryTips",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/Tips",
-   "m": "POST",
-   "body": null
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/MarketTicker",
-   "m": "POST",
-   "body": "{ 'Sector': '' }"
-  }
- ],
- "inPage": {
-  "st": 200,
-  "body": "\r\n\r\n<!DOCTYPE html>\r\n\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head><title>\r\n\r\n</title></head>\r\n<body>\r\n    <form method=\"post\" action=\"./InternalError.html\" id=\"form1\">\r\n<div class=\"aspNetHidden\">\r\n<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"Y8jXl9EER6FhUaGmXkkc1Y/f2xN42LoDzV4vATkZrIJeUG6dWn6keqV+QdDUu5HlS03iNmx+8wrn/63vJbSNffKHXf+1l+ig8o/rNHLV2pb/CFcayAMHYpE7c8O6Xmk5\" />\r\n</div>\r\n\r\n<div class=\"aspNetHidden\">\r\n\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEGENERATOR\" id=\"__VIEWSTATEGENERATOR\" value=\"BFF6C652\" />\r\n\t<input type=\"hidden\" name=\"__VIEWSTATEENCRYPTED\" id=\"__VIEWSTATEENCRYPTED\" value=\"\" />\r\n</div>\r\n        <div>\r\n        </div>\r\n    </form>\r\n</body>\r\n</html>\r\n"
+ "api.aspx/IndicesChart": {
+  "st": 401,
+  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
  },
- "chartRefs": []
+ "api.aspx/TrendChart": {
+  "st": 401,
+  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
+ },
+ "api.aspx/Trend": {
+  "st": 401,
+  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
+ },
+ "api.aspx/IndexHistory": {
+  "st": 401,
+  "body": "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">\r\n<html xmlns=\"http://www.w3.org/1999/xhtml\">\r\n<head>\r\n<meta http-equiv=\"Content-Type\" cont"
+ }
 }
