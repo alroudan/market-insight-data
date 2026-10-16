@@ -1,12 +1,47 @@
 {
- "Daily": {
-  "st": 200,
-  "len": 4472,
-  "head": "\r\n\r\n<rss version=\"2.0\">\r\n    <channel>\r\n        <title>Muscat Stock Exchange</title>\r\n        <link>http://www.msx.om</link>\r\n        <description>The latest headlines and articles from the Stock market.</description>\r\n        \r\n                <item>\r\n                    <title>Daily Statistics 15-10-2026</title>\r\n                    <pubDate>10/15/2026 3:51:33 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 14-10-2026</title>\r\n                    <pubDate>10/14/2026 3:30:58 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 13-10-2026</title>\r\n                    <pubDate>10/13/2026 3:37:09 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 12-10-2026</title>\r\n                    <pubDate>10/12/2026 3:30:06 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 11-10-2026</title>\r\n                    <pubDate>10/11/2026 3:39:44 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 08-10-2026</title>\r\n                    <pubDate>10/8/2026 3:19:53 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 07-10-2026</title>\r\n                    <pubDate>10/7/2026 3:52:08 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 06-10-2026</title>\r\n                    <pubDate>10/6/2026 3:28:09 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 05-10-2026</title>\r\n                    <pubDate>10/5/2026 3:21:50 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 04-10-2026</title>\r\n                    <pubDate>10/4/2026 3:25:45 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 01-10-2026</title>\r\n                    <pubDate>10/1/2026 3:25:31 PM</pubDate>\r\n                 "
+ "inv_search": {
+  "st": 403,
+  "len": 3,
+  "head": "403"
  },
- "Monthly": {
+ "inv_search_bax": {
+  "st": 403,
+  "len": 5949,
+  "head": "<!DOCTYPE html><html lang=\"en-US\"><head><title>Just a moment...</title><meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\"><meta http-equiv=\"X-UA-Compatible\" content=\"IE=Edge\"><meta name=\"robots\" content=\"noindex,nofollow\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><meta http-equiv=\"content-security-policy\" content=\"default-src &#39;none&#39;; script-src &#39;nonce-ksST9KD8BGilXi0UjU5FKF&#39; &#39;unsafe-eval&#39; https://challenges.cloudflare.com; script-src-attr &#39;none&#39;; style-src &#39;unsafe-inline&#39;; img-src &#39;self&#39; https://challenges.cloudflare.com; connect-src &#39;self&#39; https://challenges.cloudflare.com; frame-src &#39;self&#"
+ },
+ "inv_page": {
+  "st": 403,
+  "len": 3,
+  "head": "403"
+ },
+ "cnbc_quote": {
   "st": 200,
-  "len": 4542,
-  "head": "\r\n\r\n<rss version=\"2.0\">\r\n    <channel>\r\n        <title>Muscat Stock Exchange</title>\r\n        <link>http://www.msx.om</link>\r\n        <description>The latest headlines and articles from the Stock market.</description>\r\n        \r\n                <item>\r\n                    <title>Monthly Bulletin - September 2026</title>\r\n                    <pubDate>10/1/2026 2:35:36 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - September 2026</title>\r\n                    <pubDate>9/30/2026 2:36:34 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - August 2026</title>\r\n                    <pubDate>9/1/2026 8:16:28 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - August 2026</title>\r\n                    <pubDate>8/31/2026 3:24:38 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - July 2026</title>\r\n                    <pubDate>8/3/2026 9:56:18 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - July 2026</title>\r\n                    <pubDate>7/30/2026 3:29:31 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - June 2026</title>\r\n                    <pubDate>7/2/2026 8:25:19 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - June 2026</title>\r\n                    <pubDate>6/30/2026 3:43:13 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - May 2026</title>\r\n                    <pubDate>6/1/2026 11:34:45 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - May 2026</title>\r\n                    <pubDate>6/1/2026 11:23:35 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - April 2026</title>\r\n                    <pubDate>5/3/2026 12:37:04 PM</p"
+  "len": 949,
+  "head": "{\"FormattedQuoteResult\":{\"FormattedQuote\":[{\"symbol\":\".MSI\",\"code\":1},{\"symbol\":\".BAX\",\"symbolType\":\"symbol\",\"code\":0,\"name\":\"BB ALL SHARE IDX\",\"shortName\":\".BAX\",\"onAirName\":\"Bahrain Allshare\",\"altName\":\"BB ALL SHARE IDX\",\"last\":\"1,876.013\",\"last_timedate\":\"10/15/26 EDT\",\"last_time\":\"2026-10-15\",\"changetype\":\"DOWN\",\"type\":\"INDEX\",\"subType\":\"Index\",\"exchange\":\"Exchange\",\"source\":\"Exchange\",\"open\":\"1,880.527\",\"high\":\"1,880.527\",\"low\":\"1,874.943\",\"change\":\"-3.771\",\"change_pct\":\"-0.20%\",\"currencyCode\":\"BHD\",\"volume\":\"1,752,794\",\"volume_alt\":\"1.8M\",\"provider\":\"CNBC Quote Cache\",\"previous_day_closing\":\"1,879.784\",\"altSymbol\":\".BAX\",\"realTime\":\"false\",\"curmktstatus\":\"REG_MKT\",\"yrhiprice\":\"2,084.51"
+ },
+ "cnbc_chart": {
+  "st": 200,
+  "len": 235,
+  "head": "{\"requestDetails\":{\"symbol\":\".MSI\",\"startTime\":\"20241017123341\",\"endTime\":\"20261016123341\",\"adjusted\":\"ADJUSTED\"},\"status\":\"ERROR\",\"statusMessage\":\"Error in getting bars for symbol: .MSI and barType: ONE_DAY Security Master not found\"}"
+ },
+ "cnbc_chart_bax": {
+  "st": 200,
+  "len": 70753,
+  "head": "{\"barData\":{\"priceBars\":[{\"open\":\"2000.8680\",\"high\":\"2000.8680\",\"low\":\"1999.7920\",\"close\":\"1999.7920\",\"volume\":1454556,\"tradeTime\":\"20241017000000\",\"tradeTimeinMills\":1729137600000},{\"open\":\"1999.7920\",\"high\":\"1999.7920\",\"low\":\"1990.0610\",\"close\":\"1990.0610\",\"volume\":1428077,\"tradeTime\":\"20241020000000\",\"tradeTimeinMills\":1729396800000},{\"open\":\"1990.0610\",\"high\":\"1993.4830\",\"low\":\"1988.8480\",\"close\":\"1993.4830\",\"volume\":1042268,\"tradeTime\":\"20241021000000\",\"tradeTimeinMills\":1729483200000},{\"open\":\"1993.4830\",\"high\":\"1993.4830\",\"low\":\"1990.1120\",\"close\":\"1990.1120\",\"volume\":427454,\"tradeTime\":\"20241022000000\",\"tradeTimeinMills\":1729569600000},{\"open\":\"1990.1120\",\"high\":\"1995.2660\",\"low\":\"19"
+ },
+ "te": {
+  "st": 200,
+  "len": 470334,
+  "head": " <!doctype html> <html > <head id=\"ctl00_Head1\"><meta charset=\"utf-8\" /><title> Bahrain Stock Market (Bahrain All Share) - Quote - Chart - Historical Data - News | Trading Economics </title><meta id=\"metaDesc\" name=\"description\" content=\"Bahrain&#39;s main stock market index, the Estirad, fell to 1876 points on October 15, 2026, losing 0.20% from the previous session. Over the past month, the index has declined 2.79% and is down 4.95% compared to the same time last year, according to trading on a contract for difference (CFD) that tracks this benchmark index from Bahrain. Bahrain Stock Market (Bahrain All Share) - values, historical data, forecasts and news - updated on October of 2026"
+ },
+ "bhb": {
+  "st": 200,
+  "len": 193037,
+  "head": " <!DOCTYPE html > <html lang=\"en\" dir=\"ltr\"> <head><meta http-equiv=\"X-UA-Compatible\" content=\"IE=10\" /><meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" /><link rel=\"stylesheet\" href=\"/Style%20Library/Chatbot%20css/custom.css\" /><link rel=\"stylesheet\" href=\"/Style%20Library/Chatbot%20css/font-awesome.min.css\" /><meta charset=\"utf-8\" /><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\" /><meta name=\"GENERATOR\" content=\"Microsoft SharePoint\" /><meta http-equiv=\"Content-type\" content=\"text/html; charset=utf-8\" /><meta http-equiv=\"Expires\" content=\"0\" /><link rel=\"shortcut icon\" href=\"/PublishingImages/favicon.ico\" /><title> Home "
+ },
+ "mubasher": {
+  "st": 500,
+  "len": 5109,
+  "head": "<!DOCTYPE html> <html lang=\"en\"> <head> <meta charset=\"utf-8\"> <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\"> <meta name=\"title\" content=\"Mubasher.info\"> <meta name=\"description\" content=\"مباشر موقع يغطي سوق البورصة والاسهم ويوفر احدث ارقام سوق المال ومؤشرات البورصة المحلية والعالمية بالاضافة الى اخبار اكتتاب الشركات\"> <link rel=\"shortcut icon\" href=\"/error/assets/img/favicon.png\"> <title>معلومات مباشر </title> <!-- Bootstrap --> <link href=\"/error/assets/css/bootstrap.css\" rel=\"stylesheet\"> <link href=\"/error/assets/css/font-awesome.css\" rel=\"stylesheet\"> <link href=\"/error/assets/css/bootstrap-theme.css\" rel=\"stylesheet\"> <link rel="
  }
 }
