@@ -1,85 +1,12 @@
 {
- "text": " Indices Indices Historical Data MSX30 Indices Historical Data 2026 2025 2024 2023 2022 2021 Show Export to ExcelExport to PDF Company Symbol Remarks No data available to be displayed. Adjustment Date Company Share Capital Price Reason for Adjustment Before Adjustment After Adjustment Before Adjustment After Adjustment No data available to be displayed.",
- "selects": [
-  {
-   "id": "ctl00_ContentPlaceHolder1_YearDropDownList",
-   "opts": [
-    "2026=2026",
-    "2025=2025",
-    "2024=2024",
-    "2023=2023",
-    "2022=2022",
-    "2021=2021"
-   ]
-  },
-  {
-   "id": "MainSearchType",
-   "opts": [
-    "companies=Companies",
-    "downloads=Publications",
-    "financial=Financial Reports",
-    "news=News",
-    "events=Exchange News",
-    "funds=Mutual Funds",
-    "bonds=Bonds and Sukuk",
-    "brokers=Brokers",
-    "CD=Circulars / Decisions",
-    "All=All"
-   ]
-  }
- ],
- "buttons": [
-  ":",
-  ":",
-  "ShowButton:Show",
-  "ctl00_LoginButton:Login",
-  ":Reset Password Guide",
-  "ctl00_RetrievePasswordButton:Retrieve Password",
-  ":Continue",
-  ":Logout",
-  "MainSearchButton:"
- ],
- "after": " Indices Indices Historical Data MSX30 Indices Historical Data 2026 2025 2024 2023 2022 2021 Show Export to ExcelExport to PDF Company Symbol Remarks No data available to be displayed. Adjustment Date Company Share Capital Price Reason for Adjustment Before Adjustment After Adjustment Before Adjustment After Adjustment No data available to be displayed.",
- "reqs": [
-  {
-   "u": "https://analytics.google.com/g/collect?v=2&tid=G-BQNXL7KYTM&gtm=45je6ae1v892843833za208zd892843833xf1&_p=1792167865478&_gaz=1&gcd=13l3l3l3l1l1&npa=0&dma=0&_eu=AAAAACAC&are=1&cid=1131112413.1792167866&frm=0&ibt=1&ngs=1&pscdl=noapi&rcb=7&sr=1280x720&uaa=x64&uab=64&uafvl=Chromium%3B130.0.6723.31%7CHeadlessChrome%3B130.0.6723.31%7CNot%253FA_Brand%3B99.0.0.0&uam=&uamb=0&uap=Windows&uapv=10.0&uaw=0&ul=en-us&_s=1&tag_exp=115616985~115938465~115938468~118897920~118897930~120213116~120385423~120469145~120469153~121246026~121246034&sid=1792167865&sct=1&seg=0&dl=https%3A%2F%2Fwww.msx.om%2Fcomponent-track.aspx&dt=Muscat%20Stock%20Exchange&en=page_view&_fv=1&_nsi=1&_ss=1&_ee=1&tfd=2191",
-   "post": null,
-   "body": ""
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetNotificationsCenter",
-   "post": null,
-   "body": "{\"d\":[{\"TitleAr\":\"معامل التحديد والأسهم الحرة لمؤشرات البورصة - نهاية سبتمبر 2026\",\"TitleEn\":\"Free Float \\u0026 Capping Factors End of Sep 2026\",\"LinkEn\":\"msmdocs/downloads/en_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"LinkAr\":\"msmdocs/downloads/ar_1790771863522_MSX INDICES MAINTAINCE q3.pdf\",\"symbol\":\"MSX\",\"LongNameEn\":\"Muscat Stock Exchange\",\"LongNameAr\":\"بورصة مسقط\",\"type\":\"9\",\"NotiType\":\"3\",\"NotifiDateTime\":\"9/30/2026 4:37:43 PM\",\"updtimehrs\":\"23266\",\"NotiColor\":\"bg-cyan\",\"NotifiTime\":\"30-09-2026 04:37 PM\",\"isHotImg\":\"HighNews.png\",\"CompanyLogo\":\"MSXLOGO.png\",\"rowIcon\":\"tab_icon5.png\",\"rowIconEn\":\"Publications\",\"rowIconAr\":\"النشرات والإصدارات\"},{\"TitleAr\":\"المراجعة السنوية لعينة المؤشرات 2026\",\"TitleEn\":\"The Annual Revision of MSX Indices Constituents 2026\",\"LinkEn\":\"msmdocs/downloads/en_1780379450975_The Annual Revision of MSX Indices Constituents 2026.pdf\",\"LinkAr\":\"msmdocs/downloads/ar_1780379450990_The Annual Revision of MSX Indices Constituents 2026.pdf\",\"symbol\":\"MSX\",\"LongNameEn\":\"Muscat Stock Exchange\",\"LongNameAr\":\"بورصة مسقط\",\"type\":\"9\",\"NotiType\":\"3\",\"NotifiDateTime\":\"6/1/2026 9:50:50 AM\",\"updtimehrs\":\"197913\",\"NotiColor\":\"bg-cyan\",\"NotifiTime\":\"01-06-2026 09:50 AM\",\"isHotImg\":\"HighNews.png\",\"CompanyLogo\":\"MSXLOGO.png\",\"rowIcon\":\"tab_icon5.png\",\"rowIconEn\":\"Publications\",\"rowIconAr\":\"النشرات والإصدارات\"},{\"TitleAr\":\"المراجعة السنوية لعينة المؤشر الشرعي 2026  \",\"TitleEn\":\"Annual Revision of MSXSI Index Constituents 2026\",\"LinkEn\":\"msmdocs/downloads/en_1777872"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/GetSummaryTips",
-   "post": null,
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/api.aspx/HeaderAdvertisement",
-   "post": "{'Type': '0'}",
-   "body": "{\"d\":[{\"ImgNameEn\":\"MSX-En-2025-16 (1).jpg\",\"ImgNameAr\":\"MSX-AR-2025-17.jpg\",\"GUIDEn\":null,\"GUIDAr\":null,\"LinkEn\":null,\"LinkAr\":null,\"TimePeriod\":\"15\",\"HAdvertisementTypeID\":null,\"UrlEn\":\"https://www.msx.om/downloads.aspx?b1=Publications\\u0026b2=MSX-Annual-Report\\u0026c=13\\u0026ti=MSX-Annual-Report\",\"UrlAr\":\"https://www.msx.om/downloads.aspx?b1=Publications\\u0026b2=MSX-Annual-Report\\u0026c=13\\u0026ti=MSX-Annual-Report\"},{\"ImgNameEn\":\"small web. banner-19.jpg\",\"ImgNameAr\":\"small web. banner-20.jpg\",\"GUIDEn\":null,\"GUIDAr\":null,\"LinkEn\":null,\"LinkAr\":null,\"TimePeriod\":\"15\",\"HAdvertisementTypeID\":null,\"UrlEn\":\"https://www.msx.om/downloads.aspx?b1=Publications\\u0026b2=MSX-Sustainability-Report\\u0026c=23\\u0026ti=MSX-Sustainability-Report\",\"UrlAr\":\"https://www.msx.om/downloads.aspx?b1=Publications\\u0026b2=MSX-Sustainability-Report\\u0026c=23\\u0026ti=MSX-Sustainability-Report\"}]}"
-  },
-  {
-   "u": "https://www.msx.om/component-track.aspx/List",
-   "post": "{\"Year\":2026}",
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/maintenance-history.aspx/List",
-   "post": "{\"Year\":2026}",
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/component-track.aspx/List",
-   "post": "{\"Year\":\"2026\"}",
-   "body": "{\"d\":[]}"
-  },
-  {
-   "u": "https://www.msx.om/maintenance-history.aspx/List",
-   "post": "{\"Year\":\"2026\"}",
-   "body": "{\"d\":[]}"
-  }
- ]
+ "Daily": {
+  "st": 200,
+  "len": 4472,
+  "head": "\r\n\r\n<rss version=\"2.0\">\r\n    <channel>\r\n        <title>Muscat Stock Exchange</title>\r\n        <link>http://www.msx.om</link>\r\n        <description>The latest headlines and articles from the Stock market.</description>\r\n        \r\n                <item>\r\n                    <title>Daily Statistics 15-10-2026</title>\r\n                    <pubDate>10/15/2026 3:51:33 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 14-10-2026</title>\r\n                    <pubDate>10/14/2026 3:30:58 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 13-10-2026</title>\r\n                    <pubDate>10/13/2026 3:37:09 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 12-10-2026</title>\r\n                    <pubDate>10/12/2026 3:30:06 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 11-10-2026</title>\r\n                    <pubDate>10/11/2026 3:39:44 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 08-10-2026</title>\r\n                    <pubDate>10/8/2026 3:19:53 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 07-10-2026</title>\r\n                    <pubDate>10/7/2026 3:52:08 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 06-10-2026</title>\r\n                    <pubDate>10/6/2026 3:28:09 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 05-10-2026</title>\r\n                    <pubDate>10/5/2026 3:21:50 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 04-10-2026</title>\r\n                    <pubDate>10/4/2026 3:25:45 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Daily Statistics 01-10-2026</title>\r\n                    <pubDate>10/1/2026 3:25:31 PM</pubDate>\r\n                 "
+ },
+ "Monthly": {
+  "st": 200,
+  "len": 4542,
+  "head": "\r\n\r\n<rss version=\"2.0\">\r\n    <channel>\r\n        <title>Muscat Stock Exchange</title>\r\n        <link>http://www.msx.om</link>\r\n        <description>The latest headlines and articles from the Stock market.</description>\r\n        \r\n                <item>\r\n                    <title>Monthly Bulletin - September 2026</title>\r\n                    <pubDate>10/1/2026 2:35:36 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - September 2026</title>\r\n                    <pubDate>9/30/2026 2:36:34 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - August 2026</title>\r\n                    <pubDate>9/1/2026 8:16:28 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - August 2026</title>\r\n                    <pubDate>8/31/2026 3:24:38 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - July 2026</title>\r\n                    <pubDate>8/3/2026 9:56:18 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - July 2026</title>\r\n                    <pubDate>7/30/2026 3:29:31 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - June 2026</title>\r\n                    <pubDate>7/2/2026 8:25:19 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - June 2026</title>\r\n                    <pubDate>6/30/2026 3:43:13 PM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - May 2026</title>\r\n                    <pubDate>6/1/2026 11:34:45 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Statistics - May 2026</title>\r\n                    <pubDate>6/1/2026 11:23:35 AM</pubDate>\r\n                    \r\n                </item>\r\n            \r\n                <item>\r\n                    <title>Monthly Bulletin - April 2026</title>\r\n                    <pubDate>5/3/2026 12:37:04 PM</p"
+ }
 }
